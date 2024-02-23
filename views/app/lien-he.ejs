@@ -1,0 +1,220 @@
+<html lang="en">
+
+<head>
+    <%- include('./components/head') -%>
+</head>
+
+<body>
+    <%- include('./components/header') -%>
+    <%- include('./components/bottomNav') -%>
+
+    <div class="lienhe-info py-60 py-lg-90">
+        <div class="container">
+            <div class="row-change flex-column-reverse flex-md-row mb-3 mb-lg-4">
+                <%if(dataProducts){
+                    const prod = dataProducts.find((item) => item._id === 'sMzIWSqey');
+                    if(prod){
+                        const title = prod.name;
+                        const desShort = prod.descriptionPlus[0];
+                        const descriptions = prod.descriptionPlus[1];
+                        const pathImage = prod.images[0]?.image || '';
+                    %>
+                <div class="cot-7-md lienhe-info-text p-30 p-lg-60">
+                    <h3 class="h3-title mb-4"><%- title%></h3>
+                    <p class="mb-4 text-color-2">
+                        <%- desShort.description%>
+                    </p>
+                    <a class="main-btn mx-auto mx-md-0 mt-4" href="#" data-bs-toggle="modal" data-bs-target="#infor">
+                        <%= 'Chi tiết >>>' %>
+                    </a>
+                    <div class="modal fade" id="infor" tabindex="-1" aria-labelledby="cateDetailLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h4 class="modal-title fs-5" id="cateDetailLabel"><%- title%></h4>
+                            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                <%- descriptions.description%>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cot-5-md lienhe-info-logo p-30 p-lg-60">
+                    <img src="../<%= pathImage%>" alt="">
+                </div>
+                <%}}%>
+            </div>
+            <div class="row-change">
+                <% infor = dataContact;
+                phone1 = infor.phone1;
+                phone2 = infor.phone2;
+                email1 = infor.email;
+                email2 = infor.email2;
+                facebookLink = infor.facebook;
+                youtobeLink = infor.youtube;
+                %>
+                <div class="cot-12 cot-6-md cot-3-lg p-15 p-lg-30 p-xl-60 bg-grey lienhe-info-icon">
+                    <i class="bi bi-telephone"></i>
+                    <h5>Điện thoại</h5>
+                    <%if(phone1){
+                        %>
+                        <a href="tel:<%= phone1.replace(/[()\s]/g, '')%>">
+                            <span><%= phone1%></span>
+                        </a>
+                    <%}%>
+                    <%if(phone2){ %>
+                        <a href="tel:<%= phone2.replace(/[()\s]/g, '')%>">
+                            <span><%= phone2%></span>
+                        </a>
+                    <%}%>
+                </div>
+                <div class="cot-12 cot-6-md cot-3-lg p-15 p-lg-30 p-xl-60 bg-grey lienhe-info-icon">
+                    <i class="bi bi-envelope"></i>
+                    <h5>Email</h5>
+                    <%if(email1){%>
+                        <a href="mailto:<%= email1%>">
+                            <span><%= email1%></span>
+                        </a>
+                    <%}%>
+                    <%if(email2){%>
+                        <a href="mailto:<%= email2%>">
+                            <span><%= email2%></span>
+                        </a>
+                    <%}%>
+                </div>
+                <div class="cot-12 cot-6-md cot-3-lg p-15 p-lg-30 p-xl-60 bg-grey lienhe-info-icon">
+                    <i class="bi bi-facebook"></i>
+                    <h5>Fanpage</h5>
+                    <%if(facebookLink){%>
+                    <span><%= facebookLink%></span>
+                    <%}%>
+                    <!-- <span>(+84) 888 999 777</span> -->
+                </div>
+                <div class="cot-12 cot-6-md cot-3-lg p-15 p-lg-30 p-xl-60 bg-grey lienhe-info-icon">
+                    <i class="bi bi-youtube"></i>
+                    <h5>Youtobe</h5>
+                    <%if(youtobeLink){
+                        %>
+                        <span><%= youtobeLink%></span>
+                    <% }%>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lienhe-form pb-30 pb-lg-90">
+        <div class="container">
+            <span class="mb-2 text-center position-relative">Giữ kết nối</span>
+            <h3 class="h3-title mb-4 text-center">Gửi lời nhắn</h3>
+            <div class="row-change w-100">
+                <div class="comment-box">
+                    <form action="" id="form_contact" method="POST">
+                        <div class="form-group mb-4" style="width: 49%">
+                            <input type="text" name="name" class="form-control cm-ho" id="name"
+                            placeholder="Họ và tên đệm *">
+                            <span class="form-message text-danger fs-6 mt-1"></span>
+                        </div>
+                        <div class="form-group mb-4" style="width: 49%">
+                            <input type="email" name="email" class="form-control cm-mail" id="email"
+                            placeholder="name@example.com">
+                            <span class="form-message text-danger mt-1"></span>
+                        </div>
+                        <div class="form-group"  style="width: 100%">
+                            <textarea class="form-control" name="content" id="note" rows="5"></textarea>
+                            <span class="form-message text-danger mt-1"></span>
+                        </div>
+                        <button type="submit" class="main-btn mt-4 mx-auto border-0" href="#">
+                            Gửi bình luận
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <%- include('./components/footer') -%>
+
+    <!-- script -->
+    <script src="../public/app/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="../public/app/js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+
+    <script src="../public/app/js/aos.2.3.1.js" crossorigin="anonymous"></script>
+    <script src="owlcarousel/owl.carousel.min.js" crossorigin="anonymous"></script>
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/1bc99374c0.js" crossorigin="anonymous"></script>
+    <!-- WOW -->
+    <script src="../public/app/js/wow.min.js"></script>
+    <!-- textillate -->
+    <!-- <script src="../public/app/js/jquery.fittext.js"></script> -->
+    <script src="../public/app/js/jquery.lettering.js"></script>
+    <script src="../public/app/js/jquery.textillate.js"></script>
+    <!-- config -->
+    <script src="../public/app/js/slider.js" crossorigin="anonymous"></script>
+    <script src="../public/app/js/config.js" crossorigin="anonymous"></script>
+    <!-- isotope -->
+    <script src="../public/app/js/isotope.pkgd.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../public/app/js/validator.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <!-- AOS-call -->
+    <script>
+        AOS.init();
+        AOS.init({
+            duration: 700,
+        });
+    </script>
+    <!-- Swiper-Slider -->
+    <script src="../public/app/js/swiper-bundle.min.js"></script>
+    <!-- Plyr-player -->
+    <script src="https://cdn.plyr.io/3.7.2/plyr.js"></script>
+    <script>
+        const player = new Plyr('#player');
+        // Expose player so it can be used from the console
+        window.player = player;
+    </script>
+    <script>
+        Validator({
+          form: '#form_contact',
+          formGroupSelector: '.form-group',
+          errorSelector: '.form-message',
+          rules: [
+            Validator.isRequired('#name', 'Vui lòng nhập tên!'),
+            Validator.isRequired('#email', 'Vui lòng nhập Email!'),
+            Validator.isEmail('#email', 'Nhập đúng định dạng email!'),
+            Validator.isRequired('#note', 'Vui lòng nhập nội dung!'),
+          ],
+          onSubmit: function(data) {
+            var serializedData = $.param(data);
+            $.ajax({
+                    type: "POST",
+                    url: "/addMessage",
+                    data: serializedData,
+                    success: function (response) {
+    
+                      Swal.fire({
+                        position: "center-center",
+                        icon: "success",
+                        title: "Đã gửi thông tin thành công!",
+                        showConfirmButton: false,
+                        timer: 2000
+                      });
+                      document.getElementById("form_contact").reset();
+                    },
+                    error: function (xhr, status, error) {
+                        // Xử lý lỗi
+                    }
+                });
+          }
+    
+        });
+      </script>
+
+</body>
+
+</html>

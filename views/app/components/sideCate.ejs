@@ -1,0 +1,49 @@
+<div class="side-box">
+    <h4 class="mb-4">Danh mục</h4>
+    <div class="side-cate mb-4">
+        <ul class="side-cate-list">
+            <% if(dataCategories){
+                dataCategories.forEach((cate) =>{
+                    if(cate.parents == ''){%>
+                       <li class="side-cate-list-title 
+                       <% const urlCheck = `${cate.name.replace(/ /g, '-')}-${cate.pageId}.${cate._id}.cate`%>
+                       <% if(urlCheck === urlCurrentName){%> active<%}%>
+                       <%if(dataCategories.some((childCate) => childCate.parents === cate._id)){%> drdown<%}%>">
+                          <a href="<%= cate.name.replace(/ /g , '-')%>-<%= cate.pageId %>.<%= cate._id %>.cate"><%= cate.name%></a>
+                            <%if(dataCategories.some((childCate) => childCate.parents === cate._id)){%>
+                            <% 
+                              const hasActiveClass1 = dataCategoryDetail && dataCategories.some(item => item.parents === cate._id && item.id === dataCategoryDetail._id);
+                              const hasActiveClass2 = dataCategoryDetail && dataCategories.some(item => item.parents === cate._id && item.id === dataCategoryDetail.parents)
+                            %>
+                            <i class="bi bi-plus-lg <% if (hasActiveClass1 || hasActiveClass2) {%>active<%}%>" onclick="catelist(this)"></i>
+                            <ul id="cate-list-1" class="side-cate-list-drdown <% if (hasActiveClass1 || hasActiveClass2) {%>active<%}%>">
+                                    <% dataCategories.forEach((catelevel2) => {
+                                        if(catelevel2.level == '1' && catelevel2.parents === cate._id){%>
+                                          <li class="side-cate-list-title <%if(urlCurrentName.includes(catelevel2._id)){%> active <%}%>">
+                                            <a href="<%= catelevel2.name.replace(/ /g , '-')%>-<%= catelevel2.pageId %>.<%= catelevel2._id %>.cate"><%= catelevel2.name%></a>
+                                            <%if(dataCategories.some((childCateTree) => childCateTree.parents === catelevel2._id)){%>
+                                                <% const subMenuActive = dataCategoryDetail && dataCategories.some((subActive) => subActive.parents === cate.id && subActive.id === dataCategoryDetail.parents) %>
+                                                <i class="bi bi-plus-lg <%if(subMenuActive){%> active<%}%>" onclick="catelist(this)"></i>
+                                                <ul class="side-cate-list-drdown <%if(subMenuActive){%> active<%}%>">
+                                                    <% dataCategories.forEach((catelevel3) => {
+                                                        if(catelevel3.level == '2' && catelevel3.parents === catelevel2._id){%>
+                                                            <li class="side-cate-list-title <%if(urlCurrentName.includes(catelevel3._id)){%> active <%}%>">
+                                                                <a href="<%= catelevel3.name.replace(/ /g , '-')%>-<%= catelevel3.pageId %>.<%= catelevel3._id %>.cate"><%= catelevel3.name%></a>
+                                                            </li>
+                                                        <% }
+                                                    })%>
+                                                </ul>
+                                            </li>
+                                        <% }}%>
+                                    <%})%>
+                                </ul>
+                            <%}%>
+                        </li>
+                    <%}})}%>
+            
+           
+        </ul>
+
+    </div>
+
+</div>

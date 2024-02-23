@@ -1,0 +1,26 @@
+<div class="home-doitac py-90">
+    <div class="container">
+        <%if(dataCategories ){
+            const category = dataCategories.find(cate => cate._id === 'yGVUqCVNJ');
+            if(category) {
+                nameCate = category.name;
+                descCate = category.desc;
+          %>
+        <h3 class="h3-title text-center mb-3"><%= nameCate%></h3>
+        <p class="p-title mb-5"><%= descCate%></p>
+        <%   }
+        }%>
+        <div class="owl-homedoitac owl-carousel owl-theme">
+            <%if(dataProducts.forEach(prod => {
+                if(prod.categoryIds[0] === 'yGVUqCVNJ'){
+                    altProd = prod.name;
+                    pathImage = prod.images[0]?.image || '';
+               %>
+            <div class="item">
+                <img src="../<%= pathImage%>" alt="<%= altProd%>">
+            </div>
+            <%  }
+                }))%>
+        </div>
+    </div>
+</div>

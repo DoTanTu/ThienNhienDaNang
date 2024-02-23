@@ -1,0 +1,107 @@
+<html lang="en">
+
+<head>
+    <%- include('./components/head') -%>
+ </head>
+
+<body>
+    <%- include('./components/header') -%>
+    <%- include('./components/bottomNav') -%>
+
+    <div class="donghanh home-info" style="background-image: url(../public/app/images/Tree-bg-2.svg);">
+        <div class="container">
+            <div class="row-change mb-5 flex-column-reverse flex-md-row">
+                <%if(dataProducts && dataProducts.length > 0) {
+                    const prod = dataProducts.find((item) => 
+                    item.categoryIds[0] === 'dJaE_yaS1' && item._id === 'Twd6qkCIm')
+                    if(prod){
+                        name = prod.name;
+                        description = prod.descriptionPlus[0];
+                        pathImage = prod.images[0]?.image || "";
+                   %>
+                <div class="cot-12 cot-7-md px-md-5 d-flex flex-column">
+                    <h3 class="h3-title position-relative underline mb-4"><%= name%></h3>
+                    <div class="text-color-5 br-line-9 mb-4"><%- description.description%></div>
+                    <a class="main-btn mx-auto mx-md-0" href="#">
+                        Xem quy trình đóng góp
+                    </a>
+                </div>
+                <div class="cot-12 cot-5-md home-info-detail pe-md-5">
+                    <div class="info-img-box">
+                        <img class="position-absolute"
+                            src="../<%= pathImage%>"
+                            alt="">
+                    </div>
+                </div>
+                <%  }
+                }%>
+            </div>
+
+            <div class="row-change pt-60">
+                <div class="ketqua-title cot-12 mb-4">
+                    <h3 class="text-center h3-title mb-2">Kết quả đạt được</h3>
+                    <p class="p-title">Trang thông tin Thiên nhiên Đà Nẵng chính thức hoạt động từ
+                        tháng 11/2022 đến nay</p>
+                </div>
+                <div class="ketqua-box cot-6 cot-3-md d-flex flex-column">
+                    <span class="text-color-noti">350</span>
+                    <img src="public/app/images/icon/tailieu.svg" alt="">
+                    <span>Tài liệu</span>
+                </div>
+                <div class="ketqua-box cot-6 cot-3-md d-flex flex-column">
+                    <span class="text-color-3">70</span>
+                    <img src="public/app/images/icon/books.svg" alt="">
+                    <span>Sách, Truyện</span>
+                </div>
+                <div class="ketqua-box cot-6 cot-3-md d-flex flex-column">
+                    <span class="text-color-3">45</span>
+                    <img src="public/app/images/icon/file.svg" alt="">
+                    <span>Học liệu</span>
+                </div>
+                <div class="ketqua-box cot-6 cot-3-md d-flex flex-column">
+                    <span class="color-2">570</span>
+                    <img src="public/app/images/icon/image.svg" alt="">
+                    <span>Ảnh, Video</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="donghanh-tnv py-90">
+        <div class="container">
+            <div class="row-change">
+                <%if(dataProducts && dataProducts.length > 0) {
+                    const prod = dataProducts.find((item) => 
+                    item.categoryIds[0] === 'dJaE_yaS1' && item._id === 'CZx46SIFv')
+                    if(prod){
+                        name = prod.name;
+                        description = prod.descriptionPlus[0];
+                        pathImage = prod.images[0]?.image || "";
+                        url = prod.url
+                   %>
+                <div class="cot-5">
+                    <div class="donghanh-tnv-img position-relative">
+                        <img src="../<%= pathImage%>" alt="<%= name%>">
+                    </div>
+                </div>
+                <div class="cot-7 donghanh-tnv-text p-5">
+                    <h3 class="h3-title underline mb-5"><%= name%></h3>
+                    <div class="mb-5"><%- description.description%></div>
+                    <a class="main-btn mx-auto mx-md-0" href="<%= url%>" target="_blank">
+                        Đăng ký tham gia
+                    </a>
+                </div>
+                <%}}%>
+            </div>
+        </div>
+    </div>
+
+    <%- include('./components/donggop') -%>
+<%- include('./components/footer') -%>
+<%- include('./components/end') -%>
+
+
+
+</body>
+
+</html>

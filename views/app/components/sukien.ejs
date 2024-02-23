@@ -1,0 +1,43 @@
+<div class="sukien">
+    <div class="container">
+        <h3 class="mb-5">Sự kiện</h3>
+        <div class="owl-sukien owl-carousel owl-theme">
+
+            <% if(dataProducts){
+                dataProducts.forEach((prod) => {
+                    if(prod.categoryIds[0] === '1WdZswujA'){
+                    name = prod.name;
+                    desShort = prod.desShort;
+                    pathImage = prod.images[0]?.image || "";
+
+              %>
+            <div class="item">
+                <div class="sukien-box row-change">
+                    <div class="cot-12 cot-5-lg">
+                        <div class="sukien-box-img">
+                            <img src="../<%= pathImage%>"
+                                alt="<%= name%>">
+                        </div>
+                    </div>
+                    <div class="cot-12 cot-7-lg sukien-detail">
+                        <span class="sukien-label">Sự kiện sắp tới</span>
+                        <h4 class="mb-3"><%= name%></h4>
+                        <div class="sukien-time mb-3">
+                            <span class="sukien-ngay">27 / 08 /2022</span>
+                            <span class="sukien-gio">08:45 AM - 08:00 PM</span>
+                            <span class="sukien-diadiem">Hội Trường phòng 107. Toà nhà A5, Trường Đại học sư phạm Đà Nẵng, 459 Tôn Đức Thắng, quận Liên Chiểu, Đà Nẵng</span>
+                        </div>
+                        <div class="sukien-text">
+                            <p class="br-line-3"><%= desShort%></p>
+                        </div>
+                        <a class="main-btn" href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html">Chi tiết >>></a>
+                        <img src="../public/app/images/vooc.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <%   }})
+            }%>
+
+        </div>
+    </div>
+</div>

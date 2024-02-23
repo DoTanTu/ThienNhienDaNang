@@ -1,0 +1,69 @@
+<div class="home-books py-90 mt-4">
+    <div class="container">
+        <h3 class="h3-title position-relative underline mb-5">Sách</h3>
+        <div class="owl-homebook owl-carousel owl-theme">
+            <%if(dataOther2) {
+                dataOther2.products.forEach((prod) => {
+                    name = prod.name;
+                    pdfPath = prod.pdf;
+                    pathImage = prod.images[0]?.image || ""
+              %>
+            <div class="item">
+                <div class="home-book-box d-flex flex-column h-100">
+                    <div class="home-book-boox-img">
+                        <img src="../<%=pathImage%>"
+                            alt="">
+                    </div>
+                    <div class="home-book-text py-30 d-flex flex-column gap-2 align-items-center flex-fill">
+                        <a href="#">
+                            <h4 class="h4-title text-center br-line-2"><%= name%>
+                            </h4>
+                        </a>
+                        <a href="#">
+                            <span>Tác Giả: Qing Li</span>
+                        </a>
+                        <div class="home-books-button d-flex justify-content-center gap-4 mt-auto">
+                            <a href="#">Đọc</a>
+                            <a href="#"  data-bs-toggle="modal" data-bs-target="#downloadModalBook<%= prod._id%>">Tải xuống</a>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+
+            
+            <% })}%>
+
+        </div>
+        <%if(dataOther2) {
+            dataOther2.products.forEach((prod) => {
+                
+                %>
+        <div class="modal fade" id="downloadModalBook<%= prod._id%>" tabindex="-1" aria-labelledby="cateDetailLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-md">
+              <div class="modal-content">
+
+                <div class="modal-header">
+                  <h4 class="modal-title fs-5" id="cateDetailLabel">Xác nhận</h4>
+                  <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="bi bi-x-lg"></i>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Bạn có cam kết sử dụng hình ảnh/tài liệu này vì mục đích phi lợi nhuận?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                    <a href="../<%= prod.pdf%>" download>Đồng ý</a>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%})}%>
+        <a class="main-btn mx-auto mt-4" href="#">
+            Xem Tất cả
+        </a>
+    </div>
+</div>

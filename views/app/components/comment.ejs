@@ -1,0 +1,80 @@
+<div class="tintuc-detail-comment">
+  <h3 class="underline" id="number-comment"><%= prod.comments.filter(comment => comment.parentId === "").length;%> Bình luận</h3>
+  <div class="message-comment"></div>
+  <input type="hidden" id="idProduct" value="<%= dataProductDetail._id%>">
+  <input type="hidden" id="id_account" value="">
+  <input type="hidden" id="avatar_account" value="">
+  <input type="hidden" id="fullname_account" value="">
+  <div class="tintuc-detail-comment-box flex-wrap mt-4">
+    <div class="comment-box-img">
+      <img id="image_account" src="" alt="">
+    </div>
+    <div class="comment-box  flex-grow-1 " id="user-comment ">
+        <h5 id="fullname_account_comment"></h5>
+        <form id="formComment" class="form-comment">
+        <input type="hidden" name="productId" value="<%= dataProductDetail._id%>">
+        <input type="hidden" id="id-user" name="userId" value="">
+        <textarea class="form-control" id="comment" name="comment" rows="5" placeholder="Nhập bình luận của bạn"></textarea>
+        <div class="btn_submit">
+            <button class="main-btn mt-4" type="submit">
+            Gửi bình luận
+            </button>
+        </div>
+        </form>
+        <div class="login-required" id="login-required">
+        <a href="dang-nhap">Đăng nhập để bình luận</a>
+        </div>
+    </div>
+    </div>
+  <div class="mt-4" id="list-comment">
+    <% if(prod.comments && prod.comments.length > 0){
+        prod.comments.forEach( (item) => {
+            if(item.parentId === ''){
+                const createdAt = new Date(item.createdAt);
+                const formattedDate = createdAt.toLocaleString();
+                avatar = item.customers.avatar !== "" ? item.customers.avatar : "https://images.pexels.com/photos/1009904/pexels-photo-1009904.jpeg?auto=compress&cs=tinysrgb&w=300"
+
+                %>
+    <div class="tintuc-detail-comment-box flex-wrap">
+      <div class="comment-box-img">
+        <img src="<%= avatar%>" alt="">
+      </div>
+      <div class="comment-box-text flex-grow-1 mb-3">
+        <h5><%= item.customers?.fullname%> <span></span></h5>
+        <span><%= formattedDate%></span>
+        <p><%= item.text%>
+        </p>
+        <a class="traloi-btn" onclick="toggleReplyForm('<%= item._id %>','<%= prod._id %>')">Trả lời<i class="bi bi-reply"></i></a>
+      </div>
+      <div class="recomment-item w-100  ms-4" id="recomment<%= item._id %>">
+
+      </div>
+    </div>
+    <% prod.comments.forEach( (itemChilden) => {
+            if(itemChilden.parentId !== '' && itemChilden.parentId === item._id){
+                const createdAtChildren = new Date(itemChilden.createdAt);
+                const formattedDateChildren = createdAtChildren.toLocaleString();
+                avatarChildren = itemChilden.customers.avatar !== "" ? itemChilden.customers.avatar : "https://images.pexels.com/photos/1009904/pexels-photo-1009904.jpeg?auto=compress&cs=tinysrgb&w=300"
+        %>
+    <div class="tintuc-detail-comment-box flex-wrap reply ">
+      <div class="comment-box-img">
+        <img src="<%= avatarChildren%>" alt="">
+      </div>
+      <div class="comment-box-text flex-grow-1 mb-3">
+        <h5><%= itemChilden.customers?.fullname%></h5>
+        <span><%= formattedDateChildren%></span>
+        <p><span class="message-reply">(<%= item.customers.email%>) </span><%= itemChilden.text%>
+        </p>
+        <a class="traloi-btn" onclick="toggleReplyForm('<%= itemChilden._id %>','<%= prod._id %>')">Trả lời<i class="bi bi-reply"></i></a>
+      </div>
+      <div class="recomment-item w-100  ms-4" id="recomment<%= itemChilden._id %>">
+
+      </div>
+    </div>
+    <% }})%>
+    <%}})
+    }%>
+
+  </div>
+
+</div>

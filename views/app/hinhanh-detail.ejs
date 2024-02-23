@@ -1,0 +1,178 @@
+<html lang="en">
+
+<head>
+    <%- include('./components/head') -%>
+</head>
+
+<body>
+    <%- include('./components/header') -%>
+    <%- include('./components/bottomNav') -%>
+
+    <div class="main-body">
+        <div class="container">
+            <div class="row-change">
+                <div class="cot-12 cot-3-lg pe-0 pe-lg-4">
+                    <%- include('./components/sideCate') -%>
+                    <%- include('./components/sideBooks') -%>
+                    <%- include('./components/sideAuthors') -%>
+                    <%- include('./components/sideTags') -%>
+                </div>
+                <div class="cot-12 cot-9-lg hinhanh-detail">
+                    <% if(dataProductDetail){
+                        prod = dataProductDetail;
+                    %>
+                    <h3 class="h3-title mb-5 underline"><%= prod.name%></h3>
+
+                    <div class="hinhanh-gallery-detail gallery-container d-flex align-items-center justify-content-center mb-5"
+                        id="gallery-container">
+
+                        <a class="gallery-item"
+                            data-src="<%= prod.images[0].image%>"
+                            data-sub-html="#caption1">
+                            <img class="img-fluid"
+                                src="<%= prod.images[0].image%>" />
+                        </a>
+                        <%if(prod.images.length > 0 ){
+                            prod.images.forEach((imageItem, index) => {
+                                if(index > 0){
+                                pathImage = imageItem.image
+                           %>
+                        <a class="gallery-item"
+                            data-src="<%= pathImage%>"
+                            data-sub-html="<%= index%>">
+                            <img class="img-fluid"
+                                src="<%= pathImage%>" />
+                        </a>
+                     <% } })
+                        }%>
+                    </div>
+
+                    <!-- caption -->
+                    <div id="caption1" style="display:none">
+                        <h4 class="br-line-1">Bowness Bay</h4>
+                        <span>Tác giả: <strong>Lê Khả Ý</strong></span>
+                        <span>Thời gian: <strong>15/04/2020</strong></span>
+                        <span>Địa điểm: <strong>Bàn Cờ</strong></span>
+                    </div>
+                    <div id="caption2" style="display:none">
+                        <h4 class="br-line-1">Bowness Bay</h4>
+                        <span>
+                            Tác giả: <strong>Tăng Phước Nhân</strong>
+                        </span>
+                        <span>
+                            Thời gian: <strong>01/04/2019</strong>
+                        </span>
+                        <span>
+                            Địa điểm: <strong>Sơn Trà</strong>
+                        </span>
+                    </div>
+                    <div id="caption3" style="display:none">
+                        <h4 class="br-line-1">Bowness Bay</h4>
+                        <span>
+                            Tác giả: <strong>Nguyễn Công Kha</strong>
+                        </span>
+                        <span>
+                            Thời gian: <strong>04/01/2023</strong>
+                        </span>
+                        <span>
+                            Địa điểm: <strong>Sơn Trà</strong>
+                        </span>
+                    </div>
+
+                    <div class="hinhanh-mieuta mb-3">
+                        <h3 class="h3-title underline position-relative mb-4">Miêu tả</h3>
+                        <%- prod.description%>
+                    </div>
+                    <div class="nav-tag mb-5">
+                        <ul>
+                            <span>Từ khoá:</span>
+                            <% var hashtagsProduct = dataAttibutes.find(function(attribute) {
+                                return attribute._id === 'Hashtag_tu_lieu';
+                                });
+                                if(prod.hashtags){
+                                    prod.hashtags.forEach((item) => {
+                                       const values = hashtagsProduct.values.find((element) => element.code === item); %>
+                                       <li><a href="/hinh-anh?hashtag=<%= values.code%>"><%= values.value%></a></li>
+                            <%})}%>
+                        </ul>
+                    </div>
+                    <%}%>
+
+                    <%- include('./components/comment') -%>
+                    <div class="hinhanh-quantam">
+                        <h3 class="h3-title underline position-relative mb-5">Có thể bạn quan tâm</h3>
+                        <div class="owl-quantam owl-carousel owl-theme mb-5">
+                            <div class="item">
+                                <div class="img-box trans-3 mb-3">
+                                    <a href="#"><img src="https://source.unsplash.com/random/400x400/?animal"
+                                            alt=""></a>
+                                </div>
+                                <a href="#">
+                                    <h4 class="br-line-2">Tên album</h4>
+                                </a>
+                                <span class="eng-name text-color-1">Tên tiếng Anh</span>
+                                <span class="latinh-name text-color-1">Tên tiếng Latinh</span>
+                            </div>
+                            <div class="item">
+                                <div class="img-box trans-3 mb-3">
+                                    <a href="#">
+                                        <img src="https://source.unsplash.com/random/401x401/?animal" alt="">
+                                    </a>
+                                </div>
+                                <a href="#">
+                                    <h4 class="br-line-2">Tên album</h4>
+                                </a>
+                                <span class="eng-name text-color-1">Tên tiếng Anh</span>
+                                <span class="latinh-name text-color-1">Tên tiếng Latinh</span>
+                            </div>
+                            <div class="item">
+                                <div class="img-box trans-3 mb-3">
+                                    <a href="#">
+                                        <img src="https://source.unsplash.com/random/402x402/?animal" alt="">
+                                    </a>
+                                </div>
+                                <a href="#">
+                                    <h4 class="br-line-2">Tên album</h4>
+                                </a>
+                                <span class="eng-name text-color-1">Tên tiếng Anh</span>
+                                <span class="latinh-name text-color-1">Tên tiếng Latinh</span>
+                            </div>
+                            <div class="item">
+                                <div class="img-box trans-3 mb-3">
+                                    <a href="#">
+                                        <img src="https://source.unsplash.com/random/403x403/?animal" alt="">
+                                    </a>
+                                </div>
+                                <a href="#">
+                                    <h4 class="br-line-2">Tên album</h4>
+                                </a>
+                                <span class="eng-name text-color-1">Tên tiếng Anh</span>
+                                <span class="latinh-name text-color-1">Tên tiếng Latinh</span>
+                            </div>
+                            <div class="item">
+                                <div class="img-box trans-3 mb-3">
+                                    <a href="#">
+                                        <img src="https://source.unsplash.com/random/404x404/?animal" alt="">
+                                    </a>
+                                </div>
+                                <a href="#">
+                                    <h4 class="br-line-2">Tên album</h4>
+                                </a>
+                                <span class="eng-name text-color-1">Tên tiếng Anh</span>
+                                <span class="latinh-name text-color-1">Tên tiếng Latinh</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('./components/footer') -%>
+    <%- include('./components/end') -%>
+
+</body>
+
+</html>

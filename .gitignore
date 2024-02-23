@@ -128,22 +128,22 @@ dist
 
 public/app/__MACOSX
 build
-public/app/*
-views/app/*
-!views/app/login.ejs
-!views/app/signup.ejs
-!views/app/profile
-!views/app/payment-fail.ejs
-!views/app/payment-success.ejs
-images/
-pdf/
-thumbnail/150/*
-thumbnail/250/*
-thumbnail/480/*
-thumbnail/720/*
-thumbnail/1200/*
-thumbnail/1280/*
-thumbnail/1920/*
+# public/app/*
+# views/app/*
+# !views/app/login.ejs
+# !views/app/signup.ejs
+# !views/app/profile
+# !views/app/payment-fail.ejs
+# !views/app/payment-success.ejs
+# images/
+# pdf/
+# thumbnail/150/*
+# thumbnail/250/*
+# thumbnail/480/*
+# thumbnail/720/*
+# thumbnail/1200/*
+# thumbnail/1280/*
+# thumbnail/1920/*
 src/config/localhost.pem
 src/config/localhost-key.pem
 .env.config

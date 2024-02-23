@@ -1,0 +1,75 @@
+<div class="home-info" style="background-image: url(images/Tree-bg-2.svg);">
+    <div class="container">
+        <div class="row-change mb-5 flex-column-reverse flex-md-row">
+            <%if(dataProducts && dataProducts.length > 0){
+                const prod = dataProducts.find((item) => item._id === 'sMzIWSqey');
+                if(prod){
+                    const title = prod.name;
+                    const desShort = prod.descriptionPlus[0];
+                    const descriptions = prod.descriptionPlus[1];
+                    const pathImage = prod.images[0]?.image || '';
+                %>
+            <div class="cot-12 cot-7-md px-md-5 d-flex flex-column">
+                <h3 class="h3-title position-relative underline mb-4"><%- title %>
+                </h3>
+                <div class="text-color-5 br-line-9 mb-4">
+                    <%- desShort.description%>
+                </div>
+                <a class="main-btn mx-auto mx-md-0" href="#" data-bs-toggle="modal" data-bs-target="#infor">
+                   <%= '< Xem thêm>'%>
+                </a>
+                <div class="modal fade" id="infor" tabindex="-1" aria-labelledby="cateDetailLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h4 class="modal-title fs-5" id="cateDetailLabel"><%- title%></h4>
+                        <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <%- descriptions.description%>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cot-12 cot-5-md home-info-detail pe-md-5">
+                <div class="info-img-box">
+                    <img class="position-absolute" src="../<%= pathImage%>" alt="">
+                </div>
+            </div>
+            <%  }
+             }
+            %>
+        </div>
+
+        <div class="row-change pt-60">
+            <div class="ketqua-title cot-12 mb-4">
+                <h3 class="text-center h3-title mb-2">Kết quả đạt được</h3>
+                <p class="p-title">Trang thông tin Thiên nhiên Đà Nẵng chính thức hoạt động từ
+                    tháng 11/2022 đến nay</p>
+            </div>
+            <div class="ketqua-box cot-6 cot-3-md d-flex flex-column">
+                <span class="text-color-noti">350</span>
+                <img src="../public/app/images/icon/tailieu.svg" alt="">
+                <span>Tài liệu</span>
+            </div>
+            <div class="ketqua-box cot-6 cot-3-md d-flex flex-column">
+                <span class="text-color-3">70</span>
+                <img src="../public/app/images/icon/books.svg" alt="">
+                <span>Sách, Truyện</span>
+            </div>
+            <div class="ketqua-box cot-6 cot-3-md d-flex flex-column">
+                <span class="text-color-3">45</span>
+                <img src="../public/app/images/icon/file.svg" alt="">
+                <span>Học liệu</span>
+            </div>
+            <div class="ketqua-box cot-6 cot-3-md d-flex flex-column">
+                <span class="color-2">570</span>
+                <img src="../public/app/images/icon/image.svg" alt="">
+                <span>Ảnh, Video</span>
+            </div>
+        </div>
+    </div>
+</div>

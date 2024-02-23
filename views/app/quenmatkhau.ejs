@@ -1,0 +1,45 @@
+<html lang="en">
+
+<head>
+    <%- include('./components/head') -%>
+</head>
+
+<body>
+    <%- include('./components/header') -%>
+    <%- include('./components/bottomNav') -%>
+
+    <div class="loginPage">
+        <div class="container">
+            <div class="row-change">
+                <div class="cot-6-md">
+                    <div class="imgBox">
+                        <img src="https://source.unsplash.com/random/800x600/?natural" alt="">
+                        <h3 class="h3-title mb-4 text-center">Quên mật khẩu!</h3>
+                        <p>Bạn quên mật khẩu của mình? Đừng lo lắng! Hãy cung cấp cho chúng tôi email bạn sử dụng để đăng ký tài khoản. Chúng tôi sẽ gửi cho bạn một liên kết để đặt lại mật khẩu của bạn qua email đó.</p>
+                    </div>
+                </div>
+                <div class="cot-6-md">
+                    <form class="loginBox" id="formAuthentication">
+                        <input class="form-control mb-4" id="email" name="email" type="email" placeholder="Email của bạn">
+                        <button type="submit" class="main-btn mt-4 mx-auto mb-4" >Gởi thông tin!</button>
+                        <div class="forgotPass">
+                            <span href="#">Chưa có tài khoản? <a href="dang-ky" class="resBtn">Đăng ký ngay!</a></span>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('./components/footer') -%>
+    <%- include('./components/end') -%>
+    <script src="../public/admin/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+    <script async defer src="../public/admin/assets/js/github.button.js"></script>
+    <script src="../public/admin/assets/js/pages/common.js"></script>
+    <script type="text/javascript" src="../public/authCustomer/forgetPassword.js"></script>
+
+</body>
+
+</html>

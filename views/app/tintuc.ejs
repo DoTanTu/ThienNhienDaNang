@@ -1,0 +1,70 @@
+<html lang="en">
+
+<head>
+    <%- include('./components/head') -%>
+</head>
+
+<body>
+    <%- include('./components/header') -%>
+    <%- include('./components/bottomNav') -%>
+
+    <div class="main-body">
+        <div class="container">
+            <div class="row-change">
+                <div class="cot-12 cot-3-lg pe-0 pe-lg-4">
+                    <%- include('./components/sideBooks') -%>
+                    <%- include('./components/sideAuthors') -%>
+                    <%- include('./components/sideTags') -%>
+                </div>
+                <div class="cot-12 cot-9-lg tintuc-all">
+                    <h3 class="mb-5 underline">Tin tức</h3>
+
+                    <%
+                    if(dataProducts && dataProducts.length > 0){
+                    dataProducts.forEach( item => {
+                        if(item.categoryIds[0] === 'avVK0giPU'){
+                        name = item.name;
+                        pathImage = item.images[0]?.image || "";
+                        desShort = item.desShort;
+                   %>
+                    <div class="tintuc-box row-change mb-5">
+                        <div class="cot-12 cot-4-md">
+                            <div class="tintuc-box-img">
+                                <img src="../<%= pathImage%>"
+                                    alt="<%= name%>">
+                            </div>
+                        </div>
+                        <div class="cot-12 cot-8-md tintuc-detail">
+                            <a href="<%= name.replace(/ /g , '-')%>-<%= item.pageId %>.<%= item._id %>.html">
+                                <h4 class="br-line-2 mb-2"><%= name%></h4>
+                            </a>
+                            <span class="mb-2">Đăng ngày 02/07/2022 bởi Trần Quốc Đại (tác giả)</span>
+                            <p class="br-line-3"><%= desShort%></p>
+                        </div>
+                    </div>
+                    <%  }})}%>
+                  
+
+                    <nav aria-label="pageBar" class="my-5">
+                        <ul class="pagination justify-content-center flex-wrap">
+                            <li class="page-item disabled"><a class="page-link">Trước</a></li>
+                            <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Tiếp theo</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('./components/sukien') -%>
+
+    <%- include('./components/footer') -%>
+    <%- include('./components/end') -%>
+
+</body>
+
+</html>

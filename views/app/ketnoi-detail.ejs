@@ -1,0 +1,86 @@
+<html lang="en">
+
+<head>
+    <%- include('./components/head') -%>
+</head>
+
+<body>
+    <%- include('./components/header') -%>
+    <%- include('./components/bottomNav') -%>
+
+    <div class="main-body">
+        <div class="container">
+            <div class="row-change">
+                <div class="cot-12 cot-3-lg pe-0 pe-lg-4">
+                    <%- include('./components/sideCate') -%>
+                    <%- include('./components/sideNewsImage') -%>
+                    <%- include('./components/sideBooks') -%>
+                    <%- include('./components/sideAuthors') -%>
+                    <%- include('./components/sideTags') -%>
+                </div>
+                <div class="cot-12 cot-9-lg tintuc-all tintuc-detail-box">
+                    
+                    <!-- --------------------------------------------------------------------------------------------------------------------------- -->
+                    <% prod = dataProductDetail;
+                        description = prod.description
+                    %>
+                    <h3 class="h3-title underline"><%= prod.name%></h3>
+                    <div class="tintuc-detail-admin d-flex mt-4">
+                        <div class="tintuc-admin-img">
+                            <img src="https://images.pexels.com/photos/5199158/pexels-photo-5199158.jpeg?auto=compress&cs=tinysrgb&w=300" alt="">
+                        </div>
+                        <div class="tintuc-admin-info d-flex flex-column">
+                            <h4>Huỳnh Thư</h4>
+                            <span>17/08/2022</span>
+                        </div>
+                    </div>
+                    <!-- --------------------------------------------------------------------------------------------------------------------------- -->
+                    
+                    <div class="tintuc-detail-content">
+
+                        <%- description%>
+
+                    </div>
+
+                    <div class="tintuc-detail-bottom">
+                        <div class="tintuc-detail-tag">
+                            <span>Từ khoá:</span>
+                            <ul>
+                                <li><a href="#">Tài liệu</a></li>
+                                <li><a href="#">Sơn Trà</a></li>
+                                <li><a href="#">Tình Nguyện</a></li>
+                                <li><a href="#">Tài liệu</a></li>
+                                <li><a href="#">Tài liệu</a></li>
+                                <li><a href="#">Sơn Trà</a></li>
+                            </ul>
+                        </div>
+                        <div class="tintuc-detail-social">
+                            <a href="#">
+                                <i class="bi bi-heart-fill"></i>
+                            </a>
+                            <a href="#">
+                                <i class="bi bi-bookmark-fill"></i>
+                            </a>
+                            <a href="#">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="#">
+                                <i class="bi bi-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <%- include('./components/comment') -%>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('./components/sukien') -%>
+
+    <%- include('./components/footer') -%>
+    <%- include('./components/end') -%>
+
+</body>
+
+</html>

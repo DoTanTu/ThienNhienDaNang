@@ -1,0 +1,94 @@
+<html lang="en">
+
+<head>
+    <%- include('./components/head') -%>
+</head>
+
+<body>
+    <%- include('./components/header') -%>
+    <%- include('./components/bottomNav') -%>
+
+    <div class="main-body">
+        <div class="container">
+            <div class="row-change">
+                <div class="cot-12 cot-3-lg pe-0 pe-lg-4">
+                    <%- include('./components/sideNewsImage') -%>
+                    <%- include('./components/sideBooks') -%>
+                    <%- include('./components/sideAuthors') -%>
+                    <%- include('./components/sideTags') -%>
+                </div>
+                <div class="cot-12 cot-9-lg tintuc-all">
+                    <h3 class="mb-5 underline">Kết nối đó đây(<%= dataProducts.length%>)</h3>
+
+                    <%if(dataProducts){
+                        dataProducts.forEach( prod => {
+                            name = prod.name;
+                            desShort = prod.desShort;
+                            pathImage = prod.images[0]?.image || "";
+                    %>
+                    <div class="ketnoi-box row-change">
+                        <div class="cot-12 cot-6-md ketnoi-box-left">
+                            <div class="ketnoi-box-img">
+                                <img src="../<%= pathImage%>"
+                                    alt="<%= name%>">
+                            </div>
+                        </div>
+                        <div class="cot-12 cot-6-md ketnoi-box-detail">
+                            <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html" >
+                                <h4 class="h4-title br-line-2"><%= name%></h4>
+                            </a>
+                            <div class="ketnoi-box-date">
+                                <span>Đăng bởi Admin</span>
+                                <span>10/06/2022</span>
+                            </div>
+                            <p class="br-line-4">
+                                <%= desShort%>
+                            </p>
+                            <a class="main-btn mt-auto" href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html">
+                                <%= '<< Chi tiết >>' %>
+                            </a>
+                        </div>
+                    </div>
+                    <%  })
+                    }%>
+                   
+
+                    <nav aria-label="pageBar" class="my-5">
+                    <% 
+                        const numberSizeProduct = dataSite.products.length;
+                        const itemsPerPage = 2;
+                        const totalPages = Math.ceil(numberSizeProduct / itemsPerPage);
+                        var currentPage = 0;
+                    %>
+                    <ul class="pagination justify-content-center flex-wrap">
+                        <% if (currentPage === 0) { %>
+                            <li class="page-item disabled"><a class="page-link">Trước</a></li>
+                        <% } else { %>
+                            <li class="page-item"><a class="page-link" href="?start=<%= currentPage - 1 %>">Trước</a></li>
+                        <% } %>
+
+                        <% for (let i = 0; i < totalPages; i++) { %>
+                            <% if (i === currentPage) { %>
+                                <li class="page-item active" aria-current="page"><a class="page-link" href="?start=<%= i %>"><%= i + 1 %></a></li>
+                            <% } else { %>
+                                <li class="page-item"><a class="page-link" href="?start=<%= i %>"><%= i + 1 %></a></li>
+                            <% } %>
+                        <% } %>
+
+                        <% if (currentPage === totalPages - 1 || totalPages === 0) { %>
+                            <li class="page-item disabled"><a class="page-link">Tiếp theo</a></li>
+                        <% } else { %>
+                            <li class="page-item"><a class="page-link" href="?start=<%= currentPage + 1 %>">Tiếp theo</a></li>
+                        <% } %>
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('./components/footer') -%>
+    <%- include('./components/end') -%>
+</body>
+
+</html>

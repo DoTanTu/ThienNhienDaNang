@@ -1,0 +1,209 @@
+.owl-cover .owl-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 15px;
+}
+.owl-cover .owl-nav i {
+    font-size: 50px;
+}
+
+
+.owl-theme .owl-nav [class*=owl-] {
+    height: 32px;
+    width: 32px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../images/hexagon.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.slider-cover .owl-stage-outer,
+.slider-cover .owl-stage,
+.slider-cover .owl-item,
+.slider-cover .item {
+    height: 100%;
+}
+
+.owl-slider-cover {
+    height: 100%;
+}
+
+.slider-cover-box {
+    height: 100%;
+}
+
+/* .slider-cover div {
+    height: 100%;
+} */
+.owl-cover img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
+.slider-cover .owl-theme .owl-nav [class*=owl-]:hover {
+    background-color: transparent;
+}
+
+.owl-theme .owl-nav.disabled+.owl-dots {
+    position: absolute;
+    bottom: 15px;
+    margin: 0;
+    width: 100%;
+}
+
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+    background-color: var(--color-noti);
+}
+.owl-theme .owl-dots .owl-dot span {
+    background: var(--color-2);
+}
+
+
+
+.home-tintuc .owl-carousel .owl-stage,
+.home-books .owl-carousel .owl-stage {
+    display: flex;
+}
+
+.home-tintuc .owl-theme .owl-nav,
+.home-doitac .owl-theme .owl-nav,
+.home-video .owl-theme .owl-nav {
+    position:absolute;
+    margin: 0;
+    top: -50px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.home-doitac .owl-theme .owl-nav {
+    width: 110%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.home-tintuc .owl-theme .owl-nav [class*=owl-],
+.home-tulieu .owl-theme .owl-nav [class*=owl-],
+.home-books .owl-theme .owl-nav [class*=owl-],
+.home-doitac .owl-theme .owl-nav [class*=owl-],
+.home-video .owl-theme .owl-nav [class*=owl-]   {
+    height: 40px;
+    width: 50px;
+    border-radius: 15px;
+    border: 1px solid var(--color-2);
+}
+
+.home-doitac .owl-theme .owl-nav [class*=owl-] {
+    border: none;
+    color: var(--color-1);
+}
+
+.owl-theme .owl-nav [class*=owl-]:hover {
+    background-color: var(--color-1);
+}
+
+.home-tulieu .owl-carousel .owl-stage-outer {
+    padding-inline: 5px;
+}
+.home-tulieu .owl-theme .owl-nav,
+.home-books .owl-theme .owl-nav,
+.hinhanh-quantam .owl-theme .owl-nav {
+    position: absolute;
+    right: 0;
+    top: -80px;
+}
+
+.sukien .owl-theme .owl-nav.disabled+.owl-dots {
+    bottom: -15px;
+}
+
+.home-doitac .owl-theme .owl-nav [class*=owl-]:hover {
+    background-color: transparent;
+    color: var(--color-2);
+}
+
+.home-doitac .item {
+    padding-inline: 15px;
+}
+.home-books .item {
+    padding-inline: 5px;
+}
+
+.sukien .owl-theme .owl-dots .owl-dot span {
+    background-color: var(--color-1);
+}
+
+.sukien .owl-theme .owl-dots .owl-dot.active span, .sukien .owl-theme .owl-dots .owl-dot:hover span {
+    background-color: var(--color-noti);
+}
+
+.owl-tintuc .item,
+.owl-homevideo .item {
+    padding-inline: 5px;
+}
+
+.owl-tulieu .owl-theme .owl-dots,
+.owl-tulieu .owl-theme .owl-nav {
+    margin-top: 30px;
+}
+
+.hinhanh-quantam .owl-theme .owl-nav {
+    top: -60px;
+    width: 100%;
+    display: flex;
+    /* left: 50%; */
+    /* transform: translate(-50% -50%); */
+    justify-content: space-between;
+}
+
+.hinhanh-quantam .owl-theme .owl-nav [class*=owl-] {
+    border-radius: 50%;
+    background-color: #00000054;
+    color: #fff;
+    height: 45px;
+    width: 45px;
+    position: absolute;
+    top: 130px;
+    left: 10px;
+}
+.hinhanh-quantam .owl-theme .owl-nav [class*=owl-]:last-child {
+    left: auto;
+    right: 10px;
+}
+
+.hinhanh-quantam .owl-theme .owl-nav [class*=owl-]:hover {
+    background-color: #ffffff62;
+    /* background: transparent; */
+    color: var(--color-1);
+}
+
+@media (max-width:575px) {
+    .home-tulieu .owl-theme .owl-nav, .home-books .owl-theme .owl-nav, .hinhanh-quantam .owl-theme .owl-nav {
+        top: -60px;
+    }
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+<div class="home-ketnoi">
+    <div class="container">
+        <h3 class="h3-title text-center mb-3">Kết nối đó đây</h3>
+        <p class="p-title mb-5">Kết nối các hoạt động giáo dục, trải nghiệm thiên nhiên trong và ngoài nước</p>
+        <div class="home-ketnoi-box row-change">
+
+            <%if(dataOther4 && dataOther4.products.length > 0){
+                dataOther4.products.slice(0,3).forEach( prod => {
+                    name = prod.name;
+                    pathImage = prod.images[0]?.image || "";
+                    desShort = prod.desShort;
+                    %>
+            <div class="cot-12 cot-4-lg home-ketnoi-outbox d-flex flex-column flex-md-row flex-lg-column">
+                <div class="home-ketnoi-img position-relative">
+                    <img src="../<%= pathImage%>" alt="<%= name%>">
+                </div>
+                <div class="home-ketnoi-detail position-relative">
+                    <div
+                        class="position-absolute home-ketnoi-text d-flex flex-column align-items-center justify-content-center bg-grey">
+                        <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html" class="color-1">
+                            <h4 class="h4-title text-center mb-2"><%= name%>
+                            </h4>
+                        </a>
+                        <span class="mb-2"><i class="me-1 bi bi-person-fill"></i>Người đóng góp</span>
+                        <p class="br-line-4"><%= desShort%></p>
+                        <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html" class="chitiet-link color-1 fw-bold mt-auto">
+                            <span class="mb-3">Chi tiết</span>
+                        </a>
+                        <div class="home-ketnoi-social d-flex g-2 mt-auto">
+                            <span><i class="bi bi-heart"></i>235</span>
+                            <span><i class="bi bi-reply"></i>235</span>
+                            <span><i class="bi bi-eye"></i>235</span>
+                            <span><i class="bi bi-chat-left"></i>235</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%
+                })
+            }%>
+          
+
+        </div>
+    </div>
+</div>

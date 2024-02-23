@@ -1,0 +1,55 @@
+<html lang="en" data-assets-path="../public/admin/assets/">
+
+<head>
+    <%- include('./components/head') -%>
+    <link rel="stylesheet" href="../public/admin/assets/libs/sweetalert2/sweetalert2.min.css">
+</head>
+
+<body>
+    <%- include('./components/header') -%>
+    <%- include('./components/bottomNav') -%>
+
+    <div class="loginPage">
+        <div class="container">
+            <div class="row-change">
+                <div class="cot-6-md">
+                    <div class="imgBox">
+                        <img src="https://source.unsplash.com/random/800x600/?natural" alt="">
+                        <h3 class="h3-title mb-4 text-center">Đăng Ký!</h3>
+                        <p>Đăng ký tài khoản của bạn để lưu giữ tài liệu, cùng chia sẻ, tương tác, kết nối và lan tỏa tình yêu thiên nhiên đến mọi người!</p>
+                    </div>
+                </div>
+                <div class="cot-6-md">
+                    <form class="loginBox" id="formAuthentication" novalidate="novalidate">
+                        <input class="form-control mb-4" type="text" id="fullname" name="fullname" placeholder="Tên đăng nhập">
+                        <input class="form-control mb-4" type="email" id="email" name="email" placeholder="Email của bạn">
+                        <input class="form-control mb-4" type="password" id="password"  name="password" placeholder="Mật khẩu">
+                        <input class="form-control mb-4" type="password" id="confirm-password" name="confirm-password" placeholder="Nhập lại mật khẩu">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" 
+                            id="terms-conditions" 
+                            name="terms">
+                            <label class="form-check-label" for="dangkyCheck">
+                              Tôi đồng ý với <a href="#">Quy chế sử dụng</a> và <a href="#">Chính sách bảo mật.</a>
+                            </label>
+                          </div>
+                        <button type="submit" class="main-btn mt-4 mx-auto mb-4">Đăng ký!</button>
+                        <div class="forgotPass">
+                            <span href="#">Đã có tài khoản? <a href="dang-nhap" class="resBtn">Đăng nhập ngay!</a></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('./components/footer') -%>
+    <%- include('./components/end') -%>
+    <script src="../public/admin/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+    <script async defer src="../public/admin/assets/js/github.button.js"></script>
+    <script src="../public/admin/assets/js/pages/common.js"></script>
+    <script type="text/javascript" src="../public/authCustomer/signup.js"></script>
+    <script src="../public/authCustomer/auth.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<html lang="en">
+
+<head>
+    <%- include('./components/head') -%>
+</head>
+
+<body>
+    <%- include('./components/header') -%>
+    <%- include('./components/bottomNav') -%>
+
+    <div class="main-body">
+        <div class="container">
+            <div class="row-change">
+                <div class="cot-12 cot-3-lg pe-0 pe-lg-4">
+                    <%- include('./components/sideCate') -%>
+                    <%- include('./components/sideNews') -%>
+                    <%- include('./components/sideBooks') -%>
+                    <%- include('./components/sideAuthors') -%>
+                    <%- include('./components/sideTags') -%>
+                </div>
+                <div class="cot-12 cot-9-lg tailieu-tongquan">
+                    <!-- Tổng quan danh mục -->
+                    <h3 class="h3-title mb-4 underline">Tổng quan</h3>
+                    <%if(dataProducts){
+                        const prod = dataCategoryDetail.products.find((item) => item.hashtags[0] === 'san_pham_dai_dien');
+                        if(prod){
+                            description = prod.description
+                            pathImages = prod.images[0]?.image || "";
+                            urlPdf = prod.pdf
+                      %>
+                    <div class="tailieu-tongquan-img mb-4">
+                        <img src="<%= pathImages%>" alt="">
+                    </div>
+                    <div class="mb-4"><%- description%>
+                    </div>
+                    <a class="main-btn" data-bs-toggle="modal" data-bs-target="#cateDetail">
+                        Chi tiết >>>
+                    </a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="cateDetail" tabindex="-1" aria-labelledby="cateDetailLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h4 class="modal-title fs-5" id="cateDetailLabel">Chi tiết danh mục</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- nội dung -->
+                                <iframe src="../<%= urlPdf%>" width="100%" height="750px" frameborder="0"></iframe>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <%   }
+                    }%>
+                    <div class="home-tulieu py-60">
+                        <div class="container">
+                            <h3 class="h3-title position-relative underline mb-5">
+                                Tài liệu về <%= dataCategoryDetail.name %>:
+                            </h3>
+                
+                            <div class="row-change mb-5">
+
+                                <%if(dataCategoryDetail){
+                                    dataCategoryDetail.products.forEach((item) => {
+                                        if(item.hashtags[0] !== 'san_pham_dai_dien'){
+                                            name = item.name;
+                                            pathUrl = item.pdf;
+                                     %>
+                                <div class="cot-12 cot-6-lg d-flex gap-3 gap-md-3">
+                                    <div class="home-tulieu-img">
+                                        <img class="mb-2" src="../public/app/images/icon/pdf-file.svg" alt="">
+                                        <a href="../<%= pathUrl%>" download>Tải xuống</a>
+                                    </div>
+                                    <div class="home-tulieu-text">
+                                        <a href="<%= name.replace(/ /g , '-')%>-<%= item.pageId %>.<%= item._id %>.html">
+                                            <h5 class="mb-3 br-line-3"><%= name%></h5>
+                                        </a>
+                                        <div class="home-tulieu-date d-flex justify-content-around">
+                                            <span>Trương Quốc Đại</span>
+                                            <span>10/06/2022</span>
+                                        </div>
+                                    </div>
+                                </div>
+        
+
+                                <%    }})
+                                }%>
+                            </div>
+
+                            <nav aria-label="pageBar">
+                                <ul class="pagination justify-content-center flex-wrap">
+                                    <li class="page-item disabled"><a class="page-link">Trước</a></li>
+                                    <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="#">1</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">Tiếp theo</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('./components/footer') -%>
+    <%- include('./components/end') -%>
+
+</body>
+
+</html>

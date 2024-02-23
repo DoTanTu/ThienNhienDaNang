@@ -1,0 +1,35 @@
+<div class="home-hinhanh home-video pb-90">
+    <div class="container">
+        <h3 class="h3-title mb-3 text-center">Video</h3>
+        <p class="p-title mb-5">Nơi lưu giữ những khoảnh khắc đẹp của cộng đồng yêu thiên nhiên Đà Nẵng</p>
+        <div class="owl-homevideo owl-carousel owl-theme mb-5">
+
+            <%if(dataOther5 && dataOther5.products.length > 0){
+                dataOther5.products.forEach(prod => {
+                    if(prod.showTop === true){
+                        name = prod.name;
+                        pathImage = prod.images[0].image;
+                  %>
+            <div class="item">
+                <div class="home-hinhanh-img">
+                    <img src="<%= pathImage%>" alt="<%= name%>">
+                    <a href="" data-toggle="lightbox"
+                        data-type="youtube" class="play-btn">
+                        <i class="bi bi-play-fill"></i>
+                    </a>
+                </div>
+                <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html">
+                    <h4 class="h4-title mt-4 br-line-2"><%= name%></h4>
+                </a>
+            </div>
+            <%   }
+                 })
+            }%>
+            
+
+        </div>
+        <a class="main-btn mx-auto mt-4" href="#">
+           <%= '<Xem thêm>' %>
+        </a>
+    </div>
+</div>

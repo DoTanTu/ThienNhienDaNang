@@ -1,0 +1,251 @@
+#vivan-menu {
+    padding-block: 60px;
+}
+
+.menu-col:nth-child(even) {
+    background-color: #d5a35f24;
+}
+
+.menu-col {
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu-cate {
+    /* justify-content: flex-end; */
+    padding-left: 0;
+    min-height: 20px;
+}
+
+.menu-list>span:first-child,
+.menu-list>a {
+    width: 50%;
+}
+
+.list-nail .menu-list>span:first-child, .list-nail .menu-list>a {
+    width: 65%;
+}
+
+.menu-list>span:nth-child(2),
+.menu-list>span:nth-child(3),
+.menu-list>span:nth-child(4),
+.menu-list>span:last-child {
+    width: 13%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.menu-cate span {
+    width: 13%;
+    text-align: center;
+    font-weight: 600;
+}
+
+.menu-col span,
+.menu-col a {
+    align-items: center;
+    padding-inline: 5px;
+    padding-block: 2px;
+    color: #111;
+}
+
+.menu-box {
+    width: 100%;
+}
+
+.menu-box .menu-box-col {
+    float: left;
+}
+
+.menu-title span:first-child {
+    font-weight: 600;
+}
+
+.menu-box-col p {
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.menu-box-col h4 {
+    /* text-transform: uppercase; */
+    text-transform: capitalize;
+    display: flex;
+    margin-bottom: 15px;
+    align-items: flex-start;
+    font-family: 'Ms Madi', cursive;
+    font-size: 50px;
+}
+
+#vivan-menu h2 {
+    font-weight: 700;
+    margin-bottom: 30px;
+    font-size: 60px;
+    font-family: 'Cormorant Garamond', serif;
+    display: inline-block;
+    margin-inline: auto;
+    position: relative;
+}
+
+#vivan-menu h2::before,
+#vivan-menu h2::after {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 150px;
+    top: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#vivan-menu h2::before {
+    background-image: url(../images/vivian/line-l.svg);
+    left: -30px;
+    transform: translateX(-100%) translateY(-50%);
+}
+#vivan-menu h2::after {
+    background-image: url(../images/vivian/line-r.svg);
+    right: -30px;
+    transform: translateX(100%) translateY(-50%);
+}
+
+.menu-box-col h4:before {
+    /* content: ""; */
+    display: block;
+    float: left;
+    height: 60px;
+    width: 60px;
+    margin-right: 15px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    flex-shrink: 0;
+}
+.menu-box-col h4 img {
+    /* content: ""; */
+    display: block;
+    /* float: left; */
+    height: 60px;
+    width: 60px;
+    margin-right: 15px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    flex-shrink: 0;
+}
+.title-massage::before {
+    background-image: url(../images/vivian/body-massage.svg);
+}
+.title-facials::before {
+    background-image: url(../images/vivian/facial-massage.svg);
+}
+.title-hairspa::before {
+    background-image: url(../images/vivian/shampoo.svg);
+}
+.title-dulex::before {
+    background-image: url(../images/vivian/massage-pack.svg);
+}
+.title-nails::before {
+    background-image: url(../images/vivian/nail.svg);
+}
+.title-waxing::before {
+    background-image: url(../images/vivian/waxing.svg);
+}
+.title-addon::before {
+    background-image: url(../images/vivian/stone.svg);
+}
+
+.menu-box-list {
+    padding: 30px 15px;
+    margin-bottom: 30px;
+    background-color: #fff;
+    box-shadow: 5px 5px 10px #00000010;
+    border: 2px solid var(--color1);
+}
+.menu-box-list.list-addon,
+.menu-box-col:last-child .menu-box-list:nth-child(3) {
+    background-color: var(--color1);
+    border-color: #fff;
+}
+
+
+
+.menu-box-list ul {
+    margin: 0;
+    padding: 0;
+}
+
+#vivan-menu .container {
+    padding-inline: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-box-list ul .menu-list:hover {
+    background-color: #e7923045;
+}
+
+.menu-box-list ul .menu-list:hover span {
+    /* font-weight: 500; */
+}
+
+#vivan-menu .menu-list i {
+    font-size: 14px;
+    font-style: italic;
+}
+.menu-box-col span {
+    font-size: 16px;
+}
+
+@media (max-width:800px) {
+    .menu-list>span:first-child {
+        width: 44%;
+    }
+
+    .menu-list>span:nth-child(2),
+    .menu-list>span:nth-child(3),
+    .menu-list>span:last-child {
+        width: 13.6%;
+        font-size: 13px;
+    }
+
+    .menu-list>span:nth-child(4) {
+        width: 15%;
+    }
+
+    /* .menu-list>span:nth-child(2) {
+        width:fit-content;
+    } */
+    .menu-cate span {
+        width: 13.6%;
+    }
+
+    .menu-cate span:nth-child(2) {
+        width: 15%;
+    }
+
+    #vivan-menu .row {
+        margin: 0;
+    }
+}
+
+@media (max-width:575px) {
+    #vivan-menu,
+    #vivian-gioithieu {
+        padding-block: 30px;
+    }
+    #vivan-menu .container {
+        padding-inline: 15px;
+    }
+    #vivan-menu .menu-box-col {
+        padding: 0
+    }
+    .menu-box-col h4 {
+        font-size: 40px;
+    }
+    .menu-box-col h4 img {
+        height: 50px;
+        width: 50px;
+        margin-right: 5px;
+    }
+    #vivan-menu h2::before, #vivan-menu h2::after {
+        content: none;
+    }
+}

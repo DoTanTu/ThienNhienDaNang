@@ -1,0 +1,122 @@
+<div class="top-nav">
+    <div class="container">
+        <div class="row g-0 row-change">
+            <div class="cot-12 cot-5-md top-search">
+                <input type="text" class="form-control" placeholder="Search by title, author, keyword,....">
+                <button type="submit" class="top-search-icon"><i class="bi bi-search"></i></button>
+            </div>
+            <div class="cot-12 cot-7-md cot-5-lg cot-4-xxl ms-auto top-nav-right">
+                <div class="donggop-btn">
+                    <a href="dong-gop">
+                        <img src="../public/app/images/icon/handshake.svg" alt="">
+                        <span>Đóng góp</span>
+                    </a>
+                </div>
+                <div class="top-nav-right-icon ps-xxl-4">
+                    <div class="top-nav-social-icon">
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                    </div>
+                    <div class="top-nav-user mt-auto" id="account-user">
+                       
+                        <div class="noti-icon">
+                            <a href="#"><i class="bi bi-heart"></i><span>3</span></a>
+                            <a href="#"><i class="bi bi-person-circle"></i><span>3</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mid-nav">
+    <div class="container">
+        <div class="mid-logo d-none d-lg-block">
+            <img src="../public/app/images/logo-favi.svg" alt="">
+        </div>
+        <h2>Nơi chia sẻ, kết nối tri thức<br>
+            và lan tỏa tình yêu thiên nhiên</h2>
+    </div>
+</div>
+<nav id="nav-bar" class="navbar navbar-expand-lg">
+    <div class="container">
+        <a href="#" class="navbar-brand d-none">
+            <!-- <img src="../public/app/images/logo/logo.svg" alt=""> -->
+            <img src="../public/app/images/logo.png" alt="">
+
+        </a>
+        <button class="btn navbar-toggler border-3 px-2" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor" class="bi bi-list"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z">
+                </path>
+            </svg>
+        </button>
+        <div class="offcanvas offcanvas-start-lg" tabindex="-1" id="offcanvasExample"
+            aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header d-flex d-lg-none">
+                <img src="../public/app/images/logo.png" alt="" style="width: 80%;">
+                <a href=" javascript:void(0) " class=" text-reset p-0" data-bs-dismiss="offcanvas"
+                    aria-label="close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                    class="bi bi-x-lg" viewBox="0 0 16 16">
+                    <path
+                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z">
+                    </path>
+                </svg>
+                </a>
+            </div>
+            <div class="offcanvas-body p-lg-0 justify-content-center">
+                <ul class="navbar-nav">
+                  <% if(dataMenus != undefined && dataMenus != null && dataMenus.length > 0) {
+                        dataMenus.forEach(function(menu){ %>
+                  <li class="nav-item <% if(menu.isSubMenu == true){%> dropdown <%}%>">
+                            <a class="nav-link <% if((urlCurrentName == undefined && menu.url == "/") || menu.url == urlCurrentName) { %> active<%}%>" aria-current="page"  href="<%= menu.url %>"><%= menu.name %></a>
+                    <% if(menu.isSubMenu == true) {%>
+                        <iconify-icon icon="ic:baseline-plus"></iconify-icon>
+                        <ul class="dropdown-menu">
+                            <% if(menu.subMenuCustom != undefined && menu.subMenuCustom != null && menu.subMenuCustom.length > 0) {
+                                menu.subMenuCustom.forEach(function(cate){
+                                if(cate) {%>
+                                <li class="mb-1">
+                                    <a class="dropdown-item" href="<%= cate.url%>"><%=cate.name%></a>
+                                </li>
+                                <%}})
+                            }
+                            else if(menu.categories != undefined && menu.categories != null && menu.categories.length > 0) {
+                                menu.categories.forEach(function(cate){
+                                if(cate.parents == "" || cate.parents == null) {%>
+                          <li class="mb-1">
+                            <a class="dropdown-item" href="<%= cate.name.replace(/ /g , '-')%>-<%= cate.pageId %>.<%= cate._id %>.cate">
+                              <%= cate.name %>
+                            </a>
+                          </li>
+                          <% }
+                            })
+                            } %>
+                        </ul>
+                    <% } %>
+                  </li>
+                  <% })
+                     } %>
+                </ul>
+            </div>
+        </div>
+        <!-- <div class="drop-lang">언어
+            <div class="drop-lang-box">
+                <a href="#/" class="drop-eng">ENG</a>
+                <a href="#/ko/홈.html" class="drop-kor">한국인</a>
+            </div>
+        </div> -->
+        <!-- <select class="form-select lan-list" aria-label="Default select example" name="lan-list-links"
+            onchange="location = this.value;">
+            <option selected value="#">Language</option>
+            <option value="#">English</option>
+            <option value="#">Korean</option>
+        </select> -->
+    </div>
+</nav>

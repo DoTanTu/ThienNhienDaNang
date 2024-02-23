@@ -1,0 +1,24 @@
+<% var siteName = "" 
+    var catedt = dataCategoryDetail
+    var proddt = dataProductDetail
+    
+    if (proddt != (null && undefined)) {
+        siteName = proddt.name
+    } else {
+        if (catedt != (null && undefined)) {
+            siteName = catedt.name
+        } else {
+            siteName = dataSite.name
+        }
+    }
+%>
+<div class="bottom-nav">
+    <div class="container">
+        <a href="/">
+            <span>Trang chủ</span>
+        </a>
+        <a href="#">
+            <span><%= siteName %></span>
+        </a>
+    </div>
+</div>

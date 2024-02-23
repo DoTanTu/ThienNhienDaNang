@@ -1,0 +1,41 @@
+<div class="home-tintuc">
+    <div class="container">
+        <h3 class="h3-title text-center mb-3">Tin tức</h3>
+        <p class="p-title mb-5">Nơi cập nhật thông tin, nhịp điệu của thiên nhiên và môi trường tại
+            thành phố Đà Nẵng</p>
+        <div class="owl-tintuc owl-carousel owl-theme mb-5">
+
+            <%if(dataOther1 && dataOther1.products.length > 0){
+                dataOther1.products.forEach( prod => {
+                    if(prod.categoryIds[0] === 'avVK0giPU'){
+                        name = prod.name;
+                        url = prod.url;
+                        desShort = prod.desShort;
+                        pathImage = prod.images[0]?.image;
+                  %>
+            <div class="item">
+                <div class="home-tintuc-box d-flex flex-column h-100">
+                    <div class="home-tintuc-box-img mb-4 flex-shrink-0">
+                        <img src="../<%= pathImage%>" alt="<%= name%>">
+                    </div>
+                    <div class="home-tintuc-box-text d-flex flex-column flex-fill">
+                        <span class="text-color-2">02/07/2022</span>
+                        <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html" class="color-1">
+                            <h4 class="h4-title br-line-3"><%= name%></h4>
+                        </a>
+                        <p class="text-color-1 br-line-4"><%= desShort%></p>
+                        <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html" class="mt-auto fw-bold">Chi tiết >>></a>
+                    </div>
+                </div>
+            </div>
+            <%   }
+        })
+            }%>
+          
+
+        </div>
+        <a class="main-btn mx-auto" href="tin-tuc">
+             Xem thêm
+        </a>
+    </div>
+</div>

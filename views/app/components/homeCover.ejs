@@ -1,0 +1,30 @@
+<div id="cover" class="slider-cover">
+    <div class="owl-slider-cover owl-carousel owl-theme">
+
+        <%if(dataProducts && dataProducts.length > 0){
+            dataProducts.forEach( prod => {
+                if(prod.categoryIds[0] === 'EZ6Jnagj9'){
+                    name = prod.name;
+                    pathImage = prod.images[0]?.image;
+                    url = prod.url;
+                %>
+                <div class="item">
+                    <div class="slider-cover-box">
+                        <img src="<%= pathImage%>"
+                            alt="<%= name%>">
+                        <div class="cover-title">
+                            <a href="<%= url%>">
+                                <h3 class="mb-3"><%= name%></h3>
+                            </a>
+                            <a href="<%= url%>">
+                                <span class="mb-3">Chi tiết >>></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <%}
+        })
+        }%>
+
+    </div>
+</div>

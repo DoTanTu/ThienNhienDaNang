@@ -1,0 +1,37 @@
+<div class="about-donggop">
+    <%if(dataProducts) {
+        const prod = dataProducts.find((item) => item._id === '3JmT566Ks');
+        if(prod){
+            title = prod.name;
+            desShort = prod.desShort;
+            description = prod.description;
+            pathImage = prod.images[0]?.image || ""
+      %>
+    <img src="../<%= pathImage%>" alt="">
+    <div class="container about-donggop-text py-60">
+        
+        <h3 class="h3-title text-center mb-4"><%= title%></h3>
+        <p class="text-center text-color-1 mb-4"><%= desShort%></p>
+        <a class="main-btn mx-auto" href="#" data-bs-toggle="modal" data-bs-target="#donggopDetail">
+             Xem Thêm 
+        </a>
+        <div class="modal fade" id="donggopDetail" tabindex="-1" aria-labelledby="cateDetailLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title fs-5" id="cateDetailLabel">Đóng góp</h4>
+                <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                  <i class="bi bi-x-lg"></i>
+                </button>
+              </div>
+              <div class="modal-body">
+                <!-- nội dung -->
+                <%- description%>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <%   }
+    }%>
+</div>

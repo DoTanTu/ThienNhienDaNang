@@ -1,0 +1,119 @@
+<html lang="en">
+
+<head>
+    <%- include('./components/head') -%>
+</head>
+
+<body>
+    <%- include('./components/header') -%>
+    <%- include('./components/bottomNav') -%>
+
+    <div class="main-body">
+        <div class="container">
+            <div class="row-change">
+                <div class="cot-12 cot-3-lg pe-0 pe-lg-4">
+                    <%- include('./components/sideCate') -%>
+                    <%- include('./components/sideBooks') -%>
+                    <%- include('./components/sideAuthors') -%>
+                    <%- include('./components/sideTags') -%>
+                </div>
+                <div class="cot-12 cot-9-lg hinhanh-detail">
+                    <% prod = dataProductDetail;%>
+                    <h3 class="h3-title mb-5 underline"><%= prod.name%></h3>
+
+                    <!-- youtube -->
+                    <div class="video-detail-box-yotube mb-4 position-relative">
+                        <iframe src="<%= prod.linkVideo.replace('watch?v=','embed/')%>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+
+                    <!-- mp4-video -->
+
+
+                    <div class="hinhanh-mieuta mb-3">
+                        <h3 class="h3-title underline position-relative mb-4">Miêu tả</h3>
+                        <%- prod.description%>
+                    </div>
+                    <div class="nav-tag mb-5">
+                        <ul>
+                            <span>Từ khoá:</span>
+                            <% var hashtagsProduct = dataAttibutes.find(function(attribute) {
+                                return attribute._id === 'Hashtag_video';
+                                });
+                                if(prod.hashtags){
+                                    prod.hashtags.forEach((item) =>{
+                                       const values = hashtagsProduct.values.find((element) => element.code === item); %>
+                                        <li><a href="/video?hashtag=<%= values.code%>"><%= values.value%></a></li>
+                            <%})}%>
+                        </ul>
+                    </div>
+
+                    <%- include('./components/comment') -%>
+                    <div class="hinhanh-quantam">
+                        <h3 class="h3-title underline position-relative mb-5">Có thể bạn quan tâm</h3>
+                        <div class="owl-quantam owl-carousel owl-theme mb-5">
+                            <div class="item">
+                                <div class="img-box trans-3 mb-3">
+                                    <a href="#"><img src="https://source.unsplash.com/random/400x400/?animal"
+                                            alt=""></a>
+                                </div>
+                                <a href="#">
+                                    <h4 class="br-line-2">Tên album</h4>
+                                </a>
+                            </div>
+                            <div class="item">
+                                <div class="img-box trans-3 mb-3">
+                                    <a href="#">
+                                        <img src="https://source.unsplash.com/random/401x401/?animal" alt="">
+                                    </a>
+                                </div>
+                                <a href="#">
+                                    <h4 class="br-line-2">Tên album</h4>
+                                </a>
+                            </div>
+                            <div class="item">
+                                <div class="img-box trans-3 mb-3">
+                                    <a href="#">
+                                        <img src="https://source.unsplash.com/random/402x402/?animal" alt="">
+                                    </a>
+                                </div>
+                                <a href="#">
+                                    <h4 class="br-line-2">Tên album</h4>
+                                </a>
+                            </div>
+                            <div class="item">
+                                <div class="img-box trans-3 mb-3">
+                                    <a href="#">
+                                        <img src="https://source.unsplash.com/random/403x403/?animal" alt="">
+                                    </a>
+                                </div>
+                                <a href="#">
+                                    <h4 class="br-line-2">Tên album</h4>
+                                </a>
+                            </div>
+                            <div class="item">
+                                <div class="img-box trans-3 mb-3">
+                                    <a href="#">
+                                        <img src="https://source.unsplash.com/random/404x404/?animal" alt="">
+                                    </a>
+                                </div>
+                                <a href="#">
+                                    <h4 class="br-line-2">Tên album</h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <%- include('./components/footer') -%>
+    <%- include('./components/end') -%>
+
+</body>
+
+</html>
