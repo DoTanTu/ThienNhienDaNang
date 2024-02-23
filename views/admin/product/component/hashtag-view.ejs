@@ -1,0 +1,32 @@
+<% 
+  var hashtags = ""
+  var hashtag = ""
+  if (attributes != undefined && attributes != null) {
+    var dataHashtags = attributes.find(x=>x.tag == "Hashtag")
+    if(dataHashtags != null) {
+      hashtags = JSON.stringify(dataHashtags.values)
+
+      if(currentHashtags){
+       let data = dataHashtags.values.filter(x=>currentHashtags.includes(x.code))
+        hashtag = data.map(x=>x.value)
+      }
+    }
+  } %>
+
+<div class="card accordion-item mb-4">
+  <h2 class="accordion-header" id="hashtagTwo">
+    <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#hashtag-view"
+      aria-expanded="false" aria-controls="hashtag-view">
+      Hashtag
+    </button>
+  </h2>
+  <div id="hashtag-view" class="accordion-collapse collapse show" aria-labelledby="hashtagTwo" data-bs-parent="#hashtag-view"
+    style="">
+    <div class="accordion-body" >
+      <div class="mb-3 mt-3" id="hashtag" data-hashtags="<%= encodeURI(hashtags)%>">
+         <input name="hashtags" hidden></input>
+        <input name='input-custom-dropdown' class='some_class_name form-control' placeholder='Chọn hashtags' value='<%= hashtag%>'>
+      </div>
+    </div>
+  </div>
+</div>

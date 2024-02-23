@@ -1,0 +1,28 @@
+<div class="card accordion-item mb-4">
+  <h2 class="accordion-header" id="hDescription">
+    <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#description-view"
+      aria-expanded="false" aria-controls="description-view">
+      Description
+    </button>
+  </h2>
+  <div id="description-view" class="accordion-collapse collapse show" aria-labelledby="hDescription"
+    data-bs-parent="#description-view" style="">
+    <div class="accordion-body mt-3" id="description-content">
+      <input type="text" class="form-control" hidden id="descriptionPlus" value="<%= encodeURI(JSON.stringify(descriptionPlus)) %>" name="descriptionPlus">
+   
+      <% if(descriptionPlus != null && descriptionPlus.length > 0){%>
+        <% descriptionPlus.forEach(function(item, index){%>
+          <%- include('item_view_description_plus', { descriptionPlus : item , index : index}) -%>
+          <% }) %>
+      <%} else { %>
+        <%- include('item_view_description_plus', { descriptionPlus : null, index : 0}) -%>
+      <%}%>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-12">
+      <button type="button" class="btn btn-primary" onclick="onAddItemDescription()" data-repeater-create="">Thêm</button>
+    </div>
+  </div>
+</div>

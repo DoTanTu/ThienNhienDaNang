@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
+  data-assets-path="../public/admin/assets/" data-template="vertical-menu-template-free">
+
+<head>
+  <%- include('../partials/head') -%>
+  <link rel="stylesheet" href="../public/admin/assets/css/docs.css">
+  <link rel="stylesheet" href="../public/admin/assets/libs/highlight/highlight.css">
+</head>
+
+<body>
+  <!-- Layout wrapper -->
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <%- include('../partials/navbar-left') -%>
+      <!-- Layout container -->
+      <div class="layout-page">
+        <%- include('../partials/navbar-top') -%>
+        <!-- Content wrapper -->
+        <div class="content-wrapper">
+          <div class="container-xxl flex-grow-1 container-p-y">
+
+            <div class="row flex-xl-nowrap">
+              <div class="DocSearch-content col-12 col-xl-10 container-p-y">
+                <h2 class="mb-4 doc-page-title">Quick Start 🚀</h2>
+                <div class="row">
+                  <div class="col-12">
+                    <h4 id="rtl-support" class="anchor-heading mb-4 fw-bold">Steps<a href="#rtl-step"
+                        class="anchorjs-link ps-2">#</a></h4>
+                    <ol>
+                      <li>Tạo Tính Năng : <code>System/Tính Năng</code>.</li>
+                      <li>Tạo App : <code>System/Sites</code> Create App. (zip thư mục images, js, css,.. đẩy lên
+                        serve và upload các file ejs common)</li>
+                      <li>Tạo Site : <code>System/Sites</code>. Create Site.</li>
+                    </ol>
+                  </div>
+                </div>
+                <hr class="my-5">
+
+                <!-- Folder Structure -->
+                <%- include('./component/folder-structure') -%>
+                <hr class="my-5">
+                <!-- Add Link-->
+                <%- include('./component/link') -%>
+                <hr class="my-5">
+                <!-- Response Data-->
+                <%- include('./component/response-data-site') -%>
+                <hr class="my-5">
+
+                <!-- Data Site-->
+                <%- include('./component/data-site') -%>
+                <hr class="my-5">
+
+                <!-- Data menu-->
+                <%- include('./component/data-menu') -%>
+                <hr class="my-5">
+
+                <!-- Data categories-->
+                <%- include('./component/data-categories') -%>
+                <hr class="my-5">
+
+                <!-- Data product-->
+                <%- include('./component/data-products') -%>
+                <hr class="my-5">
+
+                <!-- Data other-->
+                <%- include('./component/data-other') -%>
+                <hr class="my-5">
+
+                <!-- Data contact-->
+                <%- include('./component/data-contact') -%>
+                <hr class="my-5">
+
+                <!-- Data contact-->
+                <%- include('./component/code-example') -%>
+                <hr class="my-5">
+
+                <!-- Post message-->
+                <%- include('./component/post-message') -%>
+                <hr class="my-5">
+
+                <!-- Post message-->
+                <%- include('./component/language') -%>
+                <hr class="my-5">
+
+                <!-- Post message-->
+                <%- include('./component/data-attributes') -%>
+                <hr class="my-5">
+
+                <!-- Post message-->
+                <%- include('./component/search-data') -%>
+                <hr class="my-5">
+
+                <!-- Post message-->
+                <%- include('./component/data-ship') -%>
+                <hr class="my-5">
+
+                <!-- Post message-->
+                <%- include('./component/data-paymend') -%>
+                <hr class="my-5">
+
+                <!-- Post message-->
+                <%- include('./component/data-order') -%>
+                <hr class="my-5">
+
+                <%- include('./component/update-view') -%>
+                <hr class="my-5">
+
+                <%- include('./component/resize-image') -%>
+                <hr class="my-5">
+
+                <%- include('./component/payment-online') -%>
+                <hr class="my-5">
+
+              </div>
+              <div class="d-none d-xl-block col-xl-2 doc-sidebar container-p-y">
+                <nav id="vertical-nav" class="navbar p-0">
+                  <ul class="doc-sidebar-nav">
+                    <li class="doc-entry doc-h2"><a class="nav-link active" href="#rtl-step">Steps</a></li>
+                    <li class="doc-entry doc-h2"><a class="nav-link" href="#folder-structure">Folder
+                        Structure</a></li>
+                    <li class="doc-entry doc-h2"><a class="nav-link" href="#link">Add Links</a></li>
+                    <li class="doc-entry doc-h2"><a class="nav-link" href="#response-data">Response Data</a></li>
+                    <li class="doc-entry doc-h2"><a class="nav-link" href="#data-site">Data Site</a></li>
+                    <li class="doc-entry doc-h2"><a class="nav-link" href="#data-menu">Data Menu</a></li>
+                    <li class="doc-entry doc-h2"><a class="nav-link" href="#data-categories">Data Categories</a>
+                    </li>
+                    <li class="doc-entry doc-h2"><a class="nav-link" href="#data-products">Data Products</a></li>
+                    <li class="doc-entry doc-h2"><a class="nav-link" href="#data-other">Data Other</a></li>
+                    <li class="doc-entry doc-h2"><a class="nav-link" href="#data-contact">Data Contact</a></li>
+                    <li class="doc-entry doc-h2"><a class="nav-link" href="#code-example">Code Exmaple</a></li>
+                    <li class="doc-entry doc-h2"><a class="nav-link" href="#post-message">Post Message</a></li>
+                    <li class="doc-entry doc-h2"><a class="nav-link" href="#languages">Mutiple Languages</a></li>
+                    <li class="doc-entry doc-h2"><a class="nav-link" href="#data-attributes">Attributes</a></li>
+                    <li class="doc-entry doc-h2"><a class="nav-link" href="#code-search-data">Search Data</a></li>
+                    <li class="doc-entry doc-h2"><a class="nav-link" href="#data-shipMethod">Ship Method</a></li>
+                    <li class="doc-entry doc-h2"><a class="nav-link" href="#data-paymendMethod">Paymend Method</a></li>
+                    <li class="doc-entry doc-h2"><a class="nav-link" href="#data-order">Add Order</a></li>
+                    <li class="doc-entry doc-h2"><a class="nav-link" href="#update-view">View Default</a></li>
+                    <li class="doc-entry doc-h2"><a class="nav-link" href="#resize-image">Resize Image</a></li>
+                    <li class="doc-entry doc-h2"><a class="nav-link" href="#paymentOnline">Payment Online</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+            <!-- Footer -->
+            <%- include('../partials/footer') -%>
+            <!-- / Footer -->
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout Site -->
+      </div>
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+    <%- include('../partials/common-js') -%>
+    <%- include('../partials/common-list-js') -%>
+    <script type="text/javascript" src="../public/admin/assets/libs/j-pro/js/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../public/admin/assets/libs/j-pro/js/jquery.maskedinput.min.js"></script>
+    <script type="text/javascript" src="../public/admin/assets/libs/j-pro/js/jquery.j-pro.js"></script>
+    <script type="text/javascript" src="../public/admin/assets/js/jquery.form.min.js"></script>
+    <script type="text/javascript" src="../public/admin/assets/js/docs.js"></script>
+    <script type="text/javascript" src="../public/admin/assets/libs/highlight/highlight.js"></script>
+</body>
+
+</html>

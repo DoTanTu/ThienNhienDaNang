@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="col-12">
+    <h4 id="data-site" class="anchor-heading mb-4 fw-bold">Data Site<a href="#data-site"
+        class="anchorjs-link ps-2">#</a></h4>
+    <div class="doc-example">
+      <div class="doc-example-content" data-label="object-data">
+        <div class="doc-clipboard">
+          <button type="button" class="btn-clipboard" data-bs-toggle="tooltip" data-bs-placement="top"
+            data-bs-original-title="Copy to clipboard">
+            Copy
+          </button>
+        </div>
+        <pre class="docs-code"><code class="json">
+<span class="hljs-variable">_id</span>: String;
+<span class="hljs-variable">url</span>: String;
+<span class="hljs-variable">name</span>: String;
+<span class="hljs-variable">images</span>: [String];
+<span class="hljs-variable">jsPath</span>: [String];
+<span class="hljs-variable">htmlPath</span>: [String];
+<span class="hljs-variable">isShowInMenu</span>: Boolean;
+<span class="hljs-variable">isSubMenu</span>: Boolean;
+<span class="hljs-variable">pageData</span>: {
+  pageId: {
+    type: String,
+  },
+  isGetCategory :  Boolean,
+  isGetProduct :  Boolean
+};
+<span class="hljs-variable">pageOther1</span>: {
+  pageId: {
+    type: String,
+  },
+  isGetCategory :  Boolean,
+  isGetProduct :  Boolean
+};
+<span class="hljs-variable">pageOther2</span>: {
+  pageId: {
+    type: String,
+  },
+  isGetCategory :  Boolean,
+  isGetProduct :  Boolean
+};
+<span class="hljs-variable">isSiteProductDetail</span>: Boolean;
+<span class="hljs-variable">seoTitle</span>: String;
+<span class="hljs-variable">seoName</span>:  String;
+<span class="hljs-variable">seoKeyWord</span>:  String;
+<span class="hljs-variable">seoDes</span>:  String;
+<span class="hljs-variable">categories</span>: [
+{
+  url: String,
+  name: String,
+  images: [String],
+  seoTitle: String,
+  seoName: String,
+  seoKeyWord: String,
+  seoDes: String,
+  parents: String,
+  _id: String,
+  pageId: String,
+  id: String
+},];
+<span class="hljs-variable">products</span>:  [
+{
+  _id :String
+  url : String
+  pageId : String
+  categoryIds : [String]
+  name : String
+  linkVideo : String
+  images : [{
+    _id : string
+    image : string
+    name : string
+    author : string
+    copyright : string
+    source : string
+    year: string
+  }]
+  counter : Number
+  showTop : Boolean
+},];
+      </pre>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,109 @@
+<% 
+  var isCategory = false
+  var isAttribute = false
+  var isImageDetail = false
+  var isEcommerce = false
+  var isPdf = false
+  var isLinkVideo = false
+  var isProductContact = false
+  var isLockDelete = false
+  var isDescriptionPlus = false
+
+  if (dataSetting != undefined && dataSetting != null) {
+    isCategory = dataSetting.isCategory 
+    isImageDetail = dataSetting.isImageDetail 
+    isAttribute = dataSetting.isAttribute
+    isEcommerce = dataSetting.isEcommerce
+    isLinkVideo = dataSetting.isLinkVideo
+    isPdf = dataSetting.isPdf
+    isProductContact = dataSetting.isProductContact
+    isLockDelete = dataSetting.isLockDelete
+    isDescriptionPlus = dataSetting.isDescriptionPlus
+  } %>
+
+<div class="card accordion-item mb-4">
+    <h2 class="accordion-header" id="headingSetting">
+      <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#setting-view" aria-expanded="false" aria-controls="setting-view">
+        Setting Product Data
+      </button>
+    </h2>
+    <div id="setting-view" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#setting-view" >
+      <div class="accordion-body">
+        <div class="mb-3 mt-3">
+            <div class="d-flex justify-content-between mb-2">
+                <label for="cbCategory" class="mb-0">Sử dụng Danh mục</label>
+                <div class="form-check form-switch mb-2">
+                  <input class="form-check-input" type="checkbox" id="cbCategory" <% if(isCategory == true){%> checked <%}%>  name="isCategory" />
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 mt-3">
+          <div class="d-flex justify-content-between mb-2">
+              <label for="cbCategory" class="mb-0">Sử dụng các Thuộc tính</label>
+              <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="cbAttribute" <% if(isAttribute == true){%> checked <%}%>  name="isAttribute" />
+              </div>
+          </div>
+      </div>
+        <div class="mb-3">
+            <div class="d-flex justify-content-between mb-2">
+                <label for="pcbImageDetail" class="mb-0">Cho phép nhập chi tiết images</label>
+                <div class="form-check form-switch mb-2">
+                  <input class="form-check-input" type="checkbox" id="cbImageDetail"  <% if(isImageDetail == true){%> checked <%}%>  name="isImageDetail" />
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="d-flex justify-content-between mb-2">
+                <label for="cbEcommerce" class="mb-0">Sử dụng dữ liệu Ecomerce</label>
+                <div class="form-check form-switch mb-2">
+                  <input class="form-check-input" type="checkbox" id="cbEcommerce"  <% if(isEcommerce == true){%> checked <%}%> name="isEcommerce" />
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="d-flex justify-content-between mb-2">
+                <label for="cbPdf" class="mb-0">Cho phép nhập file PDF</label>
+                <div class="form-check form-switch mb-2">
+                  <input class="form-check-input" type="checkbox" id="cbPdf" <% if(isPdf == true){%> checked <%}%> name="isPdf" />
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="d-flex justify-content-between mb-2">
+                <label for="cbLinkVideo" class="mb-0">Cho phép nhập Video</label>
+                <div class="form-check form-switch mb-2">
+                  <input class="form-check-input" type="checkbox" id="cbLinkVideo" <% if(isLinkVideo == true){%> checked <%}%> name="isLinkVideo" />
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="d-flex justify-content-between mb-2">
+                <label for="cbProductContact" class="mb-0">Cho phép nhập liên hệ trong sản phẩm</label>
+                <div class="form-check form-switch mb-2">
+                  <input class="form-check-input" type="checkbox" id="cbProductContact" <% if(isProductContact == true){%> checked <%}%> name="isProductContact" />
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="d-flex justify-content-between mb-2">
+              <label for="cbLockDelete" class="mb-0">Khoá tính năng xoá dữ liệu</label>
+              <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="cbLockDelete" <% if(isLockDelete == true){%> checked <%}%> name="isLockDelete" />
+              </div>
+          </div>
+      </div>
+
+      <div class="mb-3">
+        <div class="d-flex justify-content-between mb-2">
+            <label for="cbDescriptionPlus" class="mb-0">Nhập mô tả nâng cao</label>
+            <div class="form-check form-switch mb-2">
+              <input class="form-check-input" type="checkbox" id="cbDescriptionPlus" <% if(isDescriptionPlus == true){%> checked <%}%> name="isDescriptionPlus" />
+            </div>
+        </div>
+    </div>
+
+      </div>
+    </div>
+</div>

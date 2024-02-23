@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
+  data-assets-path="../public/admin/assets/" data-template="vertical-menu-template-free">
+
+<head>
+  <%- include('../partials/head') -%>
+  <%- include('../partials/common-crud-css') -%>
+</head>
+
+<body>
+  <!-- Layout wrapper -->
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <%- include('../partials/navbar-left') -%>
+        <!-- Layout container -->
+        <div class="layout-page">
+          <%- include('../partials/navbar-top') -%>
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+              <div class="container-xxl flex-grow-1 container-p-y ">
+                <!-- ============================= -->
+                <!-- Content Product -->
+                <!-- ============================= -->
+                
+
+                <form class="browser-default-validation j-pro" id="formProductData" action="/admin.addProduct" method="POST">
+                  <div class="row">
+                    <div class="col-lg-8 col-12 mb-lg-0 mb-4">
+                      <div class="card">
+                        <h5 class="card-header">Bài viết</h5>
+                        <input name="pageCurrent" hidden value="<% if(typeof pageCurrent != undefined && pageCurrent != null){ %><%= pageCurrent%><%}%>"></input>
+       
+                        <div class="card-body">
+                          <%- include('./component/info-view', { infoData : null}) -%>
+                         
+                          <% if(pageSetting != undefined && pageSetting != null && pageSetting.setting.isLinkVideo) {%>
+                          <%- include('./component/video-view', { linkData : null}) -%>
+                          <% }%>
+                          <% if(pageSetting.setting.isEcommerce != true || app.platform != "ecommerce_plus") {%>
+                          <%- include('./component/image-view',  { imageData : null, altData : null}) -%>
+                          <% }%>
+                          <% if(pageSetting.setting.isPdf == true) {%> 
+                            <%- include('./component/pdf-view',  { pdfData : null}) -%>
+                          <%}%>
+                          <% if(pageSetting.setting.isEcommerce == true) {%>
+                            <% if(app.platform == "ecommerce_plus") {%>
+                              <%- include('./component/ecomerce-view-plus', { ecommerces : null}) -%>
+                            <% }else {%>
+                              <%- include('./component/ecomerce-view', { ecommerce : null}) -%>
+                          <% }} %>
+
+                          <% if(pageSetting.setting.isDescriptionPlus == true) {%>
+                               <%- include('./component/description-view-plus', { descriptionPlus : null}) -%>
+                            <% }else {%>
+                              <%- include('./component/description-view', { descriptionData : null}) -%>
+                          <% } %>
+
+                          <div class="row">
+                            <div class="col-12">
+                              <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-4 col-12">
+                      <%- include('./component/setting-view', { settingData : null}) -%>
+                      <% if(pageSetting != undefined && pageSetting != null  && pageSetting.setting != null) {%>
+                        <% if(pageSetting.setting.isCategory == true) {%>
+                          <input name="category" hidden ></input>
+                          <%- include('../component/treeCategory') -%>
+                        <% } %>
+                     
+                        <% if(pageSetting.setting.isAttribute == true) {%>
+                          <%- include('./component/hashtag-view', { attributes : attributes, currentHashtags : null}) -%>
+                        <% } %>
+                        <% if(pageSetting.setting.isProductContact == true) {%>
+                          <%- include('./component/contact-view', { contact : null}) -%>
+                        <% } %>
+                      <% } %>
+                      <%- include('../component/seoView', {seoData : null}) -%> -%>
+                    </div>
+                  </div>
+                </form>
+                <!-- ============================= -->
+                <!-- Content Product -->
+                <!-- ============================= -->
+              </div>
+              <!-- Footer -->
+              <%- include('../partials/footer') -%>
+                <!-- / Footer -->
+                <div class="content-backdrop fade"></div>
+            </div>
+            <!-- Content wrapper -->
+        </div>
+        <!-- / Layout Product -->
+    </div>
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+  </div>
+  <!-- / Layout wrapper -->
+    <script type='text/javascript'>
+      var categories = `<%= categories%>`
+    </script>
+    <%- include('../partials/common-js') -%>
+    <%- include('../partials/common-crud-js') -%>
+    <script type="text/javascript" src="../public/admin/assets/js/pages/editor/ck-editors.js"></script>
+    <script src="../public/admin/assets/js/pages/treeCategory.js"></script>
+    <script src="../public/admin/assets/js/pages/product/add.js"></script>
+    <script src="../public/admin/assets/js/pages/product/ecommerce.js"></script>
+    <script src="../public/admin/assets/js/pages/product/description.js"></script>
+
+    <script type="text/javascript" src="../public/admin/assets/js/pages/editor/ck-editor.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+<% 
+  var isShowInMenu = false
+  var isSubMenu = false
+  var isSiteProductDetail = false
+  var isSiteCategoryDetail = false
+  var isSiteGetDataOrder = false
+  var isSiteGetDataProfile = false
+  var subMenuCustom = null
+  var isFullFieldSiteDetail = true
+  if (settingData != undefined && settingData != null) {
+    isShowInMenu = settingData.isShowInMenu 
+    isSubMenu = settingData.isSubMenu 
+    isSiteProductDetail = settingData.isSiteProductDetail
+    isSiteCategoryDetail = settingData.isSiteCategoryDetail
+    isSiteGetDataOrder = settingData.isSiteGetDataOrder
+    isSiteGetDataProfile = settingData.isSiteGetDataProfile
+    isFullFieldSiteDetail = settingData.isFullFieldProduct
+  } 
+  if (subMenuCustomData != undefined && subMenuCustomData != null) {
+    subMenuCustom = subMenuCustomData
+  } 
+  %>
+
+
+
+<div class="card accordion-item mb-4">
+  <h2 class="accordion-header" id="headingSetting">
+    <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#setting-view"
+      aria-expanded="false" aria-controls="setting-view">
+      Setting Site
+    </button>
+  </h2>
+  <div id="setting-view" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+    data-bs-parent="#setting-view">
+    <div class="accordion-body">
+      <div class="mb-3 mt-3">
+        <div class="d-flex justify-content-between mb-2">
+          <label for="cbSiteProductDetail" class="mb-0">Site Product Detail</label>
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="cbSiteProductDetail" <% if(isSiteProductDetail == true){%> checked <%}%> name="isSiteProductDetail" />
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 mt-3">
+        <div class="d-flex justify-content-between mb-2">
+          <label for="cbSiteProductDetail" class="mb-0">Site Category Detail</label>
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="cbSiteCategoryDetail" <% if(isSiteCategoryDetail == true){%> checked <%}%> name="isSiteCategoryDetail" />
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 mt-3">
+        <div class="d-flex justify-content-between mb-2">
+          <label for="cbSiteProductDetail" class="mb-0">Full Field Site Detail</label>
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="cbFullFieldSiteDetail" <% if(isFullFieldSiteDetail == true){%> checked <%}%> name="isFullFieldSiteDetail" />
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 mt-3">
+        <div class="d-flex justify-content-between mb-2">
+          <label for="cbSiteGetDataOrder" class="mb-0">Site Use Data Order</label>
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="cbSiteGetDataOrder" <% if(isSiteGetDataOrder == true){%> checked <%}%> name="isSiteGetDataOrder" />
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 mt-3">
+        <div class="d-flex justify-content-between mb-2">
+          <label for="cbSiteGetDataOrder" class="mb-0">Site Use Data Profile</label>
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="cbSiteGetDataProfile" <% if(isSiteGetDataProfile == true){%> checked <%}%> name="isSiteGetDataProfile" />
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 mt-3">
+        <div class="d-flex justify-content-between mb-2">
+          <label for="cbShowMenu" class="mb-0">Show in menu</label>
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="cbShowMenu" <% if(isShowInMenu == true){%> checked <%}%> name="isShowInMenu" />
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="d-flex justify-content-between mb-2">
+          <label for="cbSubMenu" class="mb-0">Sub menu</label>
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="cbSubMenu"  <% if(isSubMenu == true){%> checked <%}%> name="isSubMenu" />
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="d-flex justify-content-between mb-2">
+          <label for="cbSubMenu" class="mb-0">Custom sub menu</label>
+          <div class="form-check form-switch mb-2">
+            <button type="button" class="btn btn-primary" onclick="onAddItemSubMenu()" data-repeater-create="">Thêm</button>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3" id="viewSubMenuCustom">
+        <input type="text" class="form-control" hidden id="subMenuCustom" name="subMenuCustom">
+        <% if(subMenuCustom != null && subMenuCustom.length > 0){%>
+          <% subMenuCustom.forEach(function(item, index){%>
+            <%- include('item-custom-sub-menu', { itemCustom : item , index : index}) -%>
+            <% }) %>
+        <%}%>
+      </div>
+    </div>
+  </div>
+</div>

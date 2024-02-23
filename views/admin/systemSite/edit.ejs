@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
+  data-assets-path="../public/admin/assets/" data-template="vertical-menu-template-free">
+
+<head>
+  <%- include('../partials/head') -%>
+  <%- include('../partials/common-crud-css') -%>
+</head>
+
+<body>
+  <!-- Layout wrapper -->
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <%- include('../partials/navbar-left') -%>
+        <!-- Layout container -->
+        <div class="layout-page">
+          <%- include('../partials/navbar-top') -%>
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+              <div class="container-xxl flex-grow-1 container-p-y ">
+                <!-- ============================= -->
+                <!-- Content Site -->
+                <!-- ============================= -->
+                
+
+                <form class="browser-default-validation j-pro" id="formSiteData" action="/admin.editSite" method="POST">
+                  <div class="row">
+                    <div class="col-lg-8 col-12 mb-lg-0 mb-4">
+                      <div class="card">
+
+                        <h5 class="card-header">Site Data</h5>
+                        <div class="card-body">
+                          <div class="mb-3">
+                            <label class="form-label" for="site-name">Site Name</label>
+                            <input type="text" class="form-control" hidden name="_id" value="<%= data._id%>">
+                            <input type="text" class="form-control" id="site-name" name="name" value="<%= data.name%>" oninput="onChangeSiteName(this)"
+                              placeholder="Site name" required="">
+                          
+                          </div>
+                          <div class="mb-3">
+                            <label class="form-label" for="site-url">Site Url</label>
+                            <input type="text" class="form-control" id="site-url" value="<%= data.url%>" name="url"
+                              placeholder="Site url" required="">
+                          </div>
+
+                          <%- include('./component/add-image') -%>
+                          <%- include('./component/add-css') -%>
+                          <%- include('./component/add-js') -%>
+                          <%- include('./component/add-html', {pathHtml :  data.htmlPath }) -%>
+                         
+
+                          <div class="row">
+                            <div class="col-12">
+                              <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /Invoice Add-->
+
+                    <div class="col-lg-4 col-12">
+                        <%- include('./component/setting-view', { settingData : { 
+                          isShowInMenu : data.isShowInMenu,
+                          isSubMenu : data.isSubMenu,
+                          isSiteProductDetail : data.isSiteProductDetail,
+                          isSiteCategoryDetail : data.isSiteCategoryDetail,
+                          isSiteGetDataOrder : data.isSiteGetDataOrder,
+                          isSiteGetDataProfile : data.isSiteGetDataProfile,
+                          isFullFieldProduct : data.isFullFieldProduct
+                        }, 
+                        subMenuCustomData : data.subMenuCustom}) -%>
+                        <%- include('./component/page-data-view', {pageData : { 
+                          pageId : data.pageData.pageId,
+                          isGetCategory : data.pageData.isGetCategory,
+                          isGetProduct : data.pageData.isGetProduct,
+                          isFullSizeProduct : data.pageData.isFullSizeProduct,
+                          isFullFieldProduct : data.pageData.isFullFieldProduct,
+                          limitSizeProduct : data.pageData.limitSizeProduct
+                        }}) -%>
+                        <%- include('./component/page-data-other1-view', {pageOther1 : { 
+                          pageId : data.pageOther1.pageId,
+                          isGetCategory :  data.pageOther1.isGetCategory,
+                          isGetProduct :  data.pageOther1.isGetProduct,
+                          isFullSizeProduct : data.pageOther1.isFullSizeProduct,
+                          isFullFieldProduct : data.pageOther1.isFullFieldProduct,
+                          limitSizeProduct : data.pageOther1.limitSizeProduct
+                        }}) -%>
+                        <%- include('./component/page-data-other2-view', {pageOther2 : { 
+                          pageId :  data.pageOther2.pageId,
+                          isGetCategory :  data.pageOther2.isGetCategory,
+                          isGetProduct :  data.pageOther2.isGetProduct,
+                          isFullSizeProduct : data.pageOther2.isFullSizeProduct,
+                          isFullFieldProduct : data.pageOther2.isFullFieldProduct,
+                          limitSizeProduct : data.pageOther2.limitSizeProduct
+                        }}) -%>
+
+                        <%- include('./component/page-data-other3-view', {pageOther3 : { 
+                          pageId : data.pageOther3.pageId,
+                          isGetCategory :  data.pageOther3.isGetCategory,
+                          isGetProduct :  data.pageOther3.isGetProduct,
+                          isFullSizeProduct : data.pageOther3.isFullSizeProduct,
+                          isFullFieldProduct : data.pageOther3.isFullFieldProduct,
+                          limitSizeProduct : data.pageOther3.limitSizeProduct
+                        }}) -%>
+                        <%- include('./component/page-data-other4-view', {pageOther4 : { 
+                          pageId :  data.pageOther4.pageId,
+                          isGetCategory :  data.pageOther4.isGetCategory,
+                          isGetProduct :  data.pageOther4.isGetProduct,
+                          isFullSizeProduct : data.pageOther4.isFullSizeProduct,
+                          isFullFieldProduct : data.pageOther4.isFullFieldProduct,
+                          limitSizeProduct : data.pageOther4.limitSizeProduct
+                        }}) -%>
+
+                        <%- include('./component/page-data-other5-view', {pageOther5 : { 
+                          pageId :  data.pageOther5.pageId,
+                          isGetCategory :  data.pageOther5.isGetCategory,
+                          isGetProduct :  data.pageOther5.isGetProduct,
+                          isFullSizeProduct : data.pageOther5.isFullSizeProduct,
+                          isFullFieldProduct : data.pageOther5.isFullFieldProduct,
+                          limitSizeProduct : data.pageOther5.limitSizeProduct
+                        }}) -%>
+
+                        <%- include('./component/page-data-other6-view', {pageOther6 : { 
+                          pageId :  data.pageOther6.pageId,
+                          isGetCategory :  data.pageOther6.isGetCategory,
+                          isGetProduct :  data.pageOther6.isGetProduct,
+                          isFullSizeProduct : data.pageOther6.isFullSizeProduct,
+                          isFullFieldProduct : data.pageOther6.isFullFieldProduct,
+                          limitSizeProduct : data.pageOther6.limitSizeProduct
+                        }}) -%>
+
+                        <%- include('./component/page-data-other7-view', {pageOther7 : { 
+                          pageId :  data.pageOther7.pageId,
+                          isGetCategory :  data.pageOther7.isGetCategory,
+                          isGetProduct :  data.pageOther7.isGetProduct,
+                          isFullSizeProduct : data.pageOther7.isFullSizeProduct,
+                          isFullFieldProduct : data.pageOther7.isFullFieldProduct,
+                          limitSizeProduct : data.pageOther7.limitSizeProduct
+                        }}) -%>
+
+                        <%- include('./component/page-data-other8-view', {pageOther8 : { 
+                          pageId :  data.pageOther8.pageId,
+                          isGetCategory :  data.pageOther8.isGetCategory,
+                          isGetProduct :  data.pageOther8.isGetProduct,
+                          isFullSizeProduct : data.pageOther8.isFullSizeProduct,
+                          isFullFieldProduct : data.pageOther8.isFullFieldProduct,
+                          limitSizeProduct : data.pageOther8.limitSizeProduct
+                        }}) -%>
+
+                        <%- include('./component/page-data-other9-view', {pageOther9 : { 
+                          pageId :  data.pageOther9.pageId,
+                          isGetCategory :  data.pageOther9.isGetCategory,
+                          isGetProduct :  data.pageOther9.isGetProduct,
+                          isFullSizeProduct : data.pageOther9.isFullSizeProduct,
+                          isFullFieldProduct : data.pageOther9.isFullFieldProduct,
+                          limitSizeProduct : data.pageOther9.limitSizeProduct
+                        }}) -%>
+
+                        <%- include('./component/page-data-other10-view', {pageOther10 : { 
+                          pageId :  data.pageOther10.pageId,
+                          isGetCategory :  data.pageOther10.isGetCategory,
+                          isGetProduct :  data.pageOther10.isGetProduct,
+                          isFullSizeProduct : data.pageOther10.isFullSizeProduct,
+                          isFullFieldProduct : data.pageOther10.isFullFieldProduct,
+                          limitSizeProduct : data.pageOther10.limitSizeProduct
+                        }}) -%>
+                        <%- include('../component/seoView' , { seoData : { 
+                          seoTitle: data.seoTitle,
+                          seoName: data.seoName,
+                          seoKeyWord: data.seoKeyWord,
+                          seoDesc: data.seoDesc
+                        }}) -%>
+                    </div>
+                  </div>
+                </form>
+                <!-- ============================= -->
+                <!-- Content Site -->
+                <!-- ============================= -->
+              </div>
+              <!-- Footer -->
+              <%- include('../partials/footer') -%>
+                <!-- / Footer -->
+              <div class="content-backdrop fade"></div>
+            </div>
+            <!-- Content wrapper -->
+        </div>
+        <!-- / Layout Site -->
+    </div>
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+  </div>
+  <!-- / Layout wrapper -->
+    <%- include('../partials/common-js') -%>
+    <script type="text/javascript" src="../public/admin/assets/libs/j-pro/js/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../public/admin/assets/libs/j-pro/js/jquery.maskedinput.min.js"></script>
+    <script type="text/javascript" src="../public/admin/assets/libs/j-pro/js/jquery.j-pro.js"></script>
+    <script type="text/javascript" src="../public/admin/assets/js/jquery.form.min.js"></script>
+
+    <script src="../public/admin/assets/libs/dropzone/dropzone.min.js"></script>
+    <script src="../public/admin/assets/js/pages/files/uploadSite.js"></script>
+    <script src="../public/admin/assets/js/pages/files/uploadHtml.js"></script>
+
+    <script src="../public/admin/assets/js/pages/systemSite/edit.js"></script>
+    <script src="../public/admin/assets/js/pages/systemSite/setting-view.js"></script>
+</body>
+
+</html>

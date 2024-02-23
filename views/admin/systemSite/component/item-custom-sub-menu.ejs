@@ -1,0 +1,25 @@
+<% 
+  var viewId = 0
+  var nameDisplay = ""
+  var urlDisplay = ""
+  if (itemCustom != undefined && itemCustom != null) {
+    nameDisplay = itemCustom.name 
+    urlDisplay = itemCustom.url
+  } 
+  
+  if (index != undefined && index != null) {
+    viewId = index
+  }
+  %>
+
+<div class="row m-1 p-1 border mt-1 custom-sub-data" id="customSubMenu<%= viewId%>">
+    <button type="button" class="btn-close text-reset m-1" onclick="onRemoveItemCustomSubMenu('<%= viewId%>')"></button>
+    <div class="mb-1 mt-2">
+        <label class="form-label" for="seo-title">Item Name</label>
+        <input type="text" class="form-control" id="itemName<%= viewId%>"placeholder="name" value="<%= nameDisplay%>">
+      </div>
+    <div class="mb-1">
+    <label class="form-label" for="seo-title">Item URL</label>
+    <input type="text" class="form-control" id="itemUrl<%= viewId%>"  placeholder="url" value="<%= urlDisplay%>">
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-12">
+    <h4 id="link" class="anchor-heading mb-4 fw-bold">Add Link<a href="#link"
+        class="anchorjs-link ps-2">#</a></h4>
+    <div class="doc-example">
+      <div class="doc-example-content" data-label="site url">
+        <div class="doc-clipboard">
+          <button type="button" class="btn-clipboard" data-bs-toggle="tooltip" data-bs-placement="top"
+            data-bs-original-title="Copy to clipboard">
+            Copy
+          </button>
+        </div>
+        <pre class="docs-code">
+          <code class="html hljs language-xml">
+          <span class="hljs-tag">&lt;<span class="hljs-name">a </span><span class="hljs-attr">href</span>=<span class="hljs-string">"/&lt;%= site.url%&gt;"</span>/&gt;</span>
+        </code></pre>
+      </div>
+    </div>
+
+    <div class="doc-example mt-1">
+      <div class="doc-example-content" data-label="sub menu url">
+        <div class="doc-clipboard">
+          <button type="button" class="btn-clipboard" data-bs-toggle="tooltip" data-bs-placement="top"
+            data-bs-original-title="Copy to clipboard">
+            Copy
+          </button>
+        </div>
+        <pre class="docs-code">
+          <code class="html hljs language-xml">
+            <span class="hljs-tag">&lt;<span class="hljs-name">a </span><span class="hljs-attr">href</span>=<span class="hljs-string">"&lt;%= nameCategory.replace(/ /g , '-')%&gt;-&lt;%= pageid %&gt;.&lt;%= idCategory %&gt;.cate"</span>/&gt;</span>
+        </code></pre>
+      </div>
+    </div>
+
+    <div class="doc-example mt-1">
+      <div class="doc-example-content" data-label="product detail url">
+        <div class="doc-clipboard">
+          <button type="button" class="btn-clipboard" data-bs-toggle="tooltip" data-bs-placement="top"
+            data-bs-original-title="Copy to clipboard">
+            Copy
+          </button>
+        </div>
+        <pre class="docs-code">
+          <code class="html hljs language-xml">
+          <span class="hljs-tag">&lt;<span class="hljs-name">a </span><span class="hljs-attr">href</span>=<span class="hljs-string">"&lt;%= nameProduct.replace(/ /g , '-')%&gt;-&lt;%= pageid %&gt;.&lt;%= idProduct %&gt;.html"</span>/&gt;</span>
+        </code></pre>
+      </div>
+    </div>
+  </div>
+</div>

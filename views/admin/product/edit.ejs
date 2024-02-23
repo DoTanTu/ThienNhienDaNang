@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
+  data-assets-path="../public/admin/assets/" data-template="vertical-menu-template-free">
+
+<head>
+  <%- include('../partials/head') -%>
+  <%- include('../partials/common-crud-css') -%>
+</head>
+
+<body>
+  <!-- Layout wrapper -->
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <%- include('../partials/navbar-left') -%>
+      <!-- Layout container -->
+      <div class="layout-page">
+        <%- include('../partials/navbar-top') -%>
+        <!-- Content wrapper -->
+        <div class="content-wrapper">
+          <div class="container-xxl flex-grow-1 container-p-y ">
+            <!-- ============================= -->
+            <!-- Content Product -->
+            <!-- ============================= -->
+
+
+            <form class="browser-default-validation j-pro" id="formProductData" action="/admin.editProduct"
+              method="POST">
+              <div class="row">
+                <div class="col-lg-8 col-12 mb-lg-0 mb-4">
+                  <div class="card">
+                    <div class="row">
+                      <h5 class="card-header col-lg-6">Sửa bài viết</h5>
+                      <div id="view-language" class="col-lg-4 card-body">
+                        <% if(typeof languages !="undefined" && languages.length> 0){ %>
+
+                        <label for="addLanguage" class="mt-3">Ngôn ngữ</label>
+                        <select class="form-control language-data " id="addLanguage" onchange="onChangeLanguage(this)"
+                          name="language">
+                          <option value="">
+                            Mặc định
+                          </option>
+                          <% languages.forEach(function(item){ %>
+                          <option value="<%= item._id %>">
+                            <%= item.name %>
+                          </option>
+                          <% }); %>
+                        </select>
+                        <% } %>
+                      </div>
+                    </div>
+                    <input name="pageCurrent" hidden value="<% if(typeof pageCurrent != undefined && pageCurrent != null){ %><%= pageCurrent%><%}%>"></input>
+                        <% var dataLanguages
+                         if(data != null && typeof data.languages !="undefined" && data.languages != null){ 
+                           dataLanguages = data.languages 
+                         } %>
+                        <input type=" text" class="form-control" id="languages" name="languages" hidden
+                      value="<%= JSON.stringify(dataLanguages)%>" placeholder="">
+
+                    <div class="card-body">
+                      <%- include('./component/info-view', { infoData : {
+                            _id : data._id,
+                            name : data.name
+                          }}) -%>
+
+                      <% if(pageSetting != undefined && pageSetting != null && pageSetting.setting.isLinkVideo) {%>
+                      <%- include('./component/video-view', { linkData : data.linkVideo}) -%>
+                      <% }%>
+                      <% if(pageSetting.setting.isEcommerce != true || app.platform != "ecommerce_plus") {
+                        %>
+                      <%- include('./component/image-view',  { imageData : data.images, altData : data.alts}) -%>
+                      <% }%>
+                      <% if(pageSetting.setting.isPdf == true) {
+                        %> 
+                       
+                        <%- include('./component/pdf-view',  { pdfData : data.pdf}) -%>
+                      <%}%>
+                      <% if(pageSetting.setting.isEcommerce == true) {%>
+                      <% if(app.platform == "ecommerce_plus") {%>
+                      <%- include('./component/ecomerce-view-plus', { ecommerces : data.ecommercePlus}) -%>
+                      <% }else {%>
+                      <%- include('./component/ecomerce-view', { ecommerce : data.ecommerce}) -%>
+                      <% }} %>
+
+                      <% if(pageSetting.setting.isDescriptionPlus == true) {%>
+                      <%- include('./component/description-view-plus', { descriptionPlus :  data.descriptionPlus}) -%>
+                      <% }else {%>
+                      <%- include('./component/description-view', { descriptionData :  data.description}) -%>
+                      <% } %>
+
+                      <div class="row">
+                        <div class="col-12">
+                          <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 col-12">
+                  <%- include('./component/setting-view', { settingData : { 
+                        showTop : data.showTop,
+                        desShort : data.desShort,
+                        url : data.url,
+                        label : data.label
+                      }}) -%>
+                  <% if(pageSetting != undefined && pageSetting != null  && pageSetting.setting != null) {%>
+                  <% if(pageSetting.setting.isCategory == true) {%>
+                  <input name="category" id="category" value="<%= JSON.stringify(data.categoryIds)%>" hidden></input>
+                  <%- include('../component/treeCategory') -%>
+                  <% } %>
+
+                  <% if(pageSetting.setting.isAttribute == true) {%>
+                  <%- include('./component/hashtag-view', { attributes : attributes, currentHashtags : data.hashtags }) -%>
+                  <% } %>
+                  <% if(pageSetting.setting.isProductContact == true) {%>
+                  <%- include('./component/contact-view', {contact : data.contact}) -%>
+                  <% } %>
+                  <% } %>
+                  <%- include('../component/seoView', { seoData : { 
+                        seoTitle: data.seoTitle,
+                        seoName: data.seoName,
+                        seoKeyWord: data.seoKeyWord,
+                        seoDesc: data.seoDesc
+                      }}) -%> -%>
+                </div>
+              </div>
+            </form>
+            <!-- ============================= -->
+            <!-- Content Product -->
+            <!-- ============================= -->
+          </div>
+          <!-- Footer -->
+          <%- include('../partials/footer') -%>
+          <!-- / Footer -->
+          <div class="content-backdrop fade"></div>
+        </div>
+        <!-- Content wrapper -->
+      </div>
+      <!-- / Layout Product -->
+    </div>
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+  </div>
+  <!-- / Layout wrapper -->
+  <script type='text/javascript'>
+    var categories = `<%= categories%>`
+  </script>
+  <%- include('../partials/common-js') -%>
+  <%- include('../partials/common-crud-js') -%>
+  <script type="text/javascript" src="../public/admin/assets/js/pages/editor/ck-editors.js"></script>
+  <script src="../public/admin/assets/js/pages/treeCategory.js"></script>
+  <script src="../public/admin/assets/js/pages/product/edit.js"></script>
+  <script src="../public/admin/assets/js/pages/product/ecommerce.js"></script>
+  <script src="../public/admin/assets/js/pages/product/description.js"></script>
+  <script type="text/javascript" src="../public/admin/assets/js/pages/editor/ck-editor.js"></script>
+</body>
+
+</html>

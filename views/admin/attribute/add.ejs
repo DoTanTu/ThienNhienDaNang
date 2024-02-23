@@ -1,0 +1,44 @@
+<div class="offcanvas offcanvas-end" id="createOrEditAttribute" aria-hidden="true">
+  <div class="offcanvas-header mb-3">
+    <h5 class="offcanvas-title">Tạo thuộc tính</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <% if(typeof attributes !="undefined" && attributes.length> 0){ %>
+  <div class="offcanvas-body flex-grow-1">
+    <form class="browser-default-validation j-pro" id="formAttributeData" action="/admin.addAttribute" method="POST">
+      <div class="mb-3 mt-3">
+      
+        <label for="addLanguage" class="mb-0">Loại thuộc tính</label>
+        <select class="form-control mt-3" id="selectAttribute" onchange="onChangeAttribute(this)" name="attribute">
+            <% attributes.forEach(function(item){ %>
+              <option value="<%= item %>">
+                <%= item %>
+              </option>
+              <% }); %>
+        </select>
+      </div>
+      <div class="mb-3 mt-3">
+        <input name="pageCurrent" hidden value="<% if(typeof pageCurrent != undefined && pageCurrent != null){ %><%= pageCurrent%><%}%>"></input>
+        <input name="parents" hidden ></input>
+        <label for="name" class="form-label">Tên thuộc tính</label>
+        <input type="text" class="form-control" id="attributeId" name="attributeId" hidden placeholder="">
+        <input type="text" class="form-control" id="name" name="name" placeholder="" required>
+      </div>
+
+      <!-- <div class="mb-3 mt-3">
+        <div class="d-flex justify-content-between mb-2">
+          <label for="cbShowTop" class="mb-0">Cho phép chọn nhiều</label>
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="isMutipleSelection" name="isMutipleSelection" />
+          </div>
+        </div>
+      </div>
+       -->
+      <div class="mb-3 d-flex flex-wrap">
+        <button type="submit" class="btn btn-primary me-3">Gửi</button>
+        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <% } %>
+</div>

@@ -1,0 +1,75 @@
+
+<% 
+var viewId = 0
+var price = ""
+var priceSale = ""
+var quantity = ""
+var discount = ""
+var unit = ""
+var xCode = ""
+if (index != undefined && index != null) {
+  viewId = index
+}
+if (ecommerce != undefined && ecommerce != null) {
+  price = ecommerce.price 
+  priceSale = ecommerce.priceSale
+  quantity = ecommerce.quantity
+  discount = ecommerce.discount
+  unit = ecommerce.unit
+} %>
+
+<div class="row m-1 p-1 border mt-2 eco-data" id="view<%= viewId%>">
+  <div class="offcanvas-header mb-3">
+    <h5 class="offcanvas-title"></h5>
+    <button type="button" class="btn-close text-reset m-1" onclick="onRemoveItemEcomerce('<%= viewId%>')"></button>
+  </div>
+  <div class="mb-3 col-12"> <div id="myDropzone<%= viewId%>" class="dropzone"></div></div>
+  <div class="mb-3 col-lg-4 col-6">
+    <label class="form-label" for="e-price">Giá</label>
+     <input type="text" class="form-control" id="d-price" value="<%= price %>" hidden  name="dprice">
+    <input type="number" step="any" class="form-control" id="e-price" value="<%= price %>"  name="price" placeholder="">
+  </div>
+  <div class="mb-3 col-lg-4 col-6">
+    <label class="form-label" for="e-priceSale">Giá Sale</label>
+    <input type="number" step="any" class="form-control" id="e-priceSale" value="<%= priceSale %>"  name="priceSale" placeholder="">
+  </div>
+
+  <div class="mb-3 col-lg-4 col-6">
+    <label class="form-label" for="e-discount">Giảm %</label>
+    <input type="number" step="any" class="form-control" id="e-discount" value="<%= discount %>"  name="discount" placeholder="">
+  </div>
+
+  <div class="mb-3 col-lg-6 col-6">
+    <label class="form-label" for="e-quantity">Số lượng</label>
+    <input type="number" class="form-control" id="e-quantity" value="<%= quantity %>"  name="quantity" placeholder="">
+  </div>
+  <div class="mb-3 col-lg-6 col-6">
+    <label class="form-label" for="e-discount">Đơn vị tính</label>
+    <input type="text" class="form-control" id="d-unit" value="<%= unit %>" hidden  name="dunit">
+    <input type="text" class="form-control" id="e-unit" value="<%= unit %>"  name="unit" placeholder="Lần / Phút / Cái / Kg ....">
+  </div>
+  <%if (attributes != undefined && attributes != null) {%>
+    <input hidden id="d-attributes" value="<%= JSON.stringify(attributes) %>"type="text" class="form-control"/>
+    <% attributes.forEach(function(item){
+      if(item.tag != "Hashtag"){ %>
+        <div class="mb-3 col-lg-6 col-6">
+          <label class="form-label" for="e-discount"><%= item.name %></label>
+          <%  if (ecommerce != undefined && ecommerce != null && ecommerce.atribute != null) {
+            let attrFind = ecommerce.atribute.find(x=> x.id == item._id)
+            if(attrFind != undefined && attrFind != null){
+              xCode = attrFind.code
+             }%>
+         <% } %>
+            <select class="form-control " name="attribute_<%= item._id %>">
+                <option value="">
+                </option>
+                <% item.values.forEach(function(x){ %>
+                  <option value="<%= x.code %>" <% if(xCode == x.code){%> selected <% }%>>
+                    <%= x.value %>
+                  </option>
+                  <% }); %>
+            </select>
+        </div>
+      <% }}); %>
+  <%}%>
+</div>

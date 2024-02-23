@@ -1,0 +1,369 @@
+<div class="modal fade" id="createApp" aria-modal="true" role="dialog">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-simple modal-upgrade-plan">
+    <div class="modal-content p-3 p-md-5">
+      <div class="modal-body p-2">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="text-center">
+          <h3 class="mb-2">Create App</h3>
+          <p>Provide data with this form to create your app.</p>
+        </div>
+        <!-- App Wizard -->
+        <div id="wizard-create-app" class="bs-stepper vertical mt-2 shadow-none border-0">
+          <div class="bs-stepper-header border-0 p-1">
+            <div class="step active" data-target="#details">
+              <button type="button" class="step-trigger" aria-selected="true">
+                <span class="bs-stepper-circle"><i class="bx bx-file fs-5"></i></span>
+                <span class="bs-stepper-label">
+                  <span class="bs-stepper-title text-uppercase">Details</span>
+                  <span class="bs-stepper-subtitle">Enter Details</span>
+                </span>
+              </button>
+            </div>
+            <div class="line"></div>
+            <div class="step" data-target="#frameworks">
+              <button type="button" class="step-trigger" aria-selected="false">
+                <span class="bs-stepper-circle"><i class="bx bx-box fs-5"></i></span>
+                <span class="bs-stepper-label">
+                  <span class="bs-stepper-title text-uppercase">Frameworks</span>
+                  <span class="bs-stepper-subtitle">Select Framework</span>
+                </span>
+              </button>
+            </div>
+            <div class="line"></div>
+            <div class="step" data-target="#modules">
+              <button type="button" class="step-trigger" aria-selected="false">
+                <span class="bs-stepper-circle"><i class="bx bx-box fs-5"></i></span>
+                <span class="bs-stepper-label">
+                  <span class="bs-stepper-title text-uppercase">Modules</span>
+                  <span class="bs-stepper-subtitle">Select Modules</span>
+                </span>
+              </button>
+            </div>
+            <div class="line"></div>
+
+            <div class="step" data-target="#setting">
+              <button type="button" class="step-trigger" aria-selected="false">
+                <span class="bs-stepper-circle"><i class="bx bx-box fs-5"></i></span>
+                <span class="bs-stepper-label">
+                  <span class="bs-stepper-title text-uppercase">Settings</span>
+                  <span class="bs-stepper-subtitle">category, products, menu</span>
+                </span>
+              </button>
+            </div>
+            <div class="line"></div>
+
+            <div class="step" data-target="#css">
+              <button type="button" class="step-trigger" aria-selected="false">
+                <span class="bs-stepper-circle"><i class="bx bxs-file-css fs-5"></i></span>
+                <span class="bs-stepper-label">
+                  <span class="bs-stepper-title text-uppercase">Common Files</span>
+                  <span class="bs-stepper-subtitle">Common file</span>
+                </span>
+              </button>
+            </div>
+            <div class="line"></div>
+            <div class="step" data-target="#submit">
+              <button type="button" class="step-trigger" aria-selected="false">
+                <span class="bs-stepper-circle"><i class="bx bx-check fs-5"></i></span>
+                <span class="bs-stepper-label">
+                  <span class="bs-stepper-title text-uppercase">Submit</span>
+                  <span class="bs-stepper-subtitle">Submit</span>
+                </span>
+              </button>
+            </div>
+          </div>
+          <div class="bs-stepper-content p-1">
+            <form class="browser-default-validation j-pro" id="formAppData" action="/admin.addOrEditApp" method="POST">
+              <!-- Details -->
+              <div id="details" class="content pt-3 pt-lg-0 active dstepper-block">
+                <div class="mb-3">
+                  <input type="text" id="hostName" name="hostName" hidden>
+                  <input type="text" name="name" class="form-control form-control-lg" placeholder="Application Name">
+                </div>
+                <div class="mb-3">
+                  <!-- Add name when using upload-->
+                  <input type="text" id="folderLogo" value="logo" hidden>
+                  <input type="text" class="form-control" hidden name="appLogo">
+                  <input type="file" id="logoFile" src="" class="form-control" hidden>
+                  <div id="appLogo" class="dropzone"></div>
+                </div>
+                <h5>Category</h5>
+                <ul class="p-0 m-0">
+                  <li class="d-flex align-items-start mb-3">
+                    <div class="badge bg-label-info p-2 me-3 rounded"><i class="bx bx-file bx-sm"></i></div>
+                    <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">Brand Platforms</h6>
+                        <small class="text-muted">Scales with any business</small>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <div class="form-check form-check-inline">
+                          <input name="platform" class="form-check-input" type="radio" value="brand">
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="d-flex align-items-start mb-3">
+                    <div class="badge bg-label-success p-2 me-3 rounded"><i class="bx bx-cart bx-sm"></i></div>
+                    <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">Product Service Platforms</h6>
+                        <small class="text-muted">Grow Your Business With App</small>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <div class="form-check form-check-inline">
+                          <input name="platform" class="form-check-input" type="radio" value="product_service"
+                            checked="">
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="d-flex align-items-start mb-3">
+                    <div class="badge bg-label-success p-2 me-3 rounded"><i class="bx bx-cart bx-sm"></i></div>
+                    <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">eCommerce Platforms</h6>
+                        <small class="text-muted">Grow Your Business With App</small>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <div class="form-check form-check-inline">
+                          <input name="platform" class="form-check-input" type="radio" value="ecommerce_plus"
+                            checked="">
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="d-flex align-items-start">
+                    <div class="badge bg-label-danger p-2 me-3 rounded"><i class="bx bx-laptop bx-sm"></i></div>
+                    <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">Online Learning Platform</h6>
+                        <small class="text-muted">Start learning today</small>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <div class="form-check form-check-inline">
+                          <input name="platform" class="form-check-input" type="radio" value="learning">
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Frameworks -->
+              <div id="frameworks" class="content pt-3 pt-lg-0">
+                <h5>Category</h5>
+                <ul class="p-0 m-0">
+                  <li class="d-flex align-items-start mb-3">
+                    <div class="badge bg-label-info p-2 me-3 rounded"><i class="bx bxl-react bx-sm"></i></div>
+                    <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">React Native</h6>
+                        <small class="text-muted">Create truly native apps</small>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <div class="form-check form-check-inline">
+                          <input name="frameworks" disabled class="form-check-input" type="radio" value="react">
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="d-flex align-items-start mb-3">
+                    <div class="badge bg-label-danger p-2 me-3 rounded"><i class="bx bxl-angular bx-sm"></i></div>
+                    <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">Angular</h6>
+                        <small class="text-muted">Most suited for your application</small>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <div class="form-check form-check-inline">
+                          <input name="frameworks" disabled class="form-check-input" type="radio" value="angular"
+                            checked="">
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="d-flex align-items-start mb-3">
+                    <div class="badge bg-label-warning p-2 me-3 rounded"><i class="bx bxl-html5 bx-sm"></i></div>
+                    <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">HTML (EJS ,Boostrap)</h6>
+                        <small class="text-muted">Progressive Framework</small>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <div class="form-check form-check-inline">
+                          <input name="frameworks" class="form-check-input" type="radio" value="html" checked="">
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="d-flex align-items-start">
+                    <div class="badge bg-label-success p-2 me-3 rounded"><i class="bx bxl-vuejs bx-sm"></i></div>
+                    <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">VueJs</h6>
+                        <small class="text-muted">JS web frameworks</small>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <div class="form-check form-check-inline">
+                          <input name="frameworks" disabled class="form-check-input" type="radio" value="vuejs">
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Modules -->
+              <div id="modules" class="content pt-3 pt-lg-0">
+                <h5>Modules</h5>
+                <ul class="p-0 m-0">
+                  <!-- ORDER -->
+                  <li class="d-flex align-items-start mb-3">
+                    <div class="badge bg-label-info p-2 me-3 rounded"></div>
+                    <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">Order</h6>
+                        <small class="text-muted">Order, ShipMethod, PaymendMethod</small>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" name="isOrder" />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <!-- AUTHEN -->
+                  <li class="d-flex align-items-start mb-3">
+                    <div class="badge bg-label-info p-2 me-3 rounded"></div>
+                    <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">Authentication</h6>
+                        <small class="text-muted">Log in, Sign up, Sign out</small>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" name="isAuthen" />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <!-- SEND MAIL -->
+                  <li class="d-flex align-items-start mb-3">
+                    <div class="badge bg-label-info p-2 me-3 rounded"></div>
+                    <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">Send Mail</h6>
+                        <small class="text-muted">active account, order, ...</small>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" name="isMail" />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+
+                   <!-- QRCODE -->
+                   <li class="d-flex align-items-start mb-3">
+                    <div class="badge bg-label-info p-2 me-3 rounded"></div>
+                    <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">QR Code</h6>
+                        <small class="text-muted">customer</small>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" name="isQr" />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  
+                  <!-- PAYMENT -->
+                  <li class="d-flex align-items-start mb-3">
+                    <div class="badge bg-label-info p-2 me-3 rounded"></div>
+                    <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">Payment Online</h6>
+                        <small class="text-muted">stripe, 2checkout, ...</small>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" name="isPaymentOnline" />
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+
+              <!-- Setting -->
+              <div id="setting" class="content pt-3 pt-lg-0">
+                <h5>Settings</h5>
+                <ul class="p-0 m-0">
+                  <li class="d-flex align-items-start mb-3">
+                    <div class="badge bg-label-info p-2 me-3 rounded"></div>
+                    <div class="d-flex justify-content-between w-100 flex-wrap gap-2">
+                      <div class="me-2">
+                        <h6 class="mb-0">Products in menu</h6>
+                        <small class="text-muted">Sort top, new, trending, hot</small>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <select class="form-control" name="queryProduct">
+                          <option value="">DATE NEW</option>
+                          <option value="SHOWTOP">SHOW TOP</option>
+                          <option value="NEW">NEW</option>
+                          <option value="HOT">HOT</option>
+                          <option value="TOP">TOP</option>
+                          <option value="TRENDING">TRENDING</option>
+                          <option value="SOLD">SOLD</option>
+                        </select>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Css -->
+              <div id="css" class="content pt-3 pt-lg-0">
+                <h5>Common (Images, Fonts, Css, JavaScript) .zip</h5>
+                <div class="mb-3">
+                  <!-- Add name when using upload-->
+                  <input type="text" id="folderCss" value="css" hidden>
+                  <input type="text" class="form-control" hidden name="appZip">
+                  <div id="appZip" class="dropzone"></div>
+                </div>
+
+                <h5>Html (EJS)</h5>
+                <div class="mb-3">
+                  <!-- Add name when using upload-->
+                  <input type="text" id="folderHtml" value="components" hidden>
+                  <input type="text" class="form-control" hidden name="appHtml">
+                  <div id="appHtml" class="dropzone"></div>
+                </div>
+
+              </div>
+
+              <!-- submit -->
+              <div id="submit" class="content text-center pt-3 pt-lg-0">
+                <h5 class="mb-2 mt-3">Submit</h5>
+                <p>Submit to kick start your project.</p>
+                <!-- image -->
+                <img src="../public/admin/assets/img/backgrounds/man-with-laptop-light.png" alt="Create App img"
+                  width="200" class="img-fluid" data-app-light-img="illustrations/man-with-laptop-light.png"
+                  data-app-dark-img="illustrations/man-with-laptop-dark.png">
+                <div class="col-12 d-flex justify-content-between mt-4 pt-2">
+                  <button class="btn btn-success btn-next btn-submit"> <span
+                      class="align-middle d-sm-inline-block d-none">Submit</span></button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!--/ App Wizard -->
+    </div>
+  </div>
+</div>

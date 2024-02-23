@@ -1,0 +1,39 @@
+<div class="card accordion-item mb-4">
+  <h2 class="accordion-header" id="hEcommerce">
+    <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#ecommerce-view"
+      aria-expanded="false" aria-controls="ecommerce-view">
+      Ecommerce
+    </button>
+  </h2>
+  <div id="ecommerce-view" class="accordion-collapse collapse show" aria-labelledby="hEcommerce"
+    data-bs-parent="#ecommerce-view" style="">
+    <input type="text" value="ecommerce_plus" hidden name="platform">
+    <input type="text" id="pageName" value="product-<%= pageCurrent%>"  hidden>
+    <div class="accordion-body mt-3" id="ecommerce-content">
+      <% if(ecommerces != null && ecommerces.length > 0){
+        var imageData = []%>
+      <% ecommerces.forEach(function(item, index){%>
+        <%- include('item_view_ecomerce_plus', { ecommerce : item , index : index}) -%>
+      <%  imageData.push({
+          index : index,
+          images : item.images,
+          alts : item.alts})
+         }) 
+      %>
+      <input type="text" class="form-control" id="imagePlus" hidden value="<%= JSON.stringify(imageData)%>" name="imagePlus">
+      <input type="text" class="form-control" id="altPlus" hidden name="altPlus">
+     
+      <%} else { %>
+        <%- include('item_view_ecomerce_plus', { ecommerce : null, index : null}) -%>
+        <input type="text" class="form-control" id="imagePlus" hidden value="" name="imagePlus">
+        <input type="text" class="form-control" id="altPlus" hidden  name="altPlus">
+      <%}%>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-12">
+      <button type="button" class="btn btn-primary" onclick="onAddItemEcomerce()" data-repeater-create="">Thêm</button>
+    </div>
+  </div>
+</div>

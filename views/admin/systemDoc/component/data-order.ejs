@@ -1,0 +1,114 @@
+<div class="row">
+  <div class="col-12">
+    <h4 id="data-order" class="anchor-heading mb-4 fw-bold">Data order<a href="#data-order"
+        class="anchorjs-link ps-2">#</a></h4>
+    <div class="doc-example">
+      <div class="doc-example-content" data-label="Action">
+        <div class="doc-clipboard">
+          <button type="button" class="btn-clipboard" data-bs-toggle="tooltip" data-bs-placement="top"
+            data-bs-original-title="Copy to clipboard">
+            Copy
+          </button>
+        </div>
+        <pre class="docs-code"> <code class="html hljs language-xml">
+             1. &lt;form action="/addOrder" method="POST"&gt;
+             or
+             2. call api
+              method = POST 
+              action = /addOrder
+              body  = {
+                "customerId" : null,
+                "products": [{
+                        "productId": "6419486e1abfd119e14df082",
+                        "categoryId": "63e1189c51c0fe8f5115a7b2",
+                        "quantity": "1",
+                        "price": "10000",
+                
+                        "adult": "",
+                        "children": "",
+                        "timeStart": "",
+                        "timeEnd": "",
+                        "size": "M",
+                        "color": "DEN",
+                        "measures":"",
+                        "weight":"",
+                        "height": "",
+                        "width": ""
+                      }],
+                "note": "hello",
+                "billingAddress": {
+                      "fullname": "nguyen van b",
+                      "address":  "53 tab",
+                      "phone": "012312341",
+                      "email": "abc@gmail.com"
+                    },
+                "shippingAddress": {
+                      "shipCode": "123",
+                      "fullname": "nguyen van a",
+                      "address":  "53 tab",
+                      "phone": "012312341",
+                      "email": "abc@gmail.com"
+                    },
+                "shipId": null,
+                "discount": null,
+                "paymendId": "vRoub-RxK",
+                "subTotal": "10000",
+                "total": "15000"
+                }
+            </code></pre>
+      </div>
+    </div>
+    <div class="doc-example">
+      <div class="doc-example-content" data-label="object-data">
+        <div class="doc-clipboard">
+          <button type="button" class="btn-clipboard" data-bs-toggle="tooltip" data-bs-placement="top"
+            data-bs-original-title="Copy to clipboard">
+            Copy
+          </button>
+        </div>
+        <pre class="docs-code"><code class="json">
+<span class="hljs-variable">_id</span>: String,
+<span class="hljs-variable">customerId</span>: String,
+<span class="hljs-variable">products</span>: [{
+  productId: string;
+  categoryId  : string;
+  quantity: string;
+  price: string;
+  adult: string;
+  children: string;
+  timeStart: Date;
+  timeEnd: Date;
+  size: string
+  color: string
+  measures: string
+  weight: string
+  height: string
+  width: string
+  }],
+<span class="hljs-variable">note</span>: string,
+<span class="hljs-variable">billingAddress</span>: {
+  fullname: string
+  address: string
+  phone: string
+  email: string
+},
+<span class="hljs-variable">shippingAddress</span>: {
+  shipCode: string
+  fullname: string
+  address: string
+  phone: string
+  email: string
+},
+<span class="hljs-variable">shipId</span>: String;
+<span class="hljs-variable">discount</span>:  {
+  discount_code: string
+  discount: string
+},
+<span class="hljs-variable">paymendId</span>:  String,
+<span class="hljs-variable">subTotal</span>:  String,
+<span class="hljs-variable">total</span>: String
+      </pre>
+      </div>
+    </div>
+  </div>
+</div>

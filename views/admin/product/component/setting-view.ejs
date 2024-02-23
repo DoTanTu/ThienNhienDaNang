@@ -1,0 +1,53 @@
+<% 
+  var showTop = false
+  var desShort = ""
+  var url = ""
+  var label = ""
+  if (settingData != undefined && settingData != null) {
+    showTop = settingData.showTop 
+    desShort = settingData.desShort
+    url = settingData.url
+    label = settingData.label
+  } %>
+
+<div class="card accordion-item mb-4">
+  <h2 class="accordion-header" id="headingSetting">
+    <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#setting-view"
+      aria-expanded="false" aria-controls="setting-view">
+      Chi tiết
+    </button>
+  </h2>
+  <div id="setting-view" class="accordion-collapse collapse show" aria-labelledby="headingTwo"
+    data-bs-parent="#setting-view">
+    <div class="accordion-body">
+      <div class="mb-3 mt-3">
+        <div class="d-flex justify-content-between mb-2">
+          <label for="cbShowTop" class="mb-0">Top Sản Phẩm</label>
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="cbShowTop" <% if(showTop == true){%> checked <%}%> name="showTop" />
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="basic-default-url">Tên Url</label>
+        <input type="text" class="form-control" id="url" name="url" placeholder="nhập tên url" value="<%= url %>">
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="basic-default-name">Mô Tả Ngắn</label>
+        <textarea class="form-control" id="desShort" name="desShort" aria-valuetext="<%= desShort %>" placeholderrows="2"
+         ><%= desShort %></textarea>
+      </div>
+      
+      <div class="mb-3">
+        <label class="form-label" for="basic-default-name">Nhãn</label>
+        <select class="form-control " name="label">
+            <option value="BÀI GIẢNG" <% if(label == 'BÀI GIẢNG'){%> selected <% }%>>BÀI GIẢNG</option>
+            <option value="TÀI LIỆU" <% if(label == 'TÀI LIỆU'){%> selected <% }%>>TÀI LIỆU</option>
+            <option value="HÌNH ẢNH" <% if(label == 'HÌNH ẢNH'){%> selected <% }%>>HÌNH ẢNH</option>
+            <option value="VIDEO" <% if(label == 'VIDEO'){%> selected <% }%>>VIDEO</option>
+      </select>
+      </div>
+
+    </div>
+  </div>
+</div>

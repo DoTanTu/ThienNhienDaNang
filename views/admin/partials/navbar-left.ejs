@@ -1,0 +1,198 @@
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+  <div class="app-brand demo">
+    <a href="/admin" class="app-brand-link">
+      <img src="<%= siteConfig.logo %>" alt="wrapkit" style="height:50px">
+    </a>
+
+    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+      <i class="bx bx-chevron-left bx-sm align-middle"></i>
+    </a>
+  </div>
+
+  <div class="menu-inner-shadow"></div>
+
+  <ul class="menu-inner py-3">
+    <!-- Dashboard -->
+    <li class="menu-item <% if(router == 'dashboard') { %> active open <%}%>">
+      <a href="/admin" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+        <div data-i18n="Analytics">Dashboard</div>
+      </a>
+    </li>
+    <% if(typeof role != undefined && role != null && (role == 'Author' || role == 'Admin' || role == 'Manager')){ %>
+      <!-- Customer -->
+      <li class="menu-header small text-uppercase"><span class="menu-header-text">Khách Hàng</span></li>
+      <li class="menu-item <% if(router == 'customers') { %> active open <%}%>">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-user"></i>
+          <div data-i18n="Layouts">Khách Hàng</div>
+        </a>
+
+        <ul class="menu-sub">
+          <li class="menu-item <% if(router == 'customers') { %> active open <%}%>">
+            <a href="/admin/customers" 
+              class="menu-link">
+              <div data-i18n="Support">Danh Sách</div>
+            </a>
+          </li>
+        </ul>
+      </li>
+    <% } %>
+
+    <% if(typeof pages !="undefined" && pages.length> 0){ %>
+      <li class="menu-header small text-uppercase"><span class="menu-header-text">Tính Năng</span></li>
+      <%  pages.forEach(function(item, index){ 
+        let routerCheck = router.split('/') %>
+      <li class="menu-item <% if(routerCheck[0] == item._id) { %> active open <%}%>">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-menu"></i>
+          <div data-i18n="Layouts">
+            <%= item.name %>
+          </div>
+        </a>
+        <ul class="menu-sub">
+          <%if(item.setting !=null && item.setting.isCategory==true) { %>
+            <!-- Category -->
+            <% if(typeof role != undefined && role != null && (role == 'Author' || role == 'Admin' || role == 'Manager')){ %>
+            <li class="menu-item <% if(router == item._id + '/category') { %> active open <%}%>">
+              <a href="/admin.<%= item._id%>/categories" class="menu-link">
+                <div data-i18n="Without menu">Danh Mục</div>
+              </a>
+            </li>
+            <%}%>
+            <!-- Category -->
+            <%}%>
+              <!-- Product -->
+              <li class="menu-item <% if(router == item._id + '/product') { %> active open <%}%>">
+                <a href="/admin.<%= item._id%>/products" class="menu-link">
+                  <div data-i18n="Blank">Sản Phẩm</div>
+                </a>
+              </li>
+              <!-- Product -->
+            <%if(item.setting !=null && item.setting.isAttribute == true) { %>
+              <!-- Attribute -->
+              <% if(typeof role != undefined && role != null && (role == 'Author' || role == 'Admin' || role == 'Manager')){ %>
+              <li class="menu-item <% if(router == item._id + '/attribute') { %> active open <%}%>">
+                <a href="/admin.<%= item._id%>/attribute" class="menu-link">
+                  <div data-i18n="Without menu">Thuộc Tính</div>
+                </a>
+              </li>
+              <%}%>
+              <!-- Attribute -->
+            <%}%>
+        </ul>
+      </li>
+      <% })} %>
+
+       <!-- Order -->
+       <%if(typeof app != 'undefined' && app !=null && app.module != null && app.module.isOrder==true) { %>
+       <li class="menu-header small text-uppercase"><span class="menu-header-text">Order & Payment</span></li>
+       <li class="menu-item <% if(router == 'order') { %> active open <%}%>">
+         <a href="/admin/order" class="menu-link">
+           <i class="menu-icon tf-icons bx bxs-shopping-bag-alt"></i>
+           <div data-i18n="contact">Order</div>
+         </a>
+       </li>
+       <% if(typeof role != undefined && role != null && (role == 'Author' || role == 'Admin' || role == 'Manager')){ %>
+       <li class="menu-item  <% if(router == 'shipMethod') { %> active open <%}%>">
+         <a  href="/admin/shipMethod" class="menu-link">
+           <i class="menu-icon tf-icons bx bxs-ship"></i>
+           <div data-i18n="mesage">Vận chuyển</div>
+         </a>
+       </li>
+       <li class="menu-item  <% if(router == 'paymentMethod') { %> active open <%}%>">
+        <a  href="/admin/paymentMethod" class="menu-link">
+          <i class="menu-icon tf-icons bx bxs-credit-card"></i>
+          <div data-i18n="mesage">Thanh toán</div>
+        </a>
+      </li>
+      <%}%>
+      <%}%>
+
+        <!-- System -->
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">TT Liên Hệ & Tin Nhắn</span></li>
+        <% if(typeof role != undefined && role != null && (role == 'Author' || role == 'Admin' || role == 'Manager')){ %>
+        <li class="menu-item <% if(router == 'contact') { %> active open <%}%>">
+          <a href="/admin/contact" class="menu-link">
+            <i class="menu-icon tf-icons bx bxs-contact"></i>
+            <div data-i18n="contact">TT Liên Hệ</div>
+          </a>
+        </li>
+        <%} %>
+        <li class="menu-item  <% if(router == 'message') { %> active open <%}%>">
+          <a  href="/admin/message" class="menu-link">
+            <i class="menu-icon tf-icons bx bxs-message"></i>
+            <div data-i18n="mesage">Tin Nhắn</div>
+          </a>
+        </li>
+        <li class="menu-item  <% if(router == 'comment') { %> active open <%}%>">
+          <a  href="/admin/comment" class="menu-link">
+            <i class='menu-icon tf-icons bx bx-comment-detail'></i>
+            <div data-i18n="mesage">Comments</div>
+          </a>
+        </li>
+      <% if(typeof role != undefined && role != null && (role == 'Author' || role == 'Admin')){ %>
+      <!-- System -->
+      <li class="menu-header small text-uppercase"><span class="menu-header-text">Hệ Thống</span></li>
+      <li class="menu-item <% if(router == 'users') { %> active open <%}%>">
+        <a href="/admin/users" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-user"></i>
+          <div data-i18n="Layouts">Users</div>
+        </a>
+      </li>
+      <%if(typeof app != 'undefined' && app !=null && app.module != null && app.module.isMail==true) { %>
+      <li class="menu-item <% if(router == 'mail') { %> active open <%}%>">
+        <a href="/admin/mail" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-user"></i>
+          <div data-i18n="Layouts">Mail setting</div>
+        </a>
+      </li>
+      <%}}%>
+      <!-- <li class="menu-item ">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon tf-icons bx bx-layout"></i>
+          <div data-i18n="Layouts">Chỉnh Sửa Site</div>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a 
+          class="menu-link">
+          <i class="menu-icon tf-icons bx bxs-support"></i>
+          <div data-i18n="Support">Support</div>
+        </a>
+      </li> -->
+      <% if(typeof role != undefined && role != null && role == 'Author'){ %>
+        <!-- Developer -->
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Developer</span></li>
+        <li class="menu-item <% if(router == 'pages') { %> active open <%}%>">
+          <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bxs-dashboard"></i>
+            <div data-i18n="Layouts">Systems</div>
+          </a>
+          <ul class="menu-sub">
+            <li class="menu-item <% if(router == 'pages') { %> active open <%}%>">
+              <a href="/admin/pages" class="menu-link">
+                <div data-i18n="Without menu">Tính Năng</div>
+              </a>
+            </li>
+            <li class="menu-item <% if(router == 'sites') { %> active open <%}%>">
+              <a href="/admin/sites" class="menu-link">
+                <div data-i18n="Without menu">Sites</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/admin/language" class="menu-link">
+                <div data-i18n="Language">Language</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="menu-item <% if(router == 'document') { %> active open <%}%>">
+          <a href="/admin/document" target="_blank" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-file"></i>
+            <div data-i18n="Documentation">Documentation</div>
+          </a>
+        </li>
+      <%}%>
+  </ul>
+</aside>

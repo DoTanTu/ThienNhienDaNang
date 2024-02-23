@@ -1,0 +1,24 @@
+<% 
+  var linkVideo = ""
+  if (linkData != undefined && linkData != null) {
+    linkVideo = linkData
+  } %>
+<div class="mb-3">
+  <div class="card accordion-item mb-4">
+    <h2 class="accordion-header" id="videoHTwo">
+      <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#video-view"
+        aria-expanded="false" aria-controls="video-view">
+        Videos
+      </button>
+    </h2>
+    <div id="video-view" class="accordion-collapse collapse show" aria-labelledby="videoHTwo" data-bs-parent="#video-view"
+      style="">
+        <div class="accordion-body">
+          <div class="mb-3">
+            <input type="text" id="pageName" value="page" hidden>
+            <input type="text" class="form-control" id="linkVideo" name="linkVideo" value="<%= linkVideo %>" placeholder="linkVideo">
+          </div>
+        </div>
+    </div>
+  </div>
+  </div>

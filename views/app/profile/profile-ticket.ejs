@@ -1,0 +1,44 @@
+<div class="col-xl-5 col-lg-6 col-md-6">
+  <!-- Activity Timeline -->
+  <div class="card card-action mb-4">
+      <div class="card-header align-items-center">
+          <h5 class="card-action-title mb-0"><i class="bx bx-support me-2"></i>Hỗ trợ
+          </h5>
+          <!-- <div class="card-action-element">
+            <button  data-bs-toggle="modal"
+            data-bs-target="#changePassword" class="btn btn-primary text-nowrap">
+            <i class="bx bx-plus me-md-2"></i>Tạo yêu cầu
+           </button>
+          </div> -->
+          
+      </div>
+      <div class="card-body">
+        <small class="text-muted text-uppercase">Contacts</small>
+        <% if(contact != 'undefined' && contact != null){%>
+        <ul class="list-unstyled mb-4 mt-3">
+          <li class="d-flex align-items-center mb-3"><i class="bx bx-phone"></i><span class="fw-semibold mx-2">Số điện thoại:</span> <span><%= contact.phone1%></span></li>
+          <li class="d-flex align-items-center mb-3"><i class="bx bx-envelope"></i><span class="fw-semibold mx-2">Email:</span> <span><%= contact.email%></span></li>
+          <li class="d-flex align-items-center mb-3"><i class="bx bx-envelope"></i><span class="fw-semibold mx-2">Địa chỉ:</span> <span><%= contact.address%></span></li>
+        </ul>
+        <% }%>
+      </div>
+      
+      <!-- <div class="table-responsive p-3">
+          <div class="dataTables_wrapper dt-bootstrap5 no-footer">
+              <table
+                  class="table datatable-project border-top dataTable no-footer dtr-column mt-3"
+                  id="ticketTable">
+                  <thead>
+                      <tr>
+                          <th>Tiêu đề</th>
+                          <th>Ngày Tạo</th>
+                          <th>Trạng thái</th>
+                          <th></th>
+                      </tr>
+                  </thead>
+              </table>
+          </div>
+      </div> -->
+  </div>
+
+</div>

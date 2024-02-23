@@ -1,0 +1,15 @@
+<% 
+  var _id = ""
+  var name = ""
+  if (infoData != undefined && infoData != null) {
+    _id = infoData._id 
+    name = infoData.name
+  } %>
+
+
+<div class="mb-3">
+  <label class="form-label" for="basic-default-name">Tên</label>
+  <input type="text" class="form-control" id="basic-default-name" name="_id" hidden value="<%= _id %>" >
+  <input type="text" class="form-control" id="name" name="name"
+    placeholder="Product man" value="<%= name %>" required="">
+</div>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
+  data-assets-path="../public/admin/assets/" data-template="vertical-menu-template-free">
+
+<head>
+  <%- include('../partials/head') -%>
+  <%- include('../partials/common-list-css') -%>
+</head>
+
+<body>
+  <!-- Layout wrapper -->
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <%- include('../partials/navbar-left') -%>
+        <!-- Layout container -->
+        <div class="layout-page">
+          <%- include('../partials/navbar-top') -%>
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+              <div class="container-xxl flex-grow-1 container-p-y">
+                <div class="row">
+                  <div class="col-xl-12 col-lg-12 col-md-12 order-1 order-md-0">
+                    <!-- ============================= -->
+                    <!-- Content Page -->
+                    <!-- ============================= -->
+
+
+                    <div class="card">
+                      <div class="row card-header">
+                        <h5 class="col-lg-10">Tính năng</h5>
+                        <a href="/admin/page-add" class="dt-button btn btn-primary col-lg-2" tabindex="0"
+                          aria-controls="DataTables_Table_0" type="button"><span><i class="bx bx-plus me-md-2"></i><span
+                              class="d-md-inline-block d-none">Tạo tính năng</span></span></a>
+                      </div>
+
+                      <div class="table-responsive pt-0 p-3">
+                        <div class="dataTables_wrapper dt-bootstrap5 no-footer">
+                          <table class="table datatable-project border-top dataTable no-footer dtr-column" id="pageTable">
+                            <thead>
+                              <tr>
+                                <th>Tính Năng</th>
+                                <th>Ngày Tạo</th>
+                                <th>Actions</th>
+                              </tr>
+                            </thead>
+                          </table>
+                        </div>
+
+
+
+                        <!-- <table id="pageTable" class="datatables-basic table border-top">
+                          <thead>
+                            <tr>
+                              <th>Page</th>
+                              <th>Create At</th>
+                              <th>Actions</th>
+                            </tr>
+                          </thead>
+                        </table> -->
+                      </div>
+
+                    </div>
+
+
+                    <!-- ============================= -->
+                    <!-- Content Page -->
+                    <!-- ============================= -->
+                  </div>
+                </div>
+              </div>
+              <!-- Footer -->
+              <%- include('../partials/footer') -%>
+                <!-- / Footer -->
+                <div class="content-backdrop fade"></div>
+            </div>
+            <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+    </div>
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+  </div>
+  <!-- / Layout wrapper -->
+    <%- include('../partials/common-js') -%>
+    <%- include('../partials/common-list-js') -%>
+      <script src="../public/admin/assets/js/pages/systemPage/list.js"></script>
+</body>
+
+</html>

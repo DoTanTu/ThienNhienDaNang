@@ -1,0 +1,34 @@
+<div class="offcanvas offcanvas-end" id="createShipMethod" aria-hidden="true">
+  <div class="offcanvas-header mb-3">
+    <h5 class="offcanvas-title">Dịch vụ vận chuyển</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body flex-grow-1">
+    <form class="browser-default-validation j-pro" id="formShipMethodData" action="/admin.addOrEditShipMethod" method="POST">
+      <div class="mb-3">
+        <input type="text" class="form-control" id="_id" name="_id" hidden value="">
+        <label for="name" class="form-label">Tên</label>
+        <input type="text" class="form-control" id="name" name="name" value="" placeholder="" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="name" class="form-label">Giá</label>
+        <input type="text" class="form-control" id="price" name="price" value="" placeholder="">
+      </div>
+
+      <div class="mb-3">
+        <label  class="form-label">Hình Ảnh</label>
+        <!-- Add name when using upload-->
+        <input type="text" id="pageName" value="ship"  hidden>
+
+        <input type="text" class="form-control" hidden name="image">
+        <div id="myDropzone" class="dropzone"></div>
+      </div>
+   
+      <div class="mb-3 d-flex flex-wrap">
+        <button type="submit" class="btn btn-primary me-3">Save</button>
+        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

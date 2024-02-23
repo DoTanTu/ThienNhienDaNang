@@ -1,0 +1,19 @@
+<div class="card accordion-item mb-4">
+  <h2 class="accordion-header" id="imageHTwo">
+    <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#image-view"
+      aria-expanded="false" aria-controls="image-view">
+      Image
+    </button>
+  </h2>
+  <div id="image-view" class="accordion-collapse collapse" aria-labelledby="imageHTwo" data-bs-parent="#image-view"
+    style="">
+    <div class="accordion-body">
+      <div class="mb-3">
+        <!-- Add name when using upload-->
+        <input type="text" id="folderImages" value="images"  hidden>
+        <input type="text" class="form-control" hidden name="pathImages">
+        <div id="appImages" class="dropzone"></div>
+      </div>
+    </div>
+  </div>
+</div>

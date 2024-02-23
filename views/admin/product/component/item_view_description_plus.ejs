@@ -1,0 +1,30 @@
+
+<% 
+var viewId = 0
+var title = ""
+var description = ""
+if (index != undefined && index != null) {
+  viewId = index
+}
+if (descriptionPlus != undefined && descriptionPlus != null) {
+  title = descriptionPlus.title 
+  description = descriptionPlus.description 
+} %>
+<div class="row m-1 p-1 border mt-1 desc-data" id="desc-view<%= viewId%>">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title"></h5>
+    <button type="button" class="btn-close text-reset m-1" onclick="onRemoveItemDescription('<%= viewId%>')"></button>
+  </div>
+ 
+  <div class="mb-3">
+    <label class="form-label" for="editors">Tiêu đề</label>
+    <input type="text" class="form-control" id="title<%= viewId%>" value="<%= title%>">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="editors">Mô Tả</label>
+    <input type="text" class="form-control" hidden id="description<%= viewId%>" value="<%= description%>">
+    <textarea id="editors-<%=viewId%>" style="visibility: hidden; display: none;"></textarea>
+  </div>
+  
+</div>

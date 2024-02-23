@@ -1,0 +1,12 @@
+<% 
+  var description = ""
+  if (descriptionData != undefined && descriptionData != null) {
+    description = descriptionData
+  } %>
+<div class="mb-3">
+  <label class="form-label" for="editor1">Mô Tả</label>
+  <textarea id="editor1" style="visibility: hidden; display: none;"></textarea>
+  <input type="text" class="form-control" hidden id="description" value="<%= description%>" name="description">
+  <!-- <div id="full-editor"> -->
+  <!-- </div> -->
+</div>

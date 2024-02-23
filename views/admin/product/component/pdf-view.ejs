@@ -1,0 +1,27 @@
+  <%
+  var pdf = ""
+  if (pdfData != undefined && pdfData != null) {
+    pdf = pdfData
+  }
+  %>
+<div class="mb-3">
+<div class="card accordion-item mb-4">
+  <h2 class="accordion-header" id="imageHTwo">
+    <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#image-view"
+      aria-expanded="false" aria-controls="image-view">
+      File PDF
+    </button>
+  </h2>
+  <div id="image-view" class="accordion-collapse collapse show" aria-labelledby="imageHTwo" data-bs-parent="#image-view"
+    style="">
+    <div class="accordion-body">
+      <div class="mb-3">
+        <!-- Add name when using upload-->
+        <input type="text" id="pageNames" value="product-<%= pageCurrent%>"  hidden>
+        <input type="text" class="form-control" id="pdf_file" hidden value="<%= pdf%>" name="pdf_file" >
+        <div id="pdfDropzone" class="dropzone"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

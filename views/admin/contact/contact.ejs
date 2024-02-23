@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
+  data-assets-path="../public/admin/assets/" data-template="vertical-menu-template-free">
+
+<head>
+  <%- include('../partials/head') -%>
+  <%- include('../partials/common-crud-css') -%>
+</head>
+
+<body>
+  <!-- Layout wrapper -->
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <%- include('../partials/navbar-left') -%>
+        <!-- Layout container -->
+        <div class="layout-page">
+          <%- include('../partials/navbar-top') -%>
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+              <div class="container-xxl flex-grow-1 container-p-y ">
+                <!-- ============================= -->
+                <!-- Content Contact -->
+                <!-- ============================= -->
+                <% 
+                  var contactId = ""
+                  var name = ""
+                  var address =  ""
+                  var linkMap =  ""
+                  var linkMap2 =  ""
+                  var linkMap3 =  ""
+                  var description =  ""
+                  var phone1 =  ""
+                  var phone2 =  ""
+                  var phone3 =  ""
+                  var email =  ""
+                  var address2 = ""
+                  var email2=   ""
+                  var address3 =""
+                  var email3 =  ""
+                  var facebook= ""
+                  var zalo =    ""
+                  var youtube = ""
+                  var whatapp = ""
+                  var viber =   ""
+                  var ggAnalytic=""
+                  var ggSearch =""
+                  if (data != undefined && data != null) {
+                    contactId = data._id
+                    name = data.name 
+                    address = data.address 
+                    linkMap = data.linkMap
+                    linkMap2 = data.linkMap2
+                    linkMap3 = data.linkMap3
+                    description = data.description
+                    phone1 = data.phone1
+                    phone2 = data.phone2
+                    phone3 = data.phone3
+                    email = data.email
+                    address2 = data.address2,
+                    email2=    data.email2,
+                    address3 = data.address3,
+                    email3 =   data.email3,
+                    facebook= data.facebook,
+                    zalo =    data.zalo,
+                    youtube = data.youtbe,
+                    whatapp = data.whatapp,
+                    viber =   data.viber,
+                    ggAnalytic = data.ggAnalytic,
+                    ggSearch = data.ggSearch
+                } %>
+
+                <form class="browser-default-validation j-pro" id="formContactData" action="/admin.addOrEditContact" method="POST">
+                  <div class="row">
+                    <div class="col-lg-8 col-6 mb-lg-0 mb-4">
+                      <div class="card">
+                        <h5 class="card-header">Liên Hệ</h5>
+                        <div class="card-body">
+                          <div class="mb-3">
+                            <label class="form-label" for="basic-default-name">Tên liên hệ</label>
+                            <input type="text" class="form-control" hidden name="contactId" value="<%= contactId%>">
+                            <input type="text" class="form-control" id="basic-default-name" name="name" value="<%= name%>"
+                              placeholder="Nhập tên doanh nghiệp" required="">
+                          </div>
+                          <div class="mb-3">
+                            
+                            <label for="name" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email"  value="<%= email%>" placeholder="Nhập email" required>
+                          </div>
+                          <div class="mb-3">
+                            
+                            <label for="name" class="form-label">Số điện thoại 1</label>
+                            <input type="phone" class="form-control" id="phone1" name="phone1" value="<%= phone1%>" placeholder="Nhập số điện thoại" required>
+                          </div>
+
+                          <div class="mb-3">
+                            
+                            <label for="name" class="form-label">Địa chỉ</label>
+                            <input type="text" class="form-control" id="address" name="address" value="<%= address%>" placeholder="Nhập địa chỉ" required>
+                          </div>
+
+                          <div class="mb-3">
+                            
+                            <label for="name" class="form-label">Google Map</label>
+                            <input type="text" class="form-control" id="linkMap" name="linkMap" value="<%= linkMap%>" placeholder="Nhập link google map">
+                          </div>
+                    
+                          <div class="mb-3">
+                            <label class="form-label" for="basic-default-name">Mô tả thêm</label>
+                            <textarea class="form-control" id="basic-default-bio" name="description" aria-valuetext="<%= description%>" value="<%= description%>" rows="3"
+                             ><%= description%></textarea>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="card mt-3">
+                        <h5 class="card-header">Kết nối</h5>
+                        <div class="card-body">
+                          <div class="mb-3">
+                            
+                            <label for="name" class="form-label">Facebook</label>
+                            <input type="text" class="form-control" id="facebook" name="facebook"  value="<%= facebook%>" placeholder="Nhập facebook" >
+                          </div>
+                          <div class="mb-3">
+                            
+                            <label for="name" class="form-label">Zalo</label>
+                            <input type="text" class="form-control" id="zalo" name="zalo"  value="<%= zalo%>" placeholder="Nhập zalo" >
+                          </div>
+                          <div class="mb-3">
+                            <label for="name" class="form-label">Youtube</label>
+                            <input type="text" class="form-control" id="youtube" name="youtube"  value="<%= youtube%>" placeholder="Nhập youtube" >
+                          </div>
+
+                          <div class="mb-3">
+                            <label for="name" class="form-label">whatapp</label>
+                            <input type="text" class="form-control" id="whatapp" name="whatapp"  value="<%= whatapp%>" placeholder="Nhập whatapp" >
+                          </div>
+
+                          <div class="mb-3">
+                            <label for="name" class="form-label">viber</label>
+                            <input type="text" class="form-control" id="viber" name="viber"  value="<%= viber%>" placeholder="Nhập viber" >
+                          </div>
+
+                          <div class="mb-3">
+                            <label for="name" class="form-label">Google Analytic</label>
+                            <input type="text" class="form-control" id="ggAnalytic" name="ggAnalytic"  value="<%= ggAnalytic%>" placeholder="Nhập Google Analytic" >
+                          </div>
+
+                          <div class="mb-3">
+                            <label for="name" class="form-label">Google Search</label>
+                            <input type="text" class="form-control" id="ggSearch" name="ggSearch"  value="<%= ggSearch%>" placeholder="Nhập Google Search" >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-6 mb-lg-0 mb-4">
+                      <div class="card">
+                        <h5 class="card-header">Liên Hệ 2</h5>
+                        <div class="card-body">
+                          <div class="mb-3">
+                            
+                            <label for="name" class="form-label">Email 2 (Nếu có)</label>
+                            <input type="email" class="form-control" id="email2" name="email2"  value="<%= email2%>" placeholder="Nhập email" >
+                          </div>
+
+                          <div class="mb-3">
+                            
+                            <label for="name" class="form-label">Số điện thoại 2 (nếu có)</label>
+                            <input type="phone" class="form-control" id="phone2" name="phone2" value="<%= phone2%>" placeholder="Nhập số điện thoại">
+                          </div>
+
+                          <div class="mb-3">
+                            
+                            <label for="name" class="form-label">Địa chỉ 2 (nếu có)</label>
+                            <input type="text" class="form-control" id="address2" name="address2" value="<%= address2%>" placeholder="Nhập địa chỉ">
+                          </div>
+
+                          <div class="mb-3">
+                            
+                            <label for="name" class="form-label">Google Map 2 (nếu có)</label>
+                            <input type="text" class="form-control" id="linkMap2" name="linkMap2" value="<%= linkMap2%>" placeholder="Nhập link google map">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="card mt-3">
+                        <h5 class="card-header">Liên Hệ 3</h5>
+                        <div class="card-body">
+                          <div class="mb-3">
+                            
+                            <label for="name" class="form-label">Email 3 (Nếu có)</label>
+                            <input type="email" class="form-control" id="email3" name="email3"  value="<%= email3%>" placeholder="Nhập email" >
+                          </div>
+
+                          <div class="mb-3">
+                            
+                            <label for="name" class="form-label">Số điện thoại 3 (nếu có)</label>
+                            <input type="phone" class="form-control" id="phone3" name="phone3" value="<%= phone3%>" placeholder="Nhập số điện thoại">
+                          </div>
+
+                          <div class="mb-3">
+                            
+                            <label for="name" class="form-label">Địa chỉ 3 (nếu có)</label>
+                            <input type="text" class="form-control" id="address3" name="address3" value="<%= address3%>" placeholder="Nhập địa chỉ">
+                          </div>
+
+                          <div class="mb-3">
+                            
+                            <label for="name" class="form-label">Google Map 3 (nếu có)</label>
+                            <input type="text" class="form-control" id="linkMap3" name="linkMap3" value="<%= linkMap3%>" placeholder="Nhập link google map">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col-12">
+                      <button type="submit" id="submit" class="btn btn-primary">Lưu</button>
+                    </div>
+                  </div>
+                </form>
+                <!-- ============================= -->
+                <!-- Content Contact -->
+                <!-- ============================= -->
+              </div>
+              <!-- Footer -->
+              <%- include('../partials/footer') -%>
+                <!-- / Footer -->
+                <div class="content-backdrop fade"></div>
+            </div>
+            <!-- Content wrapper -->
+        </div>
+        <!-- / Layout Contact -->
+    </div>
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+  </div>
+  <!-- / Layout wrapper -->
+    <%- include('../partials/common-js') -%>
+    <%- include('../partials/common-crud-js') -%>
+    <script src="../public/admin/assets/js/pages/contact/contact.js"></script>
+
+   
+</body>
+
+</html>

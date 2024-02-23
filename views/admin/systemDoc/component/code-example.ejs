@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-12">
+    <h4 id="code-example" class="anchor-heading mb-4 fw-bold">Code Example<a href="#code-example"
+        class="anchorjs-link ps-2">#</a></h4>
+    <div class="doc-example">
+      <div class="doc-example-content" data-label="Example Menu">
+        <div class="doc-clipboard">
+          <button type="button" class="btn-clipboard" data-bs-toggle="tooltip" data-bs-placement="top"
+            data-bs-original-title="Copy to clipboard">
+            Copy
+          </button>
+        </div>
+        <pre class="docs-code"><code class="html ejs">
+&lt;% if(dataMenus != undefined && dataMenus != null && dataMenus.length &gt; 0) {%&gt;
+  &lt;% dataMenus.forEach(function(item){ %&gt;
+      &lt;li class="&lt;% if((urlCurrentName == undefined && item.url == "/") || item.url == urlCurrentName) { %&gt; current &lt;%}%&gt; dropdown"&gt;&lt;a href="&lt;%= item.url %&gt;"&gt;&lt;%= item.name %&gt;&lt;/a&gt;
+          &lt;% if(item.isSubMenu == true) {%&gt;
+              &lt;ul&gt;
+                  &lt;% item.categories.forEach(function(cate){ %&gt;
+                      &lt;% if(cate.parents == "" || cate.parents == null) {%&gt;
+                          &lt;li&gt;&lt;a href="&lt;%= item.url %&gt;/&lt;%= cate.url %&gt;"&gt;&lt;%= cate.name %&gt;&lt;/a&gt;&lt;/li&gt;
+                      &lt;% } %&gt;
+                  &lt;% }) %&gt;
+              &lt;/ul&gt;
+          &lt;%}%&gt;
+      &lt;/li&gt;
+  &lt;% }) %&gt;
+&lt;%}%&gt;
+      </pre>
+      </div>
+    </div>
+  </div>
+</div>

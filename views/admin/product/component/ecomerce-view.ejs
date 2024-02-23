@@ -1,0 +1,53 @@
+<% 
+var price = ""
+var priceSale = ""
+var quantity = ""
+var discount = ""
+var unit = ""
+if (ecommerce != undefined && ecommerce != null) {
+  price = ecommerce.price 
+  priceSale = ecommerce.priceSale
+  quantity = ecommerce.quantity
+  discount = ecommerce.discount
+  unit = ecommerce.unit
+} %>
+
+<div class="card accordion-item mb-4">
+  <h2 class="accordion-header" id="hEcommerce">
+    <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#ecommerce-view"
+      aria-expanded="false" aria-controls="ecommerce-view">
+      Ecommerce
+    </button>
+  </h2>
+  <div id="ecommerce-view" class="accordion-collapse collapse show" aria-labelledby="hEcommerce"
+    data-bs-parent="#ecommerce-view" style="">
+    <div class="accordion-body row">
+      <div class="mb-3 col-lg-4 col-6">
+        <label class="form-label" for="e-price">Giá</label>
+         <input type="text" class="form-control" id="d-price" value="<%= price %>" hidden  name="dprice">
+        <input type="number" step="any" class="form-control" id="e-price" value="<%= price %>"  name="price" placeholder="">
+      </div>
+      <div class="mb-3 col-lg-4 col-6">
+        <label class="form-label" for="e-priceSale">Giá Sale</label>
+        <input type="number" step="any" class="form-control" id="e-priceSale" value="<%= priceSale %>"  name="priceSale" placeholder="">
+      </div>
+
+      <div class="mb-3 col-lg-4 col-6">
+        <label class="form-label" for="e-discount">Giảm %</label>
+        <input type="number" step="any" class="form-control" id="e-discount" value="<%= discount %>"  name="discount" placeholder="">
+      </div>
+
+      <div class="mb-3 col-lg-6 col-6">
+        <label class="form-label" for="e-quantity">Số lượng</label>
+        <input type="number" class="form-control" id="e-quantity" value="<%= quantity %>"  name="quantity" placeholder="">
+      </div>
+      <div class="mb-3 col-lg-6 col-6">
+        <label class="form-label" for="e-discount">Đơn vị tính</label>
+        <input type="text" class="form-control" id="d-unit" value="<%= unit %>" hidden  name="dunit">
+        <input type="text" class="form-control" id="e-unit" value="<%= unit %>"  name="unit" placeholder="Lần / Phút / Cái / Kg ....">
+      </div>
+    
+     
+    </div>
+  </div>
+</div>

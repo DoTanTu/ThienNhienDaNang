@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
+  data-assets-path="../public/admin/assets/" data-template="vertical-menu-template-free">
+
+<head>
+  <%- include('../partials/head') -%>
+    <%- include('../partials/common-list-css') -%>
+      <%- include('../partials/common-crud-css') -%>
+</head>
+
+<body>
+  <!-- Layout wrapper -->
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <%- include('../partials/navbar-left') -%>
+        <!-- Layout container -->
+        <div class="layout-page">
+          <%- include('../partials/navbar-top') -%>
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+              <div class="container-xxl flex-grow-1 container-p-y">
+                <div class="row">
+                  <div class="col-xl-12 col-lg-12 col-md-12 order-1 order-md-0">
+                    <!-- ============================= -->
+                    <!-- Content Page -->
+                    <!-- ============================= -->
+                    <!-- Page Current -->
+                    <input id="pageCurrent" hidden
+                      value="<% if(typeof pageCurrent != undefined && pageCurrent != null){ %><%= pageCurrent%><%}%>"></input>
+                    <!-- Page Current -->
+
+                    <div class="card mb-4">
+                      <div class="row card-header">
+                        <h5 class="col-lg-10">Thuộc tính</h5>
+                        <button class="btn btn-primary d-grid col-lg-2" onclick="showCreateView()">
+                          <span class="d-flex align-items-center justify-content-center text-nowrap"><i
+                              class="bx bx-plus me-md-2"></i>Tạo Thuộc tính</span>
+                        </button>
+                           </div>
+                    </div>
+                    <% if(typeof data !="undefined" && data.length> 0){ %>
+                            <% data.forEach(function(item){ %>
+                              <div class="card card-action mb-4" id="attribute-<%= item._id%>" data-attribute="<%= encodeURI(JSON.stringify(item)) %>">
+                                <div class="card-header align-items-center">
+                                  <h5 class="card-action-title mb-0"><%= item.name%></h5>
+                                  <div class="card-action-element mx-3">
+                                    <button class="btn btn-success" type="button" onclick="showCreateViewDetail('<%= item._id%>')"><i class="bx bx-plus bx-xs me-1"></i>Thêm</button>
+                                  </div>
+                                  <div class="card-action-element">
+                                    <button class="btn btn-label-danger" type="button" onclick="confirmDelete('<%= item._id%>')"><i class="bx bx-x bx-xs me-1"></i>Xoá</button>
+                                  </div>
+                                </div>
+          
+                                <div class="table-responsive p-3">
+                                  <div class="dataTables_wrapper dt-bootstrap5 no-footer">
+                                    <table class="table datatable-project border-top dataTable no-footer dtr-column mt-3"
+                                      id="table_<%= item._id%>">
+                                      <thead>
+                                        <tr>
+                                          <th>Code</th>
+                                          <th>Name</th>
+                                          <th>Actions</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <% if(typeof item.values !="undefined" && item.values.length> 0){ %>
+                                          <% item.values.forEach(function(v){ %>
+                                            <tr>
+                                              <th><%= v.code %></th>
+                                              <th><%= v.value %></th>
+                                              <th>
+                                                <div class="dropdown">
+                                                  <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+                                                  <div class="dropdown-menu">
+                                                   <a class="dropdown-item" onclick="onEditValue('<%= item._id%>','<%= v.code%>','<%= v.value%>', '<%= encodeURI(JSON.stringify(v.images))%>')"><i class="bx bx-edit-alt me-2"></i>Edit</a>
+                                                   <a class="dropdown-item" onclick="onRemoveValue('<%= item._id%>','<%= v.code%>')"><i class="bx bx-trash me-2"></i>Delete</a>
+                                                  </div>
+                                                </div>
+                                              </th>
+                                            </tr>
+                                          <% }); %>
+                                        <% } %>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                            <% }); %>
+                      <% } %>
+                 
+                    <!-- ============================= -->
+                    <!-- Content Page -->
+                    <!-- ============================= -->
+                  </div>
+                </div>
+
+                <%- include('./add') -%>
+                <%- include('./addDetail') -%>
+              </div>
+              <!-- Footer -->
+              <%- include('../partials/footer') -%>
+                <!-- / Footer -->
+                <div class="content-backdrop fade"></div>
+            </div>
+            <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+    </div>
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+  </div>
+  <!-- / Layout wrapper -->
+  <%- include('../partials/common-js') -%>
+    <%- include('../partials/common-crud-js') -%>
+      <%- include('../partials/common-list-js') -%>
+        <script src="../public/admin/assets/js/pages/acttribute/list.js"></script>
+        <script src="../public/admin/assets/js/pages/acttribute/add.js"></script>
+</body>
+
+</html>

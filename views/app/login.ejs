@@ -1,0 +1,55 @@
+<html lang="en">
+
+<head>
+    <%- include('./components/head') -%>
+</head>
+
+<body>
+    <%- include('./components/header') -%>
+    <%- include('./components/bottomNav') -%>
+
+    <div class="loginPage">
+        <div class="container">
+            <div class="row-change">
+                <div class="cot-6-md">
+                    <div class="imgBox">
+                        <img src="https://source.unsplash.com/random/800x600/?natural" alt="">
+                        <h3 class="h3-title mb-4 text-center">Đăng nhập!</h3>
+                        <p>Đăng nhập tài khoản của bạn để lưu giữ tài liệu, cùng chia sẻ, tương tác, kết nối và lan tỏa tình yêu thiên nhiên đến mọi người!</p>
+                    </div>
+                </div>
+                <div class="cot-6-md">
+                    <form class="loginBox" id="formAuthentication">
+                        <input id="email" name="email" class="form-control mb-4" type="email" placeholder="Tên đăng nhập">
+                        <input id="password" name="password" class="form-control" type="password" placeholder="*********">
+                        <button class="main-btn mt-4 mx-auto" type="submit">Đăng nhập</button>
+                        <span class="line">Hoặc đăng nhập với:</span>
+                        <div class="otherLogin mb-3">
+                            <a class="otherBtn" href="#">
+                                <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="">Google</a>
+                            <a class="otherBtn" href="#">
+                                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png" alt="">Facebook</a>
+                            <a class="otherBtn" href="#">
+                                <img src="https://cdn-icons-png.flaticon.com/512/0/747.png" alt="">Apple</a>
+                        </div>
+                        <div class="forgotPass">
+                            <a class="forgotBtn text-center" href="quen-mat-khau">Quên mật khẩu?</a>
+                            <span class="text-center">Chưa có tài khoản? <a href="dang-ky" class="resBtn">Đăng ký ngay!</a></span>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('./components/footer') -%>
+    <%- include('./components/end') -%>
+    <script src="../public/admin/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+    <script async defer src="../public/admin/assets/js/github.button.js"></script>
+    <script src="../public/admin/assets/js/pages/common.js"></script>
+    <script type="text/javascript" src="../public/authCustomer/login.js"></script>
+</body>
+
+</html>

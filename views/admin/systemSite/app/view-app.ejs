@@ -1,0 +1,46 @@
+<div class="row">
+  <% if(typeof appCurrent != undefined && appCurrent != null){ %>
+  <div class="col-lg-12 order-lg-3 col-12 align-self-end order-4 mb-4">
+    <div class="card">
+      <div class="d-flex align-items-end row">
+        <div class="col-sm-7">
+          <div class="card-body">
+            <h5 class="card-title text-primary"> <%= appCurrent.name %> 🎉</h5>
+            <p class="mb-4">Category Site : <%= appCurrent.platform %></p>
+              <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#createApp"> EDIT APP </button>
+              <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#"> ADD THEME </button>
+          </div>
+        </div>
+        <div class="col-sm-5 text-center text-sm-left">
+          <div class="card-body pb-0 px-0 px-md-4">
+            <img src="../public/admin/assets/img/backgrounds/man-with-laptop-light.png" height="140" alt="View Badge User"
+              data-app-dark-img="illustrations/man-with-laptop-dark.png"
+              data-app-light-img="illustrations/man-with-laptop-light.png">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% } else { %>
+
+  <div class="col-lg-12 order-lg-3 col-12 align-self-end order-4 mb-4">
+    <div class="card">
+      <div class="d-flex align-items-end row">
+        <div class="col-sm-5 text-center text-sm-left">
+          <div class="card-body pb-0">
+            <img src="../public/admin/assets/img/backgrounds/sitting-girl-with-laptop-light.png" height="140" alt="Target User" data-app-dark-img="illustrations/sitting-girl-with-laptop-dark.png" data-app-light-img="illustrations/sitting-girl-with-laptop-light.png">
+          </div>
+        </div>
+        <div class="col-sm-7">
+          <div class="card-body">
+            <h5 class="card-title">Welcome back <% if(typeof username != undefined && username != null){ %><%= username%> <%}%>!</h5>
+            <p class="mb-4">Tạo ứng dụng để bắt đầu trải nghiệm trình biên soạn web </p>
+
+            <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#createApp"> CREATE APP </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% } %>
+</div>

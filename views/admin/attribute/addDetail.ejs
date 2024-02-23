@@ -1,0 +1,35 @@
+<div class="offcanvas offcanvas-end" id="createOrEditDetailAttribute" aria-hidden="true">
+  <div class="offcanvas-header mb-3">
+    <h5 class="offcanvas-title">Tạo Danh Mục</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body flex-grow-1">
+    <form class="browser-default-validation j-pro" id="formAttributeDetailData" action="/admin.addDetailAttribute" method="POST">
+      <div class="mb-3">
+        <input name="pageCurrent" hidden value="<% if(typeof pageCurrent != undefined && pageCurrent != null){ %><%= pageCurrent%><%}%>"></input>
+        <input name="parents" hidden ></input>
+        <input type="text" class="form-control" id="detailAttributeId" name="detailAttributeId" hidden placeholder="">
+        <input type="text" class="form-control" id="values" name="values" hidden placeholder="">
+        <input type="text" class="form-control" id="detail-code" name="detailCode" placeholder="" hidden>
+      </div>
+     
+      <div class="mb-3">
+        <label for="detail-value" class="form-label">Tên Hiển thị</label>
+        <input type="text" class="form-control" id="detail-value" name="detailValue"placeholder="" required>
+      </div>
+
+      <div class="mb-3">
+        <label  class="form-label">Hình Ảnh</label>
+        <input type="text" id="pageName" value="attribute-<%= pageCurrent%>" hidden>
+
+        <input type="text" class="form-control" hidden name="images">
+        <div id="myDropzone" class="dropzone"></div>
+      </div>
+      
+      <div class="mb-3 d-flex flex-wrap">
+        <button type="submit" class="btn btn-primary me-3">Gửi</button>
+        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

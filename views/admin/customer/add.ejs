@@ -1,0 +1,54 @@
+<div class="offcanvas offcanvas-end" id="createCustomer" aria-hidden="true">
+  <div class="offcanvas-header mb-3">
+    <h5 class="offcanvas-title">Tạo Customer</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body flex-grow-1">
+    <form class="browser-default-validation j-pro" id="formCustomerData" action="/admin.addCustomer" method="POST">
+      <div class="mb-3">
+        <input name="host" hidden ></input>
+        <input name="parents" hidden ></input>
+        <label for="name" class="form-label">Tên Đầy Đủ</label>
+        <input type="text" class="form-control" id="fullname" name="fullname" value="" placeholder="" required>
+      </div>
+
+      <div class="mb-3">
+        <input name="parents" hidden ></input>
+        <label for="name" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email" value="" placeholder="" required>
+      </div>
+
+      <div class="mb-3">
+        <input name="parents" hidden ></input>
+        <label for="name" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" value="" placeholder="" required>
+      </div>
+
+      <div class="mb-3">
+        <input name="parents" hidden ></input>
+        <label for="name" class="form-label">Số điện thoại</label>
+        <input type="phone" class="form-control" id="phone" name="phone" value="" placeholder="" required>
+      </div>
+
+      <div class="mb-3">
+        <input name="parents" hidden ></input>
+        <label for="name" class="form-label">Địa chỉ</label>
+        <input type="text" class="form-control" id="address" name="address" value="" placeholder="" required>
+      </div>
+
+      <div class="mb-3">
+        <label  class="form-label">Hình Ảnh</label>
+        <!-- Add name when using upload-->
+        <input type="text" id="pageName" value="customer"  hidden>
+
+        <input type="text" class="form-control" hidden name="image">
+        <div id="myDropzone" class="dropzone"></div>
+      </div>
+   
+      <div class="mb-3 d-flex flex-wrap">
+        <button type="submit" class="btn btn-primary me-3">Gửi</button>
+        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

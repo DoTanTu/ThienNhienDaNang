@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-12">
+    <h4 id="paymentOnline" class="anchor-heading mb-4 fw-bold">Payment Online<a href="#paymentOnline"
+        class="anchorjs-link ps-2">#</a></h4>
+    <div class="doc-example">
+      <div class="doc-example-content" data-label="site url">
+        <div class="doc-clipboard">
+          <button type="button" class="btn-clipboard" data-bs-toggle="tooltip" data-bs-placement="top"
+            data-bs-original-title="Copy to clipboard">
+            Copy
+          </button>
+        </div>
+        <pre class="docs-code">
+          <code class="html hljs language-xml">
+          <span class="hljs-tag"><a href="/example.payment" target="_blank">>> example payment online</a>  ?page=(id tính năng để lấy sản phẩm)</span>
+        </code></pre>
+      </div>
+
+      <div class="doc-example-content" data-label="Implement Stript">
+        <div class="doc-clipboard">
+          <button type="button" class="btn-clipboard" data-bs-toggle="tooltip" data-bs-placement="top"
+            data-bs-original-title="Copy to clipboard">
+            Copy
+          </button>
+        </div>
+        <pre class="docs-code">
+          <code class="html hljs language-xml">
+            &lt;script src="https://js.stripe.com/v3/" &lt;/script&gt;
+        </code></pre>
+      </div>
+
+      <div class="doc-example-content" data-label="Implement javascript">
+        <div class="doc-clipboard">
+          <button type="button" class="btn-clipboard" data-bs-toggle="tooltip" data-bs-placement="top"
+            data-bs-original-title="Copy to clipboard">
+            Copy
+          </button>
+        </div>
+        <pre class="docs-code">
+          <code class="html hljs language-js">
+            1. var stripe = Stripe("public key ở trong payment method -> ONLINE");
+
+            2. Phương thức như phần order đổi lại url -> "/payment"
+
+            3. Nhớ truyền paymendId lên.
+
+            4. Khi phương thức paymment success 
+
+            return stripe.redirectToCheckout({ sessionId: res.id });
+        </code></pre>
+      </div>
+
+      <div class="doc-example-content" data-label="Example Payment">
+        <div class="doc-clipboard">
+          <button type="button" class="btn-clipboard" data-bs-toggle="tooltip" data-bs-placement="top"
+            data-bs-original-title="Copy to clipboard">
+            Copy
+          </button>
+        </div>
+         <a href="../public/example/payment.js">payment.js (Down file)</a>
+      </div>
+
+    </div>
+  </div>
+</div>

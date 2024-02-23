@@ -1,0 +1,40 @@
+<div class="offcanvas offcanvas-end" id="createPaymentMethod" aria-hidden="true">
+  <div class="offcanvas-header mb-3">
+    <h5 class="offcanvas-title">Phương thức thanh toán</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body flex-grow-1">
+    <form class="browser-default-validation j-pro" id="formPaymentMethodData" action="/admin.addOrEditPaymentMethod" method="POST">
+      <div class="mb-3">
+        <input type="text" class="form-control" id="_id" name="_id" hidden value="">
+        <label for="paymentMethod" class="form-label">Tên Phương Thức</label>
+        <select class="form-control" id="paymentMethod" name="paymentMethod">
+          <option value="" selected="selected"></option>
+          <option value="BANK" selected="selected">CHUYỂN KHOẢN NGÂN HÀNG</option>
+          <option value="COD">THANH TOÁN SAU</option>
+        </select>
+      </div>
+      <div id="view-bank">
+      <div class="mb-3">
+        <label for="name" class="form-label">Tên Tài Khoản</label>
+        <input type="text" class="form-control" id="accountName" name="accountName" value="" placeholder="">
+      </div>
+
+      <div class="mb-3">
+        <label for="name" class="form-label">Số Tài Khoản</label>
+        <input type="text" class="form-control" id="accountNumber" name="accountNumber" value="" placeholder="">
+      </div>
+
+      <div class="mb-3">
+        <label for="name" class="form-label">Tên Ngân Hàng</label>
+        <input type="text" class="form-control" id="bankName" name="bankName" value="" placeholder="">
+      </div>
+     </div>
+
+      <div class="mb-3 d-flex flex-wrap">
+        <button type="submit" class="btn btn-primary me-3">Save</button>
+        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

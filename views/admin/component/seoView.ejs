@@ -1,0 +1,41 @@
+<% 
+  var seoTitle = ""
+  var seoName = ""
+  var seoKey = ""
+  var seoDesc = ""
+  if (seoData != undefined && seoData != null) {
+    seoTitle = seoData.seoTitle 
+    seoName = seoData.seoName 
+    seoKey = seoData.seoKeyWord 
+    seoDesc = seoData.seoDesc 
+  } %>
+  
+<div class="card accordion-item mb-4">
+  <h2 class="accordion-header" id="headingTwo">
+    <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#seo-view"
+      aria-expanded="false" aria-controls="seo-view">
+      Seo Content
+    </button>
+  </h2>
+  <div id="seo-view" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#seo-view"
+    style="">
+    <div class="accordion-body">
+      <div class="mb-3 mt-3">
+        <label class="form-label" for="seo-title">Title</label>
+        <input type="text" class="form-control" id="seo-title" name="seoTitle" placeholder="Title" value="<%= seoTitle%>">
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="seo-name">Name</label>
+        <input type="text" class="form-control" id="seo-name" name="seoName" placeholder="Name" value="<%= seoName%>">
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="seo-key">Keys</label>
+        <input type="text" class="form-control" id="seo-key" name="seoKey" placeholder="Keys" value="<%= seoKey%>">
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="seo-desc">Description</label>
+        <textarea class="form-control" id="seo-desc" name="seoDesc" rows="3" aria-valuetext="<%= seoDesc%>"><%= seoDesc%></textarea>
+      </div>
+    </div>
+  </div>
+</div>

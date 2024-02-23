@@ -1,0 +1,81 @@
+<% 
+  var isGetCategory10 = false
+  var isGetProduct10 = false
+  var pageId10 = ""
+  var isFullSizeProduct10 = false
+  var isFullFieldProduct10 = false
+  var limitSizeProduct10 = 0
+  if (pageOther10 != undefined && pageOther10 != null) {
+    pageId10 = pageOther10.pageId 
+    isGetCategory10 = pageOther10.isGetCategory
+    isGetProduct10 = pageOther10.isGetProduct
+    isFullSizeProduct10 = pageOther10.isFullSizeProduct
+    limitSizeProduct10 = pageOther10.limitSizeProduct
+    isFullFieldProduct10 = pageOther10.isFullFieldProduct
+  } %>
+
+<div class="card accordion-item mb-4">
+  <h2 class="accordion-header" id="headingSetting">
+    <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#page-other10-view"
+      aria-expanded="false" aria-controls="page-other10-view">
+      Page Data Other 10
+    </button>
+  </h2>
+  <div id="page-other10-view" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+    data-bs-parent="#page-other10-view">
+    <div class="accordion-body">
+      <div class="mb-3 mt-3">
+        <select class="form-control page-data" id="page-other10" name="pageOther10">
+          <option value="">
+            Not Using Page Data
+          </option>
+          <% if(typeof pages !="undefined" && pages.length> 0){ %>
+            <% pages.forEach(function(item){ %>
+              <option value="<%= item._id %>" <% if(item._id == pageId10){%> selected <% }%>>
+                <%= item.name %>
+              </option>
+              <% }); %>
+                <% } %>
+        </select>
+      </div>
+      <div class="mb-3">
+        <div class="d-flex justify-content-between mb-2">
+          <label for="cbGetCategory10" class="mb-0">Get category</label>
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="cbGetCategory10"  <% if(isGetCategory10 == true){%> checked <%}%>  <% if(!pageId10){ %> disabled <% } %> name="isGetCategory10" />
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="d-flex justify-content-between mb-2">
+          <label for="cbGetProduct10" class="mb-0">Get product</label>
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="cbGetProduct10"  <% if(isGetProduct10 == true){%> checked <%}%>  <% if(!pageId10){ %> disabled <% } %> name="isGetProduct10" />
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <div class="d-flex justify-content-between mb-2">
+          <label for="cbSubMenu" class="mb-0">Full Size Product</label>
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="cbFullSizeProduct10"  <% if(isFullSizeProduct10 == true){%> checked <%}%> name="isFullSizeProduct10" />
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <div class="d-flex justify-content-between mb-2">
+          <label for="cbSubMenu" class="mb-0">Full Field Product</label>
+          <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="cdFullFieldProduct10"  <% if(isFullFieldProduct10 == true){%> checked <%}%>  name="isFullFieldProduct10" />
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 mt-3">
+        <label class="form-label" for="seo-title">Limit Size Product</label>
+        <input type="text" class="form-control" id="limitSize10" name="limitSizeProduct10" placeholder="0" value="<%= limitSizeProduct10%>">
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="row">
+  <div class="col-12">
+    <h4 id="data-categories" class="anchor-heading mb-4 fw-bold">Data Categories <a href="#data-categories"
+        class="anchorjs-link ps-2">#</a></h4>
+    <div class="doc-example">
+      <div class="doc-example-content" data-label="object-data">
+        <div class="doc-clipboard">
+          <button type="button" class="btn-clipboard" data-bs-toggle="tooltip" data-bs-placement="top"
+            data-bs-original-title="Copy to clipboard">
+            Copy
+          </button>
+        </div>
+        <pre class="docs-code"><code class="json">
+<span class="hljs-variable">_id</span>: String;
+<span class="hljs-variable">url</span>: String;
+<span class="hljs-variable">name</span>: String;
+<span class="hljs-variable">desc</span>: String;
+<span class="hljs-variable">pageId</span>: String;
+<span class="hljs-variable">parents</span>: String;
+<span class="hljs-variable">images</span>: [String];
+<span class="hljs-variable">showTop</span>: String;
+<span class="hljs-variable">seoTitle</span>: Boolean;
+<span class="hljs-variable">seoName</span>:  String;
+<span class="hljs-variable">seoKeyWord</span>:  String;
+<span class="hljs-variable">seoDes</span>:  String;
+<span class="hljs-variable">languages</span>: [
+{
+  code : string
+  name :string
+  desc : string
+  description: string
+  seoTitle: string
+  seoName: string
+  seoKeyWord :string
+  seoDesc : string
+}];
+<span class="hljs-variable">products</span>: [
+{
+  _id :String
+  url : String
+  pageId : String
+  categoryIds : [String]
+  name : String
+  linkVideo : String
+  desShort : String
+  description : String
+  images : [{
+    _id : string
+    image : string
+    name : string
+    author : string
+    copyright : string
+    source : string
+    year: string
+  }]
+  ecommerce : {
+    _id : string
+    price : string
+    priceSale : string
+    quantity : string
+    discount : string
+  }
+  commentIds : [String]
+  contact : {
+    _id : string
+    name : string
+    email : string
+    phone : string
+    country : string
+  }
+  seoTitle: String
+  seoName: String
+  seoKeyWord : String
+  seoDes : String
+  status : String
+  userPost : String
+  counter : Number
+  showTop : Boolean
+},];
+      </pre>
+      </div>
+    </div>
+  </div>
+</div>

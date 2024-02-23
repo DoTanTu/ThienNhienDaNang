@@ -1,0 +1,35 @@
+<div class="offcanvas offcanvas-end" id="createLanguage" aria-hidden="true">
+  <div class="offcanvas-header mb-3">
+    <h5 class="offcanvas-title">Tạo Language</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body flex-grow-1">
+    <form class="browser-default-validation j-pro" id="formLanguageData" action="/admin.addLanguage" method="POST">
+      
+      <div class="mb-3 mt-3">
+        <label  class="form-label">Ngôn Ngữ</label>
+        <select class="form-control" id="language" name="language">
+          <% if(typeof languages !="undefined" && languages.length> 0){ %>
+            <% languages.forEach(function(item){ %>
+              <option value="<%= JSON.stringify(item) %>">
+                <%= item.languageName %>
+              </option>
+              <% }); %>
+            <% } %>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label  class="form-label">File Ngôn Ngữ</label>
+        <!-- Add name when using upload-->
+        <input type="text" id="folderLanguage" value="locales" hidden>
+        <div id="appLanguage" class="dropzone"></div>
+      </div>
+   
+      <div class="mb-3 d-flex flex-wrap">
+        <button type="submit" class="btn btn-primary me-3">Gửi</button>
+        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

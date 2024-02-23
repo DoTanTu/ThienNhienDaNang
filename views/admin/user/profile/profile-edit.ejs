@@ -1,0 +1,31 @@
+<div class="modal fade" id="editUser" tabindex="-1" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-simple modal-edit-user">
+      <div class="modal-content p-3 p-md-5">
+        <div class="modal-body">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="text-center mb-4">
+            <h3>Chỉnh sửa thông tin</h3>
+          </div>
+          <form id="editUserForm" class="row g-3 fv-plugins-bootstrap5 fv-plugins-framework" action="/admin.editProfile" method="post"  novalidate="novalidate">
+                <div class="mb-3">
+            <label  class="form-label">Hình Ảnh</label>
+            <!-- Add name when using upload-->
+            <input type="text" id="pageName" value="userInfo"  hidden>
+            <input type="text" id="avatarUserInfo" class="form-control" hidden name="avatar">
+            <div id="myDropzone" class="dropzone"></div>
+            </div>
+           
+            <div class="col-12 fv-plugins-icon-container">
+              <label class="form-label" for="name">Tên</label>
+              <input type="text" id="modalEditUserFullName" name="fullname" value="<%= userInfo.fullname%>" class="form-control" >
+            <div class="fv-plugins-message-container invalid-feedback"></div></div>
+              
+            <div class="col-12 text-center">
+              <button type="submit" class="btn btn-primary me-sm-3 me-1">Lưu</button>
+              <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Huỷ</button>
+            </div>
+         </form>
+        </div>
+      </div>
+    </div>
+  </div>

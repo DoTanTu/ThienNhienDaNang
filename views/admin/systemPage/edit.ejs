@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
+  data-assets-path="../public/admin/assets/" data-template="vertical-menu-template-free">
+
+<head>
+  <%- include('../partials/head') -%>
+  <%- include('../partials/common-crud-css') -%>
+</head>
+
+<body>
+  <!-- Layout wrapper -->
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <%- include('../partials/navbar-left') -%>
+        <!-- Layout container -->
+        <div class="layout-page">
+          <%- include('../partials/navbar-top') -%>
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+              <div class="container-xxl flex-grow-1 container-p-y ">
+                <!-- ============================= -->
+                <!-- Content Page -->
+                <!-- ============================= -->
+                
+
+                <form class="browser-default-validation j-pro" id="formPageData" action="/admin.editPage" method="POST">
+                  <div class="row">
+                    <div class="col-lg-8 col-12 mb-lg-0 mb-4">
+                      <div class="card">
+
+                        <h5 class="card-header">Sửa Tính Năng</h5>
+                        <div class="card-body">
+                          <div class="mb-3">
+                            <label class="form-label" for="basic-default-name">Tên tính năng</label>
+                            <input type="text" class="form-control" hidden value="<%= data._id %>" name="_id">
+                            <input type="text" class="form-control" id="basic-default-name" value="<%= data.name %>" name="name"
+                              placeholder="Page mane" required="">
+                          </div>
+                          <div class="mb-3">
+                            <label class="form-label" for="basic-default-name">Description</label>
+                            <textarea class="form-control" id="basic-default-bio" name="desc" rows="3"
+                             ><%= data.desc %></textarea>
+                          </div>
+
+                          <div class="mb-3">
+                            <label class="form-label" for="basic-default-name">Image</label>
+                            <!-- Add name when using upload-->
+                            <input type="text" id="pageName" value="page"  hidden>
+                            <input type="text" class="form-control" hidden name="images">
+                            <div id="myDropzone" class="dropzone"></div>
+                          </div>
+                          <div class="row">
+                            <div class="col-12">
+                              <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /Invoice Add-->
+
+                    <div class="col-lg-4 col-12">
+                        <%- include('./component/setting-view', {dataSetting : data.setting}) -%>
+                    </div>
+                  </div>
+                </form>
+                <!-- ============================= -->
+                <!-- Content Page -->
+                <!-- ============================= -->
+              </div>
+              <!-- Footer -->
+              <%- include('../partials/footer') -%>
+                <!-- / Footer -->
+                <div class="content-backdrop fade"></div>
+            </div>
+            <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+    </div>
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+  </div>
+  <!-- / Layout wrapper -->
+    <%- include('../partials/common-js') -%>
+    <%- include('../partials/common-crud-js') -%>
+    <script src="../public/admin/assets/js/pages/systemPage/edit.js"></script>
+
+   
+</body>
+
+</html>

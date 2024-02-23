@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-12">
+    <h4 id="data-products" class="anchor-heading mb-4 fw-bold">Data Products<a href="#data-products"
+        class="anchorjs-link ps-2">#</a></h4>
+    <div class="doc-example">
+      <div class="doc-example-content" data-label="object-data">
+        <div class="doc-clipboard">
+          <button type="button" class="btn-clipboard" data-bs-toggle="tooltip" data-bs-placement="top"
+            data-bs-original-title="Copy to clipboard">
+            Copy
+          </button>
+        </div>
+        <pre class="docs-code"><code class="json">
+<span class="hljs-variable">_id</span>: String;
+<span class="hljs-variable">url</span>: String;
+<span class="hljs-variable">pageId</span>: String;
+<span class="hljs-variable">categoryIds</span>: [String];
+<span class="hljs-variable">name</span>: String;
+<span class="hljs-variable">linkVideo</span>: String;
+<span class="hljs-variable">desc</span>: String;
+<span class="hljs-variable">desShort</span>: [String];
+<span class="hljs-variable">description</span>: [String];
+<span class="hljs-variable">showTop</span>: String;
+<span class="hljs-variable">seoTitle</span>: Boolean;
+<span class="hljs-variable">seoName</span>:  String;
+<span class="hljs-variable">seoKeyWord</span>:  String;
+<span class="hljs-variable">seoDes</span>:  String;
+<span class="hljs-variable">counter</span>:  Number;
+<span class="hljs-variable">languages</span>: [
+{
+  code : string
+  name :string
+  desShort : string
+  description: string
+  seoTitle: string
+  seoName: string
+  seoKeyWord :string
+  seoDesc : string
+}];
+<span class="hljs-variable">images</span>: [{
+  _id : string
+  image : string
+  name : string
+  author : string
+  copyright : string
+  source : string
+  year: string
+}]
+<span class="hljs-variable">ecommerce</span>: {
+  _id : string
+  price : string
+  priceSale : string
+  quantity : string
+  discount : string
+  }
+<span class="hljs-variable">ecommercePlus</span>:  [{
+  _id: {
+    type: String,
+  },
+  images: [String],
+  price: Number,
+  priceSale: Number,
+  quantity: Number,
+  discount : Number,
+  unit : String,
+  atribute : [{
+    id: {
+      type: String,
+    },
+    code: {
+      type: String,
+    },
+ }]
+}],
+      </pre>
+      </div>
+    </div>
+  </div>
+</div>
