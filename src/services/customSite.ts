@@ -33,6 +33,7 @@ export interface ICustomSiteService {
   getApp() : Promise<any>
   getDataProfile(customerId : any) : Promise<any>
   updateViews(productId : any) : Promise<any>
+  increaseDownload(productId : any) : Promise<number>;
 }
 
 @Service()
@@ -98,6 +99,7 @@ export default class CustomSiteService implements ICustomSiteService {
   }
 
   public async getProductById(productId: any): Promise<any> {
+    
     return this.productRepo.getProductInfo({_id : productId} as IProduct)
   }
 
@@ -153,5 +155,9 @@ export default class CustomSiteService implements ICustomSiteService {
 
   public async updateViews(productId: any): Promise<any> {
     return this.productRepo.updateViews({_id : productId} as IProduct)
+  }
+  
+  public async increaseDownload(productId: any): Promise<number> {
+    return this.productRepo.increaseDownload({_id : productId} as IProduct);
   }
 }

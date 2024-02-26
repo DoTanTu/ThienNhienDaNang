@@ -8,7 +8,7 @@ $(document).ready(function () {
 				$('#login-required').removeClass('active');
 				$('#id_account').val(response.customer.id);
 				$('#id-user').val(response.customer.id);
-				$('#image_account').attr('src', response.customer.avatar);
+				$('#image_account').attr('src', response.customer.avatar !== '' ? response.customer.avatar :  "https://images.pexels.com/photos/1009904/pexels-photo-1009904.jpeg?auto=compress&cs=tinysrgb&w=300");
 				$('#avatar_account').val(response.customer.avatar);
 				$('#fullname_account').val(response.customer.fullname);
 				$('#fullname_account_comment').text(response.customer.fullname);

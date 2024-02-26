@@ -55,6 +55,14 @@ export class CustomSiteRouter {
       }
     );
 
+    this.app.post(
+      '/increase-download',
+      isAuthCustomer,
+      async (req, res) => {
+        controller.increaseDownload(req, res);
+      }
+    );
+
     // this.app.get(
     //   '/:urlMenu/:urlSubMenu',
     //   async (req, res) => {

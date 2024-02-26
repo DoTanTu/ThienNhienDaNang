@@ -1,68 +1,49 @@
 <div class="side-box">
     <h4 class="mb-4">Được quan tâm gần đây</h4>
+    <% 
+    let listProduct = null;
+    if(dataProductDetail){
+         listProduct = dataProducts
+        .filter(item => item._id !== dataProductDetail._id) 
+        .sort((a, b) => b.views - a.views) 
+        .slice(0, 4); 
+    }else{
+        listProduct = dataProducts
+        .filter(item => item.hashtags[0] !== 'san_pham_dai_dien') 
+        .sort((a, b) => b.views - a.views) 
+        .slice(0, 4); 
+    }
+    
+    if(listProduct .length > 0){
+        listProduct.forEach(prod => {
+        pathImage = "";
+        obImage = prod.images[0];
+        if(obImage){
+            pathImage = obImage.image
+        }
+        const createdAt = new Date(prod.createdAt);
+        const formattedDate = createdAt.toLocaleString();
+       %>
     <div class="book-box mb-4">
-
-        <div class="book-box-img">
-            <div class="book-box-img-box">
-                <img src="https://image.thanhnien.vn/w1024/Uploaded/2022/wsxrxqeiod/2022_05_08/bia-sach2-9886.jpg"
-                    alt="">
+        <%if(pathImage !== ''){
+            %>
+            <div class="book-box-img">
+                <div class="book-box-img-box">
+                    <img src="<%= pathImage%>"
+                        alt="">
+                </div>
             </div>
-        </div>
+        <% }%>
+        
         <div class="book-detail">
-            <a href="#">
-                <h5>Dế mèn phưu lưu ký</h5>
+            <a href="<%= prod.name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html">
+                <h5><%= prod.name%></h5>
             </a>
             <span class="book-author">Tô Hoài</span>
-            <span class="book-date">26/07/1999</span>
+            <span class="book-date"><%= formattedDate%></span>
         </div>
     </div>
-
-    <div class="book-box mb-4">
-        <div class="book-box-img">
-            <div class="book-box-img-box">
-                <img src="https://inthienhang.com/wp-content/uploads/2020/03/mau-bia-sach-dep.jpg"
-                    alt="">
-            </div>
-        </div>
-        <div class="book-detail">
-            <a href="#">
-                <h5>Dế mèn phưu lưu ký</h5>
-            </a>
-            <span class="book-author">Tô Hoài</span>
-            <span class="book-date">26/07/1999</span>
-        </div>
-    </div>
-
-    <div class="book-box mb-4">
-        <div class="book-box-img">
-            <div class="book-box-img-box">
-                <img src="https://img2.thuthuat123.com/uploads/2019/11/19/bia-sach-dep-ai-tinh-noi-dau-luoi_122837633.jpg"
-                    alt="">
-            </div>
-        </div>
-        <div class="book-detail">
-            <a href="#">
-                <h5>Dế mèn phưu lưu ký</h5>
-            </a>
-            <span class="book-author">Tô Hoài</span>
-            <span class="book-date">26/07/1999</span>
-        </div>
-    </div>
-
-    <div class="book-box mb-4">
-        <div class="book-box-img">
-            <div class="book-box-img-box">
-                <img src="https://inthienhang.com/wp-content/uploads/2020/03/mau-bia-sach-dep.jpg"
-                    alt="">
-            </div>
-        </div>
-        <div class="book-detail">
-            <a href="#">
-                <h5>Dế mèn phưu lưu ký</h5>
-            </a>
-            <span class="book-author">Tô Hoài</span>
-            <span class="book-date">26/07/1999</span>
-        </div>
-    </div>
+    <%  })
+    }%>
 
 </div>

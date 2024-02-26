@@ -4,6 +4,7 @@ export interface IUser {
   username: string;
   email: string;
   avatar: string;
+  backgroundImage : string;
   password: string;
   savePassword : string;
   isDelete : boolean;

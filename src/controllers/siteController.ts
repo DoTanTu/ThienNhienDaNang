@@ -30,7 +30,6 @@ export default class SiteController {
   public async GetSite(req, res) {
     const serviceInstance = Container.get(SiteService);
     var responses = await serviceInstance.getFullDataSites();
-    console.log(responses);
     if (responses) {
       res.status(200).json({
         success: true,

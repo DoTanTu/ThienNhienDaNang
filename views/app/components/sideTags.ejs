@@ -1,10 +1,16 @@
 <div class="side-box tags-box">
     <h4 class="mb-4">Tags</h4>
     <div class="tags-list">
-        <a class="tag-item" href="#">Thiên nhiên<i>2</i></a>
-        <a class="tag-item" href="#">Đà Nẵng<i>5</i></a>
-        <a class="tag-item" href="#">Hệ sinh thái biển<i>10</i></a>
-        <a class="tag-item" href="#">Luận án Tiến Sĩ<i>19</i></a>
-        <a class="tag-item" href="#">Loài thực vật xâm lấn<i>50</i></a>
+        <%if(dataAttibutes && dataAttibutes.length > 0){
+            const HashTag = dataAttibutes.find(attribute => attribute.tag === "Hashtag" );
+            if(HashTag){
+                HashTag.values.forEach( item => {
+                    if(item.code !== 'san_pham_dai_dien'){
+                        code = item.code
+                        value = item.value
+                        numberProduct = dataProducts.filter(prod => prod.hashtags.some(tag => tag === code)).length;
+             %>
+            <a class="tag-item" href="?hashtag=<%= code%>"><%= value%><i><%= numberProduct%></i></a>
+            <%  }})}} %>
     </div>
 </div>

@@ -9,6 +9,7 @@
     flex-wrap: wrap;
     column-gap: var(--col-gap);
     row-gap: 15px;
+    padding-bottom: 10px;
 }
 
 .row-change-grid {

@@ -11,7 +11,8 @@ export interface IProductRepository {
   getProductCount(query: IProductQuery): Promise<Number>;
   addProduct(ProductInputDTO: IProductInputDTO): Promise<IProduct>;
   removeProduct(Product: IProduct): Promise<any>;
-  updateProduct(ProductInputDTO : IProductInputDTO) : Promise<IProduct>
+  updateProduct(ProductInputDTO : IProductInputDTO) : Promise<IProduct>;
+  increaseDownload(query: IProduct): Promise<number>;
 }
 
 @Service()
@@ -200,7 +201,16 @@ export default class ProductRepository implements IProductRepository {
     }
 }
 
-
+  public async increaseDownload(query: IProduct): Promise<number> {
+        const currentProduct = await this.ProductModel.findById(query._id);
+        const currentDownload = currentProduct.downloads || 0;
+        const updateDownload = await this.ProductModel.findByIdAndUpdate(
+            query._id,
+            { $set: { downloads: currentDownload + 1 } },
+            { new: true }
+        );
+        return updateDownload.downloads;
+  }
 
   public async updateProduct(ProductInputDTO: IProductInputDTO): Promise<IProduct> {
     try {

@@ -1,5 +1,5 @@
 import { Container } from 'typedi';
-import { IProductQuery } from '../models/interfaces/IProduct';
+import { IProduct, IProductQuery } from '../models/interfaces/IProduct';
 import CustomSiteService from '../services/customSite';
 import { Utils } from '../utils/utils';
 const i18n = require('i18n');
@@ -61,7 +61,6 @@ export default class CustomSiteController {
             let idProduct = Utils.getIdUrlSiteDetail(req.params.url)
             if (idProduct) {
             const updateviews = await siteInstance.updateViews(idProduct);
-            console.log(updateviews);
             data.dataProductDetail = await siteInstance.getProductById(idProduct);
             }
           }
@@ -261,6 +260,16 @@ export default class CustomSiteController {
     } else {
       res.status(200).json({ success: false });
     }
+  }
+
+  public async increaseDownload(req, res){
+    const siteInstance = Container.get(CustomSiteService);
+    const idProduct = req.body.productId;
+    const result = await siteInstance.increaseDownload(idProduct);
+    res.status(200).json({
+      success: true,
+      total : result
+    });
   }
 
   toQueryAttributes(req: any): any {

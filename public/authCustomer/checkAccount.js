@@ -10,7 +10,7 @@ $(document).ready(function () {
                 <div class="top-user-link"> 
                     <span>${response.customer.fullname}</span> 
                     <ul class="top-user-dropdown"> 
-                        <li><a href="/logout">Trang cá nhân</a></li> 
+                        <li><a href="/ca-nhan">Trang cá nhân</a></li>
                         <li><a href="/logout">Đăng xuất</a></li> 
                     </ul>
                 </div>

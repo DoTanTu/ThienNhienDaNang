@@ -1,0 +1,88 @@
+<html lang="en">
+
+<head>
+    <%- include('./components/head') -%>
+</head>
+
+<body>
+    <%- include('./components/header') -%>
+    <%- include('./components/bottomNav') -%>
+   
+    <section class="userCover">
+        <div class="container">
+            <img class="userCoverBg" src="https://source.unsplash.com/random/1200x800/?natural" alt="">
+            <div class="userCoverAva">
+                <img src="https://source.unsplash.com/random/400x400/?portrail" alt="">
+                <h4 class="userNameTop br-line-2">Nguyễn Văn A</h4>
+                <p>@user999000</p>
+            </div>
+        </div>
+    </section>
+    <div class="main-body user">
+        <div class="container">
+            <div class="row-change">
+                <div class="cot-12 cot-3-lg pe-0 pe-lg-4">
+                    <div class="side-box">
+                        <h4 class="mb-4">Danh mục</h4>
+                        <div class="side-cate mb-4">
+                            <ul class="side-cate-list">
+                                <li class="side-cate-list-title"><i class="bi bi-person-fill"></i><a href="#">Thông tin cơ bản</a></li>
+                                <li class="side-cate-list-title"><i class="bi bi-shield-fill-check"></i><a href="#">Bảo mật</a></li>
+                                <li class="side-cate-list-title"><i class="bi bi-bell-fill"></i><a href="#">Thông báo</a></li>
+                                <li class="side-cate-list-title"><i class="bi bi-chat-right-text-fill"></i><a href="#">Tin nhắn</a></li>
+                                <li class="side-cate-list-title"><i class="bi bi-archive-fill"></i><a href="#">Đóng góp</a></li>
+                                <li class="side-cate-list-title"><i class="bi bi-heart-fill"></i><a href="#">Yêu thích</a></li>
+                                <li class="side-cate-list-title"><i class="bi bi-cloud-download-fill"></i><a href="#">Tải về</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="cot-12 cot-9-lg userInforBox">
+                    <h3 class="h3-title underline">Bảo mật:</h3>
+                    <button class="userEditBtn main-btn" onclick="userEdit(this)">
+                        <i class="bi bi-pencil-square"></i>
+                        Chỉnh sửa
+                    </button>
+                    <div class="userInfor">
+                        <form class="row-change py-30 userForm" action="" method="">
+                        <div class="donggop-thongtin row-change">
+                            <div class="cot-8-lg">
+                                <label for="userPassOld" class="form-label">Mật khẩu cũ:</label>
+                                <input type="password" class="form-control off" id="userPassOld" disabled placeholder="********">
+                            </div>
+                            <div class="cot-8-lg">
+                                <label for="userPassNew" class="form-label">Mật khẩu mới:</label>
+                                <input type="password" class="form-control off" id="userPassNew" disabled placeholder="">
+                            </div>
+                            <div class="cot-8-lg">
+                                <label for="userPassNew2" class="form-label">Nhập lại mật khẩu mới:</label>
+                                <input type="password" class="form-control off" id="userPassNew2" disabled placeholder="">
+                            </div>
+                            
+                            <i class="cot-12 fs-6">(Chúng tôi sẽ chịu trách nhiệm bảo mật thông tin của bạn.)</i>
+                        </div>
+                        <div class="btn-group justify-content-center">
+                            <a class="main-btn mx-0">
+                                <i class="bi bi-check-lg"></i>
+                                Lưu
+                            </a>
+                            <a class="main-btn huy mx-0" onclick="huyUserEdit(this)">
+                                <i class="bi bi-x"></i>
+                                Huỷ
+                            </a>
+                        </div>
+                    </form>
+                    </div>
+
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+    <%- include('./components/footer') -%>
+    <%- include('./components/end') -%>
+
+</body>
+
+</html>

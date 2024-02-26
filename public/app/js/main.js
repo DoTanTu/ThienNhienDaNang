@@ -72,3 +72,36 @@
         recommentItem.innerHTML = '';
     }
 
+    // { 
+    //     isMutipleSelection: false,
+    //     is_delete: false,
+    //     _id: 'Hashtag_tu_lieu',
+    //     tag: 'Hashtag',
+    //     name: 'Hashtag',
+    //     pageId: 'tu_lieu',
+    //     values: [ 
+    //     {   
+    //         images: [], 
+    //         _id: 65b30c48d771824660c2260f, 
+    //         code: 'da_nang', 
+    //         value: 'Đà Nẵng' 
+    //     } 
+    //     ], 
+    //     createdAt: 2024-01-26T01:34:07.361Z, 
+    //     updatedAt: 2024-01-26T01:35:04.492Z, 
+    //     __v: 0 
+    // }
+
+    function downloadDocument(productId) {
+        $.ajax({
+          type: "POST", 
+          url: "/increase-download",  
+          data: { productId: productId },  
+          success: function(response) {
+            $('#number-download').text(response.total)
+          },
+          error: function(error) {
+            console.error("Download request failed:", error);
+          }
+        });
+      }

@@ -119,4 +119,39 @@ lg.openGallery(0);
 // function qrchecked() {
 //   document.getElementByid("qrcode").classList.toggle('d-block');
 // }
+function userEdit (x) {
+  let userInforBox = x.parentElement
+  let inputs = userInforBox.getElementsByClassName('form-control')
+  let btnGroup = userInforBox.getElementsByClassName('btn-group')[0]
+  if (inputs != (null && undefined)) {
+    for(i=0;i<inputs.length;i++) {
+      let input = inputs[i]
+      input.removeAttribute('disabled')
+      input.classList.remove('off')
+    }
+  }
+  if (btnGroup != (null && undefined)) {
+   btnGroup.classList.add('show')
+   x.setAttribute('disabled','')
+   x.classList.add('off')
+  }
+} 
 
+function huyUserEdit(x) {
+  let userInforBox = x.parentElement.parentElement.parentElement.parentElement
+  let inputs = userInforBox.getElementsByClassName('form-control')
+  let btnGroup = userInforBox.getElementsByClassName('btn-group')[0]
+  let editBtn = userInforBox.getElementsByClassName('userEditBtn')[0]
+  if (inputs != (null && undefined)) {
+    for(i=0;i<inputs.length;i++) {
+      let input = inputs[i]
+      input.setAttribute('disabled','')
+      input.classList.add('off')
+    }
+  }
+  if (btnGroup != (null && undefined)) {
+    btnGroup.classList.remove('show')
+    editBtn.removeAttribute('disabled')
+    editBtn.classList.remove('off')
+   }
+}

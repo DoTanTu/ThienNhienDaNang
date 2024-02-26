@@ -83,19 +83,23 @@
                         <h3 class="h3-title underline position-relative mb-4">Miêu tả</h3>
                         <%- prod.description%>
                     </div>
-                    <div class="nav-tag mb-5">
-                        <ul>
-                            <span>Từ khoá:</span>
-                            <% var hashtagsProduct = dataAttibutes.find(function(attribute) {
-                                return attribute._id === 'Hashtag_tu_lieu';
-                                });
-                                if(prod.hashtags){
-                                    prod.hashtags.forEach((item) => {
-                                       const values = hashtagsProduct.values.find((element) => element.code === item); %>
-                                       <li><a href="/hinh-anh?hashtag=<%= values.code%>"><%= values.value%></a></li>
-                            <%})}%>
-                        </ul>
-                    </div>
+                <div class="nav-tag mb-5">
+                    <ul>
+                        <span>Từ khoá:</span>
+                        <% 
+                        if(prod.hashtags && prod.hashtags.length > 0){
+                            const hashtagProducts = dataAttibutes.find(attribute => attribute.tag === 'Hashtag');
+                            prod.hashtags.forEach( item => {
+                                let mapping = hashtagProducts.values.find( hashtag_item => hashtag_item.code === item);
+                                if(mapping){
+                                    value_display = mapping.value;
+                                    %>
+                                    <li>
+                                        <a href="/hinh-anh?hashtag=<%= item%>"><%= value_display%></a>
+                                    </li>
+                       <%}})}%>
+                    </ul>
+                </div>
                     <%}%>
 
                     <%- include('./components/comment') -%>

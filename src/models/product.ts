@@ -109,7 +109,8 @@ const ProductSchema = new mongoose.Schema(
     label :  { type: String, default: "" },
     views : {type: Number, default: 0},
     likes : {type: Number, default: 0 },
-    shares : {type: Number, default: 0}
+    shares : {type: Number, default: 0},
+    downloads : {type: Number, default: 0}
   },
   { timestamps: true, 
     toJSON: { virtuals: true }, 

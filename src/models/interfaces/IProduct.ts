@@ -29,6 +29,7 @@ export interface IProduct {
   views : number
   likes : number
   shares : number
+  downloads : number
   createdAt: Date
   updatedAt: Date
   languages : [IProductLanguage]
@@ -130,6 +131,7 @@ export interface IProductInputDTO {
   views : number
   likes : number
   shares : number
+  downloads : number
   languages : [IProductLanguage]
 }
 
