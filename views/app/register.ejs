@@ -21,13 +21,21 @@
                 </div>
                 <div class="cot-6-md">
                     <form class="loginBox" id="formAuthentication" novalidate="novalidate">
-                        <input class="form-control mb-4" type="text" id="fullname" name="fullname" placeholder="Tên đăng nhập">
-                        <input class="form-control mb-4" type="email" id="email" name="email" placeholder="Email của bạn">
-                        <input class="form-control mb-4" type="password" id="password"  name="password" placeholder="Mật khẩu">
-                        <input class="form-control mb-4" type="password" id="confirm-password" name="confirm-password" placeholder="Nhập lại mật khẩu">
-                        <div class="form-check">
+                        <div class="form-group">
+                            <input class="form-control mb-4" type="text" id="fullname" name="fullname" placeholder="Tên đăng nhập" >
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mb-4" type="email" id="email" name="email" placeholder="Email của bạn">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mb-4" type="password" id="password"  name="password" placeholder="Mật khẩu">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control mb-4" type="password" id="confirm-password" name="confirm-password" placeholder="Nhập lại mật khẩu">
+                        </div>
+                        <div class="form-check form-group">
                             <input class="form-check-input" type="checkbox" 
-                            id="terms-conditions" 
+                            id="terms-conditions"
                             name="terms">
                             <label class="form-check-label" for="dangkyCheck">
                               Tôi đồng ý với <a href="#">Quy chế sử dụng</a> và <a href="#">Chính sách bảo mật.</a>
@@ -50,6 +58,25 @@
     <script src="../public/admin/assets/js/pages/common.js"></script>
     <script type="text/javascript" src="../public/authCustomer/signup.js"></script>
     <script src="../public/authCustomer/auth.js"></script>
+    <script>
+        (function () {
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+            })
+        })()
+      </script>
 </body>
 
 </html>

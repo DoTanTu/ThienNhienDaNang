@@ -1,5 +1,5 @@
 <div class="tintuc-detail-comment">
-  <h3 class="underline" id="number-comment"><%= prod.comments.filter(comment => comment.parentId === "").length;%> Bình luận</h3>
+  <h3 class="underline" id="number-comment"><%= prod.comments.filter(comment => comment.parentId === "" && comment.customers !== null).length;%> Bình luận</h3>
   <div class="message-comment"></div>
   <input type="hidden" id="idProduct" value="<%= dataProductDetail._id%>">
   <input type="hidden" id="id_account" value="">
@@ -27,17 +27,17 @@
     </div>
     </div>
   <div class="mt-4" id="list-comment">
-    <% if(prod.comments && prod.comments.length > 0){
+    <% if( prod.comments && prod.comments !== null  && prod.comments.length > 0){
         prod.comments.forEach( (item) => {
-            if(item.parentId === ''){
+            if(item.parentId === '' && item.customers !== null){
                 const createdAt = new Date(item.createdAt);
                 const formattedDate = createdAt.toLocaleString();
-                avatar = item.customers.avatar !== "" ? item.customers.avatar : "https://images.pexels.com/photos/1009904/pexels-photo-1009904.jpeg?auto=compress&cs=tinysrgb&w=300"
+                avatarAccount = item.customers.avatar !== "" ? item.customers.avatar : "https://images.pexels.com/photos/1009904/pexels-photo-1009904.jpeg?auto=compress&cs=tinysrgb&w=300"
 
                 %>
     <div class="tintuc-detail-comment-box flex-wrap">
       <div class="comment-box-img">
-        <img src="<%= avatar%>" alt="">
+        <img src="<%= avatarAccount%>" alt="">
       </div>
       <div class="comment-box-text flex-grow-1 mb-3">
         <h5><%= item.customers?.fullname%> <span></span></h5>

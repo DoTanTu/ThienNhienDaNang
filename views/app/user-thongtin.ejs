@@ -9,7 +9,7 @@
     <%- include('./components/bottomNav') -%>
    
     <section class="userCover">
-        <div class="container" id="user-avatar">
+        <div class="container" id="user-avatar-customer">
             
         </div>
     </section>
@@ -21,8 +21,8 @@
                         <h4 class="mb-4">Danh mục</h4>
                         <div class="side-cate mb-4">
                             <ul class="side-cate-list">
-                                <li class="side-cate-list-title"><i class="bi bi-person-fill"></i><a href="#">Thông tin cơ bản</a></li>
-                                <li class="side-cate-list-title"><i class="bi bi-shield-fill-check"></i><a href="#">Bảo mật</a></li>
+                                <li class="side-cate-list-title"><i class="bi bi-person-fill"></i><a href="ca-nhan">Thông tin cơ bản</a></li>
+                                <li class="side-cate-list-title"><i class="bi bi-shield-fill-check"></i><a href="reset-password">Bảo mật</a></li>
                                 <li class="side-cate-list-title"><i class="bi bi-bell-fill"></i><a href="#">Thông báo</a></li>
                                 <li class="side-cate-list-title"><i class="bi bi-chat-right-text-fill"></i><a href="#">Tin nhắn</a></li>
                                 <li class="side-cate-list-title"><i class="bi bi-archive-fill"></i><a href="#">Đóng góp</a></li>
@@ -39,24 +39,30 @@
                         Chỉnh sửa
                     </button>
                     <div class="userInfor">
-                        <form class="row-change py-30 userForm" action="" method="">
+                        <form class="row-change py-30 userForm" id="AuthurUpdateProfile">
+                            <input type="text" id="pageName" value="customer" hidden="">
                             <div class="mb-3 cot-6-md">
                                 <label for="userAvaUpload" class="form-label">Thay đổi hình đại diện:</label>
-                                <input type="file" class="form-control" id="userAvaUpload" disabled>
+                                <div class="position-relative" id="customer-avatar">
+                                    <input type="file" class="form-control" id="userAvaUpload" accept="image/*" onchange="handleFileUpload()" disabled>
+                                    <input type="text" id="avatar-read" name="avatar" value="" hidden>
+                                </div>
+                                
                             </div>
                             <div class="mb-3 cot-6-md">
                                 <label for="userCoverUpload" class="form-label">Thay đổi ảnh bìa:</label>
-                                <input type="file" class="form-control" id="userCoverUpload" disabled>
+                                <input type="file" name="backgroundImage" class="form-control" id="userCoverUpload" accept="image/*" onchange="handleBackgroundUpload()" disabled>
+                                <input type="text" name="backgroundImage" id="backgroundImage-read" value="" hidden>
                             </div>
                             
                             <div class="donggop-thongtin row-change" id="user-introduction">
                                 
                             </div>
                             <div class="btn-group justify-content-center">
-                                <a class="main-btn mx-0">
+                                <button type="submit" class="main-btn mx-0">
                                     <i class="bi bi-check-lg"></i>
                                     Lưu
-                                </a>
+                                </button>
                                 <a class="main-btn huy mx-0" onclick="huyUserEdit(this)">
                                     <i class="bi bi-x"></i>
                                     Huỷ
@@ -73,7 +79,7 @@
 
     <%- include('./components/footer') -%>
     <%- include('./components/end') -%>
-    <script type="text/javascript" src="../public/app/js/profile.js"></script>
+    <script type="module" src="../public/app/js/profile.js"></script>
 </body>
 
 </html>

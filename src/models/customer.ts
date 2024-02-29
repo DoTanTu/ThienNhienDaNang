@@ -13,6 +13,11 @@ const CustomerSchema = new mongoose.Schema(
       default: "",
     },
 
+    backgroundImage : {
+      type: String,
+      default: "",
+    },
+
     username: {
       type: String,
       lowercase: true,

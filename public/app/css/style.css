@@ -467,7 +467,7 @@ body img {
 }
 
 .main-btn:hover {
-    background-color: var(--color-1);
+    background-color: var(--color-2);
     color: #fff;
 }
 
@@ -1196,6 +1196,26 @@ footer .underline::after {
     border: 1px solid var(--color-2);
 }
 
+.form-group.error{
+    color: red;
+    margin-bottom: 10px;
+}
+
+.form-group.error input{
+    border: 1px solid red;
+    margin-bottom: 2px !important;
+}
+
+
+.form-group-reset.error .error_message{
+    color: red;
+    margin-bottom: 10px;
+}
+
+.form-group-reset.error input{
+    border: 1px solid red;
+    margin-bottom: 2px !important;
+}
 footer a:hover span,
 footer a:hover i {
     color: var(--color-2);
@@ -3411,7 +3431,16 @@ color: var(--color-text-1);
     padding: 60px;
     background-color: #fff;
 }
-
+.loginBox #errorLogin span{
+    display: block;
+    padding: 15px;
+    margin-bottom: 25px;
+    border-radius: 5px;
+    background-color: rgba(238, 116, 116, 0.5);
+    color: rgb(143, 49, 49);
+    border: 0.5px solid rgb(235, 105, 105);
+    border-left: 3px solid rgb(235, 105, 105);
+}
 .loginBox .line {
     position: relative;
     width: 100%;
@@ -3572,9 +3601,97 @@ color: var(--color-text-1);
     opacity: 1;
   }
 
+.userForm .cancle-avatar{
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.userForm .cancle-avatar:hover{
+    cursor: pointer;
+    background-color: rgb(208, 71, 71);
+    color: white;
+}
 
+.dongGopTitle button {
+    font-weight: 600;
+    font-size: 20px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    box-shadow: 0 0 0 transparent;
+    font-family: var(--font-2);
+    color: var(--color-1);
+}
 
+.dongGopContent .accordion-button:not(.collapsed) {
+    background-color: rgba(var(--rgb-2), .2);
+    color: var(
+    --color-1);
+}
 
+.dongGopTitle button:hover {
+    background-color: rgba(var(--rgb-2),.3);
+    box-shadow: 0 5px 10px #00000020;
+}
+
+.dongGopContent .accordion-item:first-child {
+    border: none;
+}
+
+.dongGopContent .accordion-item:first-child button {
+    background-color: transparent;
+    box-shadow: 0 0 0 transparent;
+}
+.dongGopForm {
+    position: relative;
+}
+
+.dongGopForm::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #000;
+    opacity: 0;
+}
+.dongGopForm * {
+    pointer-events:none;
+    filter: blur(2px);
+}
+
+.loginBtn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    filter: blur(0);
+    pointer-events:auto;
+    margin: 0;
+}
+
+.dongGopForm.active * {
+    filter: blur(0);
+    pointer-events:auto;
+}
+
+.dongGopForm.active::after {
+    display: none;
+}
+
+.dongGopForm.active input {
+    pointer-events: auto;
+}
+
+.dongGopForm.active {
+    opacity: 1;
+}
+
+.dongGopForm.active .loginBtn {
+    display: none;
+}
 
 
 

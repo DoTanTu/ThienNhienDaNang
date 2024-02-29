@@ -1,5 +1,6 @@
 
-    function toggleReplyForm(commentId, productId) {
+
+   function toggleReplyForm(commentId, productId) {
         const recommentItem = document.getElementById(`recomment${commentId}`);
         if (!recommentItem.querySelector('.reply-form')) {
             const id_account = document.getElementById(`id_account`).value;
@@ -72,25 +73,68 @@
         recommentItem.innerHTML = '';
     }
 
-    // { 
-    //     isMutipleSelection: false,
-    //     is_delete: false,
-    //     _id: 'Hashtag_tu_lieu',
-    //     tag: 'Hashtag',
-    //     name: 'Hashtag',
-    //     pageId: 'tu_lieu',
-    //     values: [ 
-    //     {   
-    //         images: [], 
-    //         _id: 65b30c48d771824660c2260f, 
-    //         code: 'da_nang', 
-    //         value: 'Đà Nẵng' 
-    //     } 
-    //     ], 
-    //     createdAt: 2024-01-26T01:34:07.361Z, 
-    //     updatedAt: 2024-01-26T01:35:04.492Z, 
-    //     __v: 0 
-    // }
+    function handleFileUpload(){
+        const fileInput = document.getElementById('userAvaUpload');
+        const previewImage = document.getElementById('user-avatar');
+        const oldPath = previewImage.getAttribute('src');
+        const newPath = $('#avatar-read');
+        const file = fileInput.files[0];
+        if (file) {
+            const formData = new FormData();
+            formData.append('page', 'customer');
+            formData.append('avatarCustomer', file);
+            $.ajax({
+                type: 'POST',
+                url : '/uploadAvatar',
+                data : formData,
+                contentType: false,
+                processData: false,
+                success: (response) => {
+                    previewImage.src = response.data[0].path;
+                    newPath.val(response.data[0].path);
+                },
+                error: (e) => {
+                    previewImage.src = oldPath;
+                    alert('Upload ảnh không thành công');
+                }
+            });
+        }
+    }
+
+    function handleBackgroundUpload(){
+        const fileInput = document.getElementById('userCoverUpload');
+        const previewImage = document.getElementById('user-cover-bg');
+        const oldPath = previewImage.getAttribute('src');
+        const newPath = $('#backgroundImage-read');
+        const file = fileInput.files[0];
+        if (file) {
+            const formData = new FormData();
+            formData.append('page', 'customer');
+            formData.append('avatarCustomer', file);
+            $.ajax({
+                type: 'POST',
+                url : '/uploadAvatar',
+                data : formData,
+                contentType: false,
+                processData: false,
+                success: (response) => {
+                    previewImage.src = response.data[0].path;
+                    newPath.val(response.data[0].path);
+                },
+                error: (e) => {
+                    previewImage.src = oldPath;
+                    alert('Upload ảnh không thành công');
+                }
+            });
+        }
+    }
+
+    function deleteFile(oldPath) {
+        const fileInput = document.getElementById('userAvaUpload');
+        fileInput.value = null;
+        document.getElementById('user-avatar').src = oldPath;
+        document.querySelector('#customer-avatar .cancle-avatar').innerHTML = '';
+    }
 
     function downloadDocument(productId) {
         $.ajax({
@@ -104,4 +148,32 @@
             console.error("Download request failed:", error);
           }
         });
-      }
+    }
+
+    function redirectToLogin() {
+        const urlCurrent = window.location.href;
+    
+        // Kiểm tra nếu cookie "referer_url" không tồn tại
+        if (!getCookie("referer_url")) {
+            const base64Url = btoa(urlCurrent);
+            document.cookie = `referer_url=${encodeURIComponent(base64Url)}; path=/`;
+        }
+    }
+    
+    function getCookie(cookieName) {
+        const name = cookieName + "=";
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookieArray = decodedCookie.split(";");
+    
+        for (let i = 0; i < cookieArray.length; i++) {
+            let cookie = cookieArray[i];
+            while (cookie.charAt(0) === " ") {
+                cookie = cookie.substring(1);
+            }
+            if (cookie.indexOf(name) === 0) {
+                return cookie.substring(name.length, cookie.length);
+            }
+        }
+        return "";
+    }
+    

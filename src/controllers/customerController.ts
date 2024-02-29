@@ -216,7 +216,6 @@ export default class CustomerController {
 
   public async LoginCustomer(req, res) {
     try {
-
       const email = req.body.email;
       const password = req.body.password;
       const serviceInstance = Container.get(CustomerService);
@@ -290,6 +289,7 @@ export default class CustomerController {
         _id: session.customerId,
         fullname: req.body.fullname,
         avatar: req.body.avatar,
+        backgroundImage : req.body.backgroundImage,
         phone: req.body.phone,
         address: req.body.address,
         description : req.body.description,

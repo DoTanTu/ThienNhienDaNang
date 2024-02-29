@@ -1,4 +1,16 @@
 
+        <script>
+            function getCookie(name){
+            const cookies = document.cookie.split(';');
+            for (const cookie of cookies) {
+                const [cookieName, cookieValue] = cookie.trim().split('=');
+                if (cookieName === name) {
+                return cookieValue;
+                }
+            }
+            return null;
+            };
+        </script>
         <!-- script -->
         <script src="../public/app/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="../public/app/js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
@@ -41,3 +53,4 @@
         <script src="../public/admin/assets/js/pages/common.js"></script>
         <script type="text/javascript" src="../public/app/js/comment.js"></script>
         <script src="../public/app/js/main.js"></script>
+        <script src="../public/app/js/downloadFile.js"></script>

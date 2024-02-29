@@ -154,4 +154,5 @@ function huyUserEdit(x) {
     editBtn.removeAttribute('disabled')
     editBtn.classList.remove('off')
    }
+   location.reload();
 }

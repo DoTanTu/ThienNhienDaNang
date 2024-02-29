@@ -3,6 +3,7 @@ export interface ICustomer {
   fullname: string;
   username: string;
   avatar :string;
+  backgroundImage: string;
   email: string;
   password: string;
   token : string;
