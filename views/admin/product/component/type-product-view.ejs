@@ -1,0 +1,150 @@
+<% 
+    var typeofValue = null;
+    var author = null;
+    var copyright = null;
+    var publishYear = null;
+    var source = null;
+    var nameVn = null;
+    var nameEn = null;
+    var nameLa =  null;
+    var typeEvent = null;
+    var dateStart = null;
+    var dateEnd = null;
+    var timeStart = null;
+    var timeEnd = null;
+    var address = null;
+    if (additionalData != undefined && additionalData != null) {
+        typeofValue = additionalData.typeof;
+         author = additionalData.author;
+         copyright = additionalData.copyright;
+         publishYear = additionalData.publishYear;
+         source = additionalData.source;
+         nameVn = additionalData.nameVn;
+         nameEn = additionalData.nameEn;
+         nameLa = additionalData.nameLa;
+         typeEvent = additionalData.typeEvent;
+         dateStart = additionalData.dateStart;
+         dateEnd = additionalData.dateEnd;
+         timeStart = additionalData.timeStart;
+         timeEnd = additionalData.timeEnd;
+         address = additionalData.address;
+   } %>
+
+<div class="mb-4 card accordion-item" >
+    <label class="form-label">Thông tin bổ sung</label>
+    <div class="input-group option_select">
+        <label for="type_product" class="input-group-text" style="background-color: #e9ecef;" >Thể loại</label>
+        <select class="form-select" id="type_product" name="typeof">
+            <option value="" <%= typeofValue === '' ? 'selected' : '' %>>Không có</option>
+            <option value="doc" <%= typeofValue === 'doc' ? 'selected' : '' %>>Tài liệu</option>
+            <option value="image" <%= typeofValue === 'image' ? 'selected' : '' %>>Hình ảnh</option>
+            <option value="video" <%= typeofValue === 'video' ? 'selected' : '' %>>Video</option>
+            <option value="book" <%= typeofValue === 'book' ? 'selected' : '' %>>Sách</option>
+            <option value="lesson" <%= typeofValue === 'lesson' ? 'selected' : '' %>>Bài Giảng</option>
+            <option value="news" <%= typeofValue === 'news' ? 'selected' : '' %>>Tin tức</option>
+            <option value="connect" <%= typeofValue === 'connect' ? 'selected' : '' %>>Kết nối đó đây</option>
+            <option value="event" <%= typeofValue === 'event' ? 'selected' : '' %>>Sự kiện</option>
+        </select>
+        
+    </div>
+    <div class="display_content " id="displayContent">
+        <div class="option_one d-none ps-4 pb-3">
+            <div class=" row justify-content-around">
+                <div class="form-group mt-4 col-6">
+                    <label class="d-block" for="">Tác giả</label>
+                    <input class="form-control w-100" name="author" type="text" value="<%= author%>">
+                </div>
+                <div class="form-group mt-4 col-6">
+                    <label class="d-block" for="">Tác quyền</label>
+                    <input class="form-control w-100" name="copyright" type="text" value="<%= copyright%>">
+                </div>
+                <div class="form-group mt-4 col-6">
+                    <label class="d-block" for="">Năm xuất bản</label>
+                    <input class="form-control w-100" name="publishYear" type="text" value="<%= publishYear%>">
+                </div>
+                <div class="form-group mt-4 col-6">
+                    <label class="d-block" for="">Nguồn tài liệu</label>
+                    <input class="form-control w-100" name="source" type="text" value="<%= source%>">
+                </div>
+            </div>
+        </div>
+        
+        <div class="option_two d-none">
+           <div class="ps-4 pb-3">
+                <div class="form-group mt-4">
+                    <label class="d-block" for="">Tên tiếng việt</label>
+                    <input class="form-control w-100" type="text" name="nameVn" value="<%= nameVn%>">
+                </div>
+                <div class="form-group mt-4">
+                    <label class="d-block" for="">Tên tiếng anh</label>
+                    <input class="form-control w-100" type="text" name="nameEn" value="<%= nameEn%>">
+                </div>
+                <div class="form-group mt-4">
+                    <label class="d-block" for="">Tên tiếng la tinh</label>
+                    <input class="form-control w-100" type="text" name="nameLa" value="<%= nameLa%>">
+                </div>
+           </div>
+        </div>
+    </div>
+
+    <div class="option_three d-none">
+       <div class="px-4">
+         <div class="top_option d-flex mt-4">
+            <div class="form-check me-4">
+                <input class="form-check-input" type="radio" name="typeEvent" id="typeEvent1" onclick="toggleOptions('one_time')" value="one" <%if(typeEvent === 'one' || typeEvent === '' || typeEvent === null ){%>checked<%}%>>
+                <label class="form-check-label" for="typeEvent1">
+                Diễn ra 1 lần
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="typeEvent" id="typeEvent2" onclick="toggleOptions('any_time')" value="many" <%if(typeEvent === 'many'){%>checked<%}%>>
+                <label class="form-check-label" for="typeEvent2">
+                Diễn ra theo giai đoạn
+                </label>
+            </div>
+         </div>
+         <div class="bottom_option ps-3">
+            <div class="one_time py-3 <%if(typeEvent === 'many'){%> d-none <%}%>">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="" class="me-2">Ngày bắt đầu:</label>
+                        <input class="form-control" type="date" name="dateStart" value="<%= dateStart%>">
+                    </div>
+                    <div class="col-6">
+                        <label for="" class="me-2">Thời gian:</label>
+                        <input class="form-control" type="time" name="timeStart" value="<%= timeStart%>">
+                    </div>
+                    <div class="col-12 mt-3">
+                        <label for="" class="me-2">Địa điểm tổ chức: </label>
+                        <input class="form-control" type="text" name="address" value="<%= address%>">
+                    </div>
+                </div>
+            </div>
+            <div class="many_time py-3 <%if(typeEvent === 'one' || typeEvent === null){%> d-none <%}%>">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="" class="me-2">Ngày bắt đầu:</label>
+                        <input class="form-control" type="date" name="dateStart" value="<%= dateStart%>">
+                    </div>
+                    <div class="col-6">
+                        <label for="" class="me-2">Thời gian:</label>
+                        <input class="form-control" type="time" name="timeStart" value="<%= timeStart%>">
+                    </div>
+                    <div class="col-6  mt-3">
+                        <label for="" class="me-2">Ngày kết thúc:</label>
+                        <input class="form-control" type="date" name="dateEnd" value="<%= dateEnd%>">
+                    </div>
+                    <div class="col-6  mt-3">
+                        <label for="" class="me-2">Thời gian:</label>
+                        <input class="form-control" type="time" name="timeEnd" value="<%= timeEnd%>">
+                    </div>
+                    <div class="col-12 mt-3">
+                        <label for="" class="me-2">Địa điểm tổ chức: </label>
+                        <input class="form-control" type="text" name="address" value="<%= address%>">
+                    </div>
+                </div>
+            </div>
+         </div>
+       </div>
+    </div>
+</div>

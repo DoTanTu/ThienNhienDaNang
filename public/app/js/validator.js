@@ -78,6 +78,7 @@ function Validator(option){
         })
     }
 }
+
 Validator.isRequired = function(selector , message){
     return {
         selector: selector,
@@ -86,6 +87,7 @@ Validator.isRequired = function(selector , message){
         }
     };
 };
+
 Validator.isEmail = function(selector, message){
     return {
         selector: selector,
@@ -95,6 +97,7 @@ Validator.isEmail = function(selector, message){
         }
     };
 };
+
 Validator.isLength = function(selector, min, message) {
     return {
         selector: selector,
@@ -103,6 +106,7 @@ Validator.isLength = function(selector, min, message) {
         }
     };
 }
+
 Validator.isConfirmPassword = function(selector, getPassword, message){
     return {
         selector: selector,
@@ -111,3 +115,8 @@ Validator.isConfirmPassword = function(selector, getPassword, message){
         }
     };
 }
+
+
+
+
+   

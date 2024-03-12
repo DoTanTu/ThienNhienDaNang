@@ -32,8 +32,10 @@ export interface ICustomSiteService {
   getCustomerInfo(customerId : any) : Promise<any>
   getApp() : Promise<any>
   getDataProfile(customerId : any) : Promise<any>
+  getDataBasicInfo(customerId : any): Promise<any>
   updateViews(productId : any) : Promise<any>
   increaseDownload(productId : any) : Promise<number>;
+  actionLikeProduct(productId : string, customerId : string) : Promise<number>
 }
 
 @Service()
@@ -153,11 +155,19 @@ export default class CustomSiteService implements ICustomSiteService {
     return this.customerRepo.getProfile({_id : customerId} as ICustomer)
   }
 
+  public async getDataBasicInfo(customerId : any): Promise<any> {
+    return this.customerRepo.getBasicInfo({_id : customerId} as ICustomer)
+  }
+
   public async updateViews(productId: any): Promise<any> {
     return this.productRepo.updateViews({_id : productId} as IProduct)
   }
   
   public async increaseDownload(productId: any): Promise<number> {
     return this.productRepo.increaseDownload({_id : productId} as IProduct);
+  }
+
+  public async actionLikeProduct(productId: string, customerId : string): Promise<number>{
+    return this.productRepo.actionLikeProduct(productId, customerId);
   }
 }

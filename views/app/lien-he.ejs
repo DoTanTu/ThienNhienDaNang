@@ -113,17 +113,17 @@
             <div class="row-change w-100">
                 <div class="comment-box">
                     <form action="" id="form_contact" method="POST">
-                        <div class="form-group mb-4" style="width: 49%">
-                            <input type="text" name="name" class="form-control cm-ho" id="name"
+                        <div class="form-group mb-4 cm-ho">
+                            <input type="text" name="name" class="form-control" id="name"
                             placeholder="Họ và tên đệm *">
                             <span class="form-message text-danger fs-6 mt-1"></span>
                         </div>
-                        <div class="form-group mb-4" style="width: 49%">
-                            <input type="email" name="email" class="form-control cm-mail" id="email"
+                        <div class="form-group mb-4 cm-mail">
+                            <input type="email" name="email" class="form-control" id="email"
                             placeholder="name@example.com">
                             <span class="form-message text-danger mt-1"></span>
                         </div>
-                        <div class="form-group"  style="width: 100%">
+                        <div class="form-group">
                             <textarea class="form-control" name="content" id="note" rows="5"></textarea>
                             <span class="form-message text-danger mt-1"></span>
                         </div>
@@ -136,84 +136,11 @@
         </div>
     </div>
 
-      <%- include('./components/footer') -%>
-
-    <!-- script -->
-    <script src="../public/app/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="../public/app/js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
-
-    <script src="../public/app/js/aos.2.3.1.js" crossorigin="anonymous"></script>
-    <script src="owlcarousel/owl.carousel.min.js" crossorigin="anonymous"></script>
-    <!-- fontawesome -->
-    <script src="https://kit.fontawesome.com/1bc99374c0.js" crossorigin="anonymous"></script>
-    <!-- WOW -->
-    <script src="../public/app/js/wow.min.js"></script>
-    <!-- textillate -->
-    <!-- <script src="../public/app/js/jquery.fittext.js"></script> -->
-    <script src="../public/app/js/jquery.lettering.js"></script>
-    <script src="../public/app/js/jquery.textillate.js"></script>
-    <!-- config -->
-    <script src="../public/app/js/slider.js" crossorigin="anonymous"></script>
-    <script src="../public/app/js/config.js" crossorigin="anonymous"></script>
-    <!-- isotope -->
-    <script src="../public/app/js/isotope.pkgd.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <%- include('./components/footer') -%>
+    <%- include('./components/end') -%>
     <script src="../public/app/js/validator.js"></script>
-    <script>
-        new WOW().init();
-    </script>
-    <!-- AOS-call -->
-    <script>
-        AOS.init();
-        AOS.init({
-            duration: 700,
-        });
-    </script>
-    <!-- Swiper-Slider -->
-    <script src="../public/app/js/swiper-bundle.min.js"></script>
-    <!-- Plyr-player -->
-    <script src="https://cdn.plyr.io/3.7.2/plyr.js"></script>
-    <script>
-        const player = new Plyr('#player');
-        // Expose player so it can be used from the console
-        window.player = player;
-    </script>
-    <script>
-        Validator({
-          form: '#form_contact',
-          formGroupSelector: '.form-group',
-          errorSelector: '.form-message',
-          rules: [
-            Validator.isRequired('#name', 'Vui lòng nhập tên!'),
-            Validator.isRequired('#email', 'Vui lòng nhập Email!'),
-            Validator.isEmail('#email', 'Nhập đúng định dạng email!'),
-            Validator.isRequired('#note', 'Vui lòng nhập nội dung!'),
-          ],
-          onSubmit: function(data) {
-            var serializedData = $.param(data);
-            $.ajax({
-                    type: "POST",
-                    url: "/addMessage",
-                    data: serializedData,
-                    success: function (response) {
+    <script src="../public/app/js/validate-form.js"></script>
     
-                      Swal.fire({
-                        position: "center-center",
-                        icon: "success",
-                        title: "Đã gửi thông tin thành công!",
-                        showConfirmButton: false,
-                        timer: 2000
-                      });
-                      document.getElementById("form_contact").reset();
-                    },
-                    error: function (xhr, status, error) {
-                        // Xử lý lỗi
-                    }
-                });
-          }
-    
-        });
-      </script>
 
 </body>
 

@@ -118,19 +118,33 @@
         </div>
         <div class="container">
             <h3 class="h3-title mb-4 text-center">Tiến hành đóng góp</h3>
-            <form class="row-change py-30 dongGopForm" id="dongGopForm" action="" method="">
+            <form class="row-change py-30 dongGopForm <%= dataBasicInfo ? 'active' : ''%> " id="dongGopForm" action="" method="">
                 <a href="dang-nhap" class="main-btn loginBtn">Đăng nhập để đóng góp</a>
                 <div class="donggop-thongtin row-change">
                     <h4 class="h4-title w-100">Thông tin đóng góp:</h4>
-                    <input class="form-control cot-4-md" type="text" placeholder="Họ và Tên">
-                    <input class="form-control cot-4-md" type="text" placeholder="Tên tác quyền">
-                    <input class="form-control cot-4-md" type="email" placeholder="Email">
-                    <input class="form-control cot-4-md" type="tel" placeholder="Số điện thoại">
-                    <input class="form-control cot-4-md" type="text" placeholder="Địa chỉ">
+                    <input type="text" name="customerId" value="<%= dataBasicInfo ? dataBasicInfo._id : ''%>" hidden>
+                    <div class="form-group cot-4-md">
+                        <input class="form-control " type="text" name="fullname" id="fullname" placeholder="Họ và Tên" value="<%= dataBasicInfo ? dataBasicInfo.fullname : null%>">
+                        <span class="form-message text-danger fs-6 mt-1"></span>
+                    </div>
+                   
+                    <div class="form-group cot-4-md">
+                        <input class="form-control" id="copyright" type="text" name="copyright" placeholder="Tên tác quyền" value="">
+                        <span class="form-message text-danger fs-6 mt-1"></span>
+                    </div>
+                    
+                    <input class="form-control cot-4-md" type="email" name="email" placeholder="Email" value="<%= dataBasicInfo ? dataBasicInfo.email : null%>" readonly>
+
+                    <div class="form-group cot-4-md">
+                        <input class="form-control" type="tel" name="phone" placeholder="Số điện thoại" value="<%= dataBasicInfo ? dataBasicInfo.phone : null%>">
+                        <span class="form-message text-danger fs-6 mt-1"></span>
+                    </div>
+                   
+                    <input class="form-control cot-4-md" type="text" name="address" placeholder="Địa chỉ">
                     <i class="cot-12 fs-6">(Chúng tôi sẽ chịu trách nhiệm bảo mật thông tin của bạn.)</i>
                 </div>
                 <h4 class="h4-title w-100">Phương thức quyên góp:</h4>
-                <ul class="cot-12 d-flex gap-4 p-0">
+                <ul class="cot-12 d-flex gap-4 p-0" id="checkGroupContribute">
                     <li class="form-check">
                         <input class="form-check-input" type="radio" name="dongGopFile" id="dongGopImg" checked>
                         <label class="form-check-label" for="dongGopImg">Hình ảnh</label>
@@ -144,21 +158,93 @@
                         <label class="form-check-label" for="dongGopDoc">Tài liệu</label>
                     </li>
                 </ul>
-                <div class="input-group mb-3">
-                    <input type="file" class="form-control" id="inputGroupFile02">
+                <div class="inputGroupFile">
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="inputGroupFile02" multiple accept="image/*">
+                    </div>
+                    <div class="input-group mb-3 d-none">
+                        <input type="file" class="form-control" id="inputGroupFile03" multiple accept="video/*">
+                    </div>
+                    <div class="input-group mb-3 d-none">
+                        <input type="file" class="form-control" id="inputGroupFile04" multiple accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf">
+                    </div>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="dongGopAgree">
+                <div class="form-group form-check">
+                    <input class="form-check-input" type="checkbox" value="" name="checkbox" id="dongGopAgree">
                     <label class="form-check-label" for="dongGopAgree">
                       Tôi đồng ý chia sẻ tài nguyên này cho cộng đồng!
                     </label>
+                    <span class="form-message text-danger block fs-6 mt-1"></span>
                   </div>
-                <a class="main-btn mt-4 mx-auto" href="#">
+                <button class="main-btn mt-4 mx-auto" type="submit">
                     Quyên góp
-                </a>
+                </button>
             </form>
         </div>
 
+        <!-- <a class="main-btn mx-auto" href="#" data-bs-toggle="modal" data-bs-target="#uploadModal">
+            Upload Box
+        </a> -->
+
+        <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="cateDetailLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                <form class="modal-content" action="">
+                    <div class="modal-header">
+                        <h4 class="modal-title fs-5" id="cateDetailLabel">Khuyến khích bạn cung cấp thông tin vì đây sẽ là
+                            nguồn học liệu quý giá cho cộng đồng</h4>
+                        <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body" action="">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Thông tin:</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Thông tin chi tiết mỗi file</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade py-15 py-md-30 show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                                <div class="row-change"> 
+                                    <div class="cot-5-lg upImgTotal" id="uploadFileTotal"></div>
+                                    <div class="cot-7-lg row-change upInforTotal">
+                                        <div class="form-floating cot-6-lg">
+                                            <input type="text" class="form-control" id="uploadTitle_1" placeholder="" name="titleGeneral">
+                                            <label for="uploadTitle_1">Tiêu đề:</label>
+                                        </div>
+                                        <div class="form-floating cot-6-lg">
+                                            <input type="text" class="form-control" id="uploadAuthor_1" placeholder="" name="authorGeneral">
+                                            <label for="uploadAuthor_1">Tác giả:</label>
+                                        </div>
+                                        <div class="form-floating cot-6-lg">
+                                            <input type="date" class="form-control" id="uploadDate_1" placeholder="" name="dateGeneral">
+                                            <label for="uploadLocation_1">Thời gian:</label>
+                                        </div>
+                                        <div class="form-floating cot-6-lg">
+                                            <input type="text" class="form-control" id="uploadLocation_1" placeholder="" name="addressGeneral">
+                                            <label for="uploadLocation_1">Địa điểm:</label>
+                                        </div>
+                                        <div class="form-floating cot-12-lg">
+                                            <textarea class="form-control" placeholder="Leave a comment here"
+                                                id="uploadNote_1" name="noteGeneral"></textarea>
+                                            <label for="uploadNote_1">Ghi chú khác:</label>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="tab-pane fade py-15 py-md-30" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="main-btn" onclick="submitSendFile()">Tiếp tục</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
         <div class="donggop-huongdan py-30 py-md-60 py-lg-90 bg-grey">
             <div class="container">
                 <h3 class="h3-title underline mb-4">Hướng dẫn quyên góp</h3>
@@ -167,15 +253,137 @@
                     </p>
             </div>
         </div>
+
+        <!-- Thankyou Modal -->
+    <a class="main-btn mx-auto" href="#" data-bs-toggle="modal" data-bs-target="#thankModal">
+        Cảm ơn Modal
+    </a>
+    <!-- Modal -->
+    <div class="modal fade" id="thankModal" tabindex="-1" aria-labelledby="thankModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="thankBox">
+                    <img src="https://source.unsplash.com/random/800x800/?monkey" alt="">
+                    <h4 class="thankText">Cảm an bạn đã đóng góp một viên gạch giá trị để xây dựng kho tàng tri thức xanh!
+                        <a href="/"><i class="bi bi-house-door-fill"></i>Về lại trang chủ</a>
+                    </h4>
+                </div>
+            </div>
+        </div>
     </div>
+
+    </div>
+
+    
+
     <%- include('./components/footer') -%>
     <%- include('./components/end') -%>
     <script>
-        const formDongGop = $('#dongGopForm');
-        if(getCookie('isAuthLogined') === 'true'){
-            formDongGop.addClass('active');
+        document.addEventListener('DOMContentLoaded', function () {
+            const radioInputs = document.querySelectorAll('input[name="dongGopFile"]');
+            const fileInputGroups = document.querySelectorAll('.inputGroupFile .input-group');
+    
+            radioInputs.forEach(function (radioInput, index) {
+                radioInput.addEventListener('change', function () {
+                    fileInputGroups.forEach(function (fileInputGroup, fileIndex) {
+                        if (index === fileIndex) {
+                            fileInputGroup.classList.remove('d-none');
+                        } else {
+                            fileInputGroup.classList.add('d-none');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    <script>
+      document.getElementById('inputGroupFile02').addEventListener('change', handleFileSelect);
+      document.getElementById('inputGroupFile03').addEventListener('change', handleFileSelect);
+      document.getElementById('inputGroupFile04').addEventListener('change', handleFileSelect);
+    
+      function handleFileSelect(event) {
+        const files = event.target.files;
+        if(files.length > 0){
+            const parent = document.getElementById('uploadFileTotal');
+            const itemChild = document.getElementById('profile-tab-pane');
+            parent.innerHTML = '';
+            itemChild.innerHTML = '';
+            for (const file of files) {
+                const children = document.createElement('div');
+                const imgChild = document.createElement('img');
+                const spanChild = document.createElement('span');
+                children.className = 'upFileTotal';
+                if (isImageFile(file.name)) {
+                    imgChild.src = URL.createObjectURL(file);
+                } else {
+                    imgChild.src = '../public/app/images/file_document.webp';
+                }
+                spanChild.textContent = file.name;
+                children.appendChild(imgChild);
+                children.appendChild(spanChild);
+                parent.appendChild(children);
+
+                const newItemChild = document.createElement('div');
+                newItemChild.className = 'row-change uploadItem';
+                newItemChild.innerHTML = 
+                `   
+                    <div class="cot-4-md uploadFile">
+                        <img src="${isImageFile(file.name) ? URL.createObjectURL(file) : '../public/app/images/file_document.webp'}" alt="">
+                        <span class="name-image">${file.name}</span>
+                    </div>
+                    <div class="cot-8-md uploadInfor">
+                        <div class="row-change uploadForm">
+                            <div class="form-floating cot-6-lg">
+                                <input type="text" class="form-control" name="title" placeholder="">
+                                <label for="uploadTitle_1">Tiêu đề:</label>
+                            </div>
+                            <div class="form-floating cot-6-lg">
+                                <input type="text" class="form-control" name="author" placeholder="">
+                                <label for="uploadAuthor_1">Tác giả:</label>
+                            </div>
+                            <div class="form-floating cot-6-lg">
+                                <input type="date" class="form-control" name="date" placeholder="">
+                                <label for="uploadLocation_1">Thời gian:</label>
+                            </div>
+                            <div class="form-floating cot-6-lg">
+                                <input type="text" class="form-control" name="address" placeholder="">
+                                <label for="uploadLocation_1">Địa điểm:</label>
+                            </div>
+                            <div class="form-floating cot-12-lg">
+                                <textarea class="form-control" name="note" placeholder="Leave a comment here"
+                                    id="uploadNote_1"></textarea>
+                                <label for="uploadNote_1">Ghi chú khác:</label>
+                            </div>
+                            <a href="#">
+                                <i class="bi bi-trash"></i>
+                                <span>Xoá file</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                `;
+                itemChild.appendChild(newItemChild);      
+            }
+            openUploadModal();
+        }
+      }
+
+      function isImageFile(fileName) {
+        const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+        const fileExtension = fileName.split('.').pop().toLowerCase();
+        return imageExtensions.includes(fileExtension);
+      }
+
+      function openUploadModal() {
+        const uploadModal = new bootstrap.Modal(document.getElementById('uploadModal'), {
+        keyboard: false
+        });
+        uploadModal.show();
         }
     </script>
+
+    <script src="../public/app/js/validator.js"></script>
+    <script src="../public/app/js/validate-form.js"></script>
 </body>
 
 </html>

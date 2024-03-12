@@ -25,65 +25,63 @@
 
                     <div class="hinhanh-gallery-detail gallery-container d-flex align-items-center justify-content-center mb-5"
                         id="gallery-container">
-
-                        <a class="gallery-item"
-                            data-src="<%= prod.images[0].image%>"
-                            data-sub-html="#caption1">
-                            <img class="img-fluid"
-                                src="<%= prod.images[0].image%>" />
-                        </a>
+                        
                         <%if(prod.images.length > 0 ){
-                            prod.images.forEach((imageItem, index) => {
-                                if(index > 0){
-                                pathImage = imageItem.image
+                            prod.images.forEach((imageItem) => {
+                                pathImage = imageItem.image.replace(/\\/g, '/')
                            %>
                         <a class="gallery-item"
                             data-src="<%= pathImage%>"
-                            data-sub-html="<%= index%>">
+                            data-sub-html="#<%= imageItem._id%>">
                             <img class="img-fluid"
                                 src="<%= pathImage%>" />
                         </a>
-                     <% } })
-                        }%>
+                     <% })}%>
                     </div>
 
-                    <!-- caption -->
-                    <div id="caption1" style="display:none">
-                        <h4 class="br-line-1">Bowness Bay</h4>
-                        <span>Tác giả: <strong>Lê Khả Ý</strong></span>
-                        <span>Thời gian: <strong>15/04/2020</strong></span>
-                        <span>Địa điểm: <strong>Bàn Cờ</strong></span>
+
+                    <%if(prod.images.length > 0 ){
+                        prod.images.forEach((imageItem, index) => {
+                       %>
+                    <div id="<%= imageItem._id%>" style="display:none">
+                        <h4 class="br-line-1"><%= prod.name%></h4>
+                        <%if(imageItem.author && imageItem.author !== ''){%>
+                            <span>
+                                Tác giả: <strong><%= imageItem.author%></strong>
+                            </span>
+                        <%}%>
+
+                        <%if(imageItem.year && imageItem.year !== ''){%>
+                            <span>
+                                Thời gian: <strong><%= imageItem.year%></strong>
+                            </span>
+                        <%}%>
+
+                        <%if(imageItem.address && imageItem.address !== ''){%>
+                            <span>
+                                Địa điểm: <strong><%= imageItem.address%></strong>
+                            </span>
+                        <%}%>
                     </div>
-                    <div id="caption2" style="display:none">
-                        <h4 class="br-line-1">Bowness Bay</h4>
+                    <% })
+                    }%>
+                  
+                    <div class="tailieu-detail-icon justify-content-center">
                         <span>
-                            Tác giả: <strong>Tăng Phước Nhân</strong>
+                            <i class="me-2 bi bi-suit-heart<%if(dataBasicInfo && prod.likes.includes(dataBasicInfo._id)){%>-fill<%}%>" data-action="like" data-post-id="<%= prod._id%>"></i>
+                            <span id="likeCustomer"><%= prod.likes.length%></span>
                         </span>
-                        <span>
-                            Thời gian: <strong>01/04/2019</strong>
-                        </span>
-                        <span>
-                            Địa điểm: <strong>Sơn Trà</strong>
-                        </span>
-                    </div>
-                    <div id="caption3" style="display:none">
-                        <h4 class="br-line-1">Bowness Bay</h4>
-                        <span>
-                            Tác giả: <strong>Nguyễn Công Kha</strong>
-                        </span>
-                        <span>
-                            Thời gian: <strong>04/01/2023</strong>
-                        </span>
-                        <span>
-                            Địa điểm: <strong>Sơn Trà</strong>
-                        </span>
+                        <span><i class="me-2 bi bi-download"></i><span id="number-download"><%= prod.downloads%></span></span>
+                        <span><i class="me-2 bi bi-reply"></i>0</span>
+                        <span><i class="me-2 bi bi-eye"></i><%= prod.views%></span>
+                        <span><i class="me-2 bi bi-chat-left"></i><%= prod.comments.length%></span>
                     </div>
 
                     <div class="hinhanh-mieuta mb-3">
                         <h3 class="h3-title underline position-relative mb-4">Miêu tả</h3>
                         <%- prod.description%>
                     </div>
-                <div class="nav-tag mb-5">
+                    <div class="nav-tag mb-5">
                     <ul>
                         <span>Từ khoá:</span>
                         <% 
@@ -106,65 +104,21 @@
                     <div class="hinhanh-quantam">
                         <h3 class="h3-title underline position-relative mb-5">Có thể bạn quan tâm</h3>
                         <div class="owl-quantam owl-carousel owl-theme mb-5">
-                            <div class="item">
-                                <div class="img-box trans-3 mb-3">
-                                    <a href="#"><img src="https://source.unsplash.com/random/400x400/?animal"
-                                            alt=""></a>
-                                </div>
-                                <a href="#">
-                                    <h4 class="br-line-2">Tên album</h4>
-                                </a>
-                                <span class="eng-name text-color-1">Tên tiếng Anh</span>
-                                <span class="latinh-name text-color-1">Tên tiếng Latinh</span>
-                            </div>
-                            <div class="item">
-                                <div class="img-box trans-3 mb-3">
-                                    <a href="#">
-                                        <img src="https://source.unsplash.com/random/401x401/?animal" alt="">
-                                    </a>
-                                </div>
-                                <a href="#">
-                                    <h4 class="br-line-2">Tên album</h4>
-                                </a>
-                                <span class="eng-name text-color-1">Tên tiếng Anh</span>
-                                <span class="latinh-name text-color-1">Tên tiếng Latinh</span>
-                            </div>
-                            <div class="item">
-                                <div class="img-box trans-3 mb-3">
-                                    <a href="#">
-                                        <img src="https://source.unsplash.com/random/402x402/?animal" alt="">
-                                    </a>
-                                </div>
-                                <a href="#">
-                                    <h4 class="br-line-2">Tên album</h4>
-                                </a>
-                                <span class="eng-name text-color-1">Tên tiếng Anh</span>
-                                <span class="latinh-name text-color-1">Tên tiếng Latinh</span>
-                            </div>
-                            <div class="item">
-                                <div class="img-box trans-3 mb-3">
-                                    <a href="#">
-                                        <img src="https://source.unsplash.com/random/403x403/?animal" alt="">
-                                    </a>
-                                </div>
-                                <a href="#">
-                                    <h4 class="br-line-2">Tên album</h4>
-                                </a>
-                                <span class="eng-name text-color-1">Tên tiếng Anh</span>
-                                <span class="latinh-name text-color-1">Tên tiếng Latinh</span>
-                            </div>
-                            <div class="item">
-                                <div class="img-box trans-3 mb-3">
-                                    <a href="#">
-                                        <img src="https://source.unsplash.com/random/404x404/?animal" alt="">
-                                    </a>
-                                </div>
-                                <a href="#">
-                                    <h4 class="br-line-2">Tên album</h4>
-                                </a>
-                                <span class="eng-name text-color-1">Tên tiếng Anh</span>
-                                <span class="latinh-name text-color-1">Tên tiếng Latinh</span>
-                            </div>
+                        <%if(dataProducts && dataProducts.length > 0){
+                            dataProducts.forEach( prodRelated => {
+                                if(prodRelated._id !== prod._id){%>
+                                    <div class="item">
+                                        <div class="img-box trans-3 mb-3">
+                                            <a href="#"><img src="<%= prodRelated.images[0].image%>"
+                                                    alt="<%= prodRelated.images[0].alt%>"></a>
+                                        </div>
+                                        <a href="#">
+                                            <h4 class="br-line-2"><%= prodRelated.name%> </h4>
+                                        </a>
+                                    </div>
+                                <%} 
+                            })
+                        }%>
                         </div>
                     </div>
 
@@ -173,7 +127,7 @@
             </div>
         </div>
     </div>
-
+    <%- include('./components/loginModal') -%>
     <%- include('./components/footer') -%>
     <%- include('./components/end') -%>
 

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
+  data-assets-path="../public/admin/assets/" data-template="vertical-menu-template-free">
+
+<head>
+  <%- include('../partials/head') -%>
+  <%- include('../partials/common-crud-css') -%>
+</head>
+
+<body>
+  <!-- Layout wrapper -->
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <%- include('../partials/navbar-left') -%>
+      <!-- Layout container -->
+      <div class="layout-page">
+        <%- include('../partials/navbar-top') -%>
+        <!-- Content wrapper -->
+        <div class="content-wrapper">
+          <div class="container-xxl flex-grow-1 container-p-y ">
+            <!-- ============================= -->
+            <!-- Content Product -->
+            <!-- ============================= -->
+
+
+            <form class="browser-default-validation j-pro" id="formProductData" action="/admin.editProduct"
+              method="POST">
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 order-1 order-md-0">
+                    <div class="card">
+                      <div class="row card-header">
+                        <h4 class="col-10">NỘI DUNG CHI TIẾT</h4>
+                        <div class="dropdown col-2">
+                          <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                          </button>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item cursor-pointer action-delete" id="t57yp4PEP" onclick="confirmDelete('<%= data._id %>')">
+                              <i class="bi bi-trash3-fill"></i>
+                              Delete
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="donggopDetailSection p-3 p-xl-5">
+                        <div class="row g-5 mb-5">
+                          <div class="col-md-6">
+                            <h5>Thành viên:</h5>
+                            <div class="inforBox">
+                              <div
+                                class="inforLabel d-flex flex-column flex-lg-row align-items-start justify-content-lg-between">
+                                <span><i class="bi bi-person-fill"></i>Họ và tên:</span><span class="ps-4 ps-lg-0"><%= data.customer.fullname%></span>
+                              </div>
+                              <div
+                                class="inforLabel d-flex flex-column flex-lg-row align-items-start justify-content-lg-between">
+                                <span><i class="bi bi-envelope-fill"></i>Email:</span><span class="ps-4 ps-lg-0"><%= data.customer.email%></span>
+                              </div>
+                              <div
+                                class="inforLabel d-flex flex-column flex-lg-row align-items-start justify-content-lg-between">
+                                <span><i class="bi bi-telephone-fill"></i>Số điện thoại:</span><span class="ps-4 ps-lg-0"><%= data.customer.phone%></span>
+                              </div>
+                              <div
+                                class="inforLabel d-flex flex-column flex-lg-row align-items-start justify-content-lg-between">
+                                <span><i class="bi bi-geo-alt-fill"></i>Địa chỉ:</span><span class="ps-4 ps-lg-0"><%= data.customer.address%></span>
+                              </div>
+                              <div
+                                class="inforLabel d-flex flex-column flex-lg-row align-items-start justify-content-lg-between">
+                                <span><i class="bi bi-person-fill"></i>Tác quyền:</span><span class="ps-4 ps-lg-0"><%= data.customer.copyright%></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <h5>Thông tin tổng quát:</h5>
+                            <div class="inforBox">
+                              <div
+                                class="inforLabel d-flex flex-column flex-lg-row align-items-start justify-content-lg-between">
+                                <span>
+                                    <i class="bi bi-collection-fill"></i>
+                                    Thể loại:
+                                </span>
+                                <%if(data.type === 'image'){%>
+                                    <span class="ps-4 ps-lg-0">Hình ảnh</span>
+                                <%}else if (data.type === 'video'){%>
+                                    <span class="ps-4 ps-lg-0">Video</span>
+                                <%}else{%>
+                                    <span class="ps-4 ps-lg-0">Tài liệu</span>
+                                <%}%>
+                              </div>
+                              <div
+                                class="inforLabel d-flex flex-column flex-lg-row align-items-start justify-content-lg-between">
+                                <span><i class="bi bi-tag-fill"></i>Tên bộ ảnh/video/tài liệu:</span><span class="ps-4 ps-lg-0"><%= data.title%></span>
+                              </div>
+                              <div
+                                class="inforLabel d-flex flex-column flex-lg-row align-items-start justify-content-lg-between">
+                                <span><i class="bi bi-card-text"></i>Lời dẫn:</span><span class="text-lg-end ps-4 ps-lg-0"><%= data.content%></span>
+                              </div>
+                              <div
+                                class="inforLabel d-flex flex-column flex-lg-row align-items-start justify-content-lg-between">
+                                <span><i class="bi bi-calendar3"></i>Thời gian:</span><span class="ps-4 ps-lg-0"><%= data.date%></span>
+                              </div>
+                              <div
+                                class="inforLabel d-flex flex-column flex-lg-row align-items-start justify-content-lg-between">
+                                <span><i class="bi bi-geo-alt-fill"></i>Địa điểm:</span><span class="ps-4 ps-lg-0"><%= data.address%></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <h5>Nội dung đóng góp:</h5>
+                        <div class="commentSection dgDetailTable">
+                          <div class="commentHead dgDetailHead">
+                            <span class="dgTenFile">Tên file</span>
+                            <span class="dgPreview">Preview</span>
+                            <span class="dgTen">Tên</span>
+                            <span class="dgNote">Lời dẫn</span>
+                            <span class="dgTime">Thời gian</span>
+                            <span class="dgLocation">Địa điểm</span>
+                            <span class="action">Chọn</span>
+                          </div>
+                          <div class="commentBody dgDetailBody">
+                        
+                        <%if(data.files){
+                            data.files.forEach( item => {
+                                nameFile = item.name;
+                                title = item.title;
+                                pathImage = item.file;
+                                content = item.content;
+                                date = item.date;
+                                address = item.address;
+                                %>
+                                <div class="commentItem dgDetailItem">
+                                    <span class="dgTenFile"><%= nameFile%></span>
+                                    <span class="dgPreview">
+                                        <%if(data.type === 'video'){%>
+                                            <video width="260" height="180" controls>
+                                                <source src="/<%= pathImage.replace(/\\/g, '/')%>" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                              </video>                                              
+                                        <%}else if(data.type === 'image'){%>
+                                            <img src="/<%= pathImage.replace(/\\/g, '/')%>" alt="">
+                                        <%}else{%>
+                                            <img src="../public/admin/assets/img/general/doc.jpg" alt="">
+                                        <%}%>
+                                    </span>
+                                    <span class="dgTen"><%= title%></span>
+                                    <span class="dgNote"><%= content%></span>
+                                    <span class="dgTime"><%= date%></span>
+                                    <span class="dgLocation"><%= address%></span>
+                                    <span class="action">
+                                      <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"
+                                          aria-expanded="false">
+                                          <i class="bi bi-three-dots-vertical"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                          <a class="dropdown-item" href="/<%= pathImage.replace(/\\/g, '/')%>" id="t57yp4PEP" download href="#0">
+                                            <i class="bi bi-cloud-arrow-down-fill"></i>
+                                            Tải xuống
+                                          </a>
+                                          <a class="dropdown-item" id="t57yp4PEP" onclick="" href="#0">
+                                            <i class="bi bi-trash3-fill"></i>
+                                            Delete
+                                          </a>
+                                        </div>
+                                      </div>
+                                    </span>
+                                  </div>
+                           <% }) } %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </form>
+            <!-- ============================= -->
+            <!-- Content Product -->
+            <!-- ============================= -->
+          </div>
+          <!-- Footer -->
+          <%- include('../partials/footer') -%>
+          <!-- / Footer -->
+          <div class="content-backdrop fade"></div>
+        </div>
+        <!-- Content wrapper -->
+      </div>
+      <!-- / Layout Product -->
+    </div>
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+  </div>
+  <!-- / Layout wrapper -->
+
+  <%- include('../partials/common-js') -%>
+  <%- include('../partials/common-crud-js') -%>
+  <script src="../public/admin/assets/js/pages/contribute/edit.js"></script>
+</body>
+
+</html>

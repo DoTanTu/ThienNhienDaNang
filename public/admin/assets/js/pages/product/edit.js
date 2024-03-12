@@ -71,7 +71,10 @@ $(document).ready(function() {
               bytesSent: 110000,
               filename: image.name,
               path: image.image,
-              alt: image.alt
+              alt: image.alt,
+              author: image.author,
+              year: image.year,
+              address: image.address,
             },
             status: "success",
             previewElement: {},
@@ -150,7 +153,10 @@ $(document).ready(function() {
             myDropzone.files.forEach(x => {
               dataImages.push({
                 image: x.upload.path,
-                alt : $('#alt_'+x.upload.uuid).val()
+                alt : $('#alt_'+x.upload.uuid).val(),
+                author : $('#author_'+x.upload.uuid).val(),
+                year : $('#time_'+x.upload.uuid).val(),
+                address : $('#address_'+x.upload.uuid).val(),
               })
             });
           }
@@ -219,7 +225,7 @@ $(document).ready(function() {
         if (responseText.success == true) {
           Toast.fire({
             icon: 'success',
-            title: 'Thêm thành công!'
+            title: 'Cập nhật thành công!'
           })
           setTimeout(function(){
             location.reload();
@@ -228,7 +234,7 @@ $(document).ready(function() {
         }else{
           Toast.fire({
             icon: 'error',
-            title: 'Thêm không thành công!'
+            title: 'Cập nhật không thành công!'
           })
         }
     }

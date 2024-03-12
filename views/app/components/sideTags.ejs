@@ -1,16 +1,20 @@
-<div class="side-box tags-box">
-    <h4 class="mb-4">Tags</h4>
-    <div class="tags-list">
-        <%if(dataAttibutes && dataAttibutes.length > 0){
-            const HashTag = dataAttibutes.find(attribute => attribute.tag === "Hashtag" );
-            if(HashTag){
-                HashTag.values.forEach( item => {
-                    if(item.code !== 'san_pham_dai_dien'){
-                        code = item.code
-                        value = item.value
-                        numberProduct = dataProducts.filter(prod => prod.hashtags.some(tag => tag === code)).length;
-             %>
-            <a class="tag-item" href="?hashtag=<%= code%>"><%= value%><i><%= numberProduct%></i></a>
-            <%  }})}} %>
+<%if(dataAttibutes && dataAttibutes.length > 0){%>
+
+    <div class="side-box tags-box">
+        <h4 class="mb-4">Tags</h4>
+        <div class="tags-list">
+            <%if(dataAttibutes && dataAttibutes.length > 0){
+                const HashTag = dataAttibutes.find(attribute => attribute.tag === "Hashtag" );
+                if(HashTag){
+                    HashTag.values.forEach( item => {
+                        if(item.code !== 'san_pham_dai_dien'){
+                            code = item.code
+                            value = item.value
+                            numberProduct = dataProducts.filter(prod => prod.hashtags.some(tag => tag === code)).length;
+                 %>
+                <a class="tag-item" href="?hashtag=<%= code%>"><%= value%><i><%= numberProduct%></i></a>
+                <%  }})}} %>
+        </div>
     </div>
-</div>
+
+<%}%>

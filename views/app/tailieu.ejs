@@ -36,22 +36,21 @@
                                 <div class="cot-12 cot-6-lg d-flex gap-3 gap-md-3">
                                     <div class="home-tulieu-img">
                                         <img class="mb-2" src="../public/app/images/icon/pdf-file.svg" alt="">
-                                        <a href="javascript.void(0);" data-bs-toggle="modal" data-action="download" data-post-id="123" data-path="<%= pdfPath%>">Tải xuống</a>
+                                        <a href="javascript.void(0);" data-bs-toggle="modal" data-action="download" data-post-id="<%= item._id%>" data-path="<%= pdfPath%>">Tải xuống</a>
                                     </div>
                                     <div class="home-tulieu-text">
                                         <a href="<%= name.replace(/ /g , '-')%>-<%= item.pageId %>.<%= item._id %>.html">
                                             <h5 class="mb-3 br-line-3"><%= name%></h5>
                                         </a>
                                         <div class="home-tulieu-date d-flex justify-content-around">
-                                            <span>Trương Quốc Đại</span>
-                                            <span>10/06/2022</span>
+                                            <span><%= item.additional.author%></span>
+                                            <span><%= item.additional.publishYear%></span>
                                         </div>
                                     </div>
                                 </div>
                                <%  }})
                                 }%>
                             </div>
-
                             <nav aria-label="pageBar" class="my-5">
                                 <ul class="pagination justify-content-center flex-wrap">
                                     <li class="page-item disabled"><a class="page-link">Trước</a></li>
@@ -91,7 +90,7 @@
         </div>
     </div>
 
-    
+<!--     
     <div class="modal fade" id="loginRequiredModal" tabindex="-1" aria-labelledby="cateDetailLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-md">
         <div class="modal-content">
@@ -113,8 +112,9 @@
               </div>
         </div>
         </div>
-    </div>
+    </div> -->
 
+    <%- include('./components/loginModal') -%>
     <%- include('./components/footer') -%>
     <%- include('./components/end') -%>
     </script>

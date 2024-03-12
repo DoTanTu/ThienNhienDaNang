@@ -140,9 +140,9 @@
         $.ajax({
           type: "POST", 
           url: "/increase-download",  
-          data: { productId: productId },  
+          data: { productId: productId },
           success: function(response) {
-            $('#number-download').text(response.total)
+            $('#number-download').text(response.total);
           },
           error: function(error) {
             console.error("Download request failed:", error);
@@ -176,4 +176,139 @@
         }
         return "";
     }
+    
+
+    function submitSendFile(){
+        var fileInput = null;
+        const radioButtonSelected = isRadioButtonSelected();
+        if(radioButtonSelected === 'image'){
+            fileInput = document.getElementById('inputGroupFile02');
+        }else if(radioButtonSelected  === 'video'){
+            fileInput = document.getElementById('inputGroupFile03');
+        }else {
+            fileInput = document.getElementById('inputGroupFile04');
+        }
+        
+        const files = fileInput.files;
+        console.log(files);
+        if (files && files.length > 0) {
+            const formData = new FormData();
+            formData.append('page', 'contribute');
+            for (let i = 0; i < files.length; i++) {
+                formData.append('contributeCustomer', files[i]);
+            }
+            $.ajax({
+                type: 'POST',
+                url : '/uploadFileContribute',
+                data : formData,
+                contentType: false,
+                processData: false,
+                success: (response) => {
+                    uploadResponse(response.data);
+                },
+                error: (e) => {
+                    console.log(e);
+                }
+            });
+            $('#uploadModal').modal('hide');
+        }else{
+            alert('Bạn chưa chọn được sản phẩm');
+        }
+    }
+
+    function uploadResponse(data){
+        $('.uploadItem').each(function(index) {
+            const uploadItem = $(this);
+            uploadItem.find('.uploadFile img').attr('data-src', data[index].path);
+        });
+    }
+
+    // $('#dongGopForm').on('submit', function(){
+    //     event.preventDefault();
+
+    //     const customer = {
+    //         customerId:  $('input[name="customerId"]').val(),
+    //         fullname:  $('input[name="fullname"]').val(),
+    //         copyright:  $('input[name="copyright"]').val(),
+    //         phone: $('input[name="phone"]').val(),
+    //         address:  $('input[name="address"]').val(),
+    //         email:  $('input[name="email"]').val(),
+    //     }
+
+    //     const filesInput = [];
+    //     $('.uploadItem').each(function(index) {
+    //         filesInput.push({
+    //             name: $(this).find('span .name-image').text(),
+    //             title: $(this).find('input[name="title"]').val(),
+    //             file: $(this).find('img').data('src'),
+    //             content: $(this).find('textarea[name="note"]').val(),
+    //             date: $(this).find('input[name="date"]').val(),
+    //             address: $(this).find('input[name="address"]').val(),
+    //         })
+    //     });
+        
+    //     const data = {
+    //         title: $('input[name="titleGeneral"]').val(),
+    //         customer: customer,
+    //         type: isRadioButtonSelected(),
+    //         content:$('textarea[name="noteGeneral"]').val(),
+    //         date: $('input[name="dateGeneral"]').val(),
+    //         address: $('input[name="addressGeneral"]').val(),
+    //         files: filesInput
+    //     };
+
+    //     $.ajax({
+    //         url: 'addContribute',
+    //         type: 'POST',
+    //         contentType: 'application/json',
+    //         data: JSON.stringify(data),
+    //         success: function(response) {
+    //             console.log( response);
+    //         },
+    //         error: function(error) {
+    //             console.error( error);
+    //         }
+    //     });
+    // });
+
+    // var isRadioButtonSelected = function () {
+    //     let selectedType = null;
+    //     $('input[name="dongGopFile"]').each(function() {
+    //         const isChecked = $(this);
+    //         if (isChecked.prop('checked')) {
+    //             const selectedRadioId = isChecked.attr('id');
+    //             if (selectedRadioId === 'dongGopImg') {
+    //                 selectedType = 'image';
+    //             } else if (selectedRadioId === 'dongGopVid') {
+    //                 selectedType = 'video';
+    //             } else if (selectedRadioId === 'dongGopDoc') {
+    //                 selectedType = 'document';
+    //             }
+    //         }
+    //     });
+    //     return selectedType;
+    // };
+
+    $('#formHandleLogin').submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '/login',
+            data : $(this).serialize(),
+            success: function (response) {
+                if(response.success === true) {
+                    window.location.reload();
+                }else{
+                    $('.error-message-popup').css('display', 'block');
+                }
+            },
+            error: function (e){
+                Toast.fire({
+					icon: 'error',
+					title: 'Lỗi trong quá trình đăng nhập!'
+				})
+            }
+        });
+    });
+
     

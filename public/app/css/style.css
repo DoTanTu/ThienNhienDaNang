@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
 * {
     padding: 0;
     margin: 0;
@@ -1084,6 +1086,7 @@ footer .underline::after {
 }
 
 .traloi-btn:hover {
+    cursor: pointer;
     background-color: var(--color-text-1);
     color: #fff;
 }
@@ -1110,7 +1113,7 @@ footer .underline::after {
 .comment-box form {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     padding-block: 30px;
 }
 
@@ -1169,14 +1172,14 @@ footer .underline::after {
 }
 
 .form-group{
-    
+    width: 100%;
 }
 
 .comment-box form .cm-ho,
 .comment-box form .cm-ten,
 .comment-box form .cm-mail,
 .comment-box form .cm-nghe {
-    width: 100%;
+    width: 49%;
 }
 
 .comment-box form textarea {
@@ -1216,6 +1219,16 @@ footer .underline::after {
     border: 1px solid red;
     margin-bottom: 2px !important;
 }
+
+.error-message-popup{
+    padding: 10px 20px;
+    color: #842029;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color: rgba(249, 134, 134, 0.5);
+    display: none;
+}
+
 footer a:hover span,
 footer a:hover i {
     color: var(--color-2);
@@ -2267,7 +2280,12 @@ footer a:hover i {
     display: flex;
     align-items: flex-start;
 }
-
+.tailieu-detail-icon span:hover{
+    cursor: pointer;
+}
+.tailieu-detail-icon span .bi-suit-heart-fill{
+    color: var(--color-2);
+}
 .tailieu-detail-btn a {
     display: inline-block;
     /* padding: 5px 10px; */
@@ -3046,7 +3064,13 @@ footer a:hover i {
     row-gap: 30px;
     padding-bottom: 60px;
 }
+.tab-content-search{
+    display: none;
 
+}
+.tab-content-search.active{
+    display: flex;
+}
 .timkiem-book-box {
     justify-content: space-between;
     column-gap: 30px;
@@ -3496,7 +3520,7 @@ color: var(--color-text-1);
     width: auto;
 }
 
-.loginPage .form-control {
+.loginBox .form-control {
     height: 50px;
 }
 
@@ -3692,7 +3716,144 @@ color: var(--color-text-1);
 .dongGopForm.active .loginBtn {
     display: none;
 }
+#uploadModal .uploadItem img {
+    /* min-height: 150px; */
+    max-height: 200px;
+    max-width: 100%;
+    object-fit: contain;
+}
 
+#uploadModal .uploadItem {
+    margin-bottom: 30px;
+}
+
+#uploadModal .uploadFile {
+    position: relative;
+    min-height: 150px;
+}
+
+#uploadModal .uploadFile span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    padding: 5px;
+    bottom: 0;
+    /* text-align: center; */
+    color: #fff;
+    background-color: #00000090;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+    -webkit-line-clamp: 3;
+}
+.upImgTotal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2%;
+    row-gap: 15px;
+}
+
+.upFileTotal {
+    width: 49%;
+}
+
+.upFileTotal img {
+    height: 100px;
+    object-fit: contain;
+}
+
+.upFileTotal span {
+    font-size: 14px;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+    -webkit-line-clamp: 2;
+}
+
+.upInforTotal {
+    height: fit-content;
+}
+
+#uploadModal .tab-content>.tab-pane {
+    overflow-y: auto;
+    max-height: 60vh;
+}
+
+.nav-tabs .nav-link {
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--color-1);
+    background-color: rgba(var(--rgb-1), .1);
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--color-bg);
+    box-shadow: 0px 5px 15px #00000030;
+    border-color: rgba(var(--rgb-1), .5);
+}
+
+.nav-tabs .nav-link:hover {
+    color: var(--color-2);
+    border-color: rgba(var(--rgb-2), .5);
+}
+
+.nav-tabs {
+    flex-wrap: nowrap;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#thankModal .modal-content {
+    border-radius: 15px;
+    overflow: hidden;
+}
+#thankModal .thankBox {
+    height: 80vh;
+}
+
+#thankModal .thankText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+    line-height: 1.5;
+    font-size: 25px;
+    width: 70%;
+}
+
+#thankModal .thankText::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: #000;
+    opacity: 0.6;
+    z-index: -1;
+    margin: -30px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px #00000050;
+}
+
+#thankModal .thankText a {
+    display: block;
+    font-weight: 400;
+    font-style: italic;
+    margin-top: 15px;
+    color: var(--color-2);
+}
+
+#thankModal .thankText a:hover {
+    color: #fff;
+}
+
+#thankModal .thankText a i {
+    margin-right: 5px;
+}
 
 
 

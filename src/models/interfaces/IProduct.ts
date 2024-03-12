@@ -13,6 +13,7 @@ export interface IProduct {
   pdf : string
   ecommerce : IProductEcommerce
   ecommercePlus : [IProductEcommercePlus]
+  additional : IProductAdditional
   hashtags : string[]
   commentIds : string[]
   contact : IProductContact
@@ -27,7 +28,7 @@ export interface IProduct {
   showTop : boolean
   label : string
   views : number
-  likes : number
+  likes : string[]
   shares : number
   downloads : number
   createdAt: Date
@@ -57,6 +58,7 @@ export interface IProductImage {
   name : string
   author : string
   copyright : string
+  address : string
   source : string
   year: string
 }
@@ -96,14 +98,31 @@ export interface IProductContact {
   phone : string
   country : string
 }
-
 export interface IProductDescriptionPlus {
   title : string
   description : string
 }
 
+export interface IProductAdditional{
+  _id : string
+  typeof : string        
+  author : string
+  copyright : string
+  publishYear : string
+  source : string
+  nameVn : string
+  nameEn : string
+  nameLa : string
+  typeEvent : string
+  dateStart : string
+  timeStart : string
+  dateEnd : string
+  timeEnd : string
+  address : string
+}
+
 export interface IProductInputDTO {
-  _id :string
+  _id : string
   url : string
   pageId : string
   categoryIds : string[]
@@ -116,6 +135,7 @@ export interface IProductInputDTO {
   alts : [string]
   ecommerce : IProductEcommerce
   ecommercePlus : [IProductEcommercePlus]
+  additional : IProductAdditional
   hashtags : string[]
   commentIds : string[]
   contact : IProductContact
@@ -129,7 +149,7 @@ export interface IProductInputDTO {
   showTop : boolean
   label : string
   views : number
-  likes : number
+  likes : string[]
   shares : number
   downloads : number
   languages : [IProductLanguage]
@@ -152,3 +172,4 @@ export interface  IProductQuery {
   isFullSite : boolean
   label : string
 }
+

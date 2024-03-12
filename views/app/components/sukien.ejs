@@ -9,7 +9,7 @@
                     name = prod.name;
                     desShort = prod.desShort;
                     pathImage = prod.images[0]?.image || "";
-
+                    additional = prod.additional
               %>
             <div class="item">
                 <div class="sukien-box row-change">
@@ -23,9 +23,22 @@
                         <span class="sukien-label">Sự kiện sắp tới</span>
                         <h4 class="mb-3"><%= name%></h4>
                         <div class="sukien-time mb-3">
-                            <span class="sukien-ngay">27 / 08 /2022</span>
-                            <span class="sukien-gio">08:45 AM - 08:00 PM</span>
-                            <span class="sukien-diadiem">Hội Trường phòng 107. Toà nhà A5, Trường Đại học sư phạm Đà Nẵng, 459 Tôn Đức Thắng, quận Liên Chiểu, Đà Nẵng</span>
+                            <span class="sukien-ngay">
+                                <%if(additional.typeEvent === 'one'){%>
+                                    <%= additional.dateStart%>
+                                <%}else{%>
+                                    <%= additional.dateStart%> - <%= additional.dateEnd%>
+                                <%}%>
+                            </span>
+
+                            <span class="sukien-gio">
+                                <%if(additional.typeEvent === 'one'){%>
+                                    <%= additional.timeStart%>
+                                <%}else{%>
+                                    <%= additional.timeStart%> - <%= additional.timeEnd%>
+                                <%}%>
+                            </span>
+                            <span class="sukien-diadiem"><%= additional.address%></span>
                         </div>
                         <div class="sukien-text">
                             <p class="br-line-3"><%= desShort%></p>

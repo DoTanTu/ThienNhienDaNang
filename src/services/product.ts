@@ -50,4 +50,8 @@ export default class ProductService implements IProductService {
   public async updateProduct(ProductInputDTO: IProductInputDTO): Promise<IProduct> {
     return this.ProductRepo.updateProduct(ProductInputDTO);
   }
+
+  public async getProductImage(ProductId: IProductInputDTO): Promise<any> {
+    return this.ProductRepo.getProductImage(ProductId);
+  }
 }

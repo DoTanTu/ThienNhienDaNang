@@ -8,6 +8,7 @@ import { IMessage } from '../../models/interfaces/IMessage';
 import { IPage } from '../../models/interfaces/IPage';
 import { IProduct } from '../../models/interfaces/IProduct';
 import { IComment } from '../../models/interfaces/IComment';
+import { IContribute } from '../../models/interfaces/IContribute';
 import { IAttribute } from '../../models/interfaces/IAttribute';
 import { ISite } from '../../models/interfaces/ISite';
 import { IUser } from '../../models/interfaces/IUser';
@@ -32,6 +33,7 @@ declare global {
     export type SiteModel = Model<ISite & Document>;
     export type AppModel = Model<IApp & Document>;
     export type ContactModel = Model<IContact & Document>;
+    export type ContributeModel = Model<IContribute & Document>;
     export type MessageModel = Model<IMessage & Document>;
     export type LanguageModel = Model<ILanguage & Document>;
     export type AttributeModel = Model<IAttribute & Document>;

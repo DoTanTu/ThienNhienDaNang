@@ -41,6 +41,12 @@ export default async ({ expressApp }) => {
     name: 'commentModel',
     model: require('../models/comment').default,
   }
+
+  const contributeModel = {
+    name: 'contributeModel',
+    model: require('../models/contribute').default,
+  }
+
   const customerModel = {
     name: 'customerModel',
     model: require('../models/customer').default,
@@ -105,6 +111,7 @@ export default async ({ expressApp }) => {
       categoryModel,
       productModel,
       commentModel,
+      contributeModel,
       customerModel,
       siteModel,
       appModel,

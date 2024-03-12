@@ -21,10 +21,15 @@
 
                 <div class="cot-12 cot-9-lg tailieu-detail">
                     <%if(dataProductDetail){
-                        prod = dataProductDetail
-                        name = prod.name
-                        description = prod.description
-                        pathUrl = prod.pdf
+                        prod = dataProductDetail;
+                        name = prod.name;
+                        productId = prod._id;
+                        description = prod.description;
+                        pathUrl = prod.pdf;
+                        author = prod.additional.author;
+                        publishYear = prod.additional.publishYear;
+                        copyright = prod.additional.copyright;
+                        source = prod.additional.source;
                     %>
                     <div class="tailieu-detail-box">
                         <div class="row-change">
@@ -38,14 +43,26 @@
                                     <h4 class="h4-title br-line-4"><%= name%></h4>
                                 </a>
                                 <div class="tailieu-detail-info">
-                                    <span>Tác giả: <strong>Tên tác giả</strong></span>
-                                    <span>Số trang: <strong>120</strong></span>
-                                    <span>Năm xuất bản: <strong>2010</strong></span>
+                                    <% if(author && author !== ''){%>
+                                        <span>Tác giả: <strong><%= author%></strong></span>
+                                    <%}%>
+                                    <% if(copyright && copyright !== ''){%>
+                                        <span>Tác quyền: <strong><%= copyright%></strong></span>
+                                    <%}%>
+                                    <% if(publishYear && publishYear !== ''){%>
+                                        <span>Năm xuất bản: <strong><%= publishYear%></strong></span>
+                                    <%}%>
+                                    <% if(source && source !== ''){%>
+                                        <span>Nguồn tài liệu: <strong><%= source%></strong></span>
+                                    <%}%>
                                 </div>
                                 <div class="tailieu-detail-icon">
-                                    <span><i class="me-2 bi bi-suit-heart"></i>598</span>
+                                    <span>
+                                        <i class="me-2 bi bi-suit-heart<%if(dataBasicInfo && prod.likes.includes(dataBasicInfo._id)){%>-fill<%}%>" data-action="like" data-post-id="<%= prod._id%>"></i>
+                                        <span id="likeCustomer"><%= prod.likes.length%></span>
+                                    </span>
                                     <span><i class="me-2 bi bi-download"></i><span id="number-download"><%= prod.downloads%></span></span>
-                                    <span><i class="me-2 bi bi-reply"></i>598</span>
+                                    <span><i class="me-2 bi bi-reply"></i>0</span>
                                     <span><i class="me-2 bi bi-eye"></i><%= prod.views%></span>
                                     <span><i class="me-2 bi bi-chat-left"></i><%= prod.comments.length%></span>
                                 </div>
@@ -55,7 +72,7 @@
                                     </a>
                                     <!-- Modal -->
                                     
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#downloadModalBook<%= prod._id%>">Tải về</a>
+                                    <a href="#" data-action="#downloadDocument" data-file-id="<%= productId%>" data-src-file="<%= pathUrl%>">Tải về</a>
                                 </div>
                                 <div class="modal fade" id="donggopDetail" tabindex="-1" aria-labelledby="cateDetailLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable modal-xl">
@@ -73,30 +90,7 @@
                                     </div>
                                 </div>
 
-
-                                <div class="modal fade" id="downloadModalBook<%= prod._id%>" tabindex="-1" aria-labelledby="cateDetailLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable modal-md">
-                                      <div class="modal-content">
-                        
-                                        <div class="modal-header">
-                                          <h4 class="modal-title fs-5" id="cateDetailLabel">Xác nhận</h4>
-                                          <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
-                                            <i class="bi bi-x-lg"></i>
-                                          </button>
-                                        </div>
-                                        <div class="modal-body">
-                                          Bạn có cam kết sử dụng hình ảnh/tài liệu này vì mục đích phi lợi nhuận?
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                                            <a href="../<%= prod.pdf%>" data-id="<%= prod._id%>" onclick="downloadDocument('<%= prod._id %>')" download>Đồng ý</a>
-                                          </button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-
+                                <%- include('./components/downloadModal') -%>
 
                             </div>
                         </div>
@@ -120,6 +114,8 @@
                             <%}})}%>
                             </ul>
                         </div>
+
+                        
                         <!-- <div class="tintuc-detail-social">
                             <a href="#">
                                 <i class="bi bi-heart-fill"></i>
@@ -145,6 +141,7 @@
                 </div>
             </div>
         </div>
+        <%- include('./components/loginModal') -%>
     </div>
 
 

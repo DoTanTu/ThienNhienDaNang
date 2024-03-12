@@ -1,31 +1,39 @@
 <div class="tintuc-detail-comment">
   <h3 class="underline" id="number-comment"><%= prod.comments.filter(comment => comment.parentId === "" && comment.customers !== null).length;%> Bình luận</h3>
   <div class="message-comment"></div>
+  <%if(dataBasicInfo){%>
   <input type="hidden" id="idProduct" value="<%= dataProductDetail._id%>">
-  <input type="hidden" id="id_account" value="">
-  <input type="hidden" id="avatar_account" value="">
-  <input type="hidden" id="fullname_account" value="">
-  <div class="tintuc-detail-comment-box flex-wrap mt-4">
-    <div class="comment-box-img">
-      <img id="image_account" src="" alt="">
+  <input type="hidden" id="id_account" value="<%= dataBasicInfo._id%>">
+  <input type="hidden" id="avatar_account" value="<%= dataBasicInfo.avatar%>">
+  <input type="hidden" id="fullname_account" value="<%= dataBasicInfo.fullname%>">
+    <div class="tintuc-detail-comment-box flex-wrap mt-4">
+      <div class="comment-box-img">
+        <%if(dataBasicInfo.avatar && dataBasicInfo.avatar !== ''){%>
+          <img id="image_account" src="../<%= dataBasicInfo.avatar%>" alt="">
+        <%}else{%>
+          <img id="image_account" src="../public/app/images/person_default.png" alt="">
+        <%}%>
+        
+      </div>
+      <div class="comment-box  flex-grow-1 " id="user-comment ">
+          <h5 id="fullname_account_comment"><%= dataBasicInfo.fullname%> </h5>
+          <form id="formComment" class="form-comment active">
+            <input type="hidden" name="productId" value="<%= dataProductDetail._id%>">
+            <input type="hidden" id="id-user" name="userId" value="<%= dataBasicInfo._id%>">
+            <textarea class="form-control" id="comment" name="comment" rows="5" placeholder="Nhập bình luận của bạn"></textarea>
+            <div class="btn_submit">
+                <button class="main-btn mt-4" type="submit">
+                Gửi bình luận
+                </button>
+            </div>
+          </form>
+      </div>
     </div>
-    <div class="comment-box  flex-grow-1 " id="user-comment ">
-        <h5 id="fullname_account_comment"></h5>
-        <form id="formComment" class="form-comment">
-        <input type="hidden" name="productId" value="<%= dataProductDetail._id%>">
-        <input type="hidden" id="id-user" name="userId" value="">
-        <textarea class="form-control" id="comment" name="comment" rows="5" placeholder="Nhập bình luận của bạn"></textarea>
-        <div class="btn_submit">
-            <button class="main-btn mt-4" type="submit">
-            Gửi bình luận
-            </button>
-        </div>
-        </form>
-        <div class="login-required" id="login-required">
-        <a href="dang-nhap">Đăng nhập để bình luận</a>
-        </div>
-    </div>
-    </div>
+  <%}else{%>
+  <div class="login-required active mt-4" id="login-required">
+    <a href="dang-nhap">Đăng nhập để bình luận</a>
+  </div>
+  <%}%>
   <div class="mt-4" id="list-comment">
     <% if( prod.comments && prod.comments !== null  && prod.comments.length > 0){
         prod.comments.forEach( (item) => {

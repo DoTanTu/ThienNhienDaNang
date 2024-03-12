@@ -1,0 +1,188 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+:root {
+    --rgb-1: 30, 83, 40;
+    --rgb-2: 155, 192, 31;
+    --color-1: rgb(var(--rgb-1));
+    --color-2: rgb(var(--rgb-2));
+}
+.donggopTable .preview {
+    width: 80px;
+}
+
+.donggopTable .theloai {
+    width: 80px;
+}
+.donggopTable .idUser {
+    width: 80px;
+}
+
+.donggopTable .preview img {
+   max-width: 100%;
+    max-height: 40px;
+    object-fit: contain;
+}
+
+.librarySection .nav-pills {
+    border-bottom: 1px solid rgba(var(--rgb-1), .3);
+    padding-bottom: 15px;
+}
+
+.libItem {
+    display: block;
+}
+
+.libItem img {
+    width: 100%;
+    max-height: 100px;
+    object-fit: contain;
+}
+
+.libItem p {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+    -webkit-line-clamp: 2;
+}
+
+.commentSection {
+    overflow-x: auto;
+}
+
+.commentHead,
+.commentItem {
+    display: flex;
+}
+
+.commentHead {
+    background-color: rgba(var(--rgb-2),.1);
+    color: var(--color-1);
+}
+
+.commentSection span {
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(var(--rgb-1), .3);
+}
+
+.commentItem {
+    box-shadow: 0 2px 2px #00000010;
+    margin-bottom: 10px;
+}
+
+.commentSection .cmId {
+    width: 80px;
+    flex-shrink: 0;
+}
+.commentSection .cmContent {
+    flex: 1;
+    min-width: 150px;
+}
+
+.commentSection .cmUser,
+.commentSection .cmTime,
+.commentSection .cmLink,
+.commentSection .action {
+    width: 150px;
+    flex-shrink: 0;
+}
+
+.commentSection .cmLink a {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+    -webkit-line-clamp: 2;
+}
+
+.action a {
+    padding: 5px 10px;
+    color: #fff;
+}
+
+.action a.agree {
+    background-color: var(--color-1);
+}
+
+.action a.del {
+    background-color: rgb(195 19 19);
+}
+
+.action a:hover {
+    background-color: rgba(var(--rgb-2),.5);
+    color: var(--color-1);
+}
+
+.inforBox .inforLabel {
+    /* display: flex; */
+    gap: 15px;
+    /* justify-content: space-between; */
+    font-size: 16px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(var(--rgb-1), .2);
+}
+
+.inforBox .inforLabel span:first-child {
+    font-weight: 500;
+    min-width: fit-content;
+    max-width: 50%;
+    color: var(--color-1);
+}
+
+.inforBox .inforLabel span:last-child {
+    /* text-align: right; */
+    font-weight: 300;
+}
+
+.inforBox .inforLabel span i {
+    margin-right: 10px;
+}
+
+.dgDetailTable .dgTenFile {
+    width: 100px;
+}
+
+.dgDetailTable .dgPreview {
+    width: 150px;
+}
+
+.dgDetailTable .dgPreview img {
+    width: 100%;
+    height: 100%;
+    max-height: 100px;
+    object-fit: contain;
+}
+
+.dgDetailTable .dgTen {
+    width: 150px;
+}
+
+.dgDetailTable .dgNote {
+    flex: 1;
+    min-width: 150px;
+}
+.dgDetailTable .dgTime {
+    width: 180px;
+}
+.dgDetailTable .dgLocation {
+   width: 160px;
+}
+
+.dgDetailTable .action {
+    width: 100px;
+}
+
+.dgDetailTable span {
+    flex-shrink: 0;
+    padding: 10px;
+}
+
+.action .dropdown a {
+    color: var(--color-1);
+}
+
+.action-delete:hover{
+    color: red;
+}
+

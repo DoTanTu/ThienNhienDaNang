@@ -22,7 +22,7 @@
     <% if(typeof role != undefined && role != null && (role == 'Author' || role == 'Admin' || role == 'Manager')){ %>
       <!-- Customer -->
       <li class="menu-header small text-uppercase"><span class="menu-header-text">Khách Hàng</span></li>
-      <li class="menu-item <% if(router == 'customers') { %> active open <%}%>">
+      <li class="menu-item <% if(router == 'customers' || router == 'contributes') { %> active open <%}%>">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon tf-icons bx bx-user"></i>
           <div data-i18n="Layouts">Khách Hàng</div>
@@ -33,6 +33,12 @@
             <a href="/admin/customers" 
               class="menu-link">
               <div data-i18n="Support">Danh Sách</div>
+            </a>
+          </li>
+          <li class="menu-item <% if(router == 'contributes') { %> active open <%}%>">
+            <a href="/admin/contributes" 
+              class="menu-link">
+              <div data-i18n="Support">Đóng góp</div>
             </a>
           </li>
         </ul>

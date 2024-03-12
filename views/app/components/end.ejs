@@ -1,4 +1,9 @@
 
+        
+        <script>
+            var isUserLogin = `<%= dataBasicInfo ? true : false%>`;
+        </script>
+
         <script>
             function getCookie(name){
             const cookies = document.cookie.split(';');
@@ -10,6 +15,21 @@
             }
             return null;
             };
+        </script>
+        <script>
+            document.getElementById('searchInput').addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            document.getElementById('buttonSearch').addEventListener('click', function (e) {
+                performSearch();
+            });
+
+            function performSearch() {
+                const searchTerm = document.getElementById('searchInput').value;
+                window.location.href = '/search?query=' + searchTerm;
+            }
         </script>
         <!-- script -->
         <script src="../public/app/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -32,7 +52,6 @@
         <script src="../public/app/js/swiper-bundle.min.js"></script>
         <!-- Plyr-player -->
         <script src="https://cdn.plyr.io/3.7.2/plyr.js"></script>
-        <script type="text/javascript" src="../public/authCustomer/checkAccount.js"></script>
         <script>
             const player = new Plyr('#player');
             // Expose player so it can be used from the console

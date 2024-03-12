@@ -1,4 +1,4 @@
-
+ 
     $.ajax({
         type: "GET",
         url: "/profile",
@@ -41,7 +41,8 @@
                         <p>${response.customer.email}</p>
                     </div>
                     `
-                )
+                ),
+                 customerId = response.customer._id;
             }
         },
         error : (xhr, status , error) =>{

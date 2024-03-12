@@ -25,13 +25,15 @@ const ProductSchema = new mongoose.Schema(
       description: { type: String, text: true },
    }],
     images: [{
-      _id: {
-        type: String,
+      _id:{
+        'type': String,
+        'default': shortid.generate
       },
       image: String,
       alt : String,
       name: String,
       author: String,
+      address: String,
       copyright : String,
       source : String,
       year : String,
@@ -68,6 +70,26 @@ const ProductSchema = new mongoose.Schema(
         },
      }]
     }],
+    additional : {
+      _id:{
+        'type': String,
+        'default': shortid.generate
+      },
+      typeof : String,     
+      author : String,
+      copyright : String,
+      publishYear : String,
+      source : String,
+      nameVn : String,
+      nameEn : String,
+      nameLa : String,
+      typeEvent : String,
+      dateStart : String,
+      timeStart : String,
+      dateEnd : String,
+      timeEnd : String,
+      address : String,
+    },
     hashtags : [String],
     commentIds : [String],
     seoTitle: { type: String, intl: true, },
@@ -108,7 +130,7 @@ const ProductSchema = new mongoose.Schema(
     showTop : {type: Boolean, default: false},
     label :  { type: String, default: "" },
     views : {type: Number, default: 0},
-    likes : {type: Number, default: 0 },
+    likes : [String],
     shares : {type: Number, default: 0},
     downloads : {type: Number, default: 0}
   },

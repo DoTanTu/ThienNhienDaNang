@@ -207,7 +207,6 @@ export default class SiteController {
   public async EditSite(req, res) {
     try {   
       var subMenuCustom = []
-      console.log(req.body.subMenuCustom);
       
       if (req.body.subMenuCustom) {
         subMenuCustom = JSON.parse(req.body.subMenuCustom)

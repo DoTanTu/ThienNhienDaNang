@@ -9,6 +9,7 @@ import { CustomerRouter } from "./customer";
 import { CustomSiteRouter } from "./customSite";
 import { DashboardRouter } from "./dashboard";
 import { DocumentRouter } from "./document";
+import { ContributeRouter } from "./contribute";
 import { FileRouter } from "./file";
 import { FileAppRouter } from "./fileapp";
 import { FileEjsRouter } from "./fileejs";
@@ -28,6 +29,7 @@ import { ExampleCodeRouter } from "./exampleCode";
 import { PaymentRouter } from "./payment";
 import { FileImageRouter } from "./fileImage";
 import { FilePDFRouter } from "./filePDF";
+import { FileContributeCustomRouter } from "./fileContributeCustomer";
 import { BackLinkSiteRouter } from "./backLink";
 import { FileImageEditorRouter } from "./fileImageEditor";
 
@@ -50,6 +52,7 @@ export class Routes {
     FileCustomRouter.init(this.app);
     FileImageRouter.init(this.app);
     FilePDFRouter.init(this.app);
+    FileContributeCustomRouter.init(this.app);
     FileImageEditorRouter.init(this.app);
     
     APIRouter.init(this.app);
@@ -66,6 +69,7 @@ export class Routes {
     DocumentRouter.init(this.app);
     MessageRouter.init(this.app);
     CommentRouter.init(this.app);
+    ContributeRouter.init(this.app);
     AttributeRouter.init(this.app);
     ShipMethodRouter.init(this.app);
     PaymentMethodRouter.init(this.app);

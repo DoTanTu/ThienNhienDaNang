@@ -1,0 +1,218 @@
+<html lang="en">
+
+<head>
+    <%- include('./components/head') -%>
+</head>
+
+<body>
+    <%- include('./components/header') -%>
+    <%- include('./components/bottomNav') -%>
+
+    <div class="main-body">
+        <div class="container">
+            <div class="row-change">
+                <div class="cot-12 cot-3-lg pe-0 pe-lg-4">
+                    <%- include('./components/sideCate') -%>
+                    <%- include('./components/sideNews') -%>
+                    <%- include('./components/sideBooks') -%>
+                    <%- include('./components/sideAuthors') -%>
+                    <%- include('./components/sideTags') -%>
+                </div>
+
+                <div class="cot-12 cot-9-lg tailieu-detail">
+                    <%if(dataProductDetail){
+                        prod = dataProductDetail;
+                        name = prod.name;
+                        productId = prod._id;
+                        pathImage = prod.images[0]?.image || '';
+                        arrayImage = prod.images;
+                        description = prod.description;
+                        downloadsCount = prod.downloads ;
+                        viewsCount = prod.views;
+                        commentsCount = prod.comments.length;
+                        linkVideo = prod.linkVideo;
+                        if(prod.label === 'BÀI GIẢNG' || prod.label === 'TÀI LIỆU'){
+                           %>
+
+                            <div class="tailieu-detail-box">
+                                <div class="row-change">
+                                <div class="cot-12 cot-4-md">
+                                    <div class="tailieu-detail-img position-relative">
+                                    <img src="../public/app/images/icon/pdf-file.svg" style="object-fit: cover; width: auto; height: 70%; padding: 10px; margin: auto;" alt="">
+                                    </div>
+                                </div>
+                                <div class="cot-12 cot-8-md tailieu-detail-text">
+                                    <a href="#">
+                                    <h4 class="h4-title br-line-4"><%= name%></h4>
+                                    </a>
+                                    <div class="tailieu-detail-info">
+                                    <span>Tác giả: <strong>Tên tác giả</strong></span>
+                                    <span>Số trang: <strong>120</strong></span>
+                                    <span>Năm xuất bản: <strong>2010</strong></span>
+                                    </div>
+                                    <div class="tailieu-detail-icon">
+                                    <span><i class="me-2 bi bi-suit-heart"></i>598</span>
+                                    <span><i class="me-2 bi bi-download"></i><span id="number-download"><%= downloadsCount%></span></span>
+                                    <span><i class="me-2 bi bi-reply"></i>598</span>
+                                    <span><i class="me-2 bi bi-eye"></i><%= viewsCount%></span>
+                                    <span><i class="me-2 bi bi-chat-left"></i><%= commentsCount%></span>
+                                    </div>
+                                    <div class="mt-auto tailieu-detail-btn gap-4 d-flex">
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#donggopDetail">
+                                        Đọc tài liệu
+                                    </a>
+                                    <!-- Modal -->
+
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#downloadModalBook<%= productId%>">Tải về</a>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
+                        <% }
+                        else if(prod.label === 'VIDEO'){
+                        %>
+                            
+                            <div>
+                              <h3 class="h3-title mb-5 underline"><%= prod.name%></h3>
+                              <div class="video-detail-box-yotube mb-4 position-relative">
+                                <iframe src="<%= linkVideo.replace('watch?v=','embed/')%>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                              </div>
+
+                              <div class="hinhanh-mieuta mb-3">
+                                <h3 class="h3-title underline position-relative mb-4">Miêu tả</h3>
+                                <%- prod.description%>
+                              </div>
+                            </div>
+
+                        <%}
+                        else if(prod.label === 'TÀI LIỆU'){
+                        %>
+
+                        <div class="tailieu-detail-box">
+                          <div class="row-change">
+                            <div class="cot-12 cot-4-md">
+                              <div class="tailieu-detail-img position-relative">
+                                <img src="../public/app/images/icon/pdf-file.svg" style="object-fit: cover; width: auto; height: 70%; padding: 10px; margin: auto;" alt="">
+                              </div>
+                            </div>
+                            <div class="cot-12 cot-8-md tailieu-detail-text">
+                              <a href="#">
+                                <h4 class="h4-title br-line-4"><%= name%></h4>
+                              </a>
+                              <div class="tailieu-detail-info">
+                                <span>Tác giả: <strong>Tên tác giả</strong></span>
+                                <span>Số trang: <strong>120</strong></span>
+                                <span>Năm xuất bản: <strong>2010</strong></span>
+                              </div>
+                              <div class="tailieu-detail-icon">
+                                <span><i class="me-2 bi bi-suit-heart"></i>598</span>
+                                <span><i class="me-2 bi bi-download"></i><span id="number-download"><%= downloadsCount%></span></span>
+                                <span><i class="me-2 bi bi-reply"></i>598</span>
+                                <span><i class="me-2 bi bi-eye"></i><%= viewsCount%></span>
+                                <span><i class="me-2 bi bi-chat-left"></i><%= commentsCount%></span>
+                              </div>
+                              <div class="mt-auto tailieu-detail-btn gap-4 d-flex">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#donggopDetail">
+                                  Đọc tài liệu
+                                </a>
+                                <!-- Modal -->
+
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#downloadModalBook<%= productId%>">Tải về</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <%}
+                        else if(prod.label === 'HÌNH ẢNH'){
+                        %>
+
+                            <div>
+                              <h3 class="h3-title mb-5 underline"><%= name%></h3>
+
+                              <div class="hinhanh-gallery-detail gallery-container d-flex align-items-center justify-content-center mb-5" id="gallery-container">
+                                <a class="gallery-item" data-src="<%= pathImage%>" data-sub-html="#caption1">
+                                  <img class="img-fluid" src="<%= pathImage%>" />
+                                </a>
+                                <%if(arrayImage.length > 0 ){
+                                    arrayImage.forEach((imageItem, index) => {
+                                        if(index > 0){
+                                        pathImageIItem = imageItem.image
+                                        %>
+                                        <a class="gallery-item" data-src="../<%= pathImageIItem%>" data-sub-html="<%= index%>">
+                                        <img class="img-fluid" src="../<%= pathImageIItem%>" />
+                                        </a>
+                                        <% } })
+                                         }%>
+                              </div>
+
+                              <!-- caption -->
+                              <div id="caption1" style="display:none">
+                                <h4 class="br-line-1">Bowness Bay</h4>
+                                <span>Tác giả: <strong>Lê Khả Ý</strong></span>
+                                <span>Thời gian: <strong>15/04/2020</strong></span>
+                                <span>Địa điểm: <strong>Bàn Cờ</strong></span>
+                              </div>
+                              <div id="caption2" style="display:none">
+                                <h4 class="br-line-1">Bowness Bay</h4>
+                                <span>
+                                  Tác giả: <strong>Tăng Phước Nhân</strong>
+                                </span>
+                                <span>
+                                  Thời gian: <strong>01/04/2019</strong>
+                                </span>
+                                <span>
+                                  Địa điểm: <strong>Sơn Trà</strong>
+                                </span>
+                              </div>
+                              <div id="caption3" style="display:none">
+                                <h4 class="br-line-1">Bowness Bay</h4>
+                                <span>
+                                  Tác giả: <strong>Nguyễn Công Kha</strong>
+                                </span>
+                                <span>
+                                  Thời gian: <strong>04/01/2023</strong>
+                                </span>
+                                <span>
+                                  Địa điểm: <strong>Sơn Trà</strong>
+                                </span>
+                              </div>
+
+                              <div class="hinhanh-mieuta mb-3">
+                                <h3 class="h3-title underline position-relative mb-4">Miêu tả</h3>
+                                <%- prod.description%>
+                              </div>
+                            </div>
+
+                        <%}
+                       %>
+                        <!------------------------------TỪ KHÓA---------------------------->
+                       <div class="nav-tag mb-4 mt-5">
+                         <ul>
+                           <span>Từ khoá:</span>
+                           <% var hashtagsProduct = dataAttibutes.find(function(attribute) {
+                                return attribute._id === 'Hashtag_video';
+                                });
+                                if(prod.hashtags){
+                                    prod.hashtags.forEach((item) =>{
+                                       const values = hashtagsProduct.values.find((element) => element.code === item); %>
+                           <li><a href="/video?hashtag=<%= values.code%>"><%= values.value%></a></li>
+                           <%})}%>
+                         </ul>
+                       </div>
+                    <% } %>
+                    <%- include('./components/comment') -%>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('./components/footer') -%>
+    <%- include('./components/end') -%>
+
+
+</body>
+
+</html>

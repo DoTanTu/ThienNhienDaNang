@@ -13,6 +13,8 @@ export interface IProductRepository {
   removeProduct(Product: IProduct): Promise<any>;
   updateProduct(ProductInputDTO : IProductInputDTO) : Promise<IProduct>;
   increaseDownload(query: IProduct): Promise<number>;
+  actionLikeProduct(ProductId: string, customerId : string ): Promise<number>;
+  getProductImage(ProductId: IProductInputDTO): Promise<any>;
 }
 
 @Service()
@@ -88,8 +90,10 @@ export default class ProductRepository implements IProductRepository {
 
   public async getProductByFillters(query: IProductQuery, isEcomercePlus : boolean): Promise<any[]> {
     var options : any = {
-      pageId : query.pageId,
-      isDelete : { $in: [false, null] }
+      isDelete : { $in: [false, null] },
+      'additional.typeof': { $ne: 'event' },
+      pageId : { $ne: 'gioi_thieu'},
+      hashtags : { $nin: ['san_pham_dai_dien']},
     }
     var options2 : any
     if (query != null) {
@@ -108,14 +112,6 @@ export default class ProductRepository implements IProductRepository {
       if (query.attributes && query.attributes.length > 0) {
         options.ecommercePlus = {$elemMatch: {'atribute.code' : { $in: query.attributes }} }
       }
-    
-      if (query.priceMin || query.priceMax) {
-        if (isEcomercePlus) {
-          options.ecommercePlus = {$elemMatch: {'price' : { $lte: query.priceMax || 1000000000, $gte: query.priceMin || 0 }} }
-        }else{
-          options2 = {"ecommerce.price" : { $lte: query.priceMax || 1000000000, $gte: query.priceMin || 0 }}
-        }
-      }
 
       if (query.label && query.label != "") {
         options.label =  { $in: [query.label] }
@@ -127,7 +123,7 @@ export default class ProductRepository implements IProductRepository {
     }
 
     return this.ProductModel.find(options).find(options2)
-      .select("_id url pageId showTop categoryIds name images counter ecommercePlus ecommerce desShort label hashtags createdAt languages")     
+      .select("_id url pageId showTop categoryIds name images counter  ecommerce desShort label hashtags createdAt additional")     
       .sort({
         createdAt: -1,
       })
@@ -227,8 +223,26 @@ export default class ProductRepository implements IProductRepository {
     }
   }
 
-
   public async removeProduct(Product: IProduct): Promise<any> {
     return this.ProductModel.findByIdAndRemove(Product._id);
   }
+
+  public async getProductImage(ProductId: IProductInputDTO): Promise<any> {
+    return this.ProductModel.findById(ProductId._id)
+    .select('images');
+  }
+
+  public async actionLikeProduct(ProductId: string, CustomerId : string): Promise<number> {
+    const foundProduct = await this.ProductModel.findById(ProductId);
+    const isLikedByCustomer = foundProduct.likes.includes(CustomerId);
+    if(isLikedByCustomer){
+      foundProduct.likes = foundProduct.likes.filter(id => id !== CustomerId);
+    }else{
+      foundProduct.likes.push(CustomerId);
+    }
+    await foundProduct.save();
+
+    return foundProduct.likes.length;
+  }
+
 }

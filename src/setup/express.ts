@@ -35,6 +35,7 @@ export default ({ app , db }: { app: express.Application, db : any}) => {
   app.use('/backup', express.static("backup"));
   app.use('/images', express.static("images"));
   app.use('/pdf', express.static("pdf"));
+  app.use('/contribute', express.static("contribute"));
   app.use('/thumbnail', express.static("thumbnail"));
   //init ejs
   app.set("view engine","ejs");

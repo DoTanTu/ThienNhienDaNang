@@ -7,7 +7,55 @@
 <body>
     <%- include('./components/header') -%>
     <%- include('./components/bottomNav') -%>
-    <%- include('./components/homeBook') -%>
+
+    <div class="main-body">
+        <div class="container">
+            <div class="row-change">
+                <div class="cot-12 cot-3-lg pe-0 pe-lg-4">
+                    <%- include('./components/sideCate') -%>
+                    <%- include('./components/sideBooks') -%>
+                    <%- include('./components/sideAuthors') -%>
+                    <%- include('./components/sideTags') -%>
+                </div>
+                <div class="cot-12 cot-9-lg hinhanh-all">
+                    <h3 class="h3-title mb-5 underline">Sách</h3>
+                    <div class="row-change-grid mb-5">
+                        <%if(dataProducts && dataProducts.length > 0){
+                            dataProducts.forEach( prod => {
+                            name = prod.name;
+                            pathImage = "";
+                            obImage = prod.images[0];
+                            if(obImage){
+                                pathImage = obImage.image
+                            }
+                            const createdAt = new Date(prod.createdAt);
+                            const formattedDate = createdAt.toLocaleString();
+                        %>
+                        <div class="home-book-box d-flex flex-column h-100">
+                            <div class="home-book-boox-img">
+                                <img src="../<%=pathImage%>"
+                                    alt="">
+                            </div>
+                            <div class="home-book-text py-30 d-flex flex-column gap-2 align-items-center flex-fill">
+                                <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html">
+                                    <h4 class="h4-title text-center br-line-2"><%= name%>
+                                    </h4>
+                                </a>
+                                <a href="#">
+                                    <span>Tác Giả: Qing Li</span>
+                                </a>
+                                <div class="home-books-button d-flex justify-content-center gap-4 mt-auto">
+                                    <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html">Đọc</a>
+                                    <a href="#"  data-bs-toggle="modal" data-bs-target="#downloadModalBook<%= prod._id%>">Tải xuống</a>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <% })}%>
+                </div>  
+            </div>
+        </div>
+    </div>
 
     <%- include('./components/footer') -%>
     <%- include('./components/end') -%>

@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row g-0 row-change">
             <div class="cot-12 cot-5-md top-search">
-                <input type="text" class="form-control" placeholder="Search by title, author, keyword,....">
-                <button type="submit" class="top-search-icon"><i class="bi bi-search"></i></button>
+                <input type="text" class="form-control" id="searchInput" placeholder="Search by title, author, keyword,....">
+                <button id="buttonSearch" type="submit" class="top-search-icon"><i class="bi bi-search"></i></button>
             </div>
             <div class="cot-12 cot-7-md cot-5-lg cot-4-xxl ms-auto top-nav-right">
                 <div class="donggop-btn">
@@ -18,18 +18,45 @@
                         <a href="https://www.facebook.com/thiennhiendanang"><i class="bi bi-facebook"></i></a>
                     </div>
                     <div class="top-nav-user mt-auto" id="account-user">
-                       
-                        <div class="noti-icon">
+                        <%if(dataBasicInfo){%>
+                            <div class="user-icon active">
+                                <%if(dataBasicInfo.avatar && dataBasicInfo.avatar !== ''){%>
+                                    <img src="../<%= dataBasicInfo.avatar%>" alt="">
+                                <%}else{%>
+                                    <img src="../public/app/images/person_default.png" alt="">
+                                <%}%>
+                                <div class="top-user-link"> 
+                                    <span><%= dataBasicInfo.fullname%></span> 
+                                    <ul class="top-user-dropdown"> 
+                                        <li><a href="/ca-nhan">Trang cá nhân</a></li>
+                                        <li><a href="/logout">Đăng xuất</a></li> 
+                                    </ul>
+                                </div>
+                            </div>
+                        <%}else{%>
+                            <div class="user-icon active">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-lock" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
+                                </svg>
+                                <a href="/dang-nhap" onclick="redirectToLogin()">Đăng nhập</a> 
+                                / 
+                                <a href="/dang-ky">Đăng ký</a> 
+                            </div>
+                        <%}%>
+                        
+                        <!-- <div class="noti-icon action">
                             <a href="#"><i class="bi bi-heart"></i><span>3</span></a>
                             <a href="#"><i class="bi bi-person-circle"></i><span>3</span></a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="mid-nav">
+<div class="mid-nav" style="background-image: url(../<%= dataOther7.products.find(item => item._id === '51syfkVDB').images[0].image.replace(/\\/g, '/')%>)">
     <div class="container">
         <div class="mid-logo d-none d-lg-block">
             <img src="../public/app/images/logo-favi.svg" alt="">
@@ -73,7 +100,7 @@
                   <% if(dataMenus != undefined && dataMenus != null && dataMenus.length > 0) {
                         dataMenus.forEach(function(menu){ %>
                   <li class="nav-item <% if(menu.isSubMenu == true){%> dropdown <%}%>">
-                            <a class="nav-link <% if((urlCurrentName == undefined && menu.url == "/") || menu.url == urlCurrentName) { %> active<%}%>" aria-current="page"  href="<%= menu.url %>"><%= menu.name %></a>
+                            <a class="nav-link <% if((urlCurrentName == undefined && menu.url == "/") || menu.url == urlCurrentName) { %> active<%}%>" aria-current="page"  href="<%if(menu.subMenuCustom && menu.subMenuCustom.length > 0){%>javascript:void(0);<%}else{%><%= menu.url %><%}%>"><%= menu.name %></a>
                     <% if(menu.isSubMenu == true) {%>
                         <iconify-icon icon="ic:baseline-plus"></iconify-icon>
                         <ul class="dropdown-menu">

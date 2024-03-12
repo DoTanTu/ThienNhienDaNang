@@ -1,0 +1,144 @@
+<html lang="en">
+
+<head>
+    <%- include('./components/head') -%>
+</head>
+
+<body>
+    <%- include('./components/header') -%>
+    <%- include('./components/bottomNav') -%>
+
+    <div class="main-body">
+        <div class="container">
+            <div class="row-change">
+                <div class="cot-12 cot-3-lg pe-0 pe-lg-4">
+                    <%- include('./components/sideCate') -%>
+                    <%- include('./components/sideNews') -%>
+                    <%- include('./components/sideBooks') -%>
+                    <%- include('./components/sideAuthors') -%>
+                    <%- include('./components/sideTags') -%>
+                </div>
+
+                <div class="cot-12 cot-9-lg tailieu-detail">
+                    <%if(dataProductDetail){
+                        prod = dataProductDetail;
+                        name = prod.name;
+                        productId = prod._id;
+                        description = prod.description;
+                        pathUrl = prod.pdf;
+                        author = prod.additional.author;
+                        publishYear = prod.additional.publishYear;
+                        copyright = prod.additional.copyright;
+                        source = prod.additional.source;
+                    %>
+                    <div class="tailieu-detail-box">
+                        <div class="row-change">
+                            <div class="cot-12 cot-4-md">
+                                <div class="tailieu-detail-img position-relative">
+                                    <img src="../<%= prod.images[0].image%>" style="object-fit: cover; width: 100%; height: 100%;"  alt="">
+                                </div>
+                            </div>
+                            <div class="cot-12 cot-8-md tailieu-detail-text">
+                                <a href="#">
+                                    <h4 class="h4-title br-line-4"><%= name%></h4>
+                                </a>
+                                <div class="tailieu-detail-info">
+                                    <span>Tác giả: <strong><%= author%></strong></span>
+                                    <span>Tác quyền: <strong><%= copyright%></strong></span>
+                                    <span>Năm xuất bản: <strong><%= publishYear%></strong></span>
+                                    <span>Nguồn tài liệu: <strong><%= source%></strong></span>
+                                </div>
+                                <div class="tailieu-detail-icon">
+                                    <span>
+                                        <i class="me-2 bi bi-suit-heart<%if(dataBasicInfo && prod.likes.includes(dataBasicInfo._id)){%>-fill<%}%>" data-action="like" data-post-id="<%= prod._id%>"></i>
+                                        <span id="likeCustomer"><%= prod.likes.length%></span>
+                                    </span>
+                                    <span><i class="me-2 bi bi-download"></i><span id="number-download"><%= prod.downloads%></span></span>
+                                    <span><i class="me-2 bi bi-reply"></i>0</span>
+                                    <span><i class="me-2 bi bi-eye"></i><%= prod.views%></span>
+                                    <span><i class="me-2 bi bi-chat-left"></i><%= prod.comments.length%></span>
+                                </div>
+                                <div class="mt-auto tailieu-detail-btn gap-4 d-flex">
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#donggopDetail">
+                                        Đọc tài liệu
+                                    </a>
+                                    <!-- Modal -->
+                                    
+                                    <a href="#" data-action="#downloadDocument" data-file-id="<%= productId%>" data-src-file="<%= pathUrl%>">Tải về</a>
+                                </div>
+                                <div class="modal fade" id="donggopDetail" tabindex="-1" aria-labelledby="cateDetailLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h4 class="modal-title fs-5" id="cateDetailLabel">Đọc tài liệu</h4>
+                                        <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                                            <i class="bi bi-x-lg"></i>
+                                        </button>
+                                        </div>
+                                        <div class="modal-body">
+                                           <iframe src="../<%= pathUrl%>" width="100%" height="750" frameborder="0"></iframe>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+
+                                <%- include('./components/downloadModal') -%>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tintuc-detail-bottom mb-4">
+                        <div class="tintuc-detail-tag">
+                            <!-- <span>Từ khoá:</span> -->
+                            <ul>
+                                <% 
+                                if(prod.hashtags && prod.hashtags.length > 0){
+                                    const hashtagProducts = dataAttibutes.find(attribute => attribute.tag === 'Hashtag');
+                                    prod.hashtags.forEach( item => {
+                                        let mapping = hashtagProducts.values.find( hashtag_item => hashtag_item.code === item);
+                                        if(mapping){
+                                            value_display = mapping.value;
+                                            %>
+                                            <li>
+                                                <a href="/tai-lieu?hashtag=<%= item%>"><%= value_display%></a>
+                                            </li>
+                            <%}})}%>
+                            </ul>
+                        </div>
+                        <!-- <div class="tintuc-detail-social">
+                            <a href="#">
+                                <i class="bi bi-heart-fill"></i>
+                            </a>
+                            <a href="#">
+                                <i class="bi bi-bookmark-fill"></i>
+                            </a>
+                            <a href="#">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="#">
+                                <i class="bi bi-youtube"></i>
+                            </a>
+                        </div> -->
+                    </div>
+
+                    <div class="tailieu-detail-tongquan mb-4">
+                        <h4 class="h4-title underline position-relative mb-4">Tổng quan tài liệu</h4>
+                        <%- description%>
+                    </div>
+                    <%}%>
+                    <%- include('./components/comment') -%>
+                </div>
+            </div>
+        </div>
+        <%- include('./components/loginModal') -%>
+    </div>
+
+
+    <%- include('./components/footer') -%>
+    <%- include('./components/end') -%>
+
+
+</body>
+
+</html>

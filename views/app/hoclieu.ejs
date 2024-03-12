@@ -20,41 +20,55 @@
                 </div>
                 <div class="cot-12 cot-9-lg hinhanh-detail">
                     <h3 class="h3-title mb-5 underline">Danh sách học liệu</h3>
-
+                    <%if(dataProducts && dataProducts.length > 0){
+                        data = dataProducts;
+                    }
+                    if(dataCategoryDetail){
+                        data = dataCategoryDetail.products;
+                    }
+                    if(data){
+                        %>
                     <div class="tabs-content">
-                        <ul class="nav nav-tabs" role="tablist">
+                        <ul class="nav nav-tabs justify-content-start" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <a href="#list_0" class="nav-link active" data-bs-toggle="tab" aria-selected="true"
-                                    role="tab">Bài giảng (1)</a>
+                                    role="tab">Bài giảng (<%= data.filter( item => item.label === 'BÀI GIẢNG').length%>)</a>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a href="#list_1" class="nav-link" data-bs-toggle="tab" aria-selected="false" role="tab"
-                                    tabindex="-1">Tài liệu (2)</a>
+                                    tabindex="-1">Tài liệu (<%= data.filter( item => item.label === 'TÀI LIỆU').length%>)</a>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a href="#list_2" class="nav-link" data-bs-toggle="tab" aria-selected="false" role="tab"
-                                    tabindex="-1">Hình ảnh (4)</a>
+                                    tabindex="-1">Hình ảnh (<%= data.filter( item => item.label === 'HÌNH ẢNH').length%>)</a>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a href="#list_3" class="nav-link" data-bs-toggle="tab" aria-selected="false" role="tab"
-                                    tabindex="-1">Videos (14)</a>
+                                    tabindex="-1">Videos (<%= data.filter( item => item.label === 'VIDEO').length%>)</a>
                             </li>
                         </ul>
 
                         <div class="tab-content">
+                            <!------------------------------BÀI GIẢNG------------------------------>
                             <div class="tab-pane fade active show p-15" id="list_0" role="tabpanel">
                                 <div class="row-change">
+                                
+                                    <%
+                                        data.forEach(prod => {
+                                            if(prod.label === 'BÀI GIẢNG'){
+                                                name = prod.name;
+                                                url = prod.videoLink;
+                                                pathImage = prod.images[0]?.image || '';
+                                           %>
+
                                     <div class="cot-12 cot-6-lg d-flex gap-3 gap-md-3">
                                         <div class="home-tulieu-img">
-                                            <img class="mb-2" src="images/icon/pdf-file.svg" alt="">
+                                            <img class="mb-2" src="../public/app/images/icon/pdf-file.svg" alt="">
                                             <a href="#">Tải xuống</a>
                                         </div>
                                         <div class="home-tulieu-text">
-                                            <a href="#">
-                                                <h5 class="mb-3 br-line-2">Nghiên cứu đa dạng thành phần loài và sự phân
-                                                    bố các loài chim ở
-                                                    KBTTN bán
-                                                    đảo Sơn Trà, tp Đà Nẵng</h5>
+                                            <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html">
+                                                <h5 class="mb-3 br-line-2"><%= name%></h5>
                                             </a>
                                             <div class="home-tulieu-date d-flex justify-content-around">
                                                 <span>Trương Quốc Đại</span>
@@ -62,57 +76,33 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="cot-12 cot-6-lg d-flex gap-3 gap-md-3">
-                                        <div class="home-tulieu-img">
-                                            <img class="mb-2" src="images/icon/pdf-file.svg" alt="">
-                                            <a href="#">Tải xuống</a>
-                                        </div>
-                                        <div class="home-tulieu-text">
-                                            <a href="#">
-                                                <h5 class="mb-3 br-line-2">Nghiên cứu đa dạng thành phần loài và sự phân
-                                                    bố các loài chim ở
-                                                    KBTTN bán
-                                                    đảo Sơn Trà, tp Đà Nẵng</h5>
-                                            </a>
-                                            <div class="home-tulieu-date d-flex justify-content-around">
-                                                <span>Trương Quốc Đại</span>
-                                                <span>10/06/2022</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="cot-12 cot-6-lg d-flex gap-3 gap-md-3">
-                                        <div class="home-tulieu-img">
-                                            <img class="mb-2" src="images/icon/pdf-file.svg" alt="">
-                                            <a href="#">Tải xuống</a>
-                                        </div>
-                                        <div class="home-tulieu-text">
-                                            <a href="#">
-                                                <h5 class="mb-3 br-line-2">Nghiên cứu đa dạng thành phần loài và sự phân
-                                                    bố các loài chim ở
-                                                    KBTTN bán
-                                                    đảo Sơn Trà, tp Đà Nẵng</h5>
-                                            </a>
-                                            <div class="home-tulieu-date d-flex justify-content-around">
-                                                <span>Trương Quốc Đại</span>
-                                                <span>10/06/2022</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
+                                    <%  }
+                                        })
+                                    %>
                                 </div>
                             </div>
+
+                            <!------------------------------TÀI LIỆU------------------------------>
                             <div class="tab-pane fade p-15" id="list_1" role="tabpanel">
                                 <div class="row-change">
+
+                                    <% 
+                                    data.forEach(prod => {
+                                            if(prod.label === 'TÀI LIỆU'){
+                                                name = prod.name;
+                                                url = prod.videoLink;
+                                                pathImage = prod.images[0]?.image || '';
+                                           %>
+
                                     <div class="cot-12 cot-6-lg d-flex gap-3 gap-md-3">
                                         <div class="home-tulieu-img">
-                                            <img class="mb-2" src="images/icon/pdf-file.svg" alt="">
+                                            <img class="mb-2" src="../public/app/images/icon/pdf-file.svg" alt="">
                                             <a href="#">Tải xuống</a>
                                         </div>
                                         <div class="home-tulieu-text">
-                                            <a href="#">
-                                                <h5 class="mb-3 br-line-2">Nghiên cứu đa dạng thành phần loài và sự phân
-                                                    bố các loài chim ở
-                                                    KBTTN bán
-                                                    đảo Sơn Trà, tp Đà Nẵng</h5>
+                                            <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html">
+                                                <h5 class="mb-3 br-line-2"><%= name%></h5>
                                             </a>
                                             <div class="home-tulieu-date d-flex justify-content-around">
                                                 <span>Trương Quốc Đại</span>
@@ -120,100 +110,45 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="cot-12 cot-6-lg d-flex gap-3 gap-md-3">
-                                        <div class="home-tulieu-img">
-                                            <img class="mb-2" src="images/icon/pdf-file.svg" alt="">
-                                            <a href="#">Tải xuống</a>
-                                        </div>
-                                        <div class="home-tulieu-text">
-                                            <a href="#">
-                                                <h5 class="mb-3 br-line-2">Nghiên cứu đa dạng thành phần loài và sự phân
-                                                    bố các loài chim ở
-                                                    KBTTN bán
-                                                    đảo Sơn Trà, tp Đà Nẵng</h5>
-                                            </a>
-                                            <div class="home-tulieu-date d-flex justify-content-around">
-                                                <span>Trương Quốc Đại</span>
-                                                <span>10/06/2022</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="cot-12 cot-6-lg d-flex gap-3 gap-md-3">
-                                        <div class="home-tulieu-img">
-                                            <img class="mb-2" src="images/icon/pdf-file.svg" alt="">
-                                            <a href="#">Tải xuống</a>
-                                        </div>
-                                        <div class="home-tulieu-text">
-                                            <a href="#">
-                                                <h5 class="mb-3 br-line-2">Nghiên cứu đa dạng thành phần loài và sự phân
-                                                    bố các loài chim ở
-                                                    KBTTN bán
-                                                    đảo Sơn Trà, tp Đà Nẵng</h5>
-                                            </a>
-                                            <div class="home-tulieu-date d-flex justify-content-around">
-                                                <span>Trương Quốc Đại</span>
-                                                <span>10/06/2022</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
+                                    <% }})%>
+                                    
+
                                 </div>
                             </div>
+
+                            <!------------------------------HÌNH ẢNH------------------------------>
                             <div class="tab-pane fade p-15" id="list_2" role="tabpanel">
                                 <div class="row-change-grid mb-5">
-                                    <div class="cot-3 hinhanh-all-box">
-                                        <div class="hinhanh-box-img">
-                                            <a href="#">
-                                                <img src="https://source.unsplash.com/random/300x300/?animal" alt="">
-                                            </a>
-                                            <span>3 hình ảnh</span>
-                                        </div>
-                                        <a href="#">
-                                            <h4 class="mt-3 br-line-1">Tiêu đề hình ảnh</h4>
-                                        </a>
-                                    </div>
 
-                                    <div class="cot-3 hinhanh-all-box">
-                                        <div class="hinhanh-box-img">
-                                            <a href="#">
-                                                <img src="https://source.unsplash.com/random/301x301/?animal" alt="">
+                                    <%
+                                        data.forEach(prod => {
+                                            if(prod.label === 'HÌNH ẢNH'){
+                                                name = prod.name;
+                                                url = prod.videoLink;
+                                                pathImage = prod.images[0]?.image || '';
+                                           %>
+                                        <div class="cot-3 hinhanh-all-box">
+                                            <div class="hinhanh-box-img">
+                                                <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html">
+                                                    <img src="../<%= pathImage%>" alt="">
+                                                </a>
+                                                <span>3 hình ảnh</span>
+                                            </div>
+                                            <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html">
+                                                <h4 class="mt-3 br-line-1"><%= name%></h4>
                                             </a>
-                                            <span>3 hình ảnh</span>
                                         </div>
-                                        <a href="#">
-                                            <h4 class="mt-3 br-line-1">Tiêu đề hình ảnh</h4>
-                                        </a>
-                                    </div>
-
-                                    <div class="cot-3 hinhanh-all-box">
-                                        <div class="hinhanh-box-img">
-                                            <a href="#">
-                                                <img src="https://source.unsplash.com/random/302x302/?animal" alt="">
-                                            </a>
-                                            <span>3 hình ảnh</span>
-                                        </div>
-                                        <a href="#">
-                                            <h4 class="mt-3 br-line-1">Tiêu đề hình ảnh</h4>
-                                        </a>
-                                    </div>
-                                    <div class="cot-3 hinhanh-all-box">
-                                        <div class="hinhanh-box-img">
-                                            <a href="#">
-                                                <img src="https://source.unsplash.com/random/303x303/?animal" alt="">
-                                            </a>
-                                            <span>3 hình ảnh</span>
-                                        </div>
-                                        <a href="#">
-                                            <h4 class="mt-3 br-line-1">Tiêu đề hình ảnh</h4>
-                                        </a>
-                                    </div>
-
-
+                                        <% }})%>
+                              
                                 </div>
                             </div>
+
+                            <!-------------------------------VIDEO------------------------------>
                             <div class="tab-pane fade p-15" id="list_3" role="tabpanel">
                                 <div class="row-change-grid mb-5">
-                                    <%if(dataProducts && dataProducts.length > 0){
-                                        dataProducts.forEach(prod => {
+                                    <%
+                                        data.forEach(prod => {
                                             if(prod.label === 'VIDEO'){
                                                 name = prod.name;
                                                 url = prod.videoLink;
@@ -221,23 +156,23 @@
                                            %>
                                     <div class="home-video">
                                         <div class="home-hinhanh-img">
-                                            <a href="#">
+                                            <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html">
                                                 <img src="../<%= pathImage%>" alt="<%= name%>">
                                             </a>
-                                            <a href="#" class="play-btn"><i class="bi bi-play-fill"></i></a>
+                                            <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html" class="play-btn"><i class="bi bi-play-fill"></i></a>
                                         </div>
-                                        <a href="#">
+                                        <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html">
                                             <h4 class="h4-title mt-4 br-line-2"><%= name%></h4>
                                         </a>
                                     </div>
                                     <%  }
-                                })
-                                    }%>
+                                    })
+                                    %>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    <% }%>
                 </div>
             </div>
         </div>

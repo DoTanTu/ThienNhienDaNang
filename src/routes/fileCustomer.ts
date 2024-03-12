@@ -34,7 +34,7 @@ export class FileCustomRouter {
           if(!fs.existsSync('./' + folderResize)){
             fs.mkdirSync('./' + folderResize);
           }
-        })
+        });
         
         cb(null, 'images/' + rootFolder + '/');
       },

@@ -19,6 +19,7 @@ $(document).ready(function() {
     if (hashtags != 'undefined' && hashtags != null && hashtags != "") {
       dataHastag = JSON.parse(hashtags)
     }
+
     var tagify = new Tagify(input, {
       whitelist: dataHastag,
       maxTags: 10,
@@ -50,7 +51,10 @@ $(document).ready(function() {
             myDropzone.files.forEach(x => {
               dataImages.push({
                 image: x.upload.path,
-                alt : $('#alt_'+x.upload.uuid).val()
+                alt : $('#alt_'+x.upload.uuid).val(),
+                author : $('#author_'+x.upload.uuid).val(),
+                year : $('#time_'+x.upload.uuid).val(),
+                address : $('#address_'+x.upload.uuid).val(),
               })
             });
           }
@@ -68,7 +72,6 @@ $(document).ready(function() {
           console.error("Error uploading file: " + e.message);
           return;
         }
-        console.log(file_pdf);
       }
 
       var imagePlus = []
@@ -92,7 +95,6 @@ $(document).ready(function() {
             title : $('#title'+key).val(),
             description : CKEDITOR.instances['editors-'+ key].getData()
           }
-          console.log(ojb);
           descriptionPlus.push(ojb)
         })
       }

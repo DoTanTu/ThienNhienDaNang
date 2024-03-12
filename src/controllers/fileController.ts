@@ -131,4 +131,18 @@ export default class FileController {
     }
     res.send(sorted);
   }
+
+  public async UploadContribute(req, res){
+    if (req.files != null && req.files.length > 0) {
+      res.status(200).json({ success: true, data: req.files });
+    } else {
+      res.status(400).json({ success: false });
+    }
+  }
+
+  public async RemoveContribute(req, res){
+
+  }
+
+  
 }

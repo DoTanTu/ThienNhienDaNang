@@ -22,7 +22,7 @@ export class FileRouter {
         if (!fs.existsSync('./images/' + rootFolder)) {
           fs.mkdirSync('./images/' + rootFolder);
         }
-        
+
         config.image.sizes.forEach(s => {
           let folderThumbnail = path.join(
             'thumbnail/' + s.name

@@ -24,6 +24,7 @@ export interface ICustomerRepository {
   ): Promise<any>
   editProfile(CustomerInputDTO: ICustomerInputDTO): Promise<ICustomer>;
   getProfile(query: ICustomer): Promise<ICustomer>;
+  getBasicInfo(query: ICustomer): Promise<ICustomer>;
   updateStatusCustomer(Customer: ICustomer, isBlock : any): Promise<any>
 }
 
@@ -75,6 +76,11 @@ export default class CustomerRepository implements ICustomerRepository {
   public async getProfile(query: ICustomer): Promise<ICustomer> {
     return this.CustomerModel.findById(query._id)
       .select("fullname avatar username email phone address country description links");
+  }
+
+  public async getBasicInfo(query: ICustomer): Promise<ICustomer> {
+    return this.CustomerModel.findById(query._id)
+      .select("_id fullname avatar username email phone address");
   }
 
   public async getCustomerByMail(

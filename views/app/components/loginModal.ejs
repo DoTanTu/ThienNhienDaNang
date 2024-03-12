@@ -1,0 +1,40 @@
+<div class="modal fade" id="signInModal" tabindex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="signInModalLabel"><i class="bi bi-exclamation-triangle me-3"></i>Bạn cần đăng nhập để tiếp tục!</h1>
+                <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <div class="modal-body p-md-30">
+                <div class="error-message-popup">
+                    <p>Email hoặc password không chính xác</p>
+                </div>
+                <form class="loginBox" id="formHandleLogin">
+                    <input id="userName" name="email" class="form-control mb-4" type="text" placeholder="Tên đăng nhập">
+                    <input id="userPass" name="password" class="form-control" type="password" placeholder="*********">
+                    <button type="submit" class="main-btn mt-4 mx-auto">Đăng nhập</button>
+                    <span class="line">Hoặc đăng nhập với:</span>
+                    <div class="otherLogin mb-3">
+                        <a class="otherBtn" href="#">
+                            <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="">Google</a>
+                        <a class="otherBtn" href="#">
+                            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png" alt="">Facebook</a>
+                        <a class="otherBtn" href="#">
+                            <img src="https://cdn-icons-png.flaticon.com/512/0/747.png" alt="">Apple</a>
+                    </div>
+                    <div class="forgotPass">
+                        <a class="forgotBtn text-center" href="#">Quên mật khẩu?</a>
+                        <span class="text-center" href="#">Chưa có tài khoản? <a href="#" class="resBtn">Đăng ký ngay!</a></span>
+                    </div>
+                    
+                </form>
+            </div>
+            <div class="modal-footer d-none">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

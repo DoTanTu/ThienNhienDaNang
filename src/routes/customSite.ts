@@ -63,6 +63,14 @@ export class CustomSiteRouter {
       }
     );
 
+    this.app.post(
+      '/likes',
+      isAuthCustomer,
+      async (req, res) => {
+        controller.actionLikeProduct(req, res);
+      }
+    );
+
     // this.app.get(
     //   '/:urlMenu/:urlSubMenu',
     //   async (req, res) => {

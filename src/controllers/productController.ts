@@ -1,9 +1,11 @@
+const fs = require("fs");
+const path = require("path");
 import { Container } from 'typedi';
 import config from '../config';
 import PageService from '../services/page';
 import ProductService from '../services/product';
 import { STATUS } from '../utils/status';
-import { IProduct, IProductContact, IProductEcommerce, IProductImage, IProductInputDTO, IProductQuery } from '../models/interfaces/IProduct';
+import { IProduct, IProductAdditional, IProductContact, IProductEcommerce, IProductImage, IProductInputDTO, IProductQuery } from '../models/interfaces/IProduct';
 import CategoryService from '../services/category';
 import LanguageService from '../services/language';
 import AttributeService from '../services/attribute';
@@ -123,7 +125,6 @@ export default class ProductController {
   public async Add(req, res) {
     try {  
       const serviceInstance = Container.get(ProductService);
-
       var imageData = []
       if (req.body.images) {
         imageData = JSON.parse(req.body.images)
@@ -161,6 +162,24 @@ export default class ProductController {
         } as IProductEcommerce
       }
 
+      var additional = {
+        typeof: req.body.typeof,        
+        author: req.body.author,
+        copyright: req.body.copyright,
+        publishYear: req.body.publishYear,
+        source: req.body.source,
+        nameVn: req.body.nameVn,
+        nameEn: req.body.nameEn,
+        nameLa: req.body.nameLa,
+        typeEvent: req.body.typeEvent,
+        dateStart: req.body.typeEvent === 'one' ? req.body.dateStart[0] : req.body.dateStart[1],
+        timeStart: req.body.typeEvent === 'one' ? req.body.timeStart[0] : req.body.timeStart[1],
+        dateEnd: req.body.dateEnd,
+        timeEnd: req.body.timeEnd,
+        address: req.body.typeEvent === 'one' ? req.body.address[0] : req.body.address[1],
+      } as IProductAdditional;
+
+
       const items = await serviceInstance.addProduct({
         url: req.body.url,
         pageId: req.body.pageCurrent,
@@ -181,6 +200,7 @@ export default class ProductController {
           phone: req.body.cphone,
           country: req.body.ccountry
         } as IProductContact,
+        additional : additional,
         showTop: req.body.showTop == 'on',
         seoTitle: req.body.seoTitle,
         seoName: req.body.seoName,
@@ -217,7 +237,6 @@ export default class ProductController {
     let dataProduct = await productInstance.getProductInfo({
       _id : req.query.productId,
     } as IProduct)
-
     var attributes = null
       if (pageSetting != null && pageSetting.setting != null && pageSetting.setting.isAttribute == true) {
         const attributeInstance = Container.get(AttributeService);
@@ -327,6 +346,17 @@ export default class ProductController {
   public async Delete(req, res) {
     try {
       const serviceInstance = Container.get(ProductService);
+      const dataImages = await serviceInstance.getProductImage({
+        _id: req.body._id,
+      } as IProductInputDTO);
+
+      var ArrayImage = [];
+      dataImages.images.forEach( item => {
+        ArrayImage.push(item.image.replace(/\\/g, '/'));
+        ArrayImage.push(item.image.replace(/\\/g, '/').replace(/\.(png|jpg|jpeg)$/i, '.webp'));
+      });
+
+      await this.RemoveFileAny(ArrayImage);
       const data = await serviceInstance.removeProduct({
         _id: req.body._id,
       } as IProduct);
@@ -381,6 +411,23 @@ export default class ProductController {
       } as IProductEcommerce
     }
 
+    var additional = {
+      typeof: req.body.typeof,        
+      author: req.body.author,
+      copyright: req.body.copyright,
+      publishYear: req.body.publishYear,
+      source: req.body.source,
+      nameVn: req.body.nameVn,
+      nameEn: req.body.nameEn,
+      nameLa: req.body.nameLa,
+      typeEvent: req.body.typeEvent,
+      dateStart: req.body.typeEvent === 'one' ? req.body.dateStart[0] : req.body.dateStart[1],
+      timeStart: req.body.typeEvent === 'one' ? req.body.timeStart[0] : req.body.timeStart[1],
+      dateEnd: req.body.dateEnd,
+      timeEnd: req.body.timeEnd,
+      address: req.body.typeEvent === 'one' ? req.body.address[0] : req.body.address[1],
+    } as IProductAdditional;
+    
     if (req.body.language) {
       return {
         _id : req.body._id,
@@ -391,6 +438,7 @@ export default class ProductController {
         images : imageData,
         ecommerce : ecommerce,
         ecommercePlus : ecommercePlus,
+        additional : additional,
         hashtags : hashtags,
         contact : {
           name : req.body.cname,
@@ -419,6 +467,7 @@ export default class ProductController {
         ecommerce : ecommerce,
         ecommercePlus : ecommercePlus,
         hashtags : hashtags,
+        additional : additional,
         contact : {
           name : req.body.cname,
           email : req.body.cemail,
@@ -480,4 +529,17 @@ export default class ProductController {
     }
     return languages
   }
+
+  public async RemoveFileAny(pathOject : any){
+    if(pathOject != null){
+      pathOject.forEach( pathLink =>{
+        fs.unlink(path.join(pathLink), (err) => {
+          if (err) {
+            console.log(err);
+          }
+        });
+      })
+    }
+  }
+
 }

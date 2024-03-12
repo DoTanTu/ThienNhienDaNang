@@ -36,7 +36,6 @@ export default class CommentController {
       } as ICommentQuery);
   
       if (responses) {
-        console.log(responses.items);
         res.status(200).json({
           success: true,
           recordsTotal: responses.total,

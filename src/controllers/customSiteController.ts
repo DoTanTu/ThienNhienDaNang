@@ -27,11 +27,13 @@ export default class CustomSiteController {
           dataProducts: null,
           dataAttibutes: null,
           dataProductDetail: null,
+          dataProductCounter: null,
           dataCategoryDetail: null,
           dataContact : null,
           dataShipMethods : null,
           dataPaymendMethods : null,
           dataProfile : null,
+          dataBasicInfo : null,
           dataOther1 : null,
           dataOther2 : null,
           dataOther3 : null,
@@ -54,8 +56,11 @@ export default class CustomSiteController {
           data.dataSite = site
           data.dataMenus = sites.filter((site) => site.isShowInMenu);
           data.fileEjsName = site.htmlPath.replace('.ejs', '');
-          data.dataContact = await siteInstance.getContact()
-          data.dataLanguages = await siteInstance.getLanguages()
+          data.dataContact = await siteInstance.getContact();
+          data.dataLanguages = await siteInstance.getLanguages();
+          if(req.session.customer){
+            data.dataBasicInfo = await siteInstance.getDataBasicInfo(req.session.customer.customerId);
+          }
 
           if (site.isSiteProductDetail) {
             let idProduct = Utils.getIdUrlSiteDetail(req.params.url)
@@ -99,6 +104,20 @@ export default class CustomSiteController {
                     priceMin: req.query['priceMin'],
                     priceMax: req.query['priceMax'],
                     label : req.query['label']} as IProductQuery, app.platform == "ecommerce_plus");
+
+                    data.dataProductCounter = await siteInstance.getProductByFillters({
+                      pageId : site.pageData.pageId,
+                      query : req.query['query'],
+                      limit: site.pageData.limitSizeProduct,
+                      isFullSite : site.pageData.isFullSizeProduct,
+                      language :  req.query['lang'],
+                      cateId :  req.query['cate'],
+                      hashtag : req.query['hashtag'],
+                      attributes : this.toQueryAttributes(req),
+                      priceMin: req.query['priceMin'],
+                      priceMax: req.query['priceMax'],
+                      label : req.query['label']} as IProductQuery, app.platform == "ecommerce_plus");
+
                 }else{
                   data.dataProducts =  await siteInstance.getProducts(site.pageData.pageId, site.pageData.isFullSizeProduct,site.pageData.limitSizeProduct, site.pageData.isFullFieldProduct);
                 }
@@ -122,7 +141,6 @@ export default class CustomSiteController {
         if (req.session != undefined && req.session.customer != null) {
           sessionCustomer = req.session.customer
         }
-
         if (site && data.fileEjsName) {
           res.render('./app/' + data.fileEjsName, {
             urlCurrentName : req.params.url,
@@ -144,11 +162,13 @@ export default class CustomSiteController {
             dataProductDetail : data.dataProductDetail,
             dataCategoryDetail : data.dataCategoryDetail,
             dataProfile : data.dataProfile,
+            dataBasicInfo : data.dataBasicInfo,
             dataLanguages : data.dataLanguages,
             languageCodeCurrent : languageCodeCurrent,
             dataAttibutes : data.dataAttibutes,
             dataShipMethods : data.dataShipMethods,
             dataPaymendMethods : data.dataPaymendMethods,
+            dataProductCounter : data.dataProductCounter,
             session : sessionCustomer
           });
         } else {
@@ -262,6 +282,27 @@ export default class CustomSiteController {
     }
   }
 
+  public async searchAllProducts(req, res){
+    const siteInstance = Container.get(CustomSiteService);
+    let products = await siteInstance.getProductByFillters({
+      pageId : req.body.pageId,
+      query : req.body.query,
+      start: req.body.start,
+      limit: req.body.limit,
+      cateId : req.body.cateId,
+      hashtag : req.body.hashtag,
+    } as IProductQuery, req.body.isEcommercePlus);
+
+    if (products) {
+      res.status(200).json({
+        success: true,
+        data: products,
+      });
+    } else {
+      res.status(200).json({ success: false });
+    }
+  }
+
   public async increaseDownload(req, res){
     const siteInstance = Container.get(CustomSiteService);
     const idProduct = req.body.productId;
@@ -270,6 +311,26 @@ export default class CustomSiteController {
       success: true,
       total : result
     });
+  }
+
+  public async actionLikeProduct(req, res){
+    const siteInstance = Container.get(CustomSiteService);
+    const idProduct = req.body.productId;
+    const idCustomer = req.session.customer.customerId;
+    const result = await siteInstance.actionLikeProduct(idProduct, idCustomer);
+    if(result){
+      res.status(200).json({
+        success: true,
+        total : result
+      })
+    }
+    else{
+      res.status(200).json({
+        success: false,
+        total : 0
+      })
+    }
+    
   }
 
   toQueryAttributes(req: any): any {

@@ -26,11 +26,20 @@
                     <h3 class="h3-title underline"><%= prod.name%></h3>
                     <div class="tintuc-detail-admin d-flex mt-4">
                         <div class="tintuc-admin-img">
-                            <img src="https://images.pexels.com/photos/5199158/pexels-photo-5199158.jpeg?auto=compress&cs=tinysrgb&w=300" alt="">
+                            <img src="../public/app/images/user_post.jpg" alt="">
                         </div>
                         <div class="tintuc-admin-info d-flex flex-column">
-                            <h4>Huỳnh Thư</h4>
-                            <span>17/08/2022</span>
+                            <h4>Admin giáo dục</h4>
+                            <% 
+                            const dateObject = new Date(dataProductDetail.createdAt);
+
+                            const day = dateObject.getDate();
+                            const month = dateObject.getMonth() + 1; // Tháng bắt đầu từ 0, cần cộng thêm 1
+                            const year = dateObject.getFullYear();
+                            
+                            const formattedDate = `${day}/${month}/${year}`;
+                            %>
+                            <span><%= formattedDate%></span>
                         </div>
                     </div>
                     <!-- --------------------------------------------------------------------------------------------------------------------------- -->
@@ -45,35 +54,37 @@
                         <div class="tintuc-detail-tag">
                             <span>Từ khoá:</span>
                             <ul>
-                                <li><a href="#">Tài liệu</a></li>
-                                <li><a href="#">Sơn Trà</a></li>
-                                <li><a href="#">Tình Nguyện</a></li>
-                                <li><a href="#">Tài liệu</a></li>
-                                <li><a href="#">Tài liệu</a></li>
-                                <li><a href="#">Sơn Trà</a></li>
+                                <% 
+                                if(prod.hashtags && prod.hashtags.length > 0){
+                                    const hashtagProducts = dataAttibutes.find(attribute => attribute.tag === 'Hashtag');
+                                    prod.hashtags.forEach( item => {
+                                        let mapping = hashtagProducts.values.find( hashtag_item => hashtag_item.code === item);
+                                        if(mapping){
+                                            value_display = mapping.value;
+                                            %>
+                                            <li>
+                                                <a href="/tin-tuc?hashtag=<%= item%>"><%= value_display%></a>
+                                </li>
+                            <%}})}%>
                             </ul>
                         </div>
                         <div class="tintuc-detail-social">
+                            <i class="bi bi-suit-heart<%if(dataBasicInfo && prod.likes.includes(dataBasicInfo._id)){%>-fill<%}%>" data-action="like" data-post-id="<%= prod._id%>"></i>
                             <a href="#">
-                                <i class="bi bi-heart-fill"></i>
+                                <i class="bi bi-bookmark"></i>
                             </a>
                             <a href="#">
-                                <i class="bi bi-bookmark-fill"></i>
-                            </a>
-                            <a href="#">
-                                <i class="bi bi-instagram"></i>
-                            </a>
-                            <a href="#">
-                                <i class="bi bi-youtube"></i>
+                                <i class="bi bi-reply"></i>
                             </a>
                         </div>
                     </div>
                     <%- include('./components/comment') -%>
-                    
                 </div>
             </div>
         </div>
     </div>
+
+    <%- include('./components/loginModal') -%>
 
     <%- include('./components/sukien') -%>
 

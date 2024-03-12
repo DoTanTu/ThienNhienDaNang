@@ -46,26 +46,27 @@
                         <div class="tintuc-detail-tag">
                             <span>Từ khoá:</span>
                             <ul>
-                                <li><a href="#">Tài liệu</a></li>
-                                <li><a href="#">Sơn Trà</a></li>
-                                <li><a href="#">Tình Nguyện</a></li>
-                                <li><a href="#">Tài liệu</a></li>
-                                <li><a href="#">Tài liệu</a></li>
-                                <li><a href="#">Sơn Trà</a></li>
+                                <% 
+                                if(prod.hashtags && prod.hashtags.length > 0){
+                                    const hashtagProducts = dataAttibutes.find(attribute => attribute.tag === 'Hashtag');
+                                    prod.hashtags.forEach( item => {
+                                        let mapping = hashtagProducts.values.find( hashtag_item => hashtag_item.code === item);
+                                        if(mapping){
+                                            value_display = mapping.value;
+                                            %>
+                                            <li>
+                                                <a href="/ket-noi?hashtag=<%= item%>"><%= value_display%></a>
+                                            </li>
+                            <%}})}%>
                             </ul>
                         </div>
                         <div class="tintuc-detail-social">
+                            <i class="bi bi-suit-heart<%if(dataBasicInfo && prod.likes.includes(dataBasicInfo._id)){%>-fill<%}%>" data-action="like" data-post-id="<%= prod._id%>"></i>
                             <a href="#">
-                                <i class="bi bi-heart-fill"></i>
+                                <i class="bi bi-bookmark"></i>
                             </a>
                             <a href="#">
-                                <i class="bi bi-bookmark-fill"></i>
-                            </a>
-                            <a href="#">
-                                <i class="bi bi-instagram"></i>
-                            </a>
-                            <a href="#">
-                                <i class="bi bi-youtube"></i>
+                                <i class="bi bi-reply"></i>
                             </a>
                         </div>
                     </div>

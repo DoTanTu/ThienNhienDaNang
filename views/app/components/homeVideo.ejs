@@ -13,7 +13,7 @@
             <div class="item">
                 <div class="home-hinhanh-img">
                     <img src="<%= pathImage%>" alt="<%= name%>">
-                    <a href="" data-toggle="lightbox"
+                    <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html" data-toggle="lightbox"
                         data-type="youtube" class="play-btn">
                         <i class="bi bi-play-fill"></i>
                     </a>

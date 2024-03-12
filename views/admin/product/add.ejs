@@ -31,7 +31,10 @@
                         <input name="pageCurrent" hidden value="<% if(typeof pageCurrent != undefined && pageCurrent != null){ %><%= pageCurrent%><%}%>"></input>
        
                         <div class="card-body">
+
                           <%- include('./component/info-view', { infoData : null}) -%>
+
+                          <%- include('./component/type-product-view', {additionalData : null}) -%>
                          
                           <% if(pageSetting != undefined && pageSetting != null && pageSetting.setting.isLinkVideo) {%>
                           <%- include('./component/video-view', { linkData : null}) -%>
@@ -103,6 +106,50 @@
     <script type='text/javascript'>
       var categories = `<%= categories%>`
     </script>
+
+    <script>
+      const typeProduct = document.getElementById("type_product");
+      const optionOne = document.querySelector('.option_one');
+      const optionTwo = document.querySelector('.option_two');
+      const optionThree = document.querySelector('.option_three');
+
+      typeProduct.addEventListener('change', function() {
+        if(typeProduct.value === ''){
+          optionOne.classList.add('d-none');
+          optionTwo.classList.add('d-none');
+          optionThree.classList.add('d-none');
+        }
+        else if (typeProduct.value === 'doc' || typeProduct.value === 'video' || typeProduct.value === 'book' || typeProduct.value === 'lesson') {
+          optionOne.classList.remove('d-none');
+          optionTwo.classList.add('d-none');
+          optionThree.classList.add('d-none');
+        } else if (typeProduct.value === 'image') {
+          optionOne.classList.add('d-none');
+          optionTwo.classList.remove('d-none');
+          optionThree.classList.add('d-none');
+        }else if(typeProduct.value === 'event'){
+          optionOne.classList.add('d-none');
+          optionTwo.classList.add('d-none');
+          optionThree.classList.remove('d-none');
+        }
+      });
+    </script>
+
+    <script>
+      function toggleOptions(optionType) {
+          const oneTimeBlock = document.querySelector('.one_time');
+          const manyTimeBlock = document.querySelector('.many_time');
+
+          if (optionType === 'one_time') {
+              oneTimeBlock.classList.remove('d-none');
+              manyTimeBlock.classList.add('d-none');
+          } else {
+              oneTimeBlock.classList.add('d-none');
+              manyTimeBlock.classList.remove('d-none');
+          }
+      }
+    </script>
+
     <%- include('../partials/common-js') -%>
     <%- include('../partials/common-crud-js') -%>
     <script type="text/javascript" src="../public/admin/assets/js/pages/editor/ck-editors.js"></script>
