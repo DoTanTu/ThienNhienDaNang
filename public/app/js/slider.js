@@ -169,7 +169,7 @@ $(document).ready(function () {
         // autoplayTimeout: 3000,
         // animateOut: 'animate__fadeOut',
         // animateIn: 'animate__fadeIn',
-        loop: true,
+        loop: false,
         margin: 30,
         dots: false,
         nav: true,

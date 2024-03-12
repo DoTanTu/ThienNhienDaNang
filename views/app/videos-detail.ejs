@@ -54,59 +54,29 @@
                     <div class="hinhanh-quantam">
                         <h3 class="h3-title underline position-relative mb-5">Có thể bạn quan tâm</h3>
                         <div class="owl-quantam owl-carousel owl-theme mb-5">
-                            <div class="item">
-                                <div class="img-box trans-3 mb-3">
-                                    <a href="#"><img src="https://source.unsplash.com/random/400x400/?animal"
-                                            alt=""></a>
-                                </div>
-                                <a href="#">
-                                    <h4 class="br-line-2">Tên album</h4>
-                                </a>
-                            </div>
-                            <div class="item">
-                                <div class="img-box trans-3 mb-3">
-                                    <a href="#">
-                                        <img src="https://source.unsplash.com/random/401x401/?animal" alt="">
-                                    </a>
-                                </div>
-                                <a href="#">
-                                    <h4 class="br-line-2">Tên album</h4>
-                                </a>
-                            </div>
-                            <div class="item">
-                                <div class="img-box trans-3 mb-3">
-                                    <a href="#">
-                                        <img src="https://source.unsplash.com/random/402x402/?animal" alt="">
-                                    </a>
-                                </div>
-                                <a href="#">
-                                    <h4 class="br-line-2">Tên album</h4>
-                                </a>
-                            </div>
-                            <div class="item">
-                                <div class="img-box trans-3 mb-3">
-                                    <a href="#">
-                                        <img src="https://source.unsplash.com/random/403x403/?animal" alt="">
-                                    </a>
-                                </div>
-                                <a href="#">
-                                    <h4 class="br-line-2">Tên album</h4>
-                                </a>
-                            </div>
-                            <div class="item">
-                                <div class="img-box trans-3 mb-3">
-                                    <a href="#">
-                                        <img src="https://source.unsplash.com/random/404x404/?animal" alt="">
-                                    </a>
-                                </div>
-                                <a href="#">
-                                    <h4 class="br-line-2">Tên album</h4>
-                                </a>
-                            </div>
+                            
+                        <%if(dataProducts && dataProducts.length > 0){
+                            dataProducts.forEach( videoItem => {
+                                if(videoItem._id !== prod._id && videoItem.showTop === true){
+                                        pathImage = "";
+                                        obImage = videoItem.images[0];
+                                        if(obImage){
+                                            pathImage = obImage.image
+                                        }
+                                    %>
+                                    <div class="item">
+                                        <div class="img-box trans-3 mb-3">
+                                            <a href="<%= videoItem.name.replace(/ /g , '-')%>-<%= videoItem.pageId %>.<%= videoItem._id %>.html"><img src="<%= pathImage%>" alt=""></a>
+                                        </div>
+                                        <a href="<%= videoItem.name.replace(/ /g , '-')%>-<%= videoItem.pageId %>.<%= videoItem._id %>.html">
+                                            <h4 class="br-line-2"><%= videoItem.name%></h4>
+                                        </a>
+                                    </div>
+                               <% }
+                            })
+                        }%> 
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

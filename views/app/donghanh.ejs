@@ -8,7 +8,7 @@
     <%- include('./components/header') -%>
     <%- include('./components/bottomNav') -%>
 
-    <div class="donghanh home-info" style="background-image: url(../public/app/images/Tree-bg-2.svg);">
+    <div class="donghanh home-info" id="contribution" style="background-image: url(../public/app/images/Tree-bg-2.svg);">
         <div class="container">
             <div class="row-change mb-5 flex-column-reverse flex-md-row">
                 <%if(dataProducts && dataProducts.length > 0) {
@@ -67,7 +67,7 @@
         </div>
     </div>
 
-    <div class="donghanh-tnv py-90">
+    <div class="donghanh-tnv py-90" id="become-volunteer">
         <div class="container">
             <div class="row-change">
                 <%if(dataProducts && dataProducts.length > 0) {
@@ -93,6 +93,15 @@
                 </div>
                 <%}}%>
             </div>
+        </div>
+    </div>
+
+    <div class="donggop-huongdan py-30 py-md-60 py-lg-90 bg-grey" id="donation">
+        <div class="container">
+            <h3 class="h3-title underline mb-4">Hướng dẫn quyên góp</h3>
+            <p class="text-color-2">Để đóng góp nguồn tư liệu hình ảnh cho website, chúng tôi mong nhận được sự đóng góp của các nhiếp ảnh gia, cộng đồng và những người yêu thiên nhiên Đà Nẵng qua cuộc thi ảnh trực tuyến (online) với chủ đề “Chung tay lan tỏa tri thức thiên nhiên Đà Nẵng”. 
+                Cuộc thi khuyến khích người tham gia tiếp cận các loài sinh vật đang sinh sống tại thành phố Đà Nẵng và các yếu tố tự nhiên theo nhiều khía cạnh, chân thực, có giá trị khoa học, giáo dục và thẩm mĩ cao. Những bức ảnh, bộ ảnh tham gia cuộc thi sẽ trở thành nguồn tư liệu quý giá, chất lượng cao cho hoạt động dạy và học của 20.000 giáo viên (cấp 1, 2, 3), hơn 100.000 học sinh, sinh viên, cộng đồng quan tâm và mong muốn tìm hiểu thiên nhiên Đà Nẵng. Đồng thời, thông qua các giải thưởng của cuộc thi, chúng tôi tôn vinh và ghi nhận công sức, tinh thần sẵn sàng chia sẻ của người tham gia, các nhiếp ảnh gia tâm huyết vì mục tiêu lan tỏa tri thức, vẻ đẹp và tình yêu thiên nhiên đến cả cộng đồng.
+                </p>
         </div>
     </div>
 

@@ -106,13 +106,19 @@
                         <div class="owl-quantam owl-carousel owl-theme mb-5">
                         <%if(dataProducts && dataProducts.length > 0){
                             dataProducts.forEach( prodRelated => {
-                                if(prodRelated._id !== prod._id){%>
+                                if(prodRelated._id !== prod._id){
+                                    pathImage = '';
+                                    obImage = prodRelated.images[0];
+                                    if(obImage){
+                                       pathImage = obImage.image
+                                    }
+                                    %>
                                     <div class="item">
                                         <div class="img-box trans-3 mb-3">
-                                            <a href="#"><img src="<%= prodRelated.images[0].image%>"
+                                            <a href="<%= prodRelated.name.replace(/ /g , '-')%>-<%= prodRelated.pageId %>.<%= prodRelated._id %>.html"><img src="../<%= pathImage%>"
                                                     alt="<%= prodRelated.images[0].alt%>"></a>
                                         </div>
-                                        <a href="#">
+                                        <a href="<%= prodRelated.name.replace(/ /g , '-')%>-<%= prodRelated.pageId %>.<%= prodRelated._id %>.html">
                                             <h4 class="br-line-2"><%= prodRelated.name%> </h4>
                                         </a>
                                     </div>
