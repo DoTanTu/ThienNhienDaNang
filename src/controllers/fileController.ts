@@ -8,7 +8,6 @@ export default class FileController {
   public async UploadFile(req, res) {
     if (req.files != null && req.files.length > 0) {
       let image = req.files[0];
-
       const resize = (size) =>
         sharp(image.path)
           .metadata()
@@ -20,7 +19,6 @@ export default class FileController {
                 .toFile(Utils.covertToWebp(image.path, size.name));
             }
           });
-
       await Promise.all(config.image.sizes.map(resize)).then(() => {
         res.status(200).json({ success: true, data: req.files });
       });
@@ -36,6 +34,7 @@ export default class FileController {
       pathFile != null &&
       pathFile.indexOf("public") > -1
     ) {
+      console.log(pathFile)
       fs.unlink(path.join(pathFile), (err) => {
         if (err) {
           console.log(err);
@@ -143,6 +142,17 @@ export default class FileController {
   public async RemoveContribute(req, res){
 
   }
-
   
+  public async RemoveFileAny(pathOject : any){
+    if(pathOject != null){
+      pathOject.forEach( pathLink =>{
+        fs.unlink(path.join(pathLink), (err) => {
+          if (err) {
+            console.log(err);
+          }
+        });
+      })
+    }
+  }
+
 }

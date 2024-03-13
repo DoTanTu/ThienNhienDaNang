@@ -30,12 +30,19 @@
                         publishYear = prod.additional.publishYear;
                         copyright = prod.additional.copyright;
                         source = prod.additional.source;
+                        let pathImage = '';
+                        let imageResize = '';
+                        const obImage = prod.images[0];
+                        if(obImage){
+                            pathImage = obImage.image.replace(/\\/g, '/');
+                        }
+                        imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
                     %>
                     <div class="tailieu-detail-box">
                         <div class="row-change">
                             <div class="cot-12 cot-4-md">
                                 <div class="tailieu-detail-img position-relative">
-                                    <img src="../<%= prod.images[0].image%>" style="object-fit: cover; width: 100%; height: 100%;"  alt="">
+                                    <img src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= name%>" style="object-fit: cover; width: 100%; height: 100%;">
                                 </div>
                             </div>
                             <div class="cot-12 cot-8-md tailieu-detail-text">

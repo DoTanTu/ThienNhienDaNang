@@ -3,7 +3,7 @@
         <div class="row-change">
 
             <div class="cot-3-lg cot-12 cot-6-md">
-                <a href="#" class="ft-logo mb-3">
+                <a href="/" class="ft-logo mb-3">
                     <img src="../public/app/images/logo.png" alt="">
                 </a>
                 <ul class="mb-3">
@@ -28,18 +28,30 @@
                 </a>
                 <% } %>
                 <div class="ft-social mt-3 d-flex">
-                    <a href="">
-                        <i class="bi bi-twitter"></i>
-                    </a>
-                    <a href="#">
-                        <i class="bi bi-instagram"></i>
-                    </a>
-                    <a href="#">
-                        <i class="bi bi-youtube"></i>
-                    </a>
-                    <a href="#">
-                        <i class="bi bi-facebook"></i>
-                    </a>
+                    <%if(dataContact){
+                        facebook = dataContact.facebook;
+                        youtube = dataContact.youtube;
+                        zalo = dataContact.zalo;
+                        %>
+                        <%if(zalo !== '' && zalo){%>
+                            <a href="<%= zalo%>">
+                                <i class="bi bi-zalo"></i>
+                            </a>
+                        <% }%>
+                    
+                        <%if(youtube !== '' && youtube){%>
+                            <a href="<%= youtube%>">
+                                <i class="bi bi-youtube"></i>
+                            </a>
+                        <%}%>
+
+                        <%if(facebook !== '' && facebook){%>
+                            <a href="<%= facebook%>">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                        <%}%>
+
+                    <%}%>
                 </div>
             </div>
 
