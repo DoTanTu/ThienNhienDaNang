@@ -107,6 +107,7 @@ export default class CommentController {
           const image = item.image;
           const thumbnailSizes = [150, 250, 480, 720, 1200, 1280, 1920];
           thumbnailSizes.forEach(size => {
+              console.log(image.replace('images/', `thumbnail/${size}/`).replace(/\.(png|jpg|jpeg)$/i, '.webp'));
               ArrayImage.push(image.replace('images/', `thumbnail/${size}/`).replace(/\.(png|jpg|jpeg)$/i, '.webp'));
           });
           ArrayImage.push(image);
