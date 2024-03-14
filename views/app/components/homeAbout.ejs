@@ -26,7 +26,7 @@
                         imageResize = pathImage.replace('images/', 'thumbnail/480/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
               %>
             <div class="cot-12 cot-4-md px-30 py-30 home-about-box">
-                <img class="mb-3" src="<%= imageResize%>" onerror="javascript:this.src='<%= pathImage%>'" alt="<%= alt%>">
+                <img class="mb-3" src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
                 <h4 class="text-center"><%- nameProd%></h4>
             </div>
              <%  }
