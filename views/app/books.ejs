@@ -27,7 +27,7 @@
                             let imageResize = '';
                             const obImage = prod.images[0];
                             if(obImage){
-                                pathImage = obImage.image.replace(/\\/g, '/');
+                                pathImage = obImage.image;
                             }
                             imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
                             const createdAt = new Date(prod.createdAt);

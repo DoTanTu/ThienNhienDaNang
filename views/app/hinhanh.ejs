@@ -29,10 +29,12 @@
                         if(data){
                             data.forEach((prod) => {
                                 name = prod.name;
-                                pathImage = '';
-                                obImage = prod.images[0];
+                                let alt = '';
+                                let pathImage = '';
+                                let obImage = prod.images[0];
                                 if(obImage){
-                                    pathImage = obImage.image.replace(/\\/g, '/');
+                                    pathImage = obImage.image;
+                                    alt = obImage.alt;
                                 }
                                 imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
                                 numberImage = prod.images.length
@@ -40,7 +42,7 @@
                         <div class="cot-3 hinhanh-all-box">
                             <div class="hinhanh-box-img">
                                 <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html">
-                                    <img src="<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="">
+                                    <img src="<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
                                 </a>
                                 <span><%= numberImage%> hình ảnh</span>
                             </div>

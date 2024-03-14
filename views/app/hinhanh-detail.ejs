@@ -28,7 +28,7 @@
                         
                         <%if(prod.images.length > 0 ){
                             prod.images.forEach((imageItem) => {
-                                pathImage = imageItem.image.replace(/\\/g, '/')
+                                pathImage = imageItem.image
                            %>
                         <a class="gallery-item"
                             data-src="<%= pathImage%>"
@@ -107,16 +107,21 @@
                         <%if(dataProducts && dataProducts.length > 0){
                             dataProducts.forEach( prodRelated => {
                                 if(prodRelated._id !== prod._id){
-                                    pathImage = '';
-                                    obImage = prodRelated.images[0];
+                                    let alt = '';
+                                    let pathImage = '';
+                                    let imageResize = '';
+                                    const obImage = prod.images[0];
                                     if(obImage){
-                                       pathImage = obImage.image
+                                        pathImage = obImage.image;
+                                        alt = obImage.alt;
                                     }
+                                    imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');     
                                     %>
                                     <div class="item">
                                         <div class="img-box trans-3 mb-3">
-                                            <a href="<%= prodRelated.name.replace(/ /g , '-')%>-<%= prodRelated.pageId %>.<%= prodRelated._id %>.html"><img src="../<%= pathImage%>"
-                                                    alt="<%= prodRelated.images[0].alt%>"></a>
+                                            <a href="<%= prodRelated.name.replace(/ /g , '-')%>-<%= prodRelated.pageId %>.<%= prodRelated._id %>.html">
+                                                <img src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
+                                            </a>
                                         </div>
                                         <a href="<%= prodRelated.name.replace(/ /g , '-')%>-<%= prodRelated.pageId %>.<%= prodRelated._id %>.html">
                                             <h4 class="br-line-2"><%= prodRelated.name%> </h4>

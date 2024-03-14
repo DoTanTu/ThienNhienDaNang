@@ -351,10 +351,15 @@ export default class ProductController {
       } as IProductInputDTO);
 
       var ArrayImage = [];
-      dataImages.images.forEach( item => {
-        ArrayImage.push(item.image.replace(/\\/g, '/'));
-        ArrayImage.push(item.image.replace(/\\/g, '/').replace(/\.(png|jpg|jpeg)$/i, '.webp'));
+      dataImages.images.forEach(item => {
+          const image = item.image;
+          const thumbnailSizes = [150, 250, 480, 720, 1200, 1280, 1920];
+          thumbnailSizes.forEach(size => {
+              ArrayImage.push(image.replace('images/', `thumbnail/${size}/`).replace(/\.(png|jpg|jpeg)$/i, '.webp'));
+          });
+          ArrayImage.push(image);
       });
+      
 
       await this.RemoveFileAny(ArrayImage);
       const data = await serviceInstance.removeProduct({

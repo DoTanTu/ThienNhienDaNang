@@ -103,10 +103,14 @@ export default class CommentController {
         } as IContribute);
 
         var ArrayImage = [];
-        dataImages.files.forEach( item => {
-          ArrayImage.push(item.file.replace(/\\/g, '/'));
-          ArrayImage.push(item.file.replace(/\\/g, '/').replace(/\.(png|jpg|jpeg)$/i, '.webp'));
-        });
+      dataImages.images.forEach(item => {
+          const image = item.image;
+          const thumbnailSizes = [150, 250, 480, 720, 1200, 1280, 1920];
+          thumbnailSizes.forEach(size => {
+              ArrayImage.push(image.replace('images/', `thumbnail/${size}/`).replace(/\.(png|jpg|jpeg)$/i, '.webp'));
+          });
+          ArrayImage.push(image);
+      });
 
         await this.RemoveFileAny(ArrayImage);
         const data = await serviceInstance.removeContribute({
