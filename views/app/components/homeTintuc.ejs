@@ -11,12 +11,20 @@
                         name = prod.name;
                         url = prod.url;
                         desShort = prod.desShort;
-                        pathImage = prod.images[0]?.image;
+                        let alt = '';
+                        let pathImage = '';
+                        let imageResize = '';
+                        const obImage = prod.images[0];
+                        if(obImage){
+                            pathImage = obImage.image;
+                            alt = obImage.alt;
+                        }
+                        imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
                   %>
             <div class="item">
                 <div class="home-tintuc-box d-flex flex-column h-100">
                     <div class="home-tintuc-box-img mb-4 flex-shrink-0">
-                        <img src="../<%= pathImage%>" alt="<%= name%>">
+                        <img src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
                     </div>
                     <div class="home-tintuc-box-text d-flex flex-column flex-fill">
                         <span class="text-color-2">02/07/2022</span>
@@ -35,7 +43,7 @@
 
         </div>
         <a class="main-btn mx-auto" href="tin-tuc">
-             Xem thêm
+            <% =Xem thêm%>
         </a>
     </div>
 </div>

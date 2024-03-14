@@ -8,12 +8,20 @@
                 dataOther3.products.forEach( prod => {
                     if(prod.showTop === true){
                     name = prod.name;
-                    pathImage = prod.images[0]?.image;
+                    let alt = '';
+                    let pathImage = '';
+                    let imageResize = '';
+                    const obImage = prod.images[0];
+                    if(obImage){
+                        pathImage = obImage.image;
+                        alt = obImage.alt;
+                    }
+                    imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
             %>
             <div class="cot-12 cot-6-md cot-4-lg">
                 <div class="home-hinhanh-img">
                     <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html">
-                        <img src="<%= pathImage%>" alt="<%= name%>">
+                        <img src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
                     </a>
                     <div class="home-hinhanh-title position-absolute w-100">
                         <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html">

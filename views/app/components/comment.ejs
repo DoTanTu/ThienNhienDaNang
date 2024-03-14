@@ -8,8 +8,18 @@
   <input type="hidden" id="fullname_account" value="<%= dataBasicInfo.fullname%>">
     <div class="tintuc-detail-comment-box flex-wrap mt-4">
       <div class="comment-box-img">
-        <%if(dataBasicInfo.avatar && dataBasicInfo.avatar !== ''){%>
-          <img id="image_account" src="../<%= dataBasicInfo.avatar%>" alt="">
+        <%if(dataBasicInfo.avatar && dataBasicInfo.avatar !== ''){
+          let alt = '';
+          let pathImage = '';
+          let imageResize = '';
+          const obImage = dataBasicInfo.avatar;
+          if(obImage){
+              pathImage = obImage;
+              alt = obImage.alt;
+          }
+          imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
+          %>
+          <img id="image_account" src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
         <%}else{%>
           <img id="image_account" src="../public/app/images/person_default.png" alt="">
         <%}%>

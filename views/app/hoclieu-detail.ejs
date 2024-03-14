@@ -110,7 +110,7 @@
                                 
                                 <%if(prod.images.length > 0 ){
                                     prod.images.forEach((imageItem) => {
-                                      pathImage = imageItem.image.replace(/\\/g, '/')
+                                      pathImage = imageItem.image
                                   %>
                                 <a class="gallery-item" data-src="<%= pathImage%>"
                                     data-sub-html="#<%= imageItem._id%>">

@@ -7,12 +7,20 @@
             <%if(dataOther4 && dataOther4.products.length > 0){
                 dataOther4.products.slice(0,3).forEach( prod => {
                     name = prod.name;
-                    pathImage = prod.images[0]?.image || "";
                     desShort = prod.desShort;
+                    let alt = '';
+                    let pathImage = '';
+                    let imageResize = '';
+                    const obImage = prod.images[0];
+                    if(obImage){
+                        pathImage = obImage.image;
+                        alt = obImage.alt;
+                    }
+                    imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
                     %>
             <div class="cot-12 cot-4-lg home-ketnoi-outbox d-flex flex-column flex-md-row flex-lg-column">
                 <div class="home-ketnoi-img position-relative">
-                    <img src="../<%= pathImage%>" alt="<%= name%>">
+                    <img src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
                 </div>
                 <div class="home-ketnoi-detail position-relative">
                     <div

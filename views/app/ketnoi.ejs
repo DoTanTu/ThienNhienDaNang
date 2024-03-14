@@ -24,13 +24,20 @@
                         dataProducts.forEach( prod => {
                             name = prod.name;
                             desShort = prod.desShort;
-                            pathImage = prod.images[0]?.image || "";
+                            let alt = '';
+                            let pathImage = '';
+                            let imageResize = '';
+                            const obImage = prod.images[0];
+                            if(obImage){
+                                pathImage = obImage.image;
+                                alt = obImage.alt;
+                            }
+                            imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
                     %>
                     <div class="ketnoi-box row-change">
                         <div class="cot-12 cot-6-md ketnoi-box-left">
                             <div class="ketnoi-box-img">
-                                <img src="../<%= pathImage%>"
-                                    alt="<%= name%>">
+                                <img src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
                             </div>
                         </div>
                         <div class="cot-12 cot-6-md ketnoi-box-detail">

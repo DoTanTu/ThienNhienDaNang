@@ -8,11 +8,19 @@
                 dataOther5.products.forEach(prod => {
                     if(prod.showTop === true){
                         name = prod.name;
-                        pathImage = prod.images[0].image;
+                        let alt = '';
+                        let pathImage = '';
+                        let imageResize = '';
+                        const obImage = prod.images[0];
+                        if(obImage){
+                            pathImage = obImage.image;
+                            alt = obImage.alt;
+                        }
+                        imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
                   %>
             <div class="item">
                 <div class="home-hinhanh-img">
-                    <img src="<%= pathImage%>" alt="<%= name%>">
+                    <img src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
                     <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html" data-toggle="lightbox"
                         data-type="youtube" class="play-btn">
                         <i class="bi bi-play-fill"></i>

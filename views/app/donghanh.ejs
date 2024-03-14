@@ -17,7 +17,15 @@
                     if(prod){
                         name = prod.name;
                         description = prod.descriptionPlus[0];
-                        pathImage = prod.images[0]?.image || "";
+                        let alt = '';
+                        let pathImage = '';
+                        let imageResize = '';
+                        const obImage = prod.images[0];
+                        if(obImage){
+                            pathImage = obImage.image;
+                            alt = obImage.alt;
+                        }
+                        imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
                    %>
                 <div class="cot-12 cot-7-md px-md-5 d-flex flex-column">
                     <h3 class="h3-title position-relative underline mb-4"><%= name%></h3>
@@ -29,8 +37,7 @@
                 <div class="cot-12 cot-5-md home-info-detail pe-md-5">
                     <div class="info-img-box">
                         <img class="position-absolute"
-                            src="../<%= pathImage%>"
-                            alt="">
+                        src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
                     </div>
                 </div>
                 <%  }
@@ -76,12 +83,23 @@
                     if(prod){
                         name = prod.name;
                         description = prod.descriptionPlus[0];
-                        pathImage = prod.images[0]?.image || "";
                         url = prod.url
+                        let alt = '';
+                        let pathImage = '';
+                        let imageResize = '';
+                        const obImage = prod.images[0];
+                        if(obImage){
+                            pathImage = obImage.image;
+                            alt = obImage.alt;
+                        }
+                        imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
+
+
+                        <img src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
                    %>
                 <div class="cot-5">
                     <div class="donghanh-tnv-img position-relative">
-                        <img src="../<%= pathImage%>" alt="<%= name%>">
+                        <img src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
                     </div>
                 </div>
                 <div class="cot-7 donghanh-tnv-text p-5">

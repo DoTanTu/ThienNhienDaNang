@@ -143,15 +143,19 @@ export default class FileController {
 
   }
   
-  public async RemoveFileAny(pathOject : any){
-    if(pathOject != null){
-      pathOject.forEach( pathLink =>{
-        fs.unlink(path.join(pathLink), (err) => {
-          if (err) {
-            console.log(err);
-          }
+  public async RemoveFileAny(pathOject: any) {
+    if (pathOject != null) {
+        pathOject.forEach(pathLink => {
+            if (fs.existsSync(path.join(pathLink))) {
+                fs.unlink(path.join(pathLink), (err) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+            } else {
+                console.log(`File ${pathLink} does not exist.`);
+            }
         });
-      })
     }
   }
 

@@ -355,12 +355,10 @@ export default class ProductController {
           const image = item.image;
           const thumbnailSizes = [150, 250, 480, 720, 1200, 1280, 1920];
           thumbnailSizes.forEach(size => {
-              console.log(image.replace('images/', `thumbnail/${size}/`).replace(/\.(png|jpg|jpeg)$/i, '.webp'));
-              ArrayImage.push(image.replace('images/', `thumbnail/${size}/`).replace(/\.(png|jpg|jpeg)$/i, '.webp'));
+            ArrayImage.push(image.replace('images/', `thumbnail/${size}/`).replace(/\.(png|jpg|jpeg)$/i, '.webp'));
           });
           ArrayImage.push(image);
       });
-      console.log(ArrayImage);
 
       await this.RemoveFileAny(ArrayImage);
       const data = await serviceInstance.removeProduct({
@@ -536,16 +534,21 @@ export default class ProductController {
     return languages
   }
 
-  public async RemoveFileAny(pathOject : any){
-    if(pathOject != null){
-      pathOject.forEach( pathLink =>{
-        fs.unlink(path.join(pathLink), (err) => {
-          if (err) {
-            console.log(err);
-          }
+  public async RemoveFileAny(pathOject: any) {
+    if (pathOject != null) {
+        pathOject.forEach(pathLink => {
+            if (fs.existsSync(path.join(pathLink))) {
+                fs.unlink(path.join(pathLink), (err) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+            } else {
+                console.log(`File ${pathLink} does not exist.`);
+            }
         });
-      })
     }
   }
+
 
 }

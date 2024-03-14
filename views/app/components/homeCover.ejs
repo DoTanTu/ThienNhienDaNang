@@ -5,13 +5,20 @@
             dataProducts.forEach( prod => {
                 if(prod.categoryIds[0] === 'EZ6Jnagj9'){
                     name = prod.name;
-                    pathImage = prod.images[0]?.image;
                     url = prod.url;
+                    let alt = '';
+                    let pathImage = '';
+                    let imageResize = '';
+                    const obImage = prod.images[0];
+                    if(obImage){
+                        pathImage = obImage.image;
+                        alt = obImage.alt;
+                    }
+                    imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
                 %>
                 <div class="item">
                     <div class="slider-cover-box">
-                        <img src="<%= pathImage%>"
-                            alt="<%= name%>">
+                        <img src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
                         <div class="cover-title">
                             <a href="<%= url%>">
                                 <h3 class="mb-3"><%= name%></h3>

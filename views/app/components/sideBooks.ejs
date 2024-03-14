@@ -17,21 +17,24 @@
         
         if(listProduct .length > 0){
             listProduct.forEach(prod => {
-            pathImage = "";
-            obImage = prod.images[0];
-            if(obImage){
-                pathImage = obImage.image
-            }
-            const createdAt = new Date(prod.createdAt);
-            const formattedDate = createdAt.toLocaleString();
+                let alt = '';
+                let pathImage = '';
+                let imageResize = '';
+                const obImage = prod.images[0];
+                if(obImage){
+                    pathImage = obImage.image;
+                    alt = obImage.alt;
+                }
+                imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
+                const createdAt = new Date(prod.createdAt);
+                const formattedDate = createdAt.toLocaleString();
         %>
         <div class="book-box mb-4">
             <%if(pathImage !== ''){
                 %>
                 <div class="book-box-img">
                     <div class="book-box-img-box">
-                        <img src="<%= pathImage%>"
-                            alt="">
+                        <img src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">>
                     </div>
                 </div>
             <% }%>

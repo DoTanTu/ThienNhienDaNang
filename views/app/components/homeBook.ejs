@@ -6,13 +6,20 @@
                 dataOther2.products.forEach((prod) => {
                     name = prod.name;
                     pdfPath = prod.pdf;
-                    pathImage = prod.images[0]?.image || ""
+                    let alt = '';
+                    let pathImage = '';
+                    let imageResize = '';
+                    const obImage = prod.images[0];
+                    if(obImage){
+                        pathImage = obImage.image;
+                        alt = obImage.alt;
+                    }
+                    imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
               %>
             <div class="item">
                 <div class="home-book-box d-flex flex-column h-100">
                     <div class="home-book-boox-img">
-                        <img src="../<%=pathImage%>"
-                            alt="">
+                        <img src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
                     </div>
                     <div class="home-book-text py-30 d-flex flex-column gap-2 align-items-center flex-fill">
                         <a href="#">
