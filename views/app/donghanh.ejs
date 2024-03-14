@@ -12,8 +12,7 @@
         <div class="container">
             <div class="row-change mb-5 flex-column-reverse flex-md-row">
                 <%if(dataProducts && dataProducts.length > 0) {
-                    const prod = dataProducts.find((item) => 
-                    item.categoryIds[0] === 'dJaE_yaS1' && item._id === 'Twd6qkCIm')
+                    const prod = dataProducts.find((item) => item.categoryIds[0] === 'dJaE_yaS1' && item._id === 'Twd6qkCIm')
                     if(prod){
                         name = prod.name;
                         description = prod.descriptionPlus[0];
@@ -93,9 +92,6 @@
                             alt = obImage.alt;
                         }
                         imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
-
-
-                        <img src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
                    %>
                 <div class="cot-5">
                     <div class="donghanh-tnv-img position-relative">
