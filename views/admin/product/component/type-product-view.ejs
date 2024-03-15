@@ -1,6 +1,7 @@
 <% 
     var typeofValue = null;
-    var author = null;
+    var authorId = null;
+    var authorName = null;
     var copyright = null;
     var publishYear = null;
     var source = null;
@@ -15,7 +16,8 @@
     var address = null;
     if (additionalData != undefined && additionalData != null) {
         typeofValue = additionalData.typeof;
-         author = additionalData.author;
+         authorId = additionalData.authorId;
+         authorName = additionalData.authorName;
          copyright = additionalData.copyright;
          publishYear = additionalData.publishYear;
          source = additionalData.source;
@@ -52,7 +54,16 @@
             <div class=" row justify-content-around">
                 <div class="form-group mt-4 col-6">
                     <label class="d-block" for="">Tác giả</label>
-                    <input class="form-control w-100" name="author" type="text" value="<%= author%>">
+                    <input type="text" name="authorName" hidden>
+                    <select class="form-control w-100 form-select" name="authorIdImage" id="">
+                        <option value="">Chọn tác giả hiện có</option>
+                        <%if(authors && authors.length > 0){
+                            authors.forEach( author => {
+                                %>
+                                <option value="<%= author._id%>" <%if(author._id == authorId){%>selected<%}%>><%= author.fullname%></option>
+                           <% })
+                        }%>
+                    </select>
                 </div>
                 <div class="form-group mt-4 col-6">
                     <label class="d-block" for="">Tác quyền</label>
@@ -71,6 +82,17 @@
         
         <div class="option_two d-none">
            <div class="ps-4 pb-3">
+                <div class="form-group mt-4">
+                    <select class="form-control w-100 form-select" name="authorId" id="">
+                        <option value="">Chọn tác giả hiện có</option>
+                        <%if(authors && authors.length > 0){
+                            authors.forEach( author => {
+                                %>
+                                <option value="<%= author._id%>" <%if(author._id == authorId){%> selected<%}%>><%= author.fullname%></option>
+                           <% })
+                        }%>
+                    </select>
+                </div>
                 <div class="form-group mt-4">
                     <label class="d-block" for="">Tên tiếng việt</label>
                     <input class="form-control w-100" type="text" name="nameVn" value="<%= nameVn%>">

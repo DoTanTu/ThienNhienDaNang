@@ -51,6 +51,11 @@ export default class CustomerService implements ICustomerService {
       users : await this.CustomerRepo.getFullCustomers()
     } 
   }
+
+  public async getActiveCustomersList() : Promise<any[]>{
+    return await this.CustomerRepo.getActiveCustomersList()
+  }
+
   public async getCustomerInfo(CustomerId: ICustomer): Promise<ICustomer> {
     return await this.CustomerRepo.getCustomerInfo(CustomerId);
   }
@@ -59,6 +64,14 @@ export default class CustomerService implements ICustomerService {
     CustomerInputDTO: ICustomerInputDTO
   ): Promise<ICustomer> {
     return this.CustomerRepo.addCustomer(CustomerInputDTO);
+  }
+
+  public async addAndUpdateContribution(CustomerId : string, ProductId : string): Promise<string> {
+    return this.CustomerRepo.addAndUpdateContribution(CustomerId, ProductId);
+  }
+
+  public async removeContributeByProduct(ProductId : string): Promise<string> {
+    return this.CustomerRepo.removeContributeByProduct(ProductId);
   }
 
   public async signInCustomer(

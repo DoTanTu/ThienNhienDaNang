@@ -11,6 +11,7 @@ export interface ICustomer {
   address: string;
   country : string;
   description: string;
+  contributes: string[];
   links  : any;
   isDelete : boolean;
   isBlock: boolean;

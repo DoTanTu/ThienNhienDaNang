@@ -7,6 +7,7 @@ import ProductService from '../services/product';
 import { STATUS } from '../utils/status';
 import { IProduct, IProductAdditional, IProductContact, IProductEcommerce, IProductImage, IProductInputDTO, IProductQuery } from '../models/interfaces/IProduct';
 import CategoryService from '../services/category';
+import CustomerService from '../services/customer';
 import LanguageService from '../services/language';
 import AttributeService from '../services/attribute';
 import AppService from '../services/app';
@@ -105,6 +106,9 @@ export default class ProductController {
       const langServiceInstance = Container.get(LanguageService);
       let languages = await langServiceInstance.getLanguages()
 
+      const authorServiceInstance = Container.get(CustomerService);
+      let authors = await authorServiceInstance.getActiveCustomersList();
+
       const appServiceInstance = Container.get(AppService);
       let app = await appServiceInstance.getApp();
       res.render('./admin/product/add', {
@@ -118,12 +122,14 @@ export default class ProductController {
         pages : pages,
         languages : languages,
         role: req.session.user.role,
-        username : req.session.user.name
+        username : req.session.user.name,
+        authors : authors
       });
   }
 
   public async Add(req, res) {
     try {  
+      console.log(req.body);
       const serviceInstance = Container.get(ProductService);
       var imageData = []
       if (req.body.images) {
@@ -161,10 +167,11 @@ export default class ProductController {
           unit : req.body.unit
         } as IProductEcommerce
       }
-
+  
       var additional = {
         typeof: req.body.typeof,        
-        author: req.body.author,
+        authorId: req.body.authorId,
+        authorName:req.body.authorName,
         copyright: req.body.copyright,
         publishYear: req.body.publishYear,
         source: req.body.source,
@@ -179,7 +186,8 @@ export default class ProductController {
         address: req.body.typeEvent === 'one' ? req.body.address[0] : req.body.address[1],
       } as IProductAdditional;
 
-
+      const contributeInstance = Container.get(CustomerService);
+      
       const items = await serviceInstance.addProduct({
         url: req.body.url,
         pageId: req.body.pageCurrent,
@@ -210,7 +218,11 @@ export default class ProductController {
         userPost: req.session.user.userId,
         label: req.body.label
       } as unknown as IProductInputDTO);
+
       if (items) {
+        if(req.body.authorId !== '' && req.body.authorId !== null ){
+          await contributeInstance.addAndUpdateContribution(req.body.authorId, items._id);
+        }
         res.status(200).json({ success: true, data: '' });
       } else {
         res.status(200).json({ success: false, data: '' });
@@ -247,7 +259,10 @@ export default class ProductController {
     let app = await appServiceInstance.getApp();
 
     const langServiceInstance = Container.get(LanguageService);
-    let languages = await langServiceInstance.getLanguages()
+    let languages = await langServiceInstance.getLanguages();
+
+    const authorServiceInstance = Container.get(CustomerService);
+    let authors = await authorServiceInstance.getActiveCustomersList();
 
     res.render('./admin/product/edit', {
       router : pageId + "/product",
@@ -256,6 +271,7 @@ export default class ProductController {
       pageCurrent : pageId,
       pageSetting : pageSetting,
       attributes : attributes,
+      authors : authors,
       data : dataProduct,
       app : app,
       pages : pages,
@@ -270,7 +286,11 @@ export default class ProductController {
       const serviceInstance = Container.get(ProductService);
 
       const attributeInstance = Container.get(AttributeService);
-      let attributes = await attributeInstance.getAttributes(req.body.pageCurrent)
+      let attributes = await attributeInstance.getAttributes(req.body.pageCurrent);
+
+      const authorServiceInstance = Container.get(CustomerService);
+      await authorServiceInstance.addAndUpdateContribution(req.body.authorId, req.body._id);
+
       const items = await serviceInstance.updateProduct(this.getDataEdit(req, attributes) as IProductInputDTO);
       if (items) {
         res.status(200).json({ success: true, data: '' });
@@ -360,10 +380,14 @@ export default class ProductController {
           ArrayImage.push(image);
       });
 
+      const authorServiceInstance = Container.get(CustomerService);
+      await authorServiceInstance.removeContributeByProduct(req.body._id);
+
       await this.RemoveFileAny(ArrayImage);
       const data = await serviceInstance.removeProduct({
         _id: req.body._id,
       } as IProduct);
+
       if (data) {
         res.status(200).json({ success: true, data: data });
       } else {
@@ -417,7 +441,8 @@ export default class ProductController {
 
     var additional = {
       typeof: req.body.typeof,        
-      author: req.body.author,
+      authorId: req.body.authorId,
+      authorName: req.body.authorName,
       copyright: req.body.copyright,
       publishYear: req.body.publishYear,
       source: req.body.source,
@@ -549,6 +574,4 @@ export default class ProductController {
         });
     }
   }
-
-
 }

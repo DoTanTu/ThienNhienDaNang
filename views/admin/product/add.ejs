@@ -34,7 +34,7 @@
 
                           <%- include('./component/info-view', { infoData : null}) -%>
 
-                          <%- include('./component/type-product-view', {additionalData : null}) -%>
+                          <%- include('./component/type-product-view', {additionalData : null, authors: authors}) -%>
                          
                           <% if(pageSetting != undefined && pageSetting != null && pageSetting.setting.isLinkVideo) {%>
                           <%- include('./component/video-view', { linkData : null}) -%>

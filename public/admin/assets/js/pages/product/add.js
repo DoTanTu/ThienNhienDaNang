@@ -99,6 +99,18 @@ $(document).ready(function() {
         })
       }
 
+      var IdAuthor = '';
+      var nameAuthor = '';
+      const typeOfValue = $('select[name="typeof"] option:selected').val();
+
+      if(typeOfValue === 'doc' && typeOfValue === 'video' && typeOfValue === 'book' && typeOfValue === 'lesson'){
+        idAuthor = $('select[name="authorId"] option:selected').val();
+        nameAuthor = $('select[name="authorId"] option:selected').text();
+      }else if( typeOfValue === 'book' && typeOfValue === 'image'){
+        idAuthor = $('select[name="authorIdImage"] option:selected').val();
+        nameAuthor = $('select[name="authorIdImage"] option:selected').text();
+      }
+
 
       formData.forEach(element => {
           if (element.name == 'hashtags') {
@@ -131,6 +143,14 @@ $(document).ready(function() {
           }
           if (element.name == 'descriptionPlus') {
             element.value = JSON.stringify(descriptionPlus)
+          }
+
+          if (element.name == 'authorId') {
+            element.value = idAuthor;
+          }
+
+          if (element.name == 'authorName') {
+            element.value = nameAuthor;
           }
       });
     }

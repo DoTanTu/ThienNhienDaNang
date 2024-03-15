@@ -62,7 +62,7 @@
                             name : data.name
                           }}) -%>
 
-                      <%- include('./component/type-product-view', { additionalData : data.additional}) -%>
+                      <%- include('./component/type-product-view', { additionalData : data.additional , authors: authors}) -%>
 
                       <% if(pageSetting != undefined && pageSetting != null && pageSetting.setting.isLinkVideo) {%>
                       <%- include('./component/video-view', { linkData : data.linkVideo}) -%>

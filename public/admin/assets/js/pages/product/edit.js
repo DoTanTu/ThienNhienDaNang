@@ -189,6 +189,8 @@ $(document).ready(function() {
         })
       }
 
+      var nameAuthor = $('select[name="authorId"] option:selected').text();
+
       formData.forEach(element => {
           if (element.name == 'hashtags') {
             if (tagify.value) {
@@ -216,6 +218,10 @@ $(document).ready(function() {
           }
           if (element.name == 'descriptionPlus') {
             element.value = JSON.stringify(descriptionPlus)
+          }
+
+          if (element.name == 'authorName') {
+            element.value = nameAuthor;
           }
       });
     }

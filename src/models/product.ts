@@ -76,7 +76,8 @@ const ProductSchema = new mongoose.Schema(
         'default': shortid.generate
       },
       typeof : String,     
-      author : String,
+      authorId : String,
+      authorName : String,
       copyright : String,
       publishYear : String,
       source : String,

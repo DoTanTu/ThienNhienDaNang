@@ -69,6 +69,14 @@ export default class CustomerRepository implements ICustomerRepository {
     .exec();
   }
 
+  public async getActiveCustomersList(): Promise<any[]>{
+    return this.CustomerModel.find({
+      isActive: true,
+    })
+    .select("fullname username email")
+    .exec();
+  }
+
   public async getCustomerInfo(query: ICustomer): Promise<ICustomer> {
     return this.CustomerModel.findById(query._id)
   }
@@ -129,6 +137,22 @@ export default class CustomerRepository implements ICustomerRepository {
       this.logger.error(e);
       throw e;
     }
+  }
+
+  public async addAndUpdateContribution(CustomerId: string, productId: string) : Promise<string> {
+    const updatedCustomer = await this.CustomerModel.findByIdAndUpdate(
+      CustomerId,
+      { $addToSet: { contributes: productId } }, 
+      { new: true } 
+    );
+    return updatedCustomer.fullname;
+  }
+
+  public async removeContributeByProduct(productId: string) : Promise<any> {
+      return this.CustomerModel.updateMany(
+          { contributes: productId }, 
+          { $pull: { contributes: productId } } 
+      );
   }
 
   public async removeCustomer(Customer: ICustomer): Promise<any> {

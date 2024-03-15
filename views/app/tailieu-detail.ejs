@@ -26,7 +26,7 @@
                         productId = prod._id;
                         description = prod.description;
                         pathUrl = prod.pdf;
-                        author = prod.additional.author;
+                        authorName = prod.additional.authorName;
                         publishYear = prod.additional.publishYear;
                         copyright = prod.additional.copyright;
                         source = prod.additional.source;
@@ -43,8 +43,8 @@
                                     <h4 class="h4-title br-line-4"><%= name%></h4>
                                 </a>
                                 <div class="tailieu-detail-info">
-                                    <% if(author && author !== ''){%>
-                                        <span>Tác giả: <strong><%= author%></strong></span>
+                                    <% if(authorName && authorName !== ''){%>
+                                        <span>Tác giả: <strong><%= authorName%></strong></span>
                                     <%}%>
                                     <% if(copyright && copyright !== ''){%>
                                         <span>Tác quyền: <strong><%= copyright%></strong></span>

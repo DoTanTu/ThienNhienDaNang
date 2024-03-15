@@ -106,7 +106,8 @@ export interface IProductDescriptionPlus {
 export interface IProductAdditional{
   _id : string
   typeof : string        
-  author : string
+  authorId : string;
+  authorName : string;
   copyright : string
   publishYear : string
   source : string

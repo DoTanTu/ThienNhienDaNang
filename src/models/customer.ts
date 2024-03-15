@@ -55,6 +55,10 @@ const CustomerSchema = new mongoose.Schema(
       default: "",
     },
 
+    contributes: [{
+      type: String
+    }],
+
     links : [{
       option  : String,
       title : String,
