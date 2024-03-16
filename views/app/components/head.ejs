@@ -2,50 +2,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- favi-logo -->
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-<meta name="robots" content="follow, index, max-snippet: 30, max-video-preview:-1, max-image-preview:large">
-<meta property="og:locale" content="vi_VN">
-
-<meta property="og:site_name" content="Trang thông tin Thiên Nhiên Đà Nẵng">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Trang thông tin Thiên Nhiên Đà Nẵng">
-<%if(dataOther7 && dataOther7.products.length > 0){
-    const saleContent = dataOther7.products.find( prod => prod._id === 'hHD80I8DU')
-    if(saleContent) {
-        seoDesc = saleContent.seoDesc;
-        seoTitle = saleContent.seoTitle;
-        iconTask = saleContent.images[0].image;
-        iconShare = saleContent.images[1].image;
-        url = saleContent.url; 
-        
-    }
-    %>
-        <meta property="og:description" content="<%= seoDesc%>">
-        <meta property="og:url" content="<%= url%>">
-        <meta property="og:image" content="../<%= iconShare%>">
-        <meta property="og:image:secure_url" content="../<%= iconShare%>">
-        <link rel="icon" type="image/x-icon" href="../<%= iconTask%>">
-    <%}else{%>
-        <meta property="og:url" content="https://thiennhiendanang.vn">
-        <meta property="og:image" content="https://thiennhiendanang.vn/front_end/images/site-meta-image.jpg">
-        <meta property="og:image:secure_url" content="https://thiennhiendanang.vn/front_end/images/site-meta-image.jpg">
-        <link rel="icon" type="image/x-icon" href="../public/app/images/logo-favi.svg">
-        <meta property="og:description" content="Với niềm tin và mong muốn trao thêm những cơ hội đó cho các em học sinh, 
-        sinh viên. Chúng tôi, Trung tâm GreenViet cùng với các Thầy cô nhóm nghiên cứu giảng dạy Môi trường và 
-        Tài nguyên sinh vật, ĐH Đà Nẵng và Khoa Sinh Môi Trường, ĐH Sư Phạm Đà Nẵng cùng xây dựng 
-        Trang thông tin điện tử cộng đồng mang tên Trang thông tin Thiên nhiên Đà Nẵng. 
-        Đây nơi cung cấp kho tàng tri thức thiên nhiên của thành phố Đà Nẵng cho hoạt động giáo dục, 
-        tìm hiểu về thiên nhiên địa phương cho học sinh, sinh viên, giáo viên và cả cộng đồng sử dụng. 
-        Trang thông tin chính thức ra mắt vào ngày 06 tháng 1 năm 2023">
-        
-    <%}%>
-
-
-<meta property="og:image:width" content="500">
-<meta property="og:image:height" content="500">
-<meta property="og:image:alt" content="Trang thông tin Thiên Nhiên Đà Nẵng">
-<meta property="og:image:type" content="image/jpg">
-
+<link rel="icon" type="image/x-icon" href="../public/app/images/logo-favi.svg">
 <!-- Google font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,11 +24,11 @@
 <link rel="stylesheet" href="../public/app/css/animate.min.css">
 <link rel="stylesheet" href="../public/app/css/aos.2.3.1.css">
 <!-- icon-1.10.2 -->
-<link rel="stylesheet" href="../public/app/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" href="bootstrap-icons/bootstrap-icons.css">
 <!-- Plyr-player -->
 <link rel="stylesheet" href="https://cdn.plyr.io/3.7.2/plyr.css">
 <!-- lightGallery -->
-<link type="text/css" rel="stylesheet" href="../public/app/lightGallery/css/lightgallery-bundle.min.css">
+<link type="text/css" rel="stylesheet" href="public/app/lightGallery/css/lightgallery-bundle.min.css">
 <!-- custom-library -->
 <link rel="stylesheet" href="../public/app/css/col-change.css">
 <!-- main-style -->
