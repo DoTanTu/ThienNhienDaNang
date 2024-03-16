@@ -11,6 +11,8 @@
                         name = prod.name;
                         url = prod.url;
                         desShort = prod.desShort;
+                        dayCreated = new Date(prod.createdAt).toLocaleDateString('vi-VN') ;
+
                         let alt = '';
                         let pathImage = '';
                         let imageResize = '';
@@ -27,7 +29,7 @@
                         <img src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
                     </div>
                     <div class="home-tintuc-box-text d-flex flex-column flex-fill">
-                        <span class="text-color-2">02/07/2022</span>
+                        <span class="text-color-2"><%= dayCreated%></span>
                         <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html" class="color-1">
                             <h4 class="h4-title br-line-3"><%= name%></h4>
                         </a>

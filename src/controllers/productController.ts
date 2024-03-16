@@ -13,6 +13,8 @@ import AttributeService from '../services/attribute';
 import AppService from '../services/app';
 import { APPTYPE } from '../utils/appType';
 import { Utils } from '../utils/utils';
+import CommentService from '../services/comment';
+import { IComment } from '../models/interfaces/IComment';
 
 export default class ProductController {
   public async Init(req, res) {
@@ -129,7 +131,6 @@ export default class ProductController {
 
   public async Add(req, res) {
     try {  
-      console.log(req.body);
       const serviceInstance = Container.get(ProductService);
       var imageData = []
       if (req.body.images) {
@@ -289,6 +290,7 @@ export default class ProductController {
       let attributes = await attributeInstance.getAttributes(req.body.pageCurrent);
 
       const authorServiceInstance = Container.get(CustomerService);
+      if(req.body.authorId && req.body.authorId !== '')
       await authorServiceInstance.addAndUpdateContribution(req.body.authorId, req.body._id);
 
       const items = await serviceInstance.updateProduct(this.getDataEdit(req, attributes) as IProductInputDTO);
@@ -298,6 +300,7 @@ export default class ProductController {
         res.status(200).json({ success: false, data: '' });
       }
     } catch (e) {
+      console.log(e);
       res.status(200).json({ success: false, data: '' });
     }
   }
@@ -382,6 +385,9 @@ export default class ProductController {
 
       const authorServiceInstance = Container.get(CustomerService);
       await authorServiceInstance.removeContributeByProduct(req.body._id);
+
+      const conmmentServiceInstance = Container.get(CommentService);
+      await conmmentServiceInstance.removeCommentByProduct({ productId : req.body._id} as IComment);
 
       await this.RemoveFileAny(ArrayImage);
       const data = await serviceInstance.removeProduct({

@@ -25,6 +25,9 @@ export default class CommentRepository implements ICommentRepository {
     .populate({
       path: "products",
       select: "name pageId",
+      match: {
+        _id: { $exists: true } // Chỉ chọn các sản phẩm có ID tồn tại
+       }
     })
     .populate({
       path: "users",
@@ -35,7 +38,6 @@ export default class CommentRepository implements ICommentRepository {
     })
     .skip(query.start)
     .limit(query.limit);
-
 }
 
   
@@ -81,5 +83,11 @@ export default class CommentRepository implements ICommentRepository {
 
   public async removeComment(Comment: IComment): Promise<any> {
     return this.CommentModel.findByIdAndRemove(Comment._id);
+  }
+
+  public async removeCommentByProduct(query: IComment): Promise<any> {
+    return this.CommentModel.deleteMany({
+      productId: query.productId
+    })
   }
 }

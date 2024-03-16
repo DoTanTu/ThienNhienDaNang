@@ -205,6 +205,7 @@
     }
   </script>
 
+
   <%- include('../partials/common-js') -%>
   <%- include('../partials/common-crud-js') -%>
   <script type="text/javascript" src="../public/admin/assets/js/pages/editor/ck-editors.js"></script>
@@ -213,6 +214,32 @@
   <script src="../public/admin/assets/js/pages/product/ecommerce.js"></script>
   <script src="../public/admin/assets/js/pages/product/description.js"></script>
   <script type="text/javascript" src="../public/admin/assets/js/pages/editor/ck-editor.js"></script>
+  <script>
+    const authorOption = $('#authorOption');
+    function toggleAuthorOptions(typeOption){
+      const valueTyOption = typeOption.toString();
+      if(valueTyOption == 'news'){
+        authorOption.empty();
+        authorOption.append(`
+          <input class="form-control w-100" name="authorNameImage" type="text" value="">    
+        `)
+      }else{
+        authorOption.empty();
+        authorOption.append(`
+          <select class="form-control w-100 form-select" name="authorIdImage" id="">
+            <option value="">Chọn tác giả hiện có</option>
+              <%if(authors && authors.length > 0){
+                  authors.forEach( author => {
+                      %>
+                      <option value="<%= author._id%>" <%if(author._id == data.additional.authorId){%>selected<%}%> ><%= author.fullname%></option>
+                  <% })
+              }%>
+          </select>
+        `)
+      }
+    }
+  </script>
+  
 </body>
 
 </html>

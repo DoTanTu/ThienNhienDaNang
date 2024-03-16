@@ -1,4 +1,5 @@
 <% 
+    var setSelectedOption = null;
     var typeofValue = null;
     var authorId = null;
     var authorName = null;
@@ -55,7 +56,7 @@
                 <div class="form-group mt-4 col-6">
                     <label class="d-block" for="">Tác giả</label>
                     <input type="text" name="authorName" hidden>
-                    <select class="form-control w-100 form-select" name="authorIdImage" id="">
+                    <select class="form-control w-100 form-select" name="authorId" id="">
                         <option value="">Chọn tác giả hiện có</option>
                         <%if(authors && authors.length > 0){
                             authors.forEach( author => {
@@ -83,15 +84,31 @@
         <div class="option_two d-none">
            <div class="ps-4 pb-3">
                 <div class="form-group mt-4">
-                    <select class="form-control w-100 form-select" name="authorId" id="">
-                        <option value="">Chọn tác giả hiện có</option>
-                        <%if(authors && authors.length > 0){
-                            authors.forEach( author => {
-                                %>
-                                <option value="<%= author._id%>" <%if(author._id == authorId){%> selected<%}%>><%= author.fullname%></option>
-                           <% })
-                        }%>
-                    </select>
+                    <div class="d-flex mb-2">
+                        <div class="form-check me-4">
+                            <input class="form-check-input" type="radio" checked name="flexRadioDefault" id="flexRadioDefault1" onclick="toggleAuthorOptions('<%= authorId%>')">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                              Chọn tác giả từ danh sách
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onclick="toggleAuthorOptions('news')">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                              Nhập tác giả
+                            </label>
+                        </div>
+                    </div>
+                    <div id="authorOption">
+                        <select class="form-control w-100 form-select" name="authorIdImage" id="">
+                            <option value="">Chọn tác giả hiện có</option>
+                              <%if(authors && authors.length > 0){
+                                  authors.forEach( author => {
+                                      %>
+                                      <option value="<%= author._id%>" <%if(author._id == authorId){%>selected<%}%>><%= author.fullname%></option>
+                                  <% })
+                              }%>
+                          </select>
+                    </div>
                 </div>
                 <div class="form-group mt-4">
                     <label class="d-block" for="">Tên tiếng việt</label>

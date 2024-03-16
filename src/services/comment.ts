@@ -42,4 +42,8 @@ export default class CommentService implements ICommentService {
   public async removeComment(Comment: IComment): Promise<any> {
     return this.CommentRepo.removeComment(Comment);
   }
+
+  public async removeCommentByProduct(ProductId : IComment): Promise<any> {
+    return this.CommentRepo.removeCommentByProduct(ProductId);
+  }
 }

@@ -34,7 +34,9 @@ export default class CommentController {
         limit: parseInt(req.query["length"]),
         role: req.session.user.role,
       } as ICommentQuery);
-  
+
+      console.log(responses);
+
       if (responses) {
         res.status(200).json({
           success: true,

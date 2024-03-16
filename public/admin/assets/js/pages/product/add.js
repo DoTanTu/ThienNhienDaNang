@@ -99,7 +99,7 @@ $(document).ready(function() {
         })
       }
 
-      var IdAuthor = '';
+      var idAuthor = '';
       var nameAuthor = '';
       const typeOfValue = $('select[name="typeof"] option:selected').val();
 

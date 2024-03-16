@@ -27,6 +27,16 @@
                     </div>
 
                     <!-- mp4-video -->
+                    <div class="tailieu-detail-icon justify-content-center">
+                        <span>
+                            <i class="me-2 bi bi-suit-heart<%if(dataBasicInfo && prod.likes.includes(dataBasicInfo._id)){%>-fill<%}%>" data-action="like" data-post-id="<%= prod._id%>"></i>
+                            <span id="likeCustomer"><%= prod.likes.length%></span>
+                        </span>
+                        <span><i class="me-2 bi bi-download"></i><span id="number-download"><%= prod.downloads%></span></span>
+                        <span><i class="me-2 bi bi-reply"></i>0</span>
+                        <span><i class="me-2 bi bi-eye"></i><%= prod.views%></span>
+                        <span><i class="me-2 bi bi-chat-left"></i><%= prod.comments.length%></span>
+                    </div>
 
                     <!------------------------------video---------------------------->
                     <div class="hinhanh-mieuta mb-3">
@@ -83,7 +93,7 @@
     </div>
 
 
-
+    <%- include('./components/loginModal') -%>
     <%- include('./components/footer') -%>
     <%- include('./components/end') -%>
 

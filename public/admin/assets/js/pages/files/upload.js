@@ -58,13 +58,11 @@ if (document.getElementById("myDropzone") != null) {
 
         file._descriptionLabel = Dropzone.createElement("<span></span>");
         file._descriptionBox = Dropzone.createElement("<input id='alt_"+file.upload.uuid+"' style='width: 120px;' class='form-control mt-2' type='text' placeholder='Alt' value='"+description+"'>");
-        file._authorBox = Dropzone.createElement("<input id='author_"+file.upload.uuid+"' style='width: 120px;' class='form-control mt-2' type='text' placeholder='Tác giả' value='"+author+"'>");
         file._timeBox = Dropzone.createElement("<input id='time_"+file.upload.uuid+"' style='width: 120px;' class='form-control mt-2' type='text' placeholder='Thời gian' value='"+time+"'>");
         file._addressBox = Dropzone.createElement("<input id='address_"+file.upload.uuid+"' style='width: 120px;' class='form-control mt-2' type='text' placeholder='Địa điểm' value='"+address+"'>");
 
         file.previewElement.appendChild(file._descriptionLabel);
         file.previewElement.appendChild(file._descriptionBox);
-        file.previewElement.appendChild(file._authorBox);
         file.previewElement.appendChild(file._timeBox);
         file.previewElement.appendChild(file._addressBox);
       });

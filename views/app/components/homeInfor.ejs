@@ -55,29 +55,47 @@
         <div class="row-change pt-60" id="result">
             <div class="ketqua-title cot-12 mb-4">
                 <h3 class="text-center h3-title mb-2">Kết quả đạt được</h3>
-                <p class="p-title">Trang thông tin Thiên nhiên Đà Nẵng chính thức hoạt động từ
-                    tháng 11/2022 đến nay</p>
+                <p class="p-title">Trang thông tin Thiên nhiên Đà Nẵng chính thức hoạt động từ tháng 1/2023 đến nay</p>
             </div>
+            <%if(dataOther6 && dataOther6.products.length > 0){
+                const documents = dataOther6.products.filter( item => !item.hashtags.includes('san_pham_dai_dien'))
+                %>
+                <div class="ketqua-box cot-6 cot-3-md d-flex flex-column">
+                    <span class="text-color-noti"><%= documents.length%></span>
+                    <img src="../public/app/images/icon/tailieu.svg" alt="">
+                    <span>Tài liệu</span>
+                </div>
+            <%}%>
+
+            <%if(dataOther2 && dataOther2.products.length > 0){
+                const books = dataOther2.products.length
+            %>
             <div class="ketqua-box cot-6 cot-3-md d-flex flex-column">
-                <span class="text-color-noti">350</span>
-                <img src="../public/app/images/icon/tailieu.svg" alt="">
-                <span>Tài liệu</span>
-            </div>
-            <div class="ketqua-box cot-6 cot-3-md d-flex flex-column">
-                <span class="text-color-3">70</span>
+                <span class="text-color-3"><%= books%></span>
                 <img src="../public/app/images/icon/books.svg" alt="">
                 <span>Sách, Truyện</span>
             </div>
+            <% }%>
+
+            <%if(dataOther8 && dataOther8.products.length > 0){
+                const courses = dataOther8.products.length
+            %>
             <div class="ketqua-box cot-6 cot-3-md d-flex flex-column">
-                <span class="text-color-3">45</span>
+                <span class="text-color-3"><%= courses%></span>
                 <img src="../public/app/images/icon/file.svg" alt="">
                 <span>Học liệu</span>
             </div>
+            <%}%>
+
+            <%if(dataOther3 && dataOther5 && dataOther3.products.length > 0 && dataOther5.products.length > 0){
+                const imageAndVideo = dataOther3.products.length + dataOther5.products.length
+            %>
             <div class="ketqua-box cot-6 cot-3-md d-flex flex-column">
-                <span class="color-2">570</span>
+                <span class="color-2"><%= imageAndVideo%></span>
                 <img src="../public/app/images/icon/image.svg" alt="">
                 <span>Ảnh, Video</span>
             </div>
+            <%}%>
         </div>
     </div>
 </div>

@@ -95,5 +95,12 @@ const CustomerSchema = new mongoose.Schema(
     toObject: { virtuals: true }},
 );
 
+CustomerSchema.virtual('products', {
+  ref: 'Product', 
+  localField: '_id',  
+  foreignField: 'additional.authorId', 
+  justOne: false
+});
+
 
 export default mongoose.model<ICustomer & mongoose.Document>('Customer', CustomerSchema);

@@ -212,4 +212,17 @@ export default class CustomerRepository implements ICustomerRepository {
       Customer
     );
   }
+
+  public async getContributeByProduct(typeOf){
+    return this.CustomerModel.find({
+      
+    })
+    .populate({
+        path : 'products',
+        select : 'name',
+        match : {
+          
+        }
+     })
+  }
 }

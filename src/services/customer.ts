@@ -158,6 +158,10 @@ export default class CustomerService implements ICustomerService {
     return this.OrderRepo.getOrderByCustomer(customerId, email);
   }
 
+  // public async getContributeByProduct(){
+  //   return this.CustomerRepo.getContributeByProduct();
+  // }
+
   public async updateStatusCustomer(customerId: any, isBlock : any): Promise<any> {
     return this.CustomerRepo.updateStatusCustomer({ _id: customerId} as ICustomer, isBlock );
   }
