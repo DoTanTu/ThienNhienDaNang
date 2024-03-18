@@ -44,7 +44,7 @@ export default class ProductService implements IProductService {
   }
 
   public async removeProduct(Product: IProduct): Promise<any> {
-    return this.ProductRepo.removeProduct(Product);
+    return this.ProductRepo.removeProduct(Product);  
   }
 
   public async updateProduct(ProductInputDTO: IProductInputDTO): Promise<IProduct> {

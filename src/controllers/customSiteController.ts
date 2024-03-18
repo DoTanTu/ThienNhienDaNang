@@ -27,7 +27,7 @@ export default class CustomSiteController {
           dataProducts: null,
           dataAttibutes: null,
           dataProductDetail: null,
-          dataProductCounter: null,
+          infoPaginateProduct: null,
           dataCategoryDetail: null,
           dataContact : null,
           dataShipMethods : null,
@@ -91,6 +91,7 @@ export default class CustomSiteController {
             }
             if (site.pageData.isGetProduct) {
                 if (req.query['query'] || req.query['start'] || req.query['cate'] || req.query['hashtag'] || req.query['attribute'] ||  req.query['attribute1'] ||  req.query['attribute2'] ||  req.query['label'] ||  req.query['priceMin'] ||  req.query['priceMax']) {
+
                   data.dataProducts = await siteInstance.getProductByFillters({
                     pageId : site.pageData.pageId,
                     query : req.query['query'],
@@ -104,22 +105,11 @@ export default class CustomSiteController {
                     priceMin: req.query['priceMin'],
                     priceMax: req.query['priceMax'],
                     label : req.query['label']} as IProductQuery, app.platform == "ecommerce_plus");
-
-                    data.dataProductCounter = await siteInstance.getProductByFillters({
-                      pageId : site.pageData.pageId,
-                      query : req.query['query'],
-                      limit: site.pageData.limitSizeProduct,
-                      isFullSite : site.pageData.isFullSizeProduct,
-                      language :  req.query['lang'],
-                      cateId :  req.query['cate'],
-                      hashtag : req.query['hashtag'],
-                      attributes : this.toQueryAttributes(req),
-                      priceMin: req.query['priceMin'],
-                      priceMax: req.query['priceMax'],
-                      label : req.query['label']} as IProductQuery, app.platform == "ecommerce_plus");
-
+                  let numberProducts = await siteInstance.getProductCountByFilter(site.pageData.pageId);
+                  data.infoPaginateProduct = await this.setPagination(numberProducts, req.query['start'] , site.pageData.limitSizeProduct);
                 }else{
                   data.dataProducts =  await siteInstance.getProducts(site.pageData.pageId, site.pageData.isFullSizeProduct,site.pageData.limitSizeProduct, site.pageData.isFullFieldProduct);
+                 
                 }
               data.dataAttibutes = await siteInstance.getAtrributes(site.pageData.pageId);
             }
@@ -168,7 +158,7 @@ export default class CustomSiteController {
             dataAttibutes : data.dataAttibutes,
             dataShipMethods : data.dataShipMethods,
             dataPaymendMethods : data.dataPaymendMethods,
-            dataProductCounter : data.dataProductCounter,
+            infoPaginateProduct : data.infoPaginateProduct,
             session : sessionCustomer
           });
         } else {
@@ -189,6 +179,7 @@ export default class CustomSiteController {
       pageId: pageOther.pageId,
       categories: null,
       products: null,
+      featuredAuthor : null,
       attibutes : null,
     }
     if (pageOther.isGetCategory && pageOther.pageId) {
@@ -196,11 +187,23 @@ export default class CustomSiteController {
     }
     if (pageOther.isGetProduct && pageOther.pageId) {
       dataOther.products = await siteInstance.getProducts(pageOther.pageId, pageOther.isFullSizeProduct, pageOther.limitSizeProduct, pageOther.isFullFieldProduct);
+      dataOther.featuredAuthor = await siteInstance.getTopAuthors(pageOther.pageId, pageOther.isFullSizeProduct, pageOther.limitSizeProduct, pageOther.isFullFieldProduct);
       dataOther.attibutes = await siteInstance.getAtrributes(pageOther.pageId);
     }
-  
     return dataOther
   }
+
+  public setPagination(numberProducts : number, pageCurrent: any , perPage : number) : any{
+    if(!pageCurrent){
+      pageCurrent = 0
+    }
+    var infoPaginateProduct = {
+      current : pageCurrent,
+      pages : Math.ceil(numberProducts / perPage),
+    }
+    console.log(infoPaginateProduct);
+    return infoPaginateProduct;
+  } 
 
   public setLanguage(req, res, languages) : String{
     var locales = req.params.lang

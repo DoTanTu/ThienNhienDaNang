@@ -17,11 +17,32 @@
         <%- include('./components/homeVideo') -%>
     </div>
     <%- include('./components/homeTulieu') -%>
-   <%- include('./components/featured') -%>
+  
     <%- include('./components/homeBook') -%>
     <%- include('./components/homeAbout') -%>
     <%- include('./components/homeLuuluong') -%>
     <%- include('./components/homeDoitac') -%>
+    <div class="modal fade" id="downloadModal" tabindex="-1" aria-labelledby="cateDetailLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-md">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+            <h4 class="modal-title fs-5" id="cateDetailLabel">Xác nhận</h4>
+            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            </div>
+            <div class="modal-body">
+                Bạn có cam kết sử dụng hình ảnh/tài liệu này vì mục đích phi lợi nhuận?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <a href="" class="btn btn-primary" name="downloadFile" download>Đồng ý</a>
+              </div>
+        </div>
+        </div>
+    </div>
+    <%- include('./components/loginModal') -%>
     <%- include('./components/footer') -%>
     <%- include('./components/end') -%>
 </body>

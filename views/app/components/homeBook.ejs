@@ -1,4 +1,4 @@
-<div class="home-books py-90 mt-4">
+<div class="home-books py-90 ">
     <div class="container">
         <h3 class="h3-title position-relative underline mb-5">Sách</h3>
         <div class="owl-homebook owl-carousel owl-theme">
@@ -27,7 +27,7 @@
                             </h4>
                         </a>
                         <a href="#">
-                            <span>Tác Giả: Qing Li</span>
+                            <span>Tác Giả: <%= prod.additional.authorName%></span>
                         </a>
                         <div class="home-books-button d-flex justify-content-center gap-4 mt-auto">
                             <a href="#">Đọc</a>
@@ -68,8 +68,8 @@
             </div>
           </div>
           <%})}%>
-        <a class="main-btn mx-auto mt-4" href="#">
-            Xem Tất cả
+        <a class="main-btn mx-auto mt-4" href="sach">
+           <%= '<<Xem Tất cả>>'%>
         </a>
     </div>
 </div>

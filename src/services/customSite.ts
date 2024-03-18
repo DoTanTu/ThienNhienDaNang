@@ -91,9 +91,21 @@ export default class CustomSiteService implements ICustomSiteService {
       return this.productRepo.getProducts({pageId: pageId, start : 0, limit : _limit} as IProductQuery)
     }
   }
+
+  public async getTopAuthors(pageId: any, isFullSize : any, limitSize: number,  isFullFiealdProduct : false): Promise<any> {
+    var _limit = limitSize
+    if (isFullSize == true) {
+      _limit = 1000
+    }
+      return this.productRepo.getTopAuthors({pageId: pageId, start : 0, limit : _limit} as IProductQuery)
+  }
   
   public async getProductCount(pageId: any) : Promise<any> {
     return this.productRepo.getProductCount({pageId: pageId} as IProductQuery);
+  }
+
+  public async getProductCountByFilter(pageId: any): Promise<number> {
+    return this.productRepo.getProductCountByFilter({pageId: pageId} as IProductQuery)
   }
 
   public async getProductByCategoryId(categoryId: any): Promise<any> {

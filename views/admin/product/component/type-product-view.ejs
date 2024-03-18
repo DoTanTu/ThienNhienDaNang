@@ -51,139 +51,134 @@
         
     </div>
     <div class="display_content " id="displayContent">
-        <div class="option_one d-none ps-4 pb-3">
+
+        <div class="option_one <%if(typeofValue === null || typeofValue !== 'event'){%>d-block<%}else{%>d-none<%}%> ps-4 pb-3">
             <div class=" row justify-content-around">
-                <div class="form-group mt-4 col-6">
-                    <label class="d-block" for="">Tác giả</label>
-                    <input type="text" name="authorName" hidden>
-                    <select class="form-control w-100 form-select" name="authorId" id="">
-                        <option value="">Chọn tác giả hiện có</option>
-                        <%if(authors && authors.length > 0){
-                            authors.forEach( author => {
-                                %>
-                                <option value="<%= author._id%>" <%if(author._id == authorId){%>selected<%}%>><%= author.fullname%></option>
-                           <% })
-                        }%>
-                    </select>
-                </div>
-                <div class="form-group mt-4 col-6">
-                    <label class="d-block" for="">Tác quyền</label>
-                    <input class="form-control w-100" name="copyright" type="text" value="<%= copyright%>">
-                </div>
-                <div class="form-group mt-4 col-6">
-                    <label class="d-block" for="">Năm xuất bản</label>
-                    <input class="form-control w-100" name="publishYear" type="text" value="<%= publishYear%>">
-                </div>
-                <div class="form-group mt-4 col-6">
-                    <label class="d-block" for="">Nguồn tài liệu</label>
-                    <input class="form-control w-100" name="source" type="text" value="<%= source%>">
-                </div>
-            </div>
-        </div>
-        
-        <div class="option_two d-none">
-           <div class="ps-4 pb-3">
                 <div class="form-group mt-4">
                     <div class="d-flex mb-2">
                         <div class="form-check me-4">
-                            <input class="form-check-input" type="radio" checked name="flexRadioDefault" id="flexRadioDefault1" onclick="toggleAuthorOptions('<%= authorId%>')">
+                            <input class="form-check-input" <%if((authorId === null || authorId !== '')){%>checked<%}%> type="radio"  name="flexRadioDefault" id="flexRadioDefault1" onclick="toggleAuthorOptions('<%= authorId%>')">
                             <label class="form-check-label" for="flexRadioDefault1">
                               Chọn tác giả từ danh sách
                             </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onclick="toggleAuthorOptions('news')">
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" <%if(authorId !== null && authorId === ''){%>checked<%}%> type="radio" name="flexRadioDefault" id="flexRadioDefault2" onclick="toggleAuthorOptions('news')">
                             <label class="form-check-label" for="flexRadioDefault2">
                               Nhập tác giả
                             </label>
                         </div>
                     </div>
+                    <input type="text" name="authorName" hidden>
+                    <input type="text" name="authorId" hidden>
                     <div id="authorOption">
-                        <select class="form-control w-100 form-select" name="authorIdImage" id="">
-                            <option value="">Chọn tác giả hiện có</option>
-                              <%if(authors && authors.length > 0){
-                                  authors.forEach( author => {
-                                      %>
-                                      <option value="<%= author._id%>" <%if(author._id == authorId){%>selected<%}%>><%= author.fullname%></option>
-                                  <% })
-                              }%>
-                          </select>
+                        <%if(authorId !== null && authorId === ''){%>
+                            <input class="form-control w-100" id="inputNameAuthor" type="text" value="<%= authorName%>">
+                        <%}else{%>
+                            <select class="form-control w-100 form-select" id="authorId">
+                                <option value="">Chọn tác giả hiện có</option>
+                                <%if(authors && authors.length > 0){
+                                    authors.forEach( author => { %>
+                                        <option value="<%= author._id%>" <%if(author._id == authorId){%>selected<%}%>><%= author.fullname%></option>
+                                <% })
+                                }%>
+                            </select>
+                        <%}%>
                     </div>
                 </div>
-                <div class="form-group mt-4">
-                    <label class="d-block" for="">Tên tiếng việt</label>
-                    <input class="form-control w-100" type="text" name="nameVn" value="<%= nameVn%>">
-                </div>
-                <div class="form-group mt-4">
-                    <label class="d-block" for="">Tên tiếng anh</label>
-                    <input class="form-control w-100" type="text" name="nameEn" value="<%= nameEn%>">
-                </div>
-                <div class="form-group mt-4">
-                    <label class="d-block" for="">Tên tiếng la tinh</label>
-                    <input class="form-control w-100" type="text" name="nameLa" value="<%= nameLa%>">
-                </div>
-           </div>
-        </div>
-    </div>
 
-    <div class="option_three d-none">
-       <div class="px-4">
-         <div class="top_option d-flex mt-4">
-            <div class="form-check me-4">
-                <input class="form-check-input" type="radio" name="typeEvent" id="typeEvent1" onclick="toggleOptions('one_time')" value="one" <%if(typeEvent === 'one' || typeEvent === '' || typeEvent === null ){%>checked<%}%>>
-                <label class="form-check-label" for="typeEvent1">
-                Diễn ra 1 lần
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="typeEvent" id="typeEvent2" onclick="toggleOptions('any_time')" value="many" <%if(typeEvent === 'many'){%>checked<%}%>>
-                <label class="form-check-label" for="typeEvent2">
-                Diễn ra theo giai đoạn
-                </label>
-            </div>
-         </div>
-         <div class="bottom_option ps-3">
-            <div class="one_time py-3 <%if(typeEvent === 'many'){%> d-none <%}%>">
-                <div class="row">
-                    <div class="col-6">
-                        <label for="" class="me-2">Ngày bắt đầu:</label>
-                        <input class="form-control" type="date" name="dateStart" value="<%= dateStart%>">
+                <div id="additionalDocument" class="<%if(typeofValue === null){%>d-block<%}%>">
+                    <div class="form-group mt-4 col-6">
+                        <label class="d-block" for="">Tác quyền</label>
+                        <input class="form-control w-100" name="copyright" type="text" value="<%= copyright%>">
                     </div>
-                    <div class="col-6">
-                        <label for="" class="me-2">Thời gian:</label>
-                        <input class="form-control" type="time" name="timeStart" value="<%= timeStart%>">
+                    <div class="form-group mt-4 col-6">
+                        <label class="d-block" for="">Năm xuất bản</label>
+                        <input class="form-control w-100" name="publishYear" type="text" value="<%= publishYear%>">
                     </div>
-                    <div class="col-12 mt-3">
-                        <label for="" class="me-2">Địa điểm tổ chức: </label>
-                        <input class="form-control" type="text" name="address" value="<%= address%>">
+                    <div class="form-group mt-4 col-6">
+                        <label class="d-block" for="">Nguồn tài liệu</label>
+                        <input class="form-control w-100" name="source" type="text" value="<%= source%>">
+                    </div>
+                </div>
+
+                <div id="additionalImage" class="d-none">
+                    <div class="form-group mt-4">
+                        <label class="d-block" for="">Tên tiếng việt</label>
+                        <input class="form-control w-100" type="text" name="nameVn" value="<%= nameVn%>">
+                    </div>
+                    <div class="form-group mt-4">
+                        <label class="d-block" for="">Tên tiếng anh</label>
+                        <input class="form-control w-100" type="text" name="nameEn" value="<%= nameEn%>">
+                    </div>
+                    <div class="form-group mt-4">
+                        <label class="d-block" for="">Tên tiếng la tinh</label>
+                        <input class="form-control w-100" type="text" name="nameLa" value="<%= nameLa%>">
                     </div>
                 </div>
             </div>
-            <div class="many_time py-3 <%if(typeEvent === 'one' || typeEvent === null){%> d-none <%}%>">
-                <div class="row">
-                    <div class="col-6">
-                        <label for="" class="me-2">Ngày bắt đầu:</label>
-                        <input class="form-control" type="date" name="dateStart" value="<%= dateStart%>">
-                    </div>
-                    <div class="col-6">
-                        <label for="" class="me-2">Thời gian:</label>
-                        <input class="form-control" type="time" name="timeStart" value="<%= timeStart%>">
-                    </div>
-                    <div class="col-6  mt-3">
-                        <label for="" class="me-2">Ngày kết thúc:</label>
-                        <input class="form-control" type="date" name="dateEnd" value="<%= dateEnd%>">
-                    </div>
-                    <div class="col-6  mt-3">
-                        <label for="" class="me-2">Thời gian:</label>
-                        <input class="form-control" type="time" name="timeEnd" value="<%= timeEnd%>">
-                    </div>
-                    <div class="col-12 mt-3">
-                        <label for="" class="me-2">Địa điểm tổ chức: </label>
-                        <input class="form-control" type="text" name="address" value="<%= address%>">
-                    </div>
-                </div>
+        </div>
+           
+        <div class="option_two <%if(typeofValue === null || typeofValue !== 'event'){%>d-none<%}else{%>d-block<%}%>">
+            <div class="px-4">
+              <div class="top_option d-flex mt-4">
+                 <div class="form-check me-4">
+                     <input class="form-check-input" type="radio" name="typeEvent" id="typeEvent1" onclick="toggleOptions('one_time')" value="one" <%if(typeEvent === 'one' || typeEvent === '' || typeEvent === null ){%>checked<%}%>>
+                     <label class="form-check-label" for="typeEvent1">
+                     Diễn ra 1 lần
+                     </label>
+                 </div>
+                 <div class="form-check">
+                     <input class="form-check-input" type="radio" name="typeEvent" id="typeEvent2" onclick="toggleOptions('any_time')" value="many" <%if(typeEvent === 'many'){%>checked<%}%>>
+                     <label class="form-check-label" for="typeEvent2">
+                     Diễn ra theo giai đoạn
+                     </label>
+                 </div>
+              </div>
+              <div class="bottom_option ps-3">
+                 <div class="one_time py-3 <%if(typeEvent === 'many'){%> d-none <%}%>">
+                     <div class="row">
+                         <div class="col-6">
+                             <label for="" class="me-2">Ngày bắt đầu:</label>
+                             <input class="form-control" type="date" name="dateStart" value="<%= dateStart%>">
+                         </div>
+                         <div class="col-6">
+                             <label for="" class="me-2">Thời gian:</label>
+                             <input class="form-control" type="time" name="timeStart" value="<%= timeStart%>">
+                         </div>
+                         <div class="col-12 mt-3">
+                             <label for="" class="me-2">Địa điểm tổ chức: </label>
+                             <input class="form-control" type="text" name="address" value="<%= address%>">
+                         </div>
+                     </div>
+                 </div>
+                 <div class="many_time py-3 <%if(typeEvent === 'one' || typeEvent === null){%> d-none <%}%>">
+                     <div class="row">
+                         <div class="col-6">
+                             <label for="" class="me-2">Ngày bắt đầu:</label>
+                             <input class="form-control" type="date" name="dateStart" value="<%= dateStart%>">
+                         </div>
+                         <div class="col-6">
+                             <label for="" class="me-2">Thời gian:</label>
+                             <input class="form-control" type="time" name="timeStart" value="<%= timeStart%>">
+                         </div>
+                         <div class="col-6  mt-3">
+                             <label for="" class="me-2">Ngày kết thúc:</label>
+                             <input class="form-control" type="date" name="dateEnd" value="<%= dateEnd%>">
+                         </div>
+                         <div class="col-6  mt-3">
+                             <label for="" class="me-2">Thời gian:</label>
+                             <input class="form-control" type="time" name="timeEnd" value="<%= timeEnd%>">
+                         </div>
+                         <div class="col-12 mt-3">
+                             <label for="" class="me-2">Địa điểm tổ chức: </label>
+                             <input class="form-control" type="text" name="address" value="<%= address%>">
+                         </div>
+                     </div>
+                 </div>
+              </div>
             </div>
-         </div>
-       </div>
+        </div>
+
     </div>
 </div>

@@ -4,7 +4,7 @@
         if(prod){
             title = prod.name;
             desShort = prod.desShort;
-            description = prod.description;
+            description = prod.descriptionPlus[0].description;
             pathImage = prod.images[0]?.image || ""
       %>
     <img src="../<%= pathImage%>" alt="">

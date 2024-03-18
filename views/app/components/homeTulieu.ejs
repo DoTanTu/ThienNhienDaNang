@@ -1,3 +1,6 @@
+
+<%if(dataOther6 && dataOther6.products.length > 0){
+%>
 <div class="home-tulieu py-90">
     <div class="container">
         <h3 class="h3-title position-relative underline mb-5">
@@ -5,178 +8,41 @@
         </h3>
 
         <div class="owl-tulieu owl-carousel owl-theme mb-5">
+            <% 
+            const products = dataOther6.products;
+            for (let i = 0; i < products.length; i += 4) {
+                %>
+                <div class="item">
+                    <div class="row-change">
+                        <% for (let j = i; j < Math.min(i + 4, products.length); j++) { 
+                            const prod = products[j];
 
-            <div class="item">
-                <div class="row-change">
-                    <div class="cot-12 cot-6-lg d-flex gap-3 gap-md-4">
-                        <div class="home-tulieu-img">
-                            <img class="mb-2" src="../public/app/images/icon/pdf-file.svg" alt="">
-                            <a href="#">Tải xuống</a>
-                        </div>
-                        <div class="home-tulieu-text">
-                            <a href="#">
-                                <h5 class="mb-3 br-line-3">Nghiên cứu đa dạng thành phần loài và sự phân bố các
-                                    loài
-                                    chim ở
-                                    KBTTN bán
-                                    đảo Sơn Trà, tp Đà Nẵng</h5>
-                            </a>
-                            <div class="home-tulieu-date d-flex justify-content-around">
-                                <span>Trương Quốc Đại</span>
-                                <span>10/06/2022</span>
+                            %>
+                            <div class="cot-12 cot-6-lg d-flex gap-3 gap-md-4">
+                                <div class="home-tulieu-img">
+                                    <img class="mb-2" src="../public/app/images/icon/pdf-file.svg" alt="">
+                                    <a href="javascript.void(0);" data-bs-toggle="modal" data-action="download" data-post-id="<%= prod._id%>" data-path="<%= prod.pdf%>">Tải xuống</a>
+                                </div>
+                                <div class="home-tulieu-text w-100">
+                                    <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html">
+                                        <h5 class="mb-3 br-line-3"><%= prod.name %></h5>
+                                    </a>
+                                    <div class="home-tulieu-date d-flex justify-content-around">
+                                        <span><%= prod.additional.authorName %></span>
+                                        <span><%= prod.additional.publishYear %></span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="cot-12 cot-6-lg d-flex gap-3 gap-md-4">
-                        <div class="home-tulieu-img">
-                            <img class="mb-2" src="../public/app/images/icon/pdf-file.svg" alt="">
-                            <a href="#">Tải xuống</a>
-                        </div>
-                        <div class="home-tulieu-text">
-                            <a href="#">
-                                <h5 class="mb-3 br-line-3">Nghiên cứu đa dạng thành phần loài và sự phân bố các
-                                    loài
-                                    chim ở
-                                    KBTTN bán
-                                    đảo Sơn Trà, tp Đà Nẵng</h5>
-                            </a>
-                            <div class="home-tulieu-date d-flex justify-content-around">
-                                <span>Trương Quốc Đại</span>
-                                <span>10/06/2022</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cot-12 cot-6-lg d-flex gap-3 gap-md-4">
-                        <div class="home-tulieu-img">
-                            <img class="mb-2" src="../public/app/images/icon/pdf-file.svg" alt="">
-                            <a href="#">Tải xuống</a>
-                        </div>
-                        <div class="home-tulieu-text">
-                            <a href="#">
-                                <h5 class="mb-3 br-line-3">Nghiên cứu đa dạng thành phần loài và sự phân bố các
-                                    loài
-                                    chim ở
-                                    KBTTN bán
-                                    đảo Sơn Trà, tp Đà Nẵng</h5>
-                            </a>
-                            <div class="home-tulieu-date d-flex justify-content-around">
-                                <span>Trương Quốc Đại</span>
-                                <span>10/06/2022</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cot-12 cot-6-lg d-flex gap-3 gap-md-4">
-                        <div class="home-tulieu-img">
-                            <img class="mb-2" src="../public/app/images/icon/pdf-file.svg" alt="">
-                            <a href="#">Tải xuống</a>
-                        </div>
-                        <div class="home-tulieu-text">
-                            <a href="#">
-                                <h5 class="mb-3 br-line-3">Nghiên cứu đa dạng thành phần loài và sự phân bố các
-                                    loài
-                                    chim ở
-                                    KBTTN bán
-                                    đảo Sơn Trà, tp Đà Nẵng</h5>
-                            </a>
-                            <div class="home-tulieu-date d-flex justify-content-around">
-                                <span>Trương Quốc Đại</span>
-                                <span>10/06/2022</span>
-                            </div>
-                        </div>
+                        <% } %>
                     </div>
                 </div>
-            </div>
-
-            <div class="item">
-                <div class="row-change">
-                    <div class="cot-12 cot-6-lg d-flex gap-3 gap-md-4 gap-xl-5">
-                        <div class="home-tulieu-img">
-                            <img class="mb-2" src="../public/app/images/icon/pdf-file.svg" alt="">
-                            <a href="#">Tải xuống</a>
-                        </div>
-                        <div class="home-tulieu-text">
-                            <a href="#">
-                                <h5 class="mb-3 br-line-3">Nghiên cứu đa dạng thành phần loài và sự phân bố các
-                                    loài
-                                    chim ở
-                                    KBTTN bán
-                                    đảo Sơn Trà, tp Đà Nẵng</h5>
-                            </a>
-                            <div class="home-tulieu-date d-flex justify-content-around">
-                                <span>Trương Quốc Đại</span>
-                                <span>10/06/2022</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cot-12 cot-6-lg d-flex gap-3 gap-md-4 gap-xl-5">
-                        <div class="home-tulieu-img">
-                            <img class="mb-2" src="../public/app/images/icon/pdf-file.svg" alt="">
-                            <a href="#">Tải xuống</a>
-                        </div>
-                        <div class="home-tulieu-text">
-                            <a href="#">
-                                <h5 class="mb-3 br-line-3">Nghiên cứu đa dạng thành phần loài và sự phân bố các
-                                    loài
-                                    chim ở
-                                    KBTTN bán
-                                    đảo Sơn Trà, tp Đà Nẵng</h5>
-                            </a>
-                            <div class="home-tulieu-date d-flex justify-content-around">
-                                <span>Trương Quốc Đại</span>
-                                <span>10/06/2022</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cot-12 cot-6-lg d-flex gap-3 gap-md-4 gap-xl-5">
-                        <div class="home-tulieu-img">
-                            <img class="mb-2" src="../public/app/images/icon/pdf-file.svg" alt="">
-                            <a href="#">Tải xuống</a>
-                        </div>
-                        <div class="home-tulieu-text">
-                            <a href="#">
-                                <h5 class="mb-3 br-line-3">Nghiên cứu đa dạng thành phần loài và sự phân bố các
-                                    loài
-                                    chim ở
-                                    KBTTN bán
-                                    đảo Sơn Trà, tp Đà Nẵng</h5>
-                            </a>
-                            <div class="home-tulieu-date d-flex justify-content-around">
-                                <span>Trương Quốc Đại</span>
-                                <span>10/06/2022</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cot-12 cot-6-lg d-flex gap-3 gap-md-4 gap-xl-5">
-                        <div class="home-tulieu-img">
-                            <img class="mb-2" src="../public/app/images/icon/pdf-file.svg" alt="">
-                            <a href="#">Tải xuống</a>
-                        </div>
-                        <div class="home-tulieu-text">
-                            <a href="#">
-                                <h5 class="mb-3 br-line-3">Nghiên cứu đa dạng thành phần loài và sự phân bố các
-                                    loài
-                                    chim ở
-                                    KBTTN bán
-                                    đảo Sơn Trà, tp Đà Nẵng</h5>
-                            </a>
-                            <div class="home-tulieu-date d-flex justify-content-around">
-                                <span>Trương Quốc Đại</span>
-                                <span>10/06/2022</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <% } %>
 
         </div>
-        <a class="main-btn mx-auto mt-4" href="#">
-             Xem thêm
+        <a class="main-btn mx-auto mt-4" href="tai-lieu">
+            <%= '<Xem thêm>' %>
         </a>
     </div>
 </div>
+<% 
+}%>

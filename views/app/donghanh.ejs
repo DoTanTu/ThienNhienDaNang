@@ -43,32 +43,53 @@
                 }%>
             </div>
 
+            
+
             <div class="row-change pt-60">
                 <div class="ketqua-title cot-12 mb-4">
                     <h3 class="text-center h3-title mb-2">Kết quả đạt được</h3>
                     <p class="p-title">Trang thông tin Thiên nhiên Đà Nẵng chính thức hoạt động từ
                         tháng 11/2022 đến nay</p>
                 </div>
+                <%if(dataOther6 && dataOther6.products.length > 0){
+                    const documents = dataOther6.products.filter( item => !item.hashtags.includes('san_pham_dai_dien'))
+                    %>
+                    <div class="ketqua-box cot-6 cot-3-md d-flex flex-column">
+                        <span class="text-color-noti"><%= documents.length%></span>
+                        <img src="../public/app/images/icon/tailieu.svg" alt="">
+                        <span>Tài liệu</span>
+                    </div>
+                <%}%>
+    
+                <%if(dataOther2 && dataOther2.products.length > 0){
+                    const books = dataOther2.products.length
+                %>
                 <div class="ketqua-box cot-6 cot-3-md d-flex flex-column">
-                    <span class="text-color-noti">350</span>
-                    <img src="public/app/images/icon/tailieu.svg" alt="">
-                    <span>Tài liệu</span>
-                </div>
-                <div class="ketqua-box cot-6 cot-3-md d-flex flex-column">
-                    <span class="text-color-3">70</span>
-                    <img src="public/app/images/icon/books.svg" alt="">
+                    <span class="text-color-3"><%= books%></span>
+                    <img src="../public/app/images/icon/books.svg" alt="">
                     <span>Sách, Truyện</span>
                 </div>
+                <% }%>
+    
+                <%if(dataOther8 && dataOther8.products.length > 0){
+                    const courses = dataOther8.products.length
+                %>
                 <div class="ketqua-box cot-6 cot-3-md d-flex flex-column">
-                    <span class="text-color-3">45</span>
-                    <img src="public/app/images/icon/file.svg" alt="">
+                    <span class="text-color-3"><%= courses%></span>
+                    <img src="../public/app/images/icon/file.svg" alt="">
                     <span>Học liệu</span>
                 </div>
+                <%}%>
+    
+                <%if(dataOther3 && dataOther5 && dataOther3.products.length > 0 && dataOther5.products.length > 0){
+                    const imageAndVideo = dataOther3.products.length + dataOther5.products.length
+                %>
                 <div class="ketqua-box cot-6 cot-3-md d-flex flex-column">
-                    <span class="color-2">570</span>
-                    <img src="public/app/images/icon/image.svg" alt="">
+                    <span class="color-2"><%= imageAndVideo%></span>
+                    <img src="../public/app/images/icon/image.svg" alt="">
                     <span>Ảnh, Video</span>
                 </div>
+                <%}%>
             </div>
         </div>
     </div>
@@ -107,15 +128,6 @@
                 </div>
                 <%}}%>
             </div>
-        </div>
-    </div>
-
-    <div class="donggop-huongdan py-30 py-md-60 py-lg-90 bg-grey" id="donation">
-        <div class="container">
-            <h3 class="h3-title underline mb-4">Hướng dẫn quyên góp</h3>
-            <p class="text-color-2">Để đóng góp nguồn tư liệu hình ảnh cho website, chúng tôi mong nhận được sự đóng góp của các nhiếp ảnh gia, cộng đồng và những người yêu thiên nhiên Đà Nẵng qua cuộc thi ảnh trực tuyến (online) với chủ đề “Chung tay lan tỏa tri thức thiên nhiên Đà Nẵng”. 
-                Cuộc thi khuyến khích người tham gia tiếp cận các loài sinh vật đang sinh sống tại thành phố Đà Nẵng và các yếu tố tự nhiên theo nhiều khía cạnh, chân thực, có giá trị khoa học, giáo dục và thẩm mĩ cao. Những bức ảnh, bộ ảnh tham gia cuộc thi sẽ trở thành nguồn tư liệu quý giá, chất lượng cao cho hoạt động dạy và học của 20.000 giáo viên (cấp 1, 2, 3), hơn 100.000 học sinh, sinh viên, cộng đồng quan tâm và mong muốn tìm hiểu thiên nhiên Đà Nẵng. Đồng thời, thông qua các giải thưởng của cuộc thi, chúng tôi tôn vinh và ghi nhận công sức, tinh thần sẵn sàng chia sẻ của người tham gia, các nhiếp ảnh gia tâm huyết vì mục tiêu lan tỏa tri thức, vẻ đẹp và tình yêu thiên nhiên đến cả cộng đồng.
-                </p>
         </div>
     </div>
 

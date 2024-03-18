@@ -66,6 +66,9 @@
                                         if(item.hashtags[0] !== 'san_pham_dai_dien'){
                                             name = item.name;
                                             pathUrl = item.pdf;
+                                            authorName = item.additional.authorName;
+                                            publishYear = item.additional.publishYear;
+                                            createdAt = new Date(item.createdAt).toLocaleDateString('vi-VN')
                                      %>
                                 <div class="cot-12 cot-6-lg d-flex gap-3 gap-md-3">
                                     <div class="home-tulieu-img">
@@ -77,14 +80,13 @@
                                             <h5 class="mb-3 br-line-3"><%= name%></h5>
                                         </a>
                                         <div class="home-tulieu-date d-flex justify-content-around">
-                                            <span>Trương Quốc Đại</span>
-                                            <span>10/06/2022</span>
+                                            <span><%= authorName%></span>
+                                            <span><%= publishYear%></span>
                                         </div>
                                     </div>
                                 </div>
         
-                                <%    }})
-                                }%>
+                                <% }}) }%>
                             </div>
 
                             <!-- <nav aria-label="pageBar">

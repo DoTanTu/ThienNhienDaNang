@@ -131,6 +131,15 @@ export default class ProductRepository implements IProductRepository {
       .limit(query.limit)
   }
 
+    public async getProductCountByFilter(query: IProductQuery): Promise<number> {
+      var options : any = {
+        pageId : query.pageId,
+        isDelete : { $in: [false, null] },
+      }
+      return this.ProductModel.find(options).count();
+    }
+
+
   public async getProductInfo(query: IProduct): Promise<IProduct> {
     return this.ProductModel.findById(query._id)
     .populate({
@@ -145,6 +154,44 @@ export default class ProductRepository implements IProductRepository {
     }
     })
     ;
+  }
+
+  public async getTopAuthors(query: IProductQuery): Promise<any[]> {
+    try {
+      var options: any = {
+        pageId: query.pageId,
+        isDelete: { $in: [false, null] }
+      };
+      if (query != null) {
+        if (query.query) {
+          options.name = { $regex: query.query, $options: 'i' };
+        }
+  
+        if (query.cateId && query.cateId != "") {
+          options.categoryIds = { $in: [query.cateId] };
+        }
+  
+        if (query.userId && query.userId != "") {
+          options.userPost = { $in: [query.userId] };
+        }
+      }
+  
+      const authors = await this.ProductModel.aggregate([
+        {
+          $match: options
+        },
+        {
+          $group: {
+            _id: "$additional.authorId",
+            totalProducts: { $sum: 1 }
+          }
+        },
+      ]);
+      return authors;
+    } catch (error) {
+        throw error;
+        return [];
+    }
   }
 
   public async getProductCount(query: IProductQuery): Promise<Number> {

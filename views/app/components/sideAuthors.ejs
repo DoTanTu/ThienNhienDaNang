@@ -1,79 +1,25 @@
+<%if(dataOther1 && dataOther1.featuredAuthor && dataOther1.featuredAuthor.length > 0 ){
+    %>
 <div class="side-box admin-box">
     <h4 class="mb-4">Tác giả tiêu biểu</h4>
-
-    <div class="book-box mb-4">
-        <div class="book-box-img">
-            <div class="book-box-img-box">
-                <img src="https://images.pexels.com/photos/4298629/pexels-photo-4298629.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                    alt="">
+        <% dataOther1.featuredAuthor.forEach( item => {%>
+            <div class="book-box mb-4">
+                <div class="book-box-img">
+                    <div class="book-box-img-box">
+                        <img src="https://images.pexels.com/photos/4298629/pexels-photo-4298629.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                            alt="">
+                    </div>
+                </div>
+                <div class="book-detail">
+                    <a href="#">
+                        <h5>Nguyễn Phương Anh</h5>
+                    </a>
+                    <ul>
+                        <li>Ngày tham gia:<span>20/05/2022</span></li>
+                        <li>Bài viết:<span>125 bài</span></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="book-detail">
-            <a href="#">
-                <h5>Nguyễn Phương Anh</h5>
-            </a>
-            <ul>
-                <li>Ngày tham gia:<span>20/05/2022</span></li>
-                <li>Bài viết:<span>125 bài</span></li>
-            </ul>
-        </div>
-    </div>
-
-
-    <div class="book-box mb-4">
-        <div class="book-box-img">
-            <div class="book-box-img-box">
-                <img src="https://images.pexels.com/photos/1382731/pexels-photo-1382731.jpeg?auto=compress&cs=tinysrgb&w=300"
-                    alt="">
-            </div>
-        </div>
-        <div class="book-detail">
-            <a href="#">
-                <h5>Nguyễn Phương Anh</h5>
-            </a>
-            <ul>
-                <li>Ngày tham gia:<span>20/05/2022</span></li>
-                <li>Bài viết:<span>125 bài</span></li>
-            </ul>
-        </div>
-    </div>
-
-
-    <div class="book-box mb-4">
-        <div class="book-box-img">
-            <div class="book-box-img-box">
-                <img src="https://images.pexels.com/photos/1308885/pexels-photo-1308885.jpeg?auto=compress&cs=tinysrgb&w=300"
-                    alt="">
-            </div>
-        </div>
-        <div class="book-detail">
-            <a href="#">
-                <h5>Nguyễn Phương Anh</h5>
-            </a>
-            <ul>
-                <li>Ngày tham gia:<span>20/05/2022</span></li>
-                <li>Bài viết:<span>125 bài</span></li>
-            </ul>
-        </div>
-    </div>
-
-
-    <div class="book-box mb-4">
-        <div class="book-box-img">
-            <div class="book-box-img-box">
-                <img src="https://images.pexels.com/photos/1382728/pexels-photo-1382728.jpeg?auto=compress&cs=tinysrgb&w=300"
-                    alt="">
-            </div>
-        </div>
-        <div class="book-detail">
-            <a href="#">
-                <h5>Nguyễn Phương Anh</h5>
-            </a>
-            <ul>
-                <li>Ngày tham gia:<span>20/05/2022</span></li>
-                <li>Bài viết:<span>125 bài</span></li>
-            </ul>
-        </div>
-    </div>
-
+        <%} )%>
 </div>
+<% } %>

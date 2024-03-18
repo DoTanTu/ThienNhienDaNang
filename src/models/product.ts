@@ -147,4 +147,12 @@ const ProductSchema = new mongoose.Schema(
     justOne: false
   });
 
+  ProductSchema.virtual('customers', {
+    ref: 'Customer', 
+    localField: 'additional.authorId',  
+    foreignField: '_id', 
+    justOne: false
+  });
+  
+
 export default mongoose.model<IProduct & mongoose.Document>('Product', ProductSchema);

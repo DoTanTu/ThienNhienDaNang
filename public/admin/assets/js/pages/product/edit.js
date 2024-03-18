@@ -191,14 +191,13 @@ $(document).ready(function() {
 
       var idAuthor = '';
       var nameAuthor = '';
-      const typeOfValue = $('select[name="typeof"] option:selected').val();
-
-      if(typeOfValue === 'doc' && typeOfValue === 'video' && typeOfValue === 'book' && typeOfValue === 'lesson'){
-        idAuthor = $('select[name="authorId"] option:selected').val();
-        nameAuthor = $('select[name="authorId"] option:selected').text();
-      }else if( typeOfValue === 'book' && typeOfValue === 'image'){
-          idAuthor = $('select[name="authorIdImage"] option:selected').val();
-          nameAuthor = $('select[name="authorIdImage"] option:selected').text() ;
+      const inputNameAuthor = $('#inputNameAuthor');
+      if(inputNameAuthor.val() !== undefined){
+        idAuthor = '';
+        nameAuthor = inputNameAuthor.val();
+      }else{
+        idAuthor = $('select[id="authorId"] option:selected').val();
+        nameAuthor = $('select[id="authorId"] option:selected').text();
       }
 
       formData.forEach(element => {

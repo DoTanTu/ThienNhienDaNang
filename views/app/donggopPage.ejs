@@ -9,114 +9,60 @@
     <%- include('./components/bottomNav') -%>
 
     <div class="donggop-page">
+        <%if(dataProducts && dataProducts.length > 0){
+           const productfind =  dataProducts.find( prod => prod._id === 'WniOeVTAgZ');
+           if(productfind){
+                name = productfind.name;
+                let alt = '';
+                let pathImage = '';
+                let imageResize = '';
+                const obImage = productfind.images[0];
+                if(obImage){
+                    pathImage = obImage.image;
+                    alt = obImage.alt;
+                }
+                descriptionPlus = productfind.descriptionPlus
+              
+        %>
         <div class="container position-relatives py-30 py-lg-60">
             <div class="donggop-cover"
-                style="background-image: url(https://vietnamtimes.org.vn/stores/news_dataimages/minhchauvnt/052021/07/15/3652_red-shanked-douc-tim-plowden.png);">
+                style="background-image: url(../<%= pathImage%>)">
                 <!-- <img src="public/app/images/khi-3.png" alt=""> -->
             </div>
         </div>
         <div class="container">
-            <h3 class="h3-title mb-4 text-center">Cùng chúng tôi chia sẻ tri thức, kết nối và lan tỏa tình yêu thiên
-                nhiên Đà Nẵng
+            <h3 class="h3-title mb-4 text-center"><%= name%>
             </h3>
             <div class="dongGopContent mb-5">
                 <div class="accordion" id="dongGopList">
+                <% if(descriptionPlus && descriptionPlus.length > 0) {
+                    descriptionPlus.forEach( (item, index) => {%>
                     <div class="accordion-item">
-                        <h4 class="accordion-header dongGopTitle" id="dongGopTitle_1">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#dongGopContent_1" aria-expanded="true"
-                                aria-controls="dongGopContent_1">
-                                1. Thư ngỏ
+                        <h4 class="accordion-header dongGopTitle" id="dongGopTitle_<%= index%>">
+                            <button class="accordion-button <%if(index !== 0){%>collapsed<%}%>" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#dongGopContent_<%= index%>" aria-expanded="<%if(index == 0){%>true<%}else{%>false<%}%>"
+                                aria-controls="dongGopContent_<%= index%>">
+                                <%= item.title%>
                             </button>
                         </h4>
-                        <div id="dongGopContent_1" class="accordion-collapse collapse show"
-                            aria-labelledby="dongGopTitle_1">
+                        <div id="dongGopContent_<%= index%>" class="accordion-collapse collapse <%if(index ==0){%> show<%}%>"
+                            aria-labelledby="dongGopTitle_<%= index%>">
                             <div class="accordion-body">
-                                <p>Để đóng góp nguồn tư liệu hình ảnh cho website, chúng tôi mong nhận được sự đóng góp
-                                    của các nhiếp
-                                    ảnh gia, cộng đồng và những người yêu thiên nhiên Đà Nẵng qua cuộc thi ảnh trực
-                                    tuyến (online) với
-                                    chủ đề “Chung tay lan tỏa tri thức thiên nhiên Đà Nẵng”.
-                                    Cuộc thi khuyến khích người tham gia tiếp cận các loài sinh vật đang sinh sống tại
-                                    thành phố Đà Nẵng
-                                    và các yếu tố tự nhiên theo nhiều khía cạnh, chân thực, có giá trị khoa học, giáo
-                                    dục và thẩm mĩ
-                                    cao. Những bức ảnh, bộ ảnh tham gia cuộc thi sẽ trở thành nguồn tư liệu quý giá,
-                                    chất lượng cao cho
-                                    hoạt động dạy và học của 20.000 giáo viên (cấp 1, 2, 3), hơn 100.000 học sinh, sinh
-                                    viên, cộng đồng
-                                    quan tâm và mong muốn tìm hiểu thiên nhiên Đà Nẵng. Đồng thời, thông qua các giải
-                                    thưởng của cuộc
-                                    thi, chúng tôi tôn vinh và ghi nhận công sức, tinh thần sẵn sàng chia sẻ của người
-                                    tham gia, các
-                                    nhiếp ảnh gia tâm huyết vì mục tiêu lan tỏa tri thức, vẻ đẹp và tình yêu thiên nhiên
-                                    đến cả cộng
-                                    đồng.
+                                <p>
+                                    <%- item.description %>
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-item">
-                        <h4 class="accordion-header dongGopTitle" id="dongGopTitle_2">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#dongGopContent_2" aria-expanded="false"
-                                aria-controls="dongGopContent_2">
-                                2. Hình thức và nội dung tư liệu đóng góp
-                            </button>
-                        </h4>
-                        <div id="dongGopContent_2" class="accordion-collapse collapse" aria-labelledby="dongGopTitle_2">
-                            <div class="accordion-body">
-                                <strong>This is the second item's accordion body.</strong> It is hidden by default,
-                                until the collapse plugin adds the appropriate classes that we use to style each
-                                element. These classes control the overall appearance, as well as the showing and hiding
-                                via CSS transitions. You can modify any of this with custom CSS or overriding our
-                                default variables. It's also worth noting that just about any HTML can go within the
-                                <code>.accordion-body</code>, though the transition does limit overflow.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h4 class="accordion-header dongGopTitle" id="dongGopTitle_3">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#dongGopContent_3" aria-expanded="false"
-                                aria-controls="dongGopContent_3">
-                                3. Quyền tác giả:
-                            </button>
-                        </h4>
-                        <div id="dongGopContent_3" class="accordion-collapse collapse" aria-labelledby="dongGopTitle_3">
-                            <div class="accordion-body">
-                                <strong>This is the third item's accordion body.</strong> It is hidden by default, until
-                                the collapse plugin adds the appropriate classes that we use to style each element.
-                                These classes control the overall appearance, as well as the showing and hiding via CSS
-                                transitions. You can modify any of this with custom CSS or overriding our default
-                                variables. It's also worth noting that just about any HTML can go within the
-                                <code>.accordion-body</code>, though the transition does limit overflow.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h4 class="accordion-header dongGopTitle" id="dongGopTitle_4">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#dongGopContent_4" aria-expanded="false"
-                                aria-controls="dongGopContent_4">
-                                4. Cách thức đóng góp:
-                            </button>
-                        </h4>
-                        <div id="dongGopContent_4" class="accordion-collapse collapse" aria-labelledby="dongGopTitle_4">
-                            <div class="accordion-body">
-                                <strong>This is the third item's accordion body.</strong> It is hidden by default, until
-                                the collapse plugin adds the appropriate classes that we use to style each element.
-                                These classes control the overall appearance, as well as the showing and hiding via CSS
-                                transitions. You can modify any of this with custom CSS or overriding our default
-                                variables. It's also worth noting that just about any HTML can go within the
-                                <code>.accordion-body</code>, though the transition does limit overflow.
-                            </div>
-                        </div>
-                    </div>
+                <%})}%>
+                    
+                  
                 </div>
             </div>
         </div>
-        <div class="container">
+        <%   }
+             }%>
+        <div class="container" id="togethercontribution">
             <h3 class="h3-title mb-4 text-center">Tiến hành đóng góp</h3>
             <form class="row-change py-30 dongGopForm <%= dataBasicInfo ? 'active' : ''%> " id="dongGopForm" action="" method="">
                 <a href="dang-nhap" class="main-btn loginBtn">Đăng nhập để đóng góp</a>
