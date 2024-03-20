@@ -199,6 +199,7 @@
                     <img src="https://source.unsplash.com/random/800x800/?monkey" alt="">
                     <h4 class="thankText">Cảm an bạn đã đóng góp một viên gạch giá trị để xây dựng kho tàng tri thức xanh!
                         <a href="/"><i class="bi bi-house-door-fill"></i>Về lại trang chủ</a>
+                        <a href="/dong-gop"><i class="bi bi-reply-all-fill"></i>Về lại đóng góp</a>
                     </h4>
                 </div>
             </div>
@@ -262,7 +263,8 @@
                 `   
                     <div class="cot-4-md uploadFile">
                         <img src="${isImageFile(file.name) ? URL.createObjectURL(file) : '../public/app/images/file_document.webp'}" alt="">
-                        <span class="name-image">${file.name}</span>
+                        <span class="name-image" >${file.name}</span>
+                        <input name="name" value="${file.name}" hidden>
                     </div>
                     <div class="cot-8-md uploadInfor">
                         <div class="row-change uploadForm">

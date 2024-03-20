@@ -178,10 +178,17 @@ export default class CustomSiteService implements ICustomSiteService {
     return this.customerRepo.getProfile({_id : customerId} as ICustomer)
   }
 
+  public async getDataContributeUser(customerId : any): Promise<any> {
+    return this.customerRepo.getDataContributeUser({_id : customerId} as ICustomer)
+  }
+
   public async getDataBasicInfo(customerId : any): Promise<any> {
     return this.customerRepo.getBasicInfo({_id : customerId} as ICustomer)
   }
 
+  public async addCustomerDownloads(customerId : any, productId : string): Promise<any>{
+    return this.customerRepo.addCustomerDownload(customerId, productId)
+  }
   public async updateViews(productId: any): Promise<any> {
     return this.productRepo.updateViews({_id : productId} as IProduct)
   }
@@ -193,4 +200,5 @@ export default class CustomSiteService implements ICustomSiteService {
   public async actionLikeProduct(productId: string, customerId : string): Promise<number>{
     return this.productRepo.actionLikeProduct(productId, customerId);
   }
+
 }

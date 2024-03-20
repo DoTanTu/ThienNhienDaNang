@@ -54,7 +54,7 @@
             const filesInput = [];
             $('.uploadItem').each(function(index) {
                 filesInput.push({
-                    name: $(this).find('span .name-image').text(),
+                    name: $(this).find('input[name="name"]').val(),
                     title: $(this).find('input[name="title"]').val(),
                     file: $(this).find('img').data('src'),
                     content: $(this).find('textarea[name="note"]').val(),
@@ -82,11 +82,31 @@
                     if(response.success === true){
                         $('#thankModal').modal('show');
                     }else{
-                        alert('Xảy ra lỗi trong quá trình đóng góp');
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: "Xảy ra lỗi trong quá trình đóng góp!",
+                            showConfirmButton: false,
+                            backdrop: `
+                            rgb(192,192,192, 0.4)
+                            no-repeat
+                            `,
+                            timer: 3000
+                        });
                     }
                 },
                 error: function(error) {
-                    alert('Xảy ra lỗi trong quá trình đóng góp');
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "Xảy ra lỗi trong quá trình đóng góp!",
+                        showConfirmButton: false,
+                        backdrop: `
+                        rgb(192,192,192, 0.4)
+                        no-repeat
+                        `,
+                        timer: 3000
+                    });
                 }
             });
         }

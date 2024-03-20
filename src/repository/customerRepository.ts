@@ -81,9 +81,17 @@ export default class CustomerRepository implements ICustomerRepository {
     return this.CustomerModel.findById(query._id)
   }
 
-  public async getProfile(query: ICustomer): Promise<ICustomer> {
+  public async  getProfile(query: ICustomer): Promise<ICustomer> {
     return this.CustomerModel.findById(query._id)
-      .select("fullname avatar username email phone address country description links");
+      .select("fullname avatar backgroundImage username email phone address country description links");
+  }
+
+  public async getDataContributeUser(query: ICustomer): Promise<any> {
+    return this.CustomerModel.findById(query._id)
+      .populate({
+        path : 'contributeItems',
+        select : 'files type createdAt',
+      });
   }
 
   public async getBasicInfo(query: ICustomer): Promise<ICustomer> {
@@ -138,6 +146,20 @@ export default class CustomerRepository implements ICustomerRepository {
       throw e;
     }
   }
+
+  public async addCustomerDownload(CustomerId: string, productId: string): Promise<any> {
+    try {
+        const updatedCustomer = await this.CustomerModel.findByIdAndUpdate(
+            CustomerId,
+            { $addToSet: { downloads: productId } },
+            { new: true }
+        );
+        return updatedCustomer.fullname;
+    } catch (error) {
+        throw error;
+    }
+}
+
 
   public async addAndUpdateContribution(CustomerId: string, productId: string) : Promise<string> {
     const updatedCustomer = await this.CustomerModel.findByIdAndUpdate(
@@ -215,13 +237,11 @@ export default class CustomerRepository implements ICustomerRepository {
 
   public async getContributeByProduct(typeOf){
     return this.CustomerModel.find({
-      
     })
     .populate({
         path : 'products',
         select : 'name',
         match : {
-          
         }
      })
   }

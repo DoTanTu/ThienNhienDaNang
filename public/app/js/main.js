@@ -15,14 +15,16 @@
             navigator.clipboard.writeText(linkToCopy)
                 .then(function() {
                     Swal.fire({
-                        position: "center-center",
-                        width: 350,
-                        height : 150,
+                        position: "center",
                         icon: "success",
                         title: "Đã sao chép",
                         showConfirmButton: false,
-                        timer: 1500
-                      });
+                        backdrop: `
+                        rgb(192,192,192, 0.4)
+                        no-repeat
+                        `,
+                        timer: 3000
+                    });
                 })
                 .catch(function(err) {
                     console.error("Lỗi khi sao chép đường dẫn: ", err);
@@ -83,17 +85,31 @@
                             </div>
                         `;
                     }else{
-                        Toast.fire({
-                            icon: 'error',
-                            title: 'Bình luận không thành công!'
-                        })
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: "Bình luận không thành công!",
+                            showConfirmButton: false,
+                            backdrop: `
+                            rgb(192,192,192, 0.4)
+                            no-repeat
+                            `,
+                            timer: 3000
+                        });
                     }
                 },
                 error: function(xhr, status, error) {
-                    Toast.fire({
-                        icon: 'error',
-                        title: 'Bình luận không thành công!'
-                    })
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "Bình luận không thành công",
+                        showConfirmButton: false,
+                        backdrop: `
+                        rgb(192,192,192, 0.4)
+                        no-repeat
+                        `,
+                        timer: 3000
+                    });
                 }
             });
     }
@@ -125,7 +141,17 @@
                 },
                 error: (e) => {
                     previewImage.src = oldPath;
-                    alert('Upload ảnh không thành công');
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "Xảy ra lỗi khi cập nhật ảnh!",
+                        showConfirmButton: false,
+                        backdrop: `
+                        rgb(192,192,192, 0.4)
+                        no-repeat
+                        `,
+                        timer: 3000
+                    });
                 }
             });
         }
@@ -153,7 +179,17 @@
                 },
                 error: (e) => {
                     previewImage.src = oldPath;
-                    alert('Upload ảnh không thành công');
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "Xảy ra lỗi khi cập nhật ảnh!",
+                        showConfirmButton: false,
+                        backdrop: `
+                        rgb(192,192,192, 0.4)
+                        no-repeat
+                        `,
+                        timer: 3000
+                    });
                 }
             });
         }
@@ -175,7 +211,17 @@
             $('#number-download').text(response.total);
           },
           error: function(error) {
-            console.error("Download request failed:", error);
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Xảy ra lỗi khi tải xuống",
+                showConfirmButton: false,
+                backdrop: `
+                rgb(192,192,192, 0.4)
+                no-repeat
+                `,
+                timer: 3000
+            });
           }
         });
     }
@@ -241,7 +287,17 @@
             });
             $('#uploadModal').modal('hide');
         }else{
-            alert('Bạn chưa chọn được sản phẩm');
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Vui lòng chọn file trước khi gửi!",
+                showConfirmButton: false,
+                backdrop: `
+                rgb(192,192,192, 0.4)
+                no-repeat
+                `,
+                timer: 3000
+            });
         }
     }
 
@@ -266,10 +322,17 @@
                 }
             },
             error: function (e){
-                Toast.fire({
-					icon: 'error',
-					title: 'Lỗi trong quá trình đăng nhập!'
-				})
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Đăng nhập không thành công",
+                    showConfirmButton: false,
+                    backdrop: `
+                    rgb(192,192,192, 0.4)
+                    no-repeat
+                    `,
+                    timer: 3000
+                });
             }
         });
     });

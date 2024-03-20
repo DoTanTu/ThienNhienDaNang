@@ -41,16 +41,16 @@ export default class MailService implements IMailService {
   public async sendEmailActiveUser(id : string,email: string): Promise<any> {
     try {
       let mailServer = await this.MailRepo.getMail()
-    if (!mailServer) return false;
-    const transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 587,
-        auth: {
-            user: mailServer.mail,
-            pass: mailServer.password
-        }
-    });
-    
+      if (!mailServer) return false;
+      const transporter = nodemailer.createTransport({
+          host: 'smtp.gmail.com',
+          port: 587,
+          auth: {
+              user: mailServer.mail,
+              pass: mailServer.password
+          }
+      });
+      
     // send email
     await transporter.sendMail({
         from: mailServer.mail,

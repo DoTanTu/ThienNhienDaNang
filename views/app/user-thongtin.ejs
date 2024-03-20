@@ -8,11 +8,8 @@
     <%- include('./components/header') -%>
     <%- include('./components/bottomNav') -%>
    
-    <section class="userCover">
-        <div class="container" id="user-avatar-customer">
-            
-        </div>
-    </section>
+    <%- include('./components/userCover') -%>
+    
     <div class="main-body user">
         <div class="container">
             <div class="row-change">
@@ -20,15 +17,7 @@
                     <div class="side-box">
                         <h4 class="mb-4">Danh mục</h4>
                         <div class="side-cate mb-4">
-                            <ul class="side-cate-list">
-                                <li class="side-cate-list-title"><i class="bi bi-person-fill"></i><a href="ca-nhan">Thông tin cơ bản</a></li>
-                                <li class="side-cate-list-title"><i class="bi bi-shield-fill-check"></i><a href="reset-password">Bảo mật</a></li>
-                                <li class="side-cate-list-title"><i class="bi bi-bell-fill"></i><a href="#">Thông báo</a></li>
-                                <li class="side-cate-list-title"><i class="bi bi-chat-right-text-fill"></i><a href="#">Tin nhắn</a></li>
-                                <li class="side-cate-list-title"><i class="bi bi-archive-fill"></i><a href="#">Đóng góp</a></li>
-                                <li class="side-cate-list-title"><i class="bi bi-heart-fill"></i><a href="#">Yêu thích</a></li>
-                                <li class="side-cate-list-title"><i class="bi bi-cloud-download-fill"></i><a href="#">Tải về</a></li>
-                            </ul>
+                            <%- include('./components/featureProfile') -%>
                         </div>
                     </div>
                 </div>
@@ -45,18 +34,39 @@
                                 <label for="userAvaUpload" class="form-label">Thay đổi hình đại diện:</label>
                                 <div class="position-relative" id="customer-avatar">
                                     <input type="file" class="form-control" id="userAvaUpload" accept="image/*" onchange="handleFileUpload()" disabled>
-                                    <input type="text" id="avatar-read" name="avatar" value="" hidden>
+                                    <input type="text" id="avatar-read" name="avatar" value="<%= dataProfile.profile.avatar%>" hidden>
                                 </div>
                                 
                             </div>
                             <div class="mb-3 cot-6-md">
                                 <label for="userCoverUpload" class="form-label">Thay đổi ảnh bìa:</label>
                                 <input type="file" name="backgroundImage" class="form-control" id="userCoverUpload" accept="image/*" onchange="handleBackgroundUpload()" disabled>
-                                <input type="text" name="backgroundImage" id="backgroundImage-read" value="" hidden>
+                                <input type="text" name="backgroundImage" id="backgroundImage-read" value="<%= dataProfile.profile.backgroundImage%>" hidden>
                             </div>
                             
                             <div class="donggop-thongtin row-change" id="user-introduction">
+                                <div class="cot-6-lg">
+                                    <label for="userName" class="form-label">Họ và tên:</label>
+                                    <input type="text" name="fullname" class="form-control off" id="userName" disabled value="<%= dataProfile.profile.fullname%>">
+                                </div>
+                                <div class="cot-6-lg">
+                                    <label for="userMail" class="form-label">Địa chỉ mail:</label>
+                                    <input type="email" name="email" class="form-control off" id="userMail" disabled value="<%= dataProfile.profile.email %>">
+                                </div>
+                                <div class="cot-6-lg">
+                                    <label for="userPhone" class="form-label">Số điện thoại:</label>
+                                    <input type="tel" name="phone" class="form-control off" id="userPhone" disabled value="<%= dataProfile.profile.phone %>">
+                                </div>
+                                <div class="cot-6-lg">
+                                    <label for="userAdr" class="form-label">Địa chỉ:</label>
+                                    <input type="text" name="address" class="form-control off" id="userAdr" disabled value="<%= dataProfile.profile.address %>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="userDes" class="form-label">Về bản thân:</label>
+                                    <textarea name="description" class="form-control off" id="userDes" rows="3" disabled><%= dataProfile.profile.description %></textarea>
+                                </div>
                                 
+                                <i class="cot-12 fs-6">(Chúng tôi sẽ chịu trách nhiệm bảo mật thông tin của bạn.)</i>
                             </div>
                             <div class="btn-group justify-content-center">
                                 <button type="submit" class="main-btn mx-0">
@@ -70,9 +80,7 @@
                             </div>
                     </form>
                     </div>
-
                 </div>
-               
             </div>
         </div>
     </div>

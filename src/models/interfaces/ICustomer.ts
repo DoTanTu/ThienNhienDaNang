@@ -15,6 +15,7 @@ export interface ICustomer {
   links  : any;
   isDelete : boolean;
   isBlock: boolean;
+  downloads : string[];
   salt?: string;
   role: string;
   userPost:  string

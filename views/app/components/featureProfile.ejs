@@ -1,0 +1,14 @@
+<ul class="side-cate-list">
+    <% userId = null;
+        if(dataBasicInfo){
+            userId = dataBasicInfo._id
+        }
+    %>
+    <li class="side-cate-list-title"><i class="bi bi-person-fill"></i><a href="ca-nhan?cus=<%= userId%>">Thông tin cơ bản</a></li>
+    <li class="side-cate-list-title"><i class="bi bi-shield-fill-check"></i><a href="reset-password?cus=<%= userId%>">Bảo mật</a></li>
+    <li class="side-cate-list-title"><i class="bi bi-bell-fill"></i><a href="#">Thông báo</a></li>
+    <li class="side-cate-list-title"><i class="bi bi-chat-right-text-fill"></i><a href="#">Tin nhắn</a></li>
+    <li class="side-cate-list-title"><i class="bi bi-archive-fill"></i><a href="ca-nhan-dong-gop?cus=<%= userId%>">Đóng góp</a></li>
+    <li class="side-cate-list-title"><i class="bi bi-heart-fill"></i><a href="#">Yêu thích</a></li>
+    <li class="side-cate-list-title"><i class="bi bi-cloud-download-fill"></i><a href="#">Tải về</a></li>
+</ul>

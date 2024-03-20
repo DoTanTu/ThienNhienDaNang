@@ -1,0 +1,21 @@
+<section class="userCover">
+    <div class="container" id="user-avatar-customer">
+        <%if(dataProfile){
+            avatar = dataProfile.profile.avatar;
+            backgroundImage = dataProfile.profile.backgroundImage;
+            fullname = dataProfile.profile.fullname;
+            email = dataProfile.profile.email;
+       %>
+        <img class="userCoverBg" 
+            src="<%= backgroundImage !== '' ? backgroundImage : 'https://source.unsplash.com/random/1200x800/?natural' %>" 
+            id="user-cover-bg"
+            data-src="" 
+            alt="ảnh nền user">
+        <div class="userCoverAva">
+            <img src="<%= avatar !== '' ? avatar : "../public/app/images/person_default.png" %>" id="user-avatar" data-src="" alt="ảnh đại diện">
+            <h4 class="userNameTop br-line-2"><%= fullname%></h4>
+            <p><%= email%></p>
+        </div>
+        <% }%>
+    </div>
+</section>

@@ -204,7 +204,7 @@ export default class CustomerController {
       } as ICustomerInputDTO);
       if (items) {
         const mailInstance = Container.get(MailService);
-        await mailInstance.sendEmailActiveUser(items._id, items.email);
+        const sendMail = await mailInstance.sendEmailActiveUser(items._id, items.email);
         res.status(200).json({ success: true, data: "" });
       } else {
         res.status(200).json({ success: false, data: "" });

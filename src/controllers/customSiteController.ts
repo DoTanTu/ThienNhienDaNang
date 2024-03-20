@@ -34,6 +34,7 @@ export default class CustomSiteController {
           dataShipMethods : null,
           dataPaymendMethods : null,
           dataProfile : null,
+          dataUserDownload : null,
           dataBasicInfo : null,
           dataOther1 : null,
           dataOther2 : null,
@@ -85,7 +86,7 @@ export default class CustomSiteController {
           }
 
           if (site.isSiteGetDataProfile){
-            data.dataProfile = await siteInstance.getDataProfile(req.query['cus'])
+            data.dataProfile = await this.setDataProfile(siteInstance, req.query['cus']);
           }
 
           if (site.pageData && site.pageData.pageId) {
@@ -219,6 +220,18 @@ export default class CustomSiteController {
     return infoPaginateProduct;
   } 
 
+  public async setDataProfile(siteInstance : CustomSiteService, idCustomer: string) : Promise<any>{
+    var profileInfo = {
+      profile : null,
+      contributes : null,
+      downloads : null,
+      likes : null,
+    }
+    profileInfo.profile = await siteInstance.getDataProfile(idCustomer);
+    profileInfo.contributes = await siteInstance.getDataContributeUser(idCustomer);
+    return profileInfo;
+  } 
+
   public setLanguage(req, res, languages) : String{
     var locales = req.params.lang
     if (!locales) {
@@ -323,10 +336,13 @@ export default class CustomSiteController {
   public async increaseDownload(req, res){
     const siteInstance = Container.get(CustomSiteService);
     const idProduct = req.body.productId;
-    const result = await siteInstance.increaseDownload(idProduct);
+    const idCustomer = req.session.customer.customerId;
+
+    await siteInstance.addCustomerDownloads(idCustomer,idProduct);
+    const products = await siteInstance.increaseDownload(idProduct);
     res.status(200).json({
       success: true,
-      total : result
+      total : products
     });
   }
 

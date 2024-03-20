@@ -84,6 +84,11 @@ const CustomerSchema = new mongoose.Schema(
       default: false,
     },
 
+    downloads : [{
+      type: String,
+      ref: 'Product',
+    }],
+
     role: {
       type: String,
       default: 'Customer',
@@ -102,5 +107,18 @@ CustomerSchema.virtual('products', {
   justOne: false
 });
 
+CustomerSchema.virtual('downloadedProducts', {
+  ref: 'Product',
+  localField: 'downloads',
+  foreignField: '_id',
+  justOne: false,
+});
+
+CustomerSchema.virtual('contributeItems', {
+  ref: 'Contribute', 
+  localField: '_id',  
+  foreignField: 'customer.customerId', 
+  justOne: false
+});
 
 export default mongoose.model<ICustomer & mongoose.Document>('Customer', CustomerSchema);

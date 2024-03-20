@@ -11,18 +11,32 @@ $(document).ready(function () {
 					<span class="mt-4">Cảm ơn bạn đã để lại bình luận. Bình luận sẽ được xem xét trước khi hiển thị.</span>
 					`);
 				}else{
-					Toast.fire({
-						icon: 'error',
-						title: 'Bình luận không thành công!'
-					})
+					Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "Bình luận không thành công",
+                        showConfirmButton: false,
+                        backdrop: `
+                        rgb(192,192,192, 0.4)
+                        no-repeat
+                        `,
+                        timer: 3000
+                    });
 				}
 				$('#comment').val("");
 			},
 			error: function(xhr, status, error) {
-				Toast.fire({
-					icon: 'error',
-					title: 'Bình luận không thành công!'
-				})
+				Swal.fire({
+					position: "center",
+					icon: "error",
+					title: "Bình luận không thành công",
+					showConfirmButton: false,
+					backdrop: `
+					rgb(192,192,192, 0.4)
+					no-repeat
+					`,
+					timer: 3000
+				});
 			}
 		});
 	});

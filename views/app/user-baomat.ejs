@@ -8,11 +8,8 @@
     <%- include('./components/header') -%>
     <%- include('./components/bottomNav') -%>
    
-    <section class="userCover">
-        <div class="container" id="user-avatar-customer">
-            
-        </div>
-    </section>
+    <%- include('./components/userCover') -%>
+    
     <div class="main-body user">
         <div class="container">
             <div class="row-change">
@@ -20,15 +17,7 @@
                     <div class="side-box">
                         <h4 class="mb-4">Danh mục</h4>
                         <div class="side-cate mb-4">
-                            <ul class="side-cate-list">
-                                <li class="side-cate-list-title"><i class="bi bi-person-fill"></i><a href="ca-nhan">Thông tin cơ bản</a></li>
-                                <li class="side-cate-list-title"><i class="bi bi-shield-fill-check"></i><a href="#">Bảo mật</a></li>
-                                <li class="side-cate-list-title"><i class="bi bi-bell-fill"></i><a href="#">Thông báo</a></li>
-                                <li class="side-cate-list-title"><i class="bi bi-chat-right-text-fill"></i><a href="#">Tin nhắn</a></li>
-                                <li class="side-cate-list-title"><i class="bi bi-archive-fill"></i><a href="#">Đóng góp</a></li>
-                                <li class="side-cate-list-title"><i class="bi bi-heart-fill"></i><a href="#">Yêu thích</a></li>
-                                <li class="side-cate-list-title"><i class="bi bi-cloud-download-fill"></i><a href="#">Tải về</a></li>
-                            </ul>
+                            <%- include('./components/featureProfile') -%>
                         </div>
                     </div>
                 </div>

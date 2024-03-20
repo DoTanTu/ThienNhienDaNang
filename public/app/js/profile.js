@@ -1,54 +1,3 @@
- 
-    $.ajax({
-        type: "GET",
-        url: "/profile",
-        success : (response) => {
-            if(response.success === true){
-                $('#avatar-read').val(response.customer.avatar);
-                $('#backgroundImage-read').val(response.customer.backgroundImage);
-                $('#user-introduction').html(
-                    `
-                    <div class="cot-6-lg">
-                        <label for="userName" class="form-label">Họ và tên:</label>
-                        <input type="text" name="fullname" class="form-control off" id="userName" disabled value="${response.customer.fullname}">
-                    </div>
-                    <div class="cot-6-lg">
-                        <label for="userMail" class="form-label">Địa chỉ mail:</label>
-                        <input type="email" name="email" class="form-control off" id="userMail" disabled value="${response.customer.email}">
-                    </div>
-                    <div class="cot-6-lg">
-                        <label for="userPhone" class="form-label">Số điện thoại:</label>
-                        <input type="tel" name="phone" class="form-control off" id="userPhone" disabled value="${response.customer.phone}">
-                    </div>
-                    <div class="cot-6-lg">
-                        <label for="userAdr" class="form-label">Địa chỉ:</label>
-                        <input type="text" name="address" class="form-control off" id="userAdr" disabled value="${response.customer.address}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="userDes" class="form-label">Về bản thân:</label>
-                        <textarea name="description" class="form-control off" id="userDes" rows="3" disabled>${response.customer.description}</textarea>
-                    </div>
-                    
-                    <i class="cot-12 fs-6">(Chúng tôi sẽ chịu trách nhiệm bảo mật thông tin của bạn.)</i>
-                    `
-                ),
-                $('#user-avatar-customer').html(
-                    `
-                    <img class="userCoverBg" src="${response.customer.backgroundImage !== ('' || null || undefined) ? response.customer.backgroundImage : "https://source.unsplash.com/random/1200x800/?natural" } " id="user-cover-bg" data-src="" alt="ảnh nền user">
-                    <div class="userCoverAva">
-                        <img src="${response.customer.avatar !== '' ? response.customer.avatar : "../public/app/images/person_default.png" }" id="user-avatar" data-src="" alt="ảnh đại diện">
-                        <h4 class="userNameTop br-line-2">${response.customer.fullname}</h4>
-                        <p>${response.customer.email}</p>
-                    </div>
-                    `
-                ),
-                 customerId = response.customer._id;
-            }
-        },
-        error : (xhr, status , error) =>{
-            console.error(error);
-        }
-    });
 
     $('#AuthurUpdateProfile').submit(function (e) {
         e.preventDefault();
@@ -58,16 +7,31 @@
             data: $(this).serialize(),
             success: (response) => {
                 if(response.success === true){
-                    Toast.fire({
-                        icon: 'success',
-                        title: 'Cập nhật thành công'
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        width : 450,
+                        title: "Cập nhật thành công",
+                        showConfirmButton: false,
+                        backdrop: `
+                        rgb(192,192,192, 0.4)
+                        no-repeat
+                        `,
+                        timer: 3000
                     });
                     location.reload();
                 }
                 else{
-                    Toast.fire({
-                        icon: 'error',
-                        title: 'Cập nhật Thất bại'
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "Cập nhật thất bại",
+                        showConfirmButton: false,
+                        backdrop: `
+                        rgb(192,192,192, 0.4)
+                        no-repeat
+                        `,
+                        timer: 3000
                     });
                 }
             },

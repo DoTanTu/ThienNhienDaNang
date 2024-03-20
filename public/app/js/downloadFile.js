@@ -52,7 +52,17 @@
                 $('#likeCustomer').text(response.total);
             },
             error: function(error) {
-            console.error("Like failse", error);
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Xảy ra lỗi",
+                    showConfirmButton: false,
+                    backdrop: `
+                    rgb(192,192,192, 0.4)
+                    no-repeat
+                    `,
+                    timer: 3000
+                });
             }
         });
     };

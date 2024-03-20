@@ -54,6 +54,7 @@
      foreignField: 'productId', 
      justOne: false
    });
+
  
  export default mongoose.model<IContribute & mongoose.Document>('Contribute', ContributeSchema);
  
