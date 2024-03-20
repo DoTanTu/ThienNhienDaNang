@@ -164,6 +164,18 @@ $(document).ready(function() {
         }
       }
 
+      var file_pdf;
+      if(pdfDropzone){
+        try {
+          if (pdfDropzone.files[0] && pdfDropzone.files.length > 0){
+            file_pdf = pdfDropzone.files[0].upload.path
+          }
+        }catch(e){
+          console.error("Error uploading file: " + e.message);
+          return;
+        }
+      }
+
       var imagePlus = []
       var altPlus = []
       if (typeof dz != undefined && dz != null) {
@@ -215,6 +227,10 @@ $(document).ready(function() {
             element.value = JSON.stringify(altPlus)
           }
         
+          if(element.name == 'pdf_file'){
+            element.value = file_pdf;
+          }
+          
           if (element.name == 'images') {
             element.value = JSON.stringify(dataImages)
           }

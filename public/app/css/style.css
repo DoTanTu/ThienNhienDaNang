@@ -2286,6 +2286,45 @@ footer a:hover i {
 .tailieu-detail-icon span .bi-suit-heart-fill{
     color: var(--color-2);
 }
+
+.list_method_shared{
+    position: relative;
+}
+
+.list_method_shared .share_method{
+    z-index: 999;
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0;
+}
+
+.list_method_shared.active .share_method{
+    display: block;
+}
+
+.share_method .parent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 10px;
+    padding: 2px;
+    background: var(--color-grey);
+    box-shadow: 2px 2px 5px -3px rgba(58, 58, 63, 0.65);
+}
+.share_method .parent .item{
+    color: #4267B2;
+    padding: 10px 14px;
+    border-radius: 10px;
+}
+.share_method .parent .item:hover{
+    cursor: pointer;
+    background-color: rgb(213, 212, 212);
+}
+.share_method .parent .item i{
+    font-size: 22px;
+    color: #4267B2;
+}
 .tailieu-detail-btn a {
     display: inline-block;
     /* padding: 5px 10px; */

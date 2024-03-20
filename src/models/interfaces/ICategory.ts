@@ -57,6 +57,7 @@ export interface ICategoryInputDTO {
 }
 
 export interface  ICategoryQuery {
+  _id : string
   pageId : string
   query : string;
   start: any;

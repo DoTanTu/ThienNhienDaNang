@@ -2,7 +2,7 @@ import { Service, Inject } from 'typedi';
 import SiteRepository from '../repository/siteRepository';
 import CategoryRepository from '../repository/categoryRepository';
 import ProductRepository from '../repository/productRepository';
-import { ICategory } from '../models/interfaces/ICategory';
+import { ICategory, ICategoryQuery } from '../models/interfaces/ICategory';
 import { IProduct, IProductQuery } from '../models/interfaces/IProduct';
 import ContactRepository from '../repository/contactRepository';
 import LanguageRepository from '../repository/languageRepository';
@@ -19,7 +19,7 @@ import AppRepository from '../repository/appRepository';
 export interface ICustomSiteService {
   getDataWithSites(app : any): Promise<any>
   getCategories(pageId : any, isFullFieldProduct : any): Promise<any>
-  getCategoryDetail(cateId: any,isFullFieldProduct : any): Promise<any>
+  getCategoryDetail(cateId: any, start : number, limitSize : number ,isFullFieldProduct : any): Promise<any>
   getProducts(pageId: any, isFullSize : any, limitSize: number,  isFullFieldProduct : any): Promise<any>
   getProductByCategoryId(categoryId : any): Promise<any>
   getProductByFillters(query: IProductQuery, isEcomercePlus : boolean): Promise<any[]>
@@ -76,8 +76,19 @@ export default class CustomSiteService implements ICustomSiteService {
     return this.categoryRepo.getCategoriesWithProducts(pageId, isFullFieldProduct)
   }
 
-  public async getCategoryDetail(cateId: any,isFullFieldProduct : any): Promise<any> {
-    return this.categoryRepo.getCategoryInfo({_id : cateId} as ICategory, isFullFieldProduct)
+  public async getCategoryDetail(cateId: any , start : any , limitSize : number ,isFullFieldProduct : any): Promise<any> {
+    var _limit = limitSize
+    var page = start
+    if (!start) {
+      page = 0
+    }
+    limitSize = _limit
+    start = page * _limit
+    return this.categoryRepo.getCategoryInfo({_id : cateId, start : start, limit : limitSize} as ICategoryQuery, isFullFieldProduct)
+  }
+
+  public async getCategoryCount(cateId: any): Promise<any> {
+    return this.categoryRepo.getCategoryCountByProducts({_id : cateId} as ICategoryQuery)
   }
 
   public async getProducts(pageId: any, isFullSize : any, limitSize: number,  isFullFiealdProduct : any): Promise<any> {

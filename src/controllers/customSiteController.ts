@@ -28,6 +28,7 @@ export default class CustomSiteController {
           dataAttibutes: null,
           dataProductDetail: null,
           infoPaginateProduct: null,
+          infoPaginateCategory: null,
           dataCategoryDetail: null,
           dataContact : null,
           dataShipMethods : null,
@@ -49,7 +50,7 @@ export default class CustomSiteController {
 
         let pageIdFromUrl = Utils.getPageIdFromUrlProductDetail(req.params.url)
         const site = sites.find((x) => ((req.params.url == undefined || req.params.url.length <= 2) && x.url === '/') 
-        || (req.params.url != undefined && req.params.url.includes(".html") && x.pageData.pageId == pageIdFromUrl && x.isSiteProductDetail == true) 
+        || (req.params.url != undefined && req.params.url.includes(".html") && x.pageData.pageId == pageIdFromUrl && x.isSiteProductDetail == true)
         || (req.params.url != undefined && req.params.url.includes(".cate") && x.pageData.pageId == pageIdFromUrl && x.isSiteCategoryDetail == true) 
         ||  (req.params.url != undefined && x.url === req.params.url));
         if (site) {
@@ -72,7 +73,9 @@ export default class CustomSiteController {
           if (site.isSiteCategoryDetail) {
             let idCate = Utils.getIdUrlSiteDetail(req.params.url)
             if (idCate) {
-              data.dataCategoryDetail = await siteInstance.getCategoryDetail(idCate, site.isFullFieldProduct)
+              data.dataCategoryDetail = await siteInstance.getCategoryDetail(idCate, req.query['start'] , site.pageData.limitSizeProduct, site.isFullFieldProduct);
+              const numberProductCategory = await siteInstance.getCategoryCount(idCate);
+              data.infoPaginateCategory = this.setPaginationCate(numberProductCategory, req.query['start'] , site.pageData.limitSizeProduct);
             }
           }
 
@@ -91,7 +94,6 @@ export default class CustomSiteController {
             }
             if (site.pageData.isGetProduct) {
                 if (req.query['query'] || req.query['start'] || req.query['cate'] || req.query['hashtag'] || req.query['attribute'] ||  req.query['attribute1'] ||  req.query['attribute2'] ||  req.query['label'] ||  req.query['priceMin'] ||  req.query['priceMax']) {
-
                   data.dataProducts = await siteInstance.getProductByFillters({
                     pageId : site.pageData.pageId,
                     query : req.query['query'],
@@ -105,12 +107,12 @@ export default class CustomSiteController {
                     priceMin: req.query['priceMin'],
                     priceMax: req.query['priceMax'],
                     label : req.query['label']} as IProductQuery, app.platform == "ecommerce_plus");
-                  let numberProducts = await siteInstance.getProductCountByFilter(site.pageData.pageId);
-                  data.infoPaginateProduct = await this.setPagination(numberProducts, req.query['start'] , site.pageData.limitSizeProduct);
+                  
                 }else{
-                  data.dataProducts =  await siteInstance.getProducts(site.pageData.pageId, site.pageData.isFullSizeProduct,site.pageData.limitSizeProduct, site.pageData.isFullFieldProduct);
-                 
+                  data.dataProducts = await siteInstance.getProducts(site.pageData.pageId, site.pageData.isFullSizeProduct,site.pageData.limitSizeProduct, site.pageData.isFullFieldProduct);
                 }
+              let numberProducts = await siteInstance.getProductCountByFilter(site.pageData.pageId);
+              data.infoPaginateProduct = await this.setPagination(numberProducts, req.query['start'] , site.pageData.limitSizeProduct);
               data.dataAttibutes = await siteInstance.getAtrributes(site.pageData.pageId);
             }
           }
@@ -159,6 +161,7 @@ export default class CustomSiteController {
             dataShipMethods : data.dataShipMethods,
             dataPaymendMethods : data.dataPaymendMethods,
             infoPaginateProduct : data.infoPaginateProduct,
+            infoPaginateCategory : data.infoPaginateCategory,
             session : sessionCustomer
           });
         } else {
@@ -201,7 +204,18 @@ export default class CustomSiteController {
       current : pageCurrent,
       pages : Math.ceil(numberProducts / perPage),
     }
-    console.log(infoPaginateProduct);
+    return infoPaginateProduct;
+  } 
+
+  public setPaginationCate(numberProducts : any, pageCurrent: any , perPage : number) : any{
+    const numberProductItem = numberProducts.products.length;
+    if(!pageCurrent){
+      pageCurrent = 0
+    }
+    var infoPaginateProduct = {
+      current : pageCurrent,
+      pages : Math.ceil(numberProductItem / perPage),
+    }
     return infoPaginateProduct;
   } 
 

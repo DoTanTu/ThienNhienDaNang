@@ -57,7 +57,7 @@
                 <div class="form-group mt-4">
                     <div class="d-flex mb-2">
                         <div class="form-check me-4">
-                            <input class="form-check-input" <%if((authorId === null || authorId !== '')){%>checked<%}%> type="radio"  name="flexRadioDefault" id="flexRadioDefault1" onclick="toggleAuthorOptions('<%= authorId%>')">
+                            <input class="form-check-input" <%if(authorId === null || authorId !== ''){%>checked<%}%> type="radio"  name="flexRadioDefault" id="flexRadioDefault1" onclick="toggleAuthorOptions('<%= authorId%>')">
                             <label class="form-check-label" for="flexRadioDefault1">
                               Chọn tác giả từ danh sách
                             </label>

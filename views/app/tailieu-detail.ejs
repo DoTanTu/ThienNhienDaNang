@@ -62,7 +62,20 @@
                                         <span id="likeCustomer"><%= prod.likes.length%></span>
                                     </span>
                                     <span><i class="me-2 bi bi-download"></i><span id="number-download"><%= prod.downloads%></span></span>
-                                    <span><i class="me-2 bi bi-reply"></i>0</span>
+                                    <span class="list_method_shared">
+                                        <i class="me-2 bi bi-reply"></i>
+                                        <span>0</span>
+                                        <span class="share_method">
+                                            <div class="parent">
+                                                <a href="" target="_blank" id="shareFacebook" class="item" title="chia sẽ với facebook">
+                                                    <i class="bi bi-facebook"></i>
+                                                </a>
+                                                <a href="" id="copyLinkPost" class="item" title="copy đường dẫn">
+                                                    <i class="bi bi-link-45deg"></i>
+                                                </a>
+                                            </div>
+                                        </span>
+                                    </span>
                                     <span><i class="me-2 bi bi-eye"></i><%= prod.views%></span>
                                     <span><i class="me-2 bi bi-chat-left"></i><%= prod.comments.length%></span>
                                 </div>
@@ -74,24 +87,21 @@
                                     
                                     <a href="#" data-action="#downloadDocument" data-file-id="<%= productId%>" data-src-file="<%= pathUrl%>">Tải về</a>
                                 </div>
-                                <div class="modal fade" id="donggopDetail" tabindex="-1" aria-labelledby="cateDetailLabel" aria-hidden="true">
+                                <div class="modal fade" id="donggopDetail" tabindex="-1"                    aria-labelledby="cateDetailLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable modal-xl">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h4 class="modal-title fs-5" id="cateDetailLabel">Đọc tài liệu</h4>
-                                        <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
-                                            <i class="bi bi-x-lg"></i>
-                                        </button>
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title fs-5" id="cateDetailLabel">Đọc tài liệu</h4>
+                                                <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                                                    <i class="bi bi-x-lg"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <iframe src="../<%= pathUrl%>" width="100%" height="750" frameborder="0"></iframe>
+                                            </div>
                                         </div>
-                                        <div class="modal-body">
-                                           <iframe src="../<%= pathUrl%>" width="100%" height="750" frameborder="0"></iframe>
-                                        </div>
-                                    </div>
                                     </div>
                                 </div>
-
-                                <%- include('./components/downloadModal') -%>
-
                             </div>
                         </div>
                     </div>
@@ -115,21 +125,9 @@
                             </ul>
                         </div>
 
-                        
-                        <!-- <div class="tintuc-detail-social">
-                            <a href="#">
-                                <i class="bi bi-heart-fill"></i>
-                            </a>
-                            <a href="#">
-                                <i class="bi bi-bookmark-fill"></i>
-                            </a>
-                            <a href="#">
-                                <i class="bi bi-instagram"></i>
-                            </a>
-                            <a href="#">
-                                <i class="bi bi-youtube"></i>
-                            </a>
-                        </div> -->
+                       <% if(infoPaginateCategory !== undefined && infoPaginateCategory !== null){%>
+                            <%- include('./components/pagination', { urlCurrent : urlCurrentName, pages : infoPaginateCategory.pages , current : infoPaginateCategory.current}) -%>
+                        <%}%>
                     </div>
 
                     <div class="tailieu-detail-tongquan mb-4">
@@ -141,6 +139,7 @@
                 </div>
             </div>
         </div>
+        <%- include('./components/downloadModal') -%>
         <%- include('./components/loginModal') -%>
     </div>
 

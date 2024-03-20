@@ -45,16 +45,10 @@
                     <%  }})}%>
                   
 
-                    <!-- <nav aria-label="pageBar" class="my-5">
-                        <ul class="pagination justify-content-center flex-wrap">
-                            <li class="page-item disabled"><a class="page-link">Trước</a></li>
-                            <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Tiếp theo</a></li>
-                        </ul>
-                    </nav> -->
+                    <%if(infoPaginateProduct !== undefined && infoPaginateProduct !== null){%>
+                        <%- include('./components/pagination', { urlCurrent : urlCurrentName, pages : infoPaginateProduct.pages , current : infoPaginateProduct.current}) -%>
+                    <%}%>
+
                 </div>
             </div>
         </div>

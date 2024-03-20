@@ -78,12 +78,20 @@ $(document).ready(function() {
             "targets": 3,
             "render": function ( data, type, full, meta ) {
               if(type === 'display'){
+                return full['status'] 
+             }
+            },
+          },
+           {
+            "targets": 4,
+            "render": function ( data, type, full, meta ) {
+              if(type === 'display'){
                 return new Date(full['createdAt']).toLocaleDateString('vi-VN') 
              }
             },
           },
            {
-             "targets": 4,
+             "targets": 5,
              "render": function ( data, type, full, meta ) {
                if(type === 'display'){
                  var html = '<div class="dropdown">'

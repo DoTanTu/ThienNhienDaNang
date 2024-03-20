@@ -23,20 +23,17 @@
                             <h3 class="h3-title position-relative underline mb-5">
                                 Tất cả tài liệu:
                             </h3>
-                
                             <div class="row-change mb-5">
-
                                 <% if(dataProducts){
                                     dataProducts.forEach( (item, index) => {
                                         if(item.hashtags[0] !== 'san_pham_dai_dien'){
                                         name = item.name;
                                         pdfPath = item.pdf;
-
                                    %>
                                 <div class="cot-12 cot-6-lg d-flex gap-3 gap-md-3">
                                     <div class="home-tulieu-img">
                                         <img class="mb-2" src="../public/app/images/icon/pdf-file.svg" alt="">
-                                        <a href="javascript.void(0);" data-bs-toggle="modal" data-action="download" data-post-id="<%= item._id%>" data-path="<%= pdfPath%>">Tải xuống</a>
+                                        <a href="javascript.void(0);" data-action="download" data-post-id="<%= item._id%>" data-path="<%= pdfPath%>">Tải xuống</a>
                                     </div>
                                     <div class="home-tulieu-text">
                                         <a href="<%= name.replace(/ /g , '-')%>-<%= item.pageId %>.<%= item._id %>.html">
@@ -51,69 +48,17 @@
                                <%  }})
                                 }%>
                             </div>
-                            <!-- <nav aria-label="pageBar" class="my-5">
-                                <ul class="pagination justify-content-center flex-wrap">
-                                    <li class="page-item disabled"><a class="page-link">Trước</a></li>
-                                    <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">Tiếp theo</a></li>
-                                </ul>
-                            </nav> -->
+
+                            <%if(infoPaginateProduct !== undefined && infoPaginateProduct !== null && infoPaginateCategory === null){%>
+                                <%- include('./components/pagination', { urlCurrent : urlCurrentName, pages : infoPaginateProduct.pages , current : infoPaginateProduct.current}) -%>
+                            <%}%>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="downloadModal" tabindex="-1" aria-labelledby="cateDetailLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-md">
-        <div class="modal-content">
-            
-            <div class="modal-header">
-            <h4 class="modal-title fs-5" id="cateDetailLabel">Xác nhận</h4>
-            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
-                <i class="bi bi-x-lg"></i>
-            </button>
-            </div>
-            <div class="modal-body">
-                Bạn có cam kết sử dụng hình ảnh/tài liệu này vì mục đích phi lợi nhuận?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                <a href="" class="btn btn-primary" name="downloadFile" download>Đồng ý</a>
-              </div>
-        </div>
-        </div>
-    </div>
-
-<!--     
-    <div class="modal fade" id="loginRequiredModal" tabindex="-1" aria-labelledby="cateDetailLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-md">
-        <div class="modal-content">
-            
-            <div class="modal-header">
-            <h4 class="modal-title fs-5" id="cateDetailLabel">Xác nhận</h4>
-            <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
-                <i class="bi bi-x-lg"></i>
-            </button>
-            </div>
-            <div class="modal-body">
-                Để tải tài liệu xuống bạn cần phải đăng nhập
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button  type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                    <a href="/dang-nhap" >Đồng ý</a>
-                </button>
-              </div>
-        </div>
-        </div>
-    </div> -->
-
+    <%- include('./components/downloadModalGeneral') -%>
     <%- include('./components/loginModal') -%>
     <%- include('./components/footer') -%>
     <%- include('./components/end') -%>

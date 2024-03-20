@@ -35,7 +35,7 @@ export default class ProductRepository implements IProductRepository {
   public async getProducts(query: IProductQuery): Promise<any[]> {
     var options : any = {
       pageId : query.pageId,
-      isDelete : { $in: [false, null] }
+      isDelete : { $in: [false, null] },
     }
     if (query != null) {
       if (query.query) {
@@ -63,6 +63,7 @@ export default class ProductRepository implements IProductRepository {
     var options : any = {
       pageId : query.pageId,
       isDelete : { $in: [false, null] },
+      status : STATUS.Active
     }
     if (query != null) {
       if (query.query) {
@@ -90,10 +91,9 @@ export default class ProductRepository implements IProductRepository {
 
   public async getProductByFillters(query: IProductQuery, isEcomercePlus : boolean): Promise<any[]> {
     var options : any = {
+      pageId : query.pageId,
       isDelete : { $in: [false, null] },
-      'additional.typeof': { $ne: 'event' },
-      pageId : { $ne: 'gioi_thieu'},
-      hashtags : { $nin: ['san_pham_dai_dien']},
+      status : STATUS.Active
     }
     var options2 : any
     if (query != null) {
@@ -112,6 +112,14 @@ export default class ProductRepository implements IProductRepository {
       if (query.attributes && query.attributes.length > 0) {
         options.ecommercePlus = {$elemMatch: {'atribute.code' : { $in: query.attributes }} }
       }
+    
+      if (query.priceMin || query.priceMax) {
+        if (isEcomercePlus) {
+          options.ecommercePlus = {$elemMatch: {'price' : { $lte: query.priceMax || 1000000000, $gte: query.priceMin || 0 }} }
+        }else{
+          options2 = {"ecommerce.price" : { $lte: query.priceMax || 1000000000, $gte: query.priceMin || 0 }}
+        }
+      }
 
       if (query.label && query.label != "") {
         options.label =  { $in: [query.label] }
@@ -123,7 +131,7 @@ export default class ProductRepository implements IProductRepository {
     }
 
     return this.ProductModel.find(options).find(options2)
-      .select("_id url pageId showTop categoryIds name images counter  ecommerce desShort label hashtags createdAt additional")     
+      .select("_id url pageId showTop categoryIds name images counter ecommercePlus ecommerce desShort label hashtags createdAt languages")     
       .sort({
         createdAt: -1,
       })

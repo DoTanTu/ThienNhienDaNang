@@ -3,11 +3,13 @@
   var desShort = ""
   var url = ""
   var label = ""
+  var status = ""
   if (settingData != undefined && settingData != null) {
     showTop = settingData.showTop 
     desShort = settingData.desShort
     url = settingData.url
     label = settingData.label
+    status = settingData.status
   } %>
 
 <div class="card accordion-item mb-4">
@@ -29,6 +31,15 @@
         </div>
       </div>
       <div class="mb-3">
+        <label class="form-label" for="basic-default-url">Trạng thái</label>
+          <select class="form-control form-select" name="status" id="">
+            <option value="ACTIVE" <%if(status === 'ACTIVE'){%> selected <%}%>>ACTIVE</option>
+            <option value="PENDING" <%if(status === 'PENDING'){%> selected <%}%>>PENDING</option>
+            <option value="DRAF" <%if(status === 'DRAF'){%> selected <%}%>>DRAF</option>
+          </select>
+        
+      </div>
+      <div class="mb-3">
         <label class="form-label" for="basic-default-url">Tên Url</label>
         <input type="text" class="form-control" id="url" name="url" placeholder="nhập tên url" value="<%= url %>">
       </div>
@@ -39,7 +50,7 @@
       </div>
       
       <div class="mb-3">
-        <label class="form-label" for="basic-default-name">Nhãn</label>
+        <label class="form-label" for="basic-default-name">Nhãn (Chỉ áp dụng cho Học liệu)</label>
         <select class="form-control " name="label">
             <option value="BÀI GIẢNG" <% if(label == 'BÀI GIẢNG'){%> selected <% }%>>BÀI GIẢNG</option>
             <option value="TÀI LIỆU" <% if(label == 'TÀI LIỆU'){%> selected <% }%>>TÀI LIỆU</option>

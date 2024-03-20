@@ -24,6 +24,7 @@
                         prod = dataProductDetail;
                         name = prod.name;
                         productId = prod._id;
+                        pathUrl = prod.pdf;
                         pathImage = prod.images[0]?.image || '';
                         arrayImage = prod.images;
                         description = prod.description;
@@ -38,7 +39,6 @@
 
                         if(prod.label === 'BÀI GIẢNG' || prod.label === 'TÀI LIỆU'){
                            %>
-
                             <div class="tailieu-detail-box">
                                 <div class="row-change">
                                 <div class="cot-12 cot-4-md">
@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="cot-12 cot-8-md tailieu-detail-text">
                                     <a href="#">
-                                    <h4 class="h4-title br-line-4"><%= name%></h4>
+                                        <h4 class="h4-title br-line-4"><%= name%></h4>
                                     </a>
                                     <div class="tailieu-detail-info">
                                         <% if(author && author !== ''){%>
@@ -70,31 +70,83 @@
                                           <span id="likeCustomer"><%= prod.likes.length%></span>
                                         </span>
                                         <span><i class="me-2 bi bi-download"></i><span id="number-download"><%= prod.downloads%></span></span>
-                                        <span><i class="me-2 bi bi-reply"></i>0</span>
+                                        <span class="list_method_shared">
+                                            <i class="me-2 bi bi-reply"></i>
+                                            <span class="share_method">
+                                                <div class="parent">
+                                                    <a href="" target="_blank" id="shareFacebook" class="item" title="chia sẽ với facebook">
+                                                        <i class="bi bi-facebook"></i>
+                                                    </a>
+                                                    <a href="" id="copyLinkPost" class="item" title="copy đường dẫn">
+                                                        <i class="bi bi-link-45deg"></i>
+                                                    </a>
+                                                </div>
+                                            </span>
+                                        </span>
                                         <span><i class="me-2 bi bi-eye"></i><%= prod.views%></span>
                                         <span><i class="me-2 bi bi-chat-left"></i><%= prod.comments.length%></span>
                                     </div>
                                     <div class="mt-auto tailieu-detail-btn gap-4 d-flex">
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#donggopDetail">
-                                        Đọc tài liệu
-                                    </a>
-                                    <!-- Modal -->
-
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#downloadModalBook<%= productId%>">Tải về</a>
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#donggopDetail">
+                                            Đọc tài liệu
+                                        </a>
+                                        <!-- Modal -->
+                                        
+                                        <a href="#" data-action="#downloadDocument" data-file-id="<%= productId%>" data-src-file="<%= pathUrl%>">Tải về</a>
+                                    </div>
+                                    <div class="modal fade" id="donggopDetail" tabindex="-1"                    aria-labelledby="cateDetailLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title fs-5" id="cateDetailLabel">Đọc tài liệu</h4>
+                                                    <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                                                        <i class="bi bi-x-lg"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <iframe src="../<%= pathUrl%>" width="100%" height="750" frameborder="0"></iframe>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="tailieu-detail-tongquan mb-4">
+                                    <h4 class="h4-title underline position-relative mb-4">Tổng quan tài liệu</h4>
+                                    <%- description%>
                                 </div>
                             </div>
-
+                          </div>
                         <% }
-                        else if(prod.label === 'VIDEO'){
-                        %>
-                            
+                        else if(prod.label === 'VIDEO'){%>
                             <div>
                               <h3 class="h3-title mb-5 underline"><%= prod.name%></h3>
                               <div class="video-detail-box-yotube mb-4 position-relative">
                                 <iframe src="<%= linkVideo.replace('watch?v=','embed/')%>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                               </div>
+                              
+                            <div class="tailieu-detail-icon justify-content-center">
+                                <span>
+                                    <i class="me-2 bi bi-suit-heart<%if(dataBasicInfo && prod.likes.includes(dataBasicInfo._id)){%>-fill<%}%>" data-action="like" data-post-id="<%= prod._id%>"></i>
+                                    <span id="likeCustomer"><%= prod.likes.length%></span>
+                                </span>
+                                <span><i class="me-2 bi bi-download"></i><span id="number-download"><%= prod.downloads%></span></span>
+                                <span class="list_method_shared">
+                                    <i class="me-2 bi bi-reply"></i>
+                                    <span>0</span>
+                                    <span class="share_method">
+                                        <div class="parent">
+                                            <a href="" target="_blank" id="shareFacebook" class="item" title="chia sẽ với facebook">
+                                                <i class="bi bi-facebook"></i>
+                                            </a>
+                                            <a href="" id="copyLinkPost" class="item" title="copy đường dẫn">
+                                                <i class="bi bi-link-45deg"></i>
+                                            </a>
+                                        </div>
+                                    </span>
+                                </span>
+                                <span><i class="me-2 bi bi-eye"></i><%= prod.views%></span>
+                                <span><i class="me-2 bi bi-chat-left"></i><%= prod.comments.length%></span>
+                            </div>
 
                               <div class="hinhanh-mieuta mb-3">
                                 <h3 class="h3-title underline position-relative mb-4">Miêu tả</h3>
@@ -119,7 +171,6 @@
                                 </a>
                             <% })}%>
                             </div>
-
 
                             <%if(prod.images.length > 0 ){
                                 prod.images.forEach((imageItem, index) => {
@@ -147,39 +198,60 @@
                             <% })
                             }%>
 
+                                <div class="tailieu-detail-icon justify-content-center">
+                                  <span>
+                                    <i class="me-2 bi bi-suit-heart<%if(dataBasicInfo && prod.likes.includes(dataBasicInfo._id)){%>-fill<%}%>" data-action="like" data-post-id="<%= prod._id%>"></i>
+                                    <span id="likeCustomer"><%= prod.likes.length%></span>
+                                  </span>
+                                  <span><i class="me-2 bi bi-download"></i><span id="number-download"><%= prod.downloads%></span></span>
+                                  <span class="list_method_shared">
+                                    <i class="me-2 bi bi-reply"></i>
+                                    <span>0</span>
+                                    <span class="share_method">
+                                      <div class="parent">
+                                        <a href="" target="_blank" id="shareFacebook" class="item" title="chia sẽ với facebook">
+                                          <i class="bi bi-facebook"></i>
+                                        </a>
+                                        <a href="" id="copyLinkPost" class="item" title="copy đường dẫn">
+                                          <i class="bi bi-link-45deg"></i>
+                                        </a>
+                                      </div>
+                                    </span>
+                                  </span>
+                        <span><i class="me-2 bi bi-eye"></i><%= prod.views%></span>
+                        <span><i class="me-2 bi bi-chat-left"></i><%= prod.comments.length%></span>
+                    </div>
+
                               <div class="hinhanh-mieuta mb-3">
                                 <h3 class="h3-title underline position-relative mb-4">Miêu tả</h3>
                                 <%- prod.description%>
                               </div>
                             </div>
 
-                        <%}
-                       %>
+                        <%} %>
                         <!------------------------------TỪ KHÓA---------------------------->
-                       <div class="nav-tag mb-4 mt-5">
-                         <ul>
-                           <span>Từ khoá:</span>
-                           <% var hashtagsProduct = dataAttibutes.find(function(attribute) {
-                                return attribute._id === 'Hashtag_video';
-                                });
-                                if(prod.hashtags){
-                                    prod.hashtags.forEach((item) =>{
-                                       const values = hashtagsProduct.values.find((element) => element.code === item); %>
-                           <li><a href="/video?hashtag=<%= values.code%>"><%= values.value%></a></li>
-                           <%})}%>
-                         </ul>
+                        <div class="nav-tag mb-4 mt-5">
+                            <span>Từ khoá:</span>
+                            <ul>
+                            <% var hashtagsProduct = dataAttibutes.find(function(attribute) {
+                                    return attribute._id === 'Hashtag_video';
+                                    });
+                                    if(prod.hashtags){
+                                        prod.hashtags.forEach((item) =>{
+                                        const values = hashtagsProduct.values.find((element) => element.code === item); %>
+                                <li>
+                                    <a href="/video?hashtag=<%= values.code%>"><%= values.value%></a>
+                                </li>
+                            <%})}%>
+                            </ul>
                        </div>
                     <% } %>
-                    <div class="tailieu-detail-tongquan mb-4">
-                      <h4 class="h4-title underline position-relative mb-4">Tổng quan tài liệu</h4>
-                      <%- prod.description%>
-                    </div>
                     <%- include('./components/comment') -%>
                 </div>
             </div>
         </div>
     </div>
-
+    <%- include('./components/downloadModal') -%>
     <%- include('./components/loginModal') -%>
     <%- include('./components/footer') -%>
     <%- include('./components/end') -%>

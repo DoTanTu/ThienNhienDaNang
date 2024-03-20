@@ -215,7 +215,7 @@ export default class ProductController {
         seoName: req.body.seoName,
         seoKeyWord: req.body.seoKey,
         seoDesc: req.body.seoDesc,
-        status: STATUS.Active,
+        status: req.body.status,
         userPost: req.session.user.userId,
         label: req.body.label
       } as unknown as IProductInputDTO);
@@ -483,7 +483,7 @@ export default class ProductController {
         } as IProductContact,
         showTop : req.body.showTop == 'on',
         label : req.body.label,
-        status : STATUS.Active,
+        status : req.body.status,
         languages : this.getLanguages(req),
         userPost : req.session.user.userId
       }
@@ -515,7 +515,7 @@ export default class ProductController {
         seoName: req.body.seoName,
         seoKeyWord : req.body.seoKey,
         seoDesc : req.body.seoDesc,
-        status : STATUS.Active,
+        status : req.body.status,
         userPost : req.session.user.userId
       } as IProductInputDTO
     }

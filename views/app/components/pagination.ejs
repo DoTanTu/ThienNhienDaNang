@@ -1,0 +1,64 @@
+
+<%if(pages){
+    var current = Number(current) + 1;
+    var pages = Number(pages);
+    var urlCurrent = urlCurrent;
+    if(pages > 1) { %>
+        <nav aria-label="pageBar" class="my-5">
+            <ul class="pagination justify-content-center flex-wrap">
+                <% 
+                if(current == 1) { %>
+                    <li class="page-item disabled">
+                        <a class="page-link" href="/<%= urlCurrent%>">First</a>
+                    </li>
+                <% } else { %>
+                    <li class="page-item">
+                        <a class="page-link" href="/<%= urlCurrent%>?start=<%= (current - 2)%>">First</a>
+                    </li>
+                <% } %>
+
+                <% var i = (Number(current) > 3 ? Number(current) - 2 : 1) 
+                if(i !== 1) { %>
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">...</a>
+                    </li>
+                <% } %>
+                <% for( ; i <= (Number(current) + 2) && i <= pages; i++) { 
+                    if(i == current) { %>
+                        <li class="page-item active">
+                            <a class="page-link" href="/<%= urlCurrent%>?start=<%= i - 1 %>">
+                                <%= i %>
+                            </a>
+                        </li>
+                    <% } else { %>
+                        <li class="page-item">
+                            <a class="page-link" href="/<%= urlCurrent%>?start=<%= i - 1 %>">
+                                <%= i %>
+                            </a>
+                        </li>
+                    <% } %>
+                    <% if (i == Number(current) + 2 && i < pages) { %>
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">...</a>
+                        </li>
+                    <% } %>
+                <% } %>
+
+                <!-- LAST ITEM -->
+                <% if(current == pages) { %>
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">
+                            Last
+                        </a>
+                    </li>
+                <% } else { %>
+                    <li class="page-item">
+                        <a class="page-link" href="/<%= urlCurrent%>?start=<%= pages - 1 %>">
+                            Last
+                        </a>
+                    </li>
+                <% } %>
+            </ul>
+        </nav>
+    <% }
+} %>

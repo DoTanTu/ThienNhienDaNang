@@ -21,8 +21,15 @@
                     <h3 class="h3-title mb-5 underline">Sách</h3>
                     <div class="row-change-grid mb-5">
                         <%if(dataProducts && dataProducts.length > 0){
-                            dataProducts.forEach( prod => {
+                            data = dataProducts;
+                        }
+                        if(dataCategoryDetail){
+                            data = dataCategoryDetail.products;
+                        }
+                        if(data){
+                            data.forEach( prod => {
                             name = prod.name;
+                            authorName = prod.additional.authorName
                             let pathImage = '';
                             let imageResize = '';
                             const obImage = prod.images[0];
@@ -43,7 +50,7 @@
                                     </h4>
                                 </a>
                                 <a href="#">
-                                    <span>Tác Giả: Qing Li</span>
+                                    <span>Tác Giả: <%= authorName%></span>
                                 </a>
                                 <div class="home-books-button d-flex justify-content-center gap-4 mt-auto">
                                     <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html">Đọc</a>
@@ -53,9 +60,15 @@
                             </div>
                         </div>
                         <% })}%>
-                </div>  
+                    </div>  
+                    <%if(infoPaginateProduct !== undefined && infoPaginateProduct !== null && infoPaginateCategory === null){%>
+                        <%- include('./components/pagination', { urlCurrent : urlCurrentName, pages : infoPaginateProduct.pages , current : infoPaginateProduct.current}) -%>
+                    <%}else if(infoPaginateCategory !== undefined && infoPaginateCategory !== null){%>
+                        <%- include('./components/pagination', { urlCurrent : urlCurrentName, pages : infoPaginateCategory.pages , current : infoPaginateCategory.current}) -%>
+                    <%}%>
+                </div>
+               
             </div>
-        </div>
     </div>
 
     <%- include('./components/footer') -%>

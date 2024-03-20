@@ -59,36 +59,11 @@
                     <%  })
                     }%>
                    
-
-                    <nav aria-label="pageBar" class="my-5">
-                    <% 
-                        const numberSizeProduct = dataSite.products.length;
-                        const itemsPerPage = 2;
-                        const totalPages = Math.ceil(numberSizeProduct / itemsPerPage);
-                        var currentPage = 0;
-                    %>
-                    <ul class="pagination justify-content-center flex-wrap">
-                        <% if (currentPage === 0) { %>
-                            <li class="page-item disabled"><a class="page-link">Trước</a></li>
-                        <% } else { %>
-                            <li class="page-item"><a class="page-link" href="?start=<%= currentPage - 1 %>">Trước</a></li>
-                        <% } %>
-
-                        <% for (let i = 0; i < totalPages; i++) { %>
-                            <% if (i === currentPage) { %>
-                                <li class="page-item active" aria-current="page"><a class="page-link" href="?start=<%= i %>"><%= i + 1 %></a></li>
-                            <% } else { %>
-                                <li class="page-item"><a class="page-link" href="?start=<%= i %>"><%= i + 1 %></a></li>
-                            <% } %>
-                        <% } %>
-
-                        <% if (currentPage === totalPages - 1 || totalPages === 0) { %>
-                            <li class="page-item disabled"><a class="page-link">Tiếp theo</a></li>
-                        <% } else { %>
-                            <li class="page-item"><a class="page-link" href="?start=<%= currentPage + 1 %>">Tiếp theo</a></li>
-                        <% } %>
-                        </ul>
-                    </nav>
+                    <%if(infoPaginateProduct !== undefined && infoPaginateProduct !== null && infoPaginateCategory === null){%>
+                        <%- include('./components/pagination', { urlCurrent : urlCurrentName, pages : infoPaginateProduct.pages , current : infoPaginateProduct.current}) -%>
+                    <%}else if(infoPaginateCategory !== undefined && infoPaginateCategory !== null){%>
+                        <%- include('./components/pagination', { urlCurrent : urlCurrentName, pages : infoPaginateCategory.pages , current : infoPaginateCategory.current}) -%>
+                    <%}%>
 
                 </div>
             </div>

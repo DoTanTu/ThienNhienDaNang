@@ -41,7 +41,7 @@
                         <div class="home-video">
                             <div class="home-hinhanh-img">
                                 <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html">
-                                    <img src="<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= name%>">
+                                    <img src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= name%>">
                                 </a>
                                 <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html" class="play-btn"><i class="bi bi-play-fill"></i></a>
                             </div>
@@ -52,33 +52,10 @@
                         <%  })
                     } %>
                     </div>
-                    <!-- <nav aria-label="pageBar" class="my-5">
-                        <ul class="pagination justify-content-center flex-wrap">
-                            <li class="page-item disabled"><a class="page-link">Trước</a></li>
-                            <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Tiếp theo</a></li>
-                        </ul>
-                    </nav> -->
 
-                    <!-- <nav aria-label="...">
-                        <ul class="pagination justify-content-center flex-wrap">
-                          <li class="page-item disabled">
-                            <a class="page-link">Trước</a>
-                          </li>
-                          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                          <li class="page-item" aria-current="page">
-                            <a class="page-link" href="#">2</a>
-                          </li>
-                          <li class="page-item"><a class="page-link" href="#">3</a></li>
-                          <li class="page-item">
-                            <a class="page-link" href="#">Tiếp theo</a>
-                          </li>
-                        </ul>
-                      </nav> -->
-
+                    <%if(infoPaginateProduct !== undefined && infoPaginateProduct !== null){%>
+                         <%- include('./components/pagination', { urlCurrent : urlCurrentName, pages : infoPaginateProduct.pages , current : infoPaginateProduct.current}) -%>
+                    <%}%>
                 </div>
             </div>
         </div>

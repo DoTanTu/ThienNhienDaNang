@@ -5,7 +5,7 @@ import { STATUS } from '../utils/status';
 export interface ICategoryRepository {
   getCategories(query: ICategoryQuery): Promise<any[]>;
   getCategoriesWithProducts(pageId: any, isFullFieldProduct : any): Promise<any[]>;
-  getCategoryInfo(query: ICategory, isFullFieldProduct : any): Promise<ICategory>;
+  getCategoryInfo(query: ICategoryQuery, isFullFieldProduct : any): Promise<ICategory>;
   getCategoryCount(query: ICategoryQuery): Promise<Number>;
   addCategory(CategoryInputDTO: ICategoryInputDTO): Promise<ICategory>;
   removeCategory(Category: ICategory): Promise<any>;
@@ -82,14 +82,16 @@ export default class CategoryRepository implements ICategoryRepository {
   }
 
 
-  public async getCategoryInfo(query: ICategory,isFullFieldProduct : any): Promise<ICategory> {
+  public async getCategoryInfo(query : ICategoryQuery ,isFullFieldProduct : any): Promise<ICategory> {
     var populateProducts : any = {
       path: "products",
       select: "_id url pageId showTop categoryIds name images counter ecommercePlus ecommerce desShort label hashtags createdAt languages",     
       match: {
         'status': { $in: [STATUS.Active] },
         'is_delete': { $in: [null, false] }
-      }
+      },
+      skip : query.start,
+      limit: query.limit
     }
     if (isFullFieldProduct == true) {
       populateProducts =  {
@@ -100,7 +102,22 @@ export default class CategoryRepository implements ICategoryRepository {
         }
       }
     }
-    return this.CategoryModel.findById(query._id).populate(populateProducts)
+
+    return this.CategoryModel.findById(query._id)
+    .populate(populateProducts);
+  }
+
+  public async getCategoryCountByProducts(query : ICategoryQuery): Promise<ICategory> {
+    var populateProducts : any = {
+      path: "products",
+      select: "_id url pageId showTop categoryIds name images counter ecommercePlus ecommerce desShort label hashtags createdAt languages",     
+      match: {
+        'status': { $in: [STATUS.Active] },
+        'is_delete': { $in: [null, false] }
+      },
+    }
+    return this.CategoryModel.findById(query._id)
+    .populate(populateProducts);
   }
 
   public async getCategoryCount(query: ICategoryQuery): Promise<Number> {

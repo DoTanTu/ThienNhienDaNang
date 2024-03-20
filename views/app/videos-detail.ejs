@@ -33,7 +33,20 @@
                             <span id="likeCustomer"><%= prod.likes.length%></span>
                         </span>
                         <span><i class="me-2 bi bi-download"></i><span id="number-download"><%= prod.downloads%></span></span>
-                        <span><i class="me-2 bi bi-reply"></i>0</span>
+                        <span class="list_method_shared">
+                            <i class="me-2 bi bi-reply"></i>
+                            <span>0</span>
+                            <span class="share_method">
+                                <div class="parent">
+                                    <a href="" target="_blank" id="shareFacebook" class="item" title="chia sẽ với facebook">
+                                        <i class="bi bi-facebook"></i>
+                                    </a>
+                                    <a href="" id="copyLinkPost" class="item" title="copy đường dẫn">
+                                        <i class="bi bi-link-45deg"></i>
+                                    </a>
+                                </div>
+                            </span>
+                        </span>
                         <span><i class="me-2 bi bi-eye"></i><%= prod.views%></span>
                         <span><i class="me-2 bi bi-chat-left"></i><%= prod.comments.length%></span>
                     </div>
