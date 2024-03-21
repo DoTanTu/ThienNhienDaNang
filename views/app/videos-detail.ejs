@@ -81,15 +81,18 @@
                         <%if(dataProducts && dataProducts.length > 0){
                             dataProducts.forEach( videoItem => {
                                 if(videoItem._id !== prod._id && videoItem.showTop === true){
-                                        pathImage = "";
-                                        obImage = videoItem.images[0];
+                                        let pathImage = '';
+                                        let imageResize = '';
+                                        const obImage = prod.images[0];
                                         if(obImage){
-                                            pathImage = obImage.image
+                                            pathImage = obImage.image;
                                         }
+                                        imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
                                     %>
                                     <div class="item">
                                         <div class="img-box trans-3 mb-3">
-                                            <a href="<%= videoItem.name.replace(/ /g , '-')%>-<%= videoItem.pageId %>.<%= videoItem._id %>.html"><img src="<%= pathImage%>" alt=""></a>
+                                            <a href="<%= videoItem.name.replace(/ /g , '-')%>-<%= videoItem.pageId %>.<%= videoItem._id %>.html">
+                                                <img src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= name%>"></a>
                                         </div>
                                         <a href="<%= videoItem.name.replace(/ /g , '-')%>-<%= videoItem.pageId %>.<%= videoItem._id %>.html">
                                             <h4 class="br-line-2"><%= videoItem.name%></h4>
