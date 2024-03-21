@@ -6,7 +6,7 @@
                     name = category.name,
                     desc = category.desc
              %>
-        <h3 class="h3-title mb-3 text-center"><%= name.toUpperCase()%></h3>
+        <h3 class="h3-title mb-3 text-center" ><%= name.toUpperCase()%></h3>
         <p class="p-title mb-5"><%= desc%></p>
             <%}
         }%>
@@ -15,6 +15,8 @@
                 dataProducts.forEach((prod) => {
                     if(prod.categoryIds[0] === 'WSIqFEUod'){
                         nameProd = prod.name;
+                        idProduct = prod._id;
+                        description = prod.descriptionPlus[0].description
                         let alt = '';
                         let pathImage = '';
                         let imageResize = '';
@@ -27,8 +29,32 @@
               %>
             <div class="cot-12 cot-4-md px-30 py-30 home-about-box">
                 <img class="mb-3" src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
-                <h4 class="text-center"><%- nameProd%></h4>
+                <h4 class="text-center title_about_intro" data-bs-toggle="modal" data-bs-target="#modal<%= idProduct%>"><%- nameProd%></h4>
             </div>
+
+            <div class="modal fade" id="modal<%= idProduct%>" tabindex="-1" aria-labelledby="cateDetailLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title fs-5" id="cateDetailLabel"><%= nameProd%></h4>
+                      <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="bi bi-x-lg"></i>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="flex justify-content-center mb-4" style="max-height: 100px; width: auto;">
+                            <img class="h-100 w-auto" src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
+                        </div>
+                        <%- description%>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                      <a href="" name="downloadFile" onclick="" class="btn btn-primary" download>Đồng ý</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
              <%  }
               });
             }%>

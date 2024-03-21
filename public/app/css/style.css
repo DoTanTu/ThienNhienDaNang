@@ -1901,7 +1901,10 @@ footer a:hover i {
 .home-about h4 {
     font-size: 18px;
 }
-
+.home-about .title_about_intro:hover{
+    color: var(--color-2);
+    cursor: pointer;
+}
 .home-about-box {
     box-shadow: 3px 3px 5px #00000050;
     border-radius: 15px;
