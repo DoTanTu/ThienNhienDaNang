@@ -69,7 +69,7 @@ export default class ProductController {
       language : "",
       cateId : req.query['cateId']
     } as IProductQuery);
-    
+
     if (responses) {
       res.status(200).json({
         success: true,

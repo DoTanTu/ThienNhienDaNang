@@ -78,7 +78,7 @@ $(document).ready(function() {
             "targets": 3,
             "render": function ( data, type, full, meta ) {
               if(type === 'display'){
-                return full['status'] 
+                return full['status'].toLowerCase() 
              }
             },
           },

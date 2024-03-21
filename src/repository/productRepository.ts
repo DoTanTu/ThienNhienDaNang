@@ -51,7 +51,7 @@ export default class ProductRepository implements IProductRepository {
       }
     }
     return this.ProductModel.find(options)
-      .select("_id url pageId showTop categoryIds commentIds name images counter ecommercePlus ecommerce desShort label hashtags createdAt languages")     
+      .select("_id url pageId showTop categoryIds commentIds status name images counter ecommercePlus ecommerce desShort label hashtags createdAt languages")     
       .sort({
         createdAt: -1,
       })
