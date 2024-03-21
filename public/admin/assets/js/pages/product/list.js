@@ -10,13 +10,13 @@ $(document).ready(function() {
       }
 
       function getStatusClass(status) {
-        switch (status.toLowerCase()) {
-            case 'active':
-                return 'bg_active_green';
-            case 'pending':
-                return 'bg_pending_orange';
-            case 'draf':
-                return 'bg_draf_red';
+        switch (status) {
+            case 'ACTIVE':
+                return 'badge bg-label-success';
+            case 'PENDING':
+                return 'badge bg-label-warning';
+            case 'DRAF':
+                return 'badge bg-label-danger';
             default:
                 return '';
           }
@@ -91,7 +91,7 @@ $(document).ready(function() {
             "targets": 3,
             "render": function ( data, type, full, meta ) {
               if(type === 'display'){
-                return '<div class="' + getStatusClass(full['status']) + '">' + full['status'].toLowerCase() + '</div>'
+                return '<div class="' + getStatusClass(full['status']) + '">' + full['status'] + '</div>'
              }
             },
           },

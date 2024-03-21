@@ -26,7 +26,6 @@ export default ({ app , db }: { app: express.Application, db : any}) => {
         collapseBooleanAttributes: true,
         removeAttributeQuotes:     true,
         removeEmptyAttributes:     true,
-        minifyJS:                  true
     }
 }));
 
