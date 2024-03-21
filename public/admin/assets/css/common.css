@@ -122,3 +122,30 @@
   object-fit: cover;
   height: 150px;
 }
+
+.bg_active_green {
+  background-color: rgb(49, 222, 49, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  color: green ;
+  padding: 1px 20px;
+  width: fit-content;
+}
+.bg_pending_orange {
+  background-color: rgba(243, 150, 57, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  color: rgb(223, 123, 1) ;
+}
+.bg_draf_red {
+  background-color: rgba(229, 99, 85, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  color: rgb(255, 0, 0) ;
+}

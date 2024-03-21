@@ -9,6 +9,19 @@ $(document).ready(function() {
         actions =JSON.parse(decodeURI(actionEncode))
       }
 
+      function getStatusClass(status) {
+        switch (status.toLowerCase()) {
+            case 'active':
+                return 'bg_active_green';
+            case 'pending':
+                return 'bg_pending_orange';
+            case 'draf':
+                return 'bg_draf_red';
+            default:
+                return '';
+          }
+      }
+
       $.fn.dataTable.ext.errMode = 'none';
       let table = $('#productTable').DataTable({
           "paging":   true,
@@ -78,7 +91,7 @@ $(document).ready(function() {
             "targets": 3,
             "render": function ( data, type, full, meta ) {
               if(type === 'display'){
-                return full['status'].toLowerCase() 
+                return '<div class="' + getStatusClass(full['status']) + '">' + full['status'].toLowerCase() + '</div>'
              }
             },
           },
