@@ -16,6 +16,7 @@ const PageSchema = new mongoose.Schema({
     isImageDetail : {type: Boolean, default: false},
     isEcommerce: {type: Boolean, default: false},
     isPdf: {type: Boolean, default: false},
+    isSlide: {type: Boolean, default: false},
     isLinkVideo: {type: Boolean, default: false},
     isProductContact: {type: Boolean, default: false},
     isLockDelete: {type: Boolean, default: false},

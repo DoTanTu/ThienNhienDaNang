@@ -36,7 +36,7 @@
                 <div class="modal-dialog modal-dialog-scrollable modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h4 class="modal-title fs-5" id="cateDetailLabel"><%= nameProd%></h4>
+                      <h4 class="modal-title fs-5" id="cateDetailLabel"><%= nameProd.replace(/<\/?br\s*\/?>/gi, ' ')%></h4>
                       <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
                         <i class="bi bi-x-lg"></i>
                       </button>
@@ -46,10 +46,6 @@
                             <img class="h-100 w-auto" src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
                         </div>
                         <%- description%>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                      <a href="" name="downloadFile" onclick="" class="btn btn-primary" download>Đồng ý</a>
                     </div>
                   </div>
                 </div>

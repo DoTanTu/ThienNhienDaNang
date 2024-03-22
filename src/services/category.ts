@@ -5,7 +5,7 @@ import { ICategory, ICategoryInputDTO, ICategoryQuery } from '../models/interfac
 export interface ICategoryService {
   getCategories(pageId : any): Promise<any>
   getFullDataCategory(query : ICategoryQuery): Promise<{items : any[], total : Number }>
-  getCategoryInfo(CategoryId : ICategory): Promise<ICategory>
+  getCategoryInfo(CategoryId : ICategoryQuery): Promise<ICategory>
   addCategory(CategoryInputDTO: ICategoryInputDTO): Promise<ICategory>
   removeCategory(Category: ICategory): Promise<any>
   updateCategory(CategoryInputDTO : ICategoryInputDTO) : Promise<ICategory>
@@ -30,7 +30,7 @@ export default class CategoryService implements ICategoryService {
     };
   }
 
-  public async getCategoryInfo(CategoryId : ICategory): Promise<ICategory> {
+  public async getCategoryInfo(CategoryId : ICategoryQuery): Promise<ICategory> {
     return this.CategoryRepo.getCategoryInfo(CategoryId, false);
   }
 

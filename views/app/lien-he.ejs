@@ -98,7 +98,7 @@
                     <i class="bi bi-facebook"></i>
                     <h5>Fanpage</h5>
                     <%if(facebookLink){%>
-                    <span><%= facebookLink%></span>
+                    <a href="<%= facebookLink%>"><%= facebookLink.replace(/^https:\/\/www\.facebook\.com\//, '@') %></a>
                     <%}%>
                     <!-- <span>(+84) 888 999 777</span> -->
                 </div>
@@ -107,7 +107,7 @@
                     <h5>Youtobe</h5>
                     <%if(youtobeLink){
                         %>
-                        <span><%= youtobeLink%></span>
+                        <a href="<%= youtobeLink%>"><%= youtobeLink.replace('https://www.youtube.com/', '') %></a>
                     <% }%>
                 </div>
             </div>

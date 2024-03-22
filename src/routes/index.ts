@@ -29,6 +29,7 @@ import { ExampleCodeRouter } from "./exampleCode";
 import { PaymentRouter } from "./payment";
 import { FileImageRouter } from "./fileImage";
 import { FilePDFRouter } from "./filePDF";
+import { FileSlideRouter } from "./fileSlide";
 import { FileContributeCustomRouter } from "./fileContributeCustomer";
 import { BackLinkSiteRouter } from "./backLink";
 import { FileImageEditorRouter } from "./fileImageEditor";
@@ -52,6 +53,7 @@ export class Routes {
     FileCustomRouter.init(this.app);
     FileImageRouter.init(this.app);
     FilePDFRouter.init(this.app);
+    FileSlideRouter.init(this.app);
     FileContributeCustomRouter.init(this.app);
     FileImageEditorRouter.init(this.app);
     

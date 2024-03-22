@@ -26,7 +26,7 @@ export default class ProductRepository implements IProductRepository {
   
   public async getProductByCategoryId(categoryId: any): Promise<any[]> {
     return this.ProductModel.find({ categoryIds : { "$in" : [categoryId]} })
-      .select("_id url pageId showTop categoryIds pdf name images counter ecommercePlus ecommerce desShort label hashtags createdAt languages")     
+      .select("_id url pageId showTop categoryIds pdf slide name images counter ecommercePlus ecommerce desShort label hashtags createdAt languages")     
       .sort({
         createdAt: -1,
       })

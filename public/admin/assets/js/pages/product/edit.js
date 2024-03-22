@@ -100,12 +100,11 @@ $(document).ready(function() {
     
     var pdfUrl = $("#pdf_file").val();
     if (pdfDropzone && pdfUrl) {
-      // Tạo một file giả để hiển thị thông tin PDF trên Dropzone
       var pdfFile = {
         upload: {
           uuid: 0,
           progress: 100,
-          total: 1000000, // Thay đổi giá trị này tùy thuộc vào kích thước của PDF
+          total: 1000000,
           bytesSent: 1000000,
           filename: "khong ten",
           path: pdfUrl
@@ -120,15 +119,42 @@ $(document).ready(function() {
         width: 100,
         height: 100
       };
-
-      // Thiết lập uuid của tệp PDF
       pdfFile.upload.uuid = 0;
-
-      // Gửi các sự kiện của Dropzone để hiển thị tệp PDF
       pdfDropzone.emit("addedfile", pdfFile);
       pdfDropzone.emit("thumbnail", pdfFile, "../public/admin/assets/img/background_pdf.png");
       pdfDropzone.emit("complete", pdfFile);
       pdfDropzone.files.push(pdfFile);
+      $(".dz-image img").css({ width: "100px", height: "auto" });
+    }
+
+    var slideUrl = $("#slide_file").val();
+    if (slideDropzone && slideUrl) {
+      var slideFile = {
+        upload: {
+          uuid: 0,
+          progress: 100,
+          total: 1000000,
+          bytesSent: 1000000,
+          filename: "khong ten",
+          path: slideUrl
+        },
+        status: "success",
+        previewElement: {},
+        previewTemplate: {},
+        _removeLink: {},
+        accepted: true,
+        processing: true,
+        xhr: {},
+        width: 100,
+        height: 100
+      };
+
+      slideFile.upload.uuid = 0;
+
+      slideDropzone.emit("addedfile", slideFile);
+      slideDropzone.emit("thumbnail", slideFile, "../public/admin/assets/img/background_slide.png");
+      slideDropzone.emit("complete", slideFile);
+      slideDropzone.files.push(slideFile);
       $(".dz-image img").css({ width: "100px", height: "auto" });
     }
 
@@ -164,11 +190,23 @@ $(document).ready(function() {
         }
       }
 
-      var file_pdf;
+      var file_pdf = "";
       if(pdfDropzone){
         try {
           if (pdfDropzone.files[0] && pdfDropzone.files.length > 0){
             file_pdf = pdfDropzone.files[0].upload.path
+          }
+        }catch(e){
+          console.error("Error uploading file: " + e.message);
+          return;
+        }
+      }
+
+      var file_slide = "";
+      if(slideDropzone){
+        try {
+          if (slideDropzone.files[0] && slideDropzone.files.length > 0){
+            file_slide = slideDropzone.files[0].upload.path
           }
         }catch(e){
           console.error("Error uploading file: " + e.message);
@@ -204,6 +242,7 @@ $(document).ready(function() {
       var idAuthor = '';
       var nameAuthor = '';
       const inputNameAuthor = $('#inputNameAuthor');
+
       if(inputNameAuthor.val() !== undefined){
         idAuthor = '';
         nameAuthor = inputNameAuthor.val();
@@ -229,6 +268,10 @@ $(document).ready(function() {
         
           if(element.name == 'pdf_file'){
             element.value = file_pdf;
+          }
+
+          if(element.name == 'slide_file'){
+            element.value = file_slide;
           }
           
           if (element.name == 'images') {
@@ -273,7 +316,6 @@ $(document).ready(function() {
           })
         }
     }
-
     
 });
 

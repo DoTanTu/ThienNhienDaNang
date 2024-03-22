@@ -27,6 +27,30 @@ export default class FileController {
     }
   }
 
+  public async UploadImage(req, res) {
+    if (req.files != null && req.files.length > 0) {
+      res.status(200).json({ success: true, data: req.files });
+    } else {
+      res.status(400).json({ success: false });
+    }
+  }
+
+  public async UploadPDF(req, res) {
+    if (req.files != null && req.files.length > 0) {
+      res.status(200).json({ success: true, data: req.files });
+    } else {
+      res.status(400).json({ success: false });
+    }
+  }
+
+  public async UploadSlide(req, res) {
+    if (req.files != null && req.files.length > 0) {
+      res.status(200).json({ success: true, data: req.files });
+    } else {
+      res.status(400).json({ success: false });
+    }
+  }
+
   public async RemoveFile(req, res) {
     let pathFile = req.body.path;
     if (
@@ -34,7 +58,6 @@ export default class FileController {
       pathFile != null &&
       pathFile.indexOf("public") > -1
     ) {
-      console.log(pathFile)
       fs.unlink(path.join(pathFile), (err) => {
         if (err) {
           console.log(err);
@@ -65,22 +88,6 @@ export default class FileController {
     }
   }
 
-  public async UploadImage(req, res) {
-    if (req.files != null && req.files.length > 0) {
-      res.status(200).json({ success: true, data: req.files });
-    } else {
-      res.status(400).json({ success: false });
-    }
-  }
-
-  public async UploadPDF(req, res) {
-    if (req.files != null && req.files.length > 0) {
-      res.status(200).json({ success: true, data: req.files });
-    } else {
-      res.status(400).json({ success: false });
-    }
-  }
-
   public async RemoveImage(req, res) {
     let pathFile = req.body.path;
 
@@ -88,6 +95,44 @@ export default class FileController {
       pathFile != undefined &&
       pathFile != null &&
       pathFile.indexOf("images/customerUpload") > -1
+    ) {
+      fs.unlink(path.join(pathFile), (err) => {
+        if (err) {
+          console.log(err);
+        }
+        res.status(200).json({ success: true });
+      });
+    } else {
+      res.status(400).json({ success: false });
+    }
+  }
+
+  public async RemovePdf(req, res) {
+    let pathFile = req.body.path;
+
+    if (
+      pathFile != undefined &&
+      pathFile != null &&
+      pathFile.indexOf("pdf") > -1
+    ) {
+      fs.unlink(path.join(pathFile), (err) => {
+        if (err) {
+          console.log(err);
+        }
+        res.status(200).json({ success: true });
+      });
+    } else {
+      res.status(400).json({ success: false });
+    }
+  }
+
+  public async RemoveSlide(req, res) {
+    let pathFile = req.body.path;
+
+    if (
+      pathFile != undefined &&
+      pathFile != null &&
+      pathFile.indexOf("pptx") > -1
     ) {
       fs.unlink(path.join(pathFile), (err) => {
         if (err) {

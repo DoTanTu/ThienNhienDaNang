@@ -71,10 +71,11 @@
                         %>
                       <%- include('./component/image-view',  { imageData : data.images, altData : data.alts}) -%>
                       <% }%>
-                      <% if(pageSetting.setting.isPdf == true) {
-                        %> 
-                       
+                      <% if(pageSetting.setting.isPdf == true) {%> 
                         <%- include('./component/pdf-view',  { pdfData : data.pdf}) -%>
+                      <%}%>
+                      <% if(pageSetting.setting.isSlide == true) {%> 
+                        <%- include('./component/slide-view',  { slideData : data.slide}) -%>
                       <%}%>
                       <% if(pageSetting.setting.isEcommerce == true) {%>
                       <% if(app.platform == "ecommerce_plus") {%>

@@ -39,6 +39,7 @@ const ProductSchema = new mongoose.Schema(
       year : String,
     }],
     pdf : { type: String,  default: ''},
+    slide : { type: String,  default: ''},
     ecommerce: {
       _id: {
         type: String,

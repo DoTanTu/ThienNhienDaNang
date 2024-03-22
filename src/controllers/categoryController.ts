@@ -48,6 +48,7 @@ export default class CategoryController {
     const serviceInstance = Container.get(CategorieService);
     let page = req.params.page
     var responses = await serviceInstance.getFullDataCategory({
+      _id : null,
       pageId : page,
       query: req.query.search.value,
       start: parseInt(req.query['start']),

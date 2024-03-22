@@ -45,6 +45,9 @@
                           <% if(pageSetting.setting.isPdf == true) {%> 
                             <%- include('./component/pdf-view',  { pdfData : null}) -%>
                           <%}%>
+                          <% if(pageSetting.setting.isSlide == true) {%> 
+                            <%- include('./component/slide-view',  { slideData : null}) -%>
+                          <%}%>
                           <% if(pageSetting.setting.isEcommerce == true) {%>
                             <% if(app.platform == "ecommerce_plus") {%>
                               <%- include('./component/ecomerce-view-plus', { ecommerces : null}) -%>

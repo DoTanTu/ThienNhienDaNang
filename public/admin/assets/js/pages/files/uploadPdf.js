@@ -1,19 +1,15 @@
-// const dropzoneMulti = new Dropzone('#dropzone-multi', {
-//   previewTemplate: previewTemplate,
-//   parallelUploads: 1,
-//   maxFilesize: 5,
-//   addRemoveLinks: true
-// });
+//Upload file PDF and just upload a file
 Dropzone.autoDiscover = false;
+if (document.getElementById("pdfDropzone") != null) {
 var pdfDropzone = new Dropzone("div#pdfDropzone", {
-  url: "/uploadABC",
-  paramName: "inputFiles",
+  url: "/admin.uploadPDF",
+  paramName: "pdfFile",
   autoDiscover: false,
   addRemoveLinks: true,
-  acceptedFiles:'application/pdf',
   uploadMultiple: true,
+  acceptedFiles:'application/pdf',
   parallelUploads: 50,
-  maxFiles: 1,
+  maxFiles: 2,
   timeout: 180000,
   dictDefaultMessage: "Bạn có thể kéo tệp hoặc click để chọn",
   dictCancelUpload: "Cancel",
@@ -25,36 +21,34 @@ var pdfDropzone = new Dropzone("div#pdfDropzone", {
 
     this.on("removedfile", function(file){
       if (file != null && file.upload != undefined) {
-        removeImage(file.upload.path)
+        removePdf(file.upload.path)
       }else{
-        removeImage(file.path.replace('../',''))
+        removePdf(file.path.replace('../',''))
       }
     });
 
     pdfDropzone.on("sending", function(file, xhr, formData) {
-       
+      formData.append("page", $('#pageNames').val()); 
     });
 
-    // Listen to the sendingmultiple event. In this case, it’s the sendingmultiple event instead
-    // of the sending event because uploadMultiple is set to true.
     this.on("sendingmultiple", function () {
-     
+    });
+
+    this.on("addedfile", function (file) {
     });
     this.on("successmultiple", function (files, response) {
-      if($('#avatarCustomer') != undefined){
-        $('#avatarCustomer').val(response.data[0].path)
-      }
+
       files[0].upload.path = response.data[0].path
     });
     this.on("errormultiple", function (files, response) {
-    
     });
   }
 });
+}
 
-function removeImage(e) {
+function removePdf(e) {
   $.ajax({
-    url: "/removePdf",
+    url: "/admin.removePdf",
     method: "POST",
     data: {
       path: e

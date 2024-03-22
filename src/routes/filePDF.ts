@@ -76,11 +76,11 @@ export class FilePDFRouter {
     );
 
     this.app.post(
-      '/admin.removeFile',
+      '/admin.removePdf',
       isAuth,
       checkRole([ROLE.Author, ROLE.Admin, ROLE.Manager, ROLE.Content]),
       async (req, res) => {
-        controller.RemoveFile(req, res);
+        controller.RemovePdf(req, res);
       }
     );
   }

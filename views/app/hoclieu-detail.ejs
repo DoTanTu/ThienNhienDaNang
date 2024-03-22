@@ -24,8 +24,8 @@
                         prod = dataProductDetail;
                         name = prod.name;
                         productId = prod._id;
-                        pathUrl = prod.pdf;
-                        pathImage = prod.images[0]?.image || '';
+                        pathPdfUrl = prod.pdf;
+                        pathSlideUrl = prod.slide;
                         arrayImage = prod.images;
                         description = prod.description;
                         downloadsCount = prod.downloads ;
@@ -36,6 +36,15 @@
                         copyright = prod.additional.copyright;
                         publishYear = prod.additional.publishYear;
                         source = prod.additional.source;
+                        let alt = '';
+                        let pathImage = '';
+                        let imageResize = '';
+                        const obImage = prod.images[0];
+                        if(obImage){
+                            pathImage = obImage.image;
+                            alt = obImage.alt;
+                        }
+                        imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
 
                         if(prod.label === 'BÀI GIẢNG' || prod.label === 'TÀI LIỆU'){
                            %>
@@ -43,7 +52,7 @@
                                 <div class="row-change">
                                 <div class="cot-12 cot-4-md">
                                     <div class="tailieu-detail-img position-relative">
-                                    <img src="../public/app/images/icon/pdf-file.svg" style="object-fit: cover; width: auto; height: 70%; padding: 10px; margin: auto;" alt="">
+                                    <img src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>" style="object-fit: cover; width: 100%; max-height: 280px; padding: 10px; margin: auto;">
                                     </div>
                                 </div>
                                 <div class="cot-12 cot-8-md tailieu-detail-text">
@@ -92,7 +101,7 @@
                                         </a>
                                         <!-- Modal -->
                                         
-                                        <a href="#" data-action="#downloadDocument" data-file-id="<%= productId%>" data-src-file="<%= pathUrl%>">Tải về</a>
+                                        <a href="#" data-action="#downloadDocument" data-file-id="<%= productId%>" data-src-file="<%= pathSlideUrl%>">Tải về</a>
                                     </div>
                                     <div class="modal fade" id="donggopDetail" tabindex="-1"                    aria-labelledby="cateDetailLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-scrollable modal-xl">
@@ -104,7 +113,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <iframe src="../<%= pathUrl%>" width="100%" height="750" frameborder="0"></iframe>
+                                                    <iframe src="../<%= pathPdfUrl%>#toolbar=0" width="100%" height="750" frameborder="0"></iframe>
                                                 </div>
                                             </div>
                                         </div>

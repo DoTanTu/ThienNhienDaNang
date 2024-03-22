@@ -1,0 +1,26 @@
+<%
+var slide = ""
+if (slideData != undefined && slideData != null) {
+  slide = slideData
+}
+%>
+<div class="mb-3">
+<div class="card accordion-item mb-4">
+<h2 class="accordion-header" id="imageHTwo">
+  <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#image-view"
+    aria-expanded="false" aria-controls="image-view">
+    Slide (accept: <span class="ms-2 fst-italic">pptx</span>)
+  </button>
+</h2>
+<div id="slide-view" class="accordion-collapse collapse show" aria-labelledby="slideHTwo" data-bs-parent="#slide-view">
+  <div class="accordion-body">
+    <div class="mb-3">
+      <!-- Add name when using upload-->
+      <input type="text" id="pageNames" value="product-<%= pageCurrent%>"  hidden>
+      <input type="text" class="form-control" id="slide_file" hidden value="<%= slide%>" name="slide_file" >
+      <div id="slideDropzone" class="dropzone"></div>
+    </div>
+  </div>
+</div>
+</div>
+</div>

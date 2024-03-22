@@ -11,6 +11,7 @@ export interface IProduct {
   descriptionPlus : [IProductDescriptionPlus]
   images : [IProductImage]
   pdf : string
+  slide : string
   ecommerce : IProductEcommerce
   ecommercePlus : [IProductEcommercePlus]
   additional : IProductAdditional
@@ -134,6 +135,8 @@ export interface IProductInputDTO {
   descriptionPlus : [IProductDescriptionPlus]
   images : [IProductImage]
   alts : [string]
+  pdf : string
+  slide : string
   ecommerce : IProductEcommerce
   ecommercePlus : [IProductEcommercePlus]
   additional : IProductAdditional

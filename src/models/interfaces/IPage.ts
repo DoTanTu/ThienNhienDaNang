@@ -21,6 +21,7 @@ export interface IPageSetting {
     isImageDetail : boolean
     isEcommerce: boolean
     isPdf: boolean
+    isSlide: boolean
     isLinkVideo : boolean
     isProductContact: boolean
     isLockDelete: boolean

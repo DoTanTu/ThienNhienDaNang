@@ -75,6 +75,18 @@ $(document).ready(function() {
         }
       }
 
+      var file_slide;
+      if(slideDropzone){
+        try {
+          if (slideDropzone.files[0] && slideDropzone.files.length > 0){
+            file_slide = slideDropzone.files[0].upload.path
+          }
+        }catch(e){
+          console.error("Error uploading file: " + e.message);
+          return;
+        }
+      }
+
       var imagePlus = []
       var altPlus = []
       if (typeof dz != undefined && dz != null) {
@@ -128,6 +140,10 @@ $(document).ready(function() {
 
           if(element.name == 'pdf_file'){
             element.value = file_pdf;
+          }
+
+          if(element.name == 'slide_file'){
+            element.value = file_slide;
           }
 
           if (element.name == 'images') {
