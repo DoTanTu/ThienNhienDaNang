@@ -8,6 +8,7 @@ import isAuthCustomer from '../middlewares/isAuthCustomer';
 const fs = require('fs');
 const path = require('path');
 var i18n = require("i18n");
+const passport  = require('passport');
 
 export class CustomSiteRouter {
   constructor(private app: express.Application) {
@@ -68,6 +69,19 @@ export class CustomSiteRouter {
       isAuthCustomer,
       async (req, res) => {
         controller.actionLikeProduct(req, res);
+      }
+    );
+
+    this.app.get("/auth/google", passport.authenticate("google", {
+        scope: ["profile"]
+      }));
+
+    this.app.get(
+      "/auth/google/callback",
+      passport.authenticate("google", { failureRedirect: "/login" }),
+      function(req, res) {
+        // Successful authentication, redirect home.
+        res.redirect("/");
       }
     );
 

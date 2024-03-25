@@ -73,8 +73,7 @@ export default class CustomerRepository implements ICustomerRepository {
     return this.CustomerModel.find({
       isActive: true,
     })
-    .select("fullname username email")
-    .exec();
+    .select("fullname")
   }
 
   public async getCustomerInfo(query: ICustomer): Promise<ICustomer> {

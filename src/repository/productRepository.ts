@@ -82,6 +82,7 @@ export default class ProductRepository implements IProductRepository {
         path: "comments",
         select: "_id text productId userId",
       })
+      .populate('authors', 'fullname')
       .sort({
         createdAt: -1,
       })
@@ -131,7 +132,8 @@ export default class ProductRepository implements IProductRepository {
     }
 
     return this.ProductModel.find(options).find(options2)
-      .select("_id url pageId showTop categoryIds name images counter ecommercePlus ecommerce desShort label hashtags createdAt languages")     
+      .select("_id url pageId showTop categoryIds name images counter ecommercePlus ecommerce desShort label hashtags createdAt languages") 
+      .populate('authors', 'fullname')
       .sort({
         createdAt: -1,
       })
@@ -161,6 +163,7 @@ export default class ProductRepository implements IProductRepository {
         select: "_id email avatar fullname"  // Các trường của User bạn muốn lấy
     }
     })
+    .populate('authors', 'fullname')
     ;
   }
 

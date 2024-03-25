@@ -77,8 +77,6 @@ const ProductSchema = new mongoose.Schema(
         'default': shortid.generate
       },
       typeof : String,     
-      authorId : String,
-      authorName : String,
       copyright : String,
       publishYear : String,
       source : String,
@@ -99,7 +97,8 @@ const ProductSchema = new mongoose.Schema(
     seoKeyWord: { type: String, intl: true, },
     seoDesc: { type: String, intl: true },
     status:  { type: String, default: ''},
-    userPost:  { type: String, default: ''},
+    userPost:  { type: String, ref : 'UserDB'},
+    authors : [{type : String, ref : 'Customer'}],
     is_delete: { type: Boolean, default: false },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },

@@ -62,7 +62,7 @@
                             name : data.name
                           }}) -%>
 
-                      <%- include('./component/type-product-view', { additionalData : data.additional , authors: authors}) -%>
+                      <%- include('./component/type-product-view', { additionalData : data.additional , listAuthors: listAuthors, currentAuthors : data.authors}) -%>
 
                       <% if(pageSetting != undefined && pageSetting != null && pageSetting.setting.isLinkVideo) {%>
                       <%- include('./component/video-view', { linkData : data.linkVideo}) -%>
@@ -206,32 +206,6 @@
     }
   </script>
 
-  <script>
-    const authorOption = $('#authorOption');
-    function toggleAuthorOptions(typeOption){
-      const valueTyOption = typeOption.toString();
-      if(valueTyOption == 'news'){
-        authorOption.empty();
-        authorOption.append(`
-          <input class="form-control w-100" id="inputNameAuthor" type="text" value="<%if(data.additional.authorId === '' && data.additional.authorName !== ''){%><%= data.additional.authorName%><%}%>">    
-        `)
-      }else{
-        authorOption.empty();
-        authorOption.append(`
-          <select class="form-control w-100 form-select" id="authorId">
-            <option value="">Chọn tác giả hiện có</option>
-              <%if(authors && authors.length > 0){
-                  authors.forEach( author => {
-                      %>
-                      <option value="<%= author._id%>" <%if(author._id === data.additional.authorId){%>checked<%}%>><%= author.fullname%></option>
-                  <% })
-              }%>
-          </select>
-        `)
-      }
-    }
-  </script>
-  
 </body>
 
 </html>

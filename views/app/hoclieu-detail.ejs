@@ -32,7 +32,7 @@
                         viewsCount = prod.views;
                         commentsCount = prod.comments.length;
                         linkVideo = prod.linkVideo;
-                        author = prod.additional.author;
+                        authors = prod.authors;
                         copyright = prod.additional.copyright;
                         publishYear = prod.additional.publishYear;
                         source = prod.additional.source;
@@ -60,8 +60,12 @@
                                         <h4 class="h4-title br-line-4"><%= name%></h4>
                                     </a>
                                     <div class="tailieu-detail-info">
-                                        <% if(author && author !== ''){%>
-                                          <span>Tác giả: <strong><%= author%></strong></span>
+                                        <% if(authors && authors !== ''){%>
+                                            <span>Tác giả: 
+                                                <% authors.forEach( (item, index) => {%>
+                                                    <strong><%if(index == 0 ){%><%}else{%>,<%}%><%= item.fullname%></strong>
+                                                <% })%>
+                                            </span>
                                         <%}%>
                                         <% if(copyright && copyright !== ''){%>
                                             <span>Tác quyền: <strong><%= copyright%></strong></span>
@@ -186,9 +190,11 @@
                               %>
                             <div id="<%= imageItem._id%>" style="display:none">
                                 <h4 class="br-line-1"><%= prod.name%></h4>
-                                <%if(imageItem.author && imageItem.author !== ''){%>
-                                    <span>
-                                        Tác giả: <strong><%= imageItem.author%></strong>
+                                <%if(authors && authors.length > 0){%>
+                                    <span>Tác giả: 
+                                        <% authors.forEach( (item, index) => {%>
+                                            <strong><%if(index == 0 ){%><%}else{%>,<%}%><%= item.fullname%></strong>
+                                        <% })%>
                                     </span>
                                 <%}%>
 

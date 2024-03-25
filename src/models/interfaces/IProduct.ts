@@ -24,6 +24,7 @@ export interface IProduct {
   seoDesc : string
   status : string
   userPost : string
+  authors : string[]
   counter : number
   is_delete : boolean
   showTop : boolean
@@ -99,6 +100,7 @@ export interface IProductContact {
   phone : string
   country : string
 }
+
 export interface IProductDescriptionPlus {
   title : string
   description : string
@@ -107,8 +109,6 @@ export interface IProductDescriptionPlus {
 export interface IProductAdditional{
   _id : string
   typeof : string        
-  authorId : string;
-  authorName : string;
   copyright : string
   publishYear : string
   source : string
@@ -149,7 +149,7 @@ export interface IProductInputDTO {
   seoDesc : string
   status : string
   userPost : string
-  counter : number
+  authors : string[]
   showTop : boolean
   label : string
   views : number

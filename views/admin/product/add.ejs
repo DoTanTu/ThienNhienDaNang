@@ -34,7 +34,7 @@
 
                           <%- include('./component/info-view', { infoData : null}) -%>
 
-                          <%- include('./component/type-product-view', {additionalData : null, authors: authors}) -%>
+                          <%- include('./component/type-product-view', {additionalData : null, listAuthors: listAuthors, currentAuthors : null}) -%>
                          
                           <% if(pageSetting != undefined && pageSetting != null && pageSetting.setting.isLinkVideo) {%>
                           <%- include('./component/video-view', { linkData : null}) -%>
@@ -164,32 +164,6 @@
               oneTimeBlock.classList.add('d-none');
               manyTimeBlock.classList.remove('d-none');
           }
-      }
-    </script>
-
-    <script>
-      const authorOption = $('#authorOption');
-      function toggleAuthorOptions(typeOption){
-        const valueTyOption = typeOption.toString();
-        if(valueTyOption == 'news'){
-          authorOption.empty();
-          authorOption.append(`
-            <input class="form-control w-100" id="inputNameAuthor" type="text">    
-          `)
-        }else{
-          authorOption.empty();
-          authorOption.append(`
-            <select class="form-control w-100 form-select" id="authorId">
-              <option value="">Chọn tác giả hiện có</option>
-                <%if(authors && authors.length > 0){
-                    authors.forEach( author => {
-                        %>
-                        <option value="<%= author._id%>"><%= author.fullname%></option>
-                    <% })
-                }%>
-            </select>
-          `)
-        }
       }
     </script>
 </body>

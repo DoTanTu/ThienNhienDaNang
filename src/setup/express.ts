@@ -15,7 +15,7 @@ export default ({ app , db }: { app: express.Application, db : any}) => {
   app.use(bodyParser.json({limit: "50mb"}));
   app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 
-  app.use(compression());
+  // app.use(compression());
   app.use(minify());
   app.use(minifyHTML({
     override:      true,
@@ -27,7 +27,8 @@ export default ({ app , db }: { app: express.Application, db : any}) => {
         removeAttributeQuotes:     true,
         removeEmptyAttributes:     true,
     }
-}));
+  })
+  );
 
   //init js, css
   app.use('/public', express.static("public"));

@@ -29,18 +29,27 @@
                                         if(item.hashtags[0] !== 'san_pham_dai_dien'){
                                         name = item.name;
                                         pdfPath = item.pdf;
+                                        authors = item.authors;
                                    %>
                                 <div class="cot-12 cot-6-lg d-flex gap-3 gap-md-3">
                                     <div class="home-tulieu-img">
                                         <img class="mb-2" src="../public/app/images/icon/pdf-file.svg" alt="">
                                         <a href="javascript.void(0);" data-action="download" data-post-id="<%= item._id%>" data-path="<%= pdfPath%>">Tải xuống</a>
                                     </div>
-                                    <div class="home-tulieu-text">
+                                    <div class="home-tulieu-text w-100">
                                         <a href="<%= name.replace(/ /g , '-')%>-<%= item.pageId %>.<%= item._id %>.html">
                                             <h5 class="mb-3 br-line-3"><%= name%></h5>
                                         </a>
                                         <div class="home-tulieu-date d-flex justify-content-around">
-                                            <span><%= item.additional.authorName%></span>
+                                           <div>
+                                               <%if(authors){
+                                                   authors.forEach( (authorItem, index) =>  {%>
+                                                    <span>
+                                                        <%if(index == 0){%><%}else{%>,<%}%> <%= authorItem.fullname%>
+                                                    </span>
+                                                    <%})
+                                                }%>
+                                           </div>
                                             <span><%= item.additional.publishYear%></span>
                                         </div>
                                     </div>

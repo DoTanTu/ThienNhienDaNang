@@ -1,8 +1,6 @@
 <% 
     var setSelectedOption = null;
     var typeofValue = null;
-    var authorId = null;
-    var authorName = null;
     var copyright = null;
     var publishYear = null;
     var source = null;
@@ -15,10 +13,17 @@
     var timeStart = null;
     var timeEnd = null;
     var address = null;
+    var author = "";
+    var authorEdit = "";
+    if(listAuthors !== undefined && listAuthors !== null){
+        authorEdit = JSON.stringify(listAuthors);
+        if (currentAuthors) {
+            author = currentAuthors.map(x => x.fullname)
+        };
+    }
+   
     if (additionalData != undefined && additionalData != null) {
         typeofValue = additionalData.typeof;
-         authorId = additionalData.authorId;
-         authorName = additionalData.authorName;
          copyright = additionalData.copyright;
          publishYear = additionalData.publishYear;
          source = additionalData.source;
@@ -31,7 +36,8 @@
          timeStart = additionalData.timeStart;
          timeEnd = additionalData.timeEnd;
          address = additionalData.address;
-   } %>
+   } ;
+   %>
 
 <div class="mb-4 card accordion-item" >
     <label class="form-label">Thông tin bổ sung</label>
@@ -48,46 +54,22 @@
             <option value="connect" <%= typeofValue === 'connect' ? 'selected' : '' %>>Kết nối đó đây</option>
             <option value="event" <%= typeofValue === 'event' ? 'selected' : '' %>>Sự kiện</option>
         </select>
-        
     </div>
     <div class="display_content " id="displayContent">
 
         <div class="option_one <%if(typeofValue === null || typeofValue !== 'event'){%>d-block<%}else{%>d-none<%}%> ps-4 pb-3">
             <div class=" row justify-content-around">
                 <div class="form-group mt-4">
-                    <div class="d-flex mb-2">
-                        <div class="form-check me-4">
-                            <input class="form-check-input" <%if(authorId === null || authorId !== ''){%>checked<%}%> type="radio"  name="flexRadioDefault" id="flexRadioDefault1" onclick="toggleAuthorOptions('<%= authorId%>')">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                              Chọn tác giả từ danh sách
-                            </label>
+                    <label for="" class="me-2">Tác giả:</label>
+                    <div id="author-view">
+                        <div class="mb-3 mt-1" id="author" data-authors="<%= encodeURI(authorEdit)%>">
+                            <input name="authors" hidden></input>
+                            <input name='input-custom-dropdown-author' class='some_class_name form-control' placeholder='Chọn tác giả' value='<%= author%>'>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" <%if(authorId !== null && authorId === ''){%>checked<%}%> type="radio" name="flexRadioDefault" id="flexRadioDefault2" onclick="toggleAuthorOptions('news')">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                              Nhập tác giả
-                            </label>
-                        </div>
-                    </div>
-                    <input type="text" name="authorName" hidden>
-                    <input type="text" name="authorId" hidden>
-                    <div id="authorOption">
-                        <%if(authorId !== null && authorId === ''){%>
-                            <input class="form-control w-100" id="inputNameAuthor" type="text" value="<%= authorName%>">
-                        <%}else{%>
-                            <select class="form-control w-100 form-select" id="authorId">
-                                <option value="">Chọn tác giả hiện có</option>
-                                <%if(authors && authors.length > 0){
-                                    authors.forEach( author => { %>
-                                        <option value="<%= author._id%>" <%if(author._id == authorId){%>selected<%}%>><%= author.fullname%></option>
-                                <% })
-                                }%>
-                            </select>
-                        <%}%>
                     </div>
                 </div>
 
-                <div id="additionalDocument" class="<%if(typeofValue === null){%>d-block<%}%>">
+                <div id="additionalDocument" class="<%if(typeofValue !== null || typeofValue !== 'image' || typeofValue !== 'event'){%>d-block<%}%>">
                     <div class="form-group mt-4 col-6">
                         <label class="d-block" for="">Tác quyền</label>
                         <input class="form-control w-100" name="copyright" type="text" value="<%= copyright%>">
@@ -102,7 +84,7 @@
                     </div>
                 </div>
 
-                <div id="additionalImage" class="d-none">
+                <div id="additionalImage" class="<%if(typeofValue == 'image'){%>d-block<%}else{%>d-none<%}%>">
                     <div class="form-group mt-4">
                         <label class="d-block" for="">Tên tiếng việt</label>
                         <input class="form-control w-100" type="text" name="nameVn" value="<%= nameVn%>">
@@ -179,6 +161,5 @@
               </div>
             </div>
         </div>
-
     </div>
 </div>

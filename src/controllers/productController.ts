@@ -109,7 +109,7 @@ export default class ProductController {
       let languages = await langServiceInstance.getLanguages()
 
       const authorServiceInstance = Container.get(CustomerService);
-      let authors = await authorServiceInstance.getActiveCustomersList();
+      let listAuthors = await authorServiceInstance.getActiveCustomersList();
 
       const appServiceInstance = Container.get(AppService);
       let app = await appServiceInstance.getApp();
@@ -125,7 +125,7 @@ export default class ProductController {
         languages : languages,
         role: req.session.user.role,
         username : req.session.user.name,
-        authors : authors
+        listAuthors : listAuthors
       });
   }
 
@@ -141,9 +141,15 @@ export default class ProductController {
       if (req.body.category) {
         categories = JSON.parse(req.body.category)
       }
+
       var hashtags = []
       if (req.body.hashtags) {
         hashtags = JSON.parse(req.body.hashtags)
+      }
+
+      var authors = []
+      if (req.body.authors) {
+        authors = JSON.parse(req.body.authors)
       }
 
       var descriptionPlusData = []
@@ -152,10 +158,10 @@ export default class ProductController {
       }
 
       const attributeInstance = Container.get(AttributeService);
-      let attributes = await attributeInstance.getAttributes(req.body.pageCurrent)
+      let attributes = await attributeInstance.getAttributes(req.body.pageCurrent);
       
-      var ecommerce = null
-      var ecommercePlus = null
+      var ecommerce = null;
+      var ecommercePlus = null;
 
       if (req.body.platform == APPTYPE.EcommercePlus) {
         ecommercePlus = this.getEcommercePlus(req, attributes)
@@ -171,8 +177,6 @@ export default class ProductController {
   
       var additional = {
         typeof: req.body.typeof,        
-        authorId: req.body.authorId,
-        authorName:req.body.authorName,
         copyright: req.body.copyright,
         publishYear: req.body.publishYear,
         source: req.body.source,
@@ -218,13 +222,11 @@ export default class ProductController {
         seoDesc: req.body.seoDesc,
         status: req.body.status,
         userPost: req.session.user.userId,
+        authors : authors,
         label: req.body.label
       } as unknown as IProductInputDTO);
 
       if (items) {
-        if(req.body.authorId !== '' && req.body.authorId !== null ){
-          await contributeInstance.addAndUpdateContribution(req.body.authorId, items._id);
-        }
         res.status(200).json({ success: true, data: '' });
       } else {
         res.status(200).json({ success: false, data: '' });
@@ -244,7 +246,7 @@ export default class ProductController {
     var categories = null
     if (pageSetting != null && pageSetting.setting != null && pageSetting.setting.isCategory == true) {
       const serviceInstance = Container.get(CategoryService);
-      categories = await serviceInstance.getCategories(pageId)
+      categories = await serviceInstance.getCategories(pageId);
     }
 
     const productInstance = Container.get(ProductService);
@@ -264,7 +266,7 @@ export default class ProductController {
     let languages = await langServiceInstance.getLanguages();
 
     const authorServiceInstance = Container.get(CustomerService);
-    let authors = await authorServiceInstance.getActiveCustomersList();
+    let listAuthors = await authorServiceInstance.getActiveCustomersList();
 
     res.render('./admin/product/edit', {
       router : pageId + "/product",
@@ -273,7 +275,7 @@ export default class ProductController {
       pageCurrent : pageId,
       pageSetting : pageSetting,
       attributes : attributes,
-      authors : authors,
+      listAuthors : listAuthors,
       data : dataProduct,
       app : app,
       pages : pages,
@@ -426,6 +428,11 @@ export default class ProductController {
       hashtags = JSON.parse(req.body.hashtags)
     }
 
+    var authors = []
+    if (req.body.authors) {
+      authors = JSON.parse(req.body.authors);
+    }
+
     var descriptionPlusData = null
     if (req.body.descriptionPlus) {
       descriptionPlusData = JSON.parse(req.body.descriptionPlus)
@@ -448,8 +455,6 @@ export default class ProductController {
 
     var additional = {
       typeof: req.body.typeof,        
-      authorId: req.body.authorId,
-      authorName: req.body.authorName,
       copyright: req.body.copyright,
       publishYear: req.body.publishYear,
       source: req.body.source,
@@ -488,7 +493,8 @@ export default class ProductController {
         label : req.body.label,
         status : req.body.status,
         languages : this.getLanguages(req),
-        userPost : req.session.user.userId
+        userPost : req.session.user.userId,
+        authors : authors
       }
     }else{
       return {
@@ -521,7 +527,8 @@ export default class ProductController {
         seoKeyWord : req.body.seoKey,
         seoDesc : req.body.seoDesc,
         status : req.body.status,
-        userPost : req.session.user.userId
+        userPost : req.session.user.userId,
+        authors : authors
       } as IProductInputDTO
     }
   }

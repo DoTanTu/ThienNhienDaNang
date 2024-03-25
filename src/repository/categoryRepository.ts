@@ -85,7 +85,7 @@ export default class CategoryRepository implements ICategoryRepository {
   public async getCategoryInfo(query : ICategoryQuery ,isFullFieldProduct : any): Promise<ICategory> {
     var populateProducts : any = {
       path: "products",
-      select: "_id url pageId showTop categoryIds name images counter ecommercePlus ecommerce desShort label hashtags createdAt languages",     
+      select: "_id url pageId showTop categoryIds name images counter ecommercePlus ecommerce desShort label hashtags createdAt languages",
       match: {
         'status': { $in: [STATUS.Active] },
         'is_delete': { $in: [null, false] }

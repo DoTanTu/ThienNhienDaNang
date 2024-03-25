@@ -58,7 +58,7 @@
                                             if(prod.label === 'BÀI GIẢNG'){
                                                 name = prod.name;
                                                 pathImage = prod.images[0]?.image || '';
-                                                author = prod.additional.author;
+                                                authors = prod.authors;
                                                 publishYear = prod.additional.publishYear;
                                            %>
 
@@ -71,7 +71,15 @@
                                                 <h5 class="mb-3 br-line-2"><%= name%></h5>
                                             </a>
                                             <div class="home-tulieu-date d-flex justify-content-around">
-                                                <span><%= author%></span>
+                                                <div>
+                                                    <%if(authors && authors.length > 0){
+                                                        authors.forEach( (item, index) => {%>
+                                                            <span>
+                                                                <%if(index == 0){%><%}else{%>, <%}%><%= item.fullname%>
+                                                            </span>
+                                                        <%})
+                                                    }%>
+                                                </div>
                                                 <span><%= publishYear%></span>
                                             </div>
                                         </div>
@@ -96,13 +104,20 @@
                                             <img class="mb-2" src="../public/app/images/icon/pdf-file.svg" alt="">
                                         
                                         </div>
-                                        <div class="home-tulieu-text  w-100">
+                                        <div class="home-tulieu-text w-100">
                                             <a href="<%= name.replace(/ /g , '-')%>-<%= prod.pageId %>.<%= prod._id %>.html">
                                                 <h5 class="mb-3 br-line-2"><%= name%></h5>
                                             </a>
                                             <div class="home-tulieu-date d-flex justify-content-around">
-                                                <span>Trương Quốc Đại</span>
-                                                <span>10/06/2022</span>
+                                                <div class="overflow-auto">
+                                                    <%if(authors && authors.length > 0){
+                                                        authors.forEach( (item, index) => {%>
+                                                            <span>
+                                                                <%if(index == 0){%><%}else{%>, <%}%><%= item.fullname%>
+                                                            </span>
+                                                        <%})
+                                                    }%>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

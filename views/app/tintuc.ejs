@@ -26,6 +26,8 @@
                         name = item.name;
                         pathImage = item.images[0]?.image || "";
                         desShort = item.desShort;
+                        createdAt = item.createdAt;
+                        userPost = item.userPost;
                    %>
                     <div class="tintuc-box row-change mb-5">
                         <div class="cot-12 cot-4-md">
@@ -38,7 +40,7 @@
                             <a href="<%= name.replace(/ /g , '-')%>-<%= item.pageId %>.<%= item._id %>.html">
                                 <h4 class="br-line-2 mb-2"><%= name%></h4>
                             </a>
-                            <span class="mb-2">Đăng ngày 02/07/2022 bởi Trần Quốc Đại (tác giả)</span>
+                            <span class="mb-2">Đăng ngày <%= new Date(createdAt).toLocaleDateString('vi-VN')%> bởi <%= userPost%></span>
                             <p class="br-line-3"><%= desShort%></p>
                         </div>
                     </div>

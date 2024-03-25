@@ -48,6 +48,23 @@ $(document).ready(function() {
       }
     });
 
+    var inputAuthor = document.querySelector('input[name="input-custom-dropdown-author"]')
+    let authors = decodeURI($('#author').data("authors"))
+    let dataAuthor = []
+    if (authors != 'undefined' && authors != null && authors != "") {
+      dataAuthor = JSON.parse(authors)
+    }
+    var tagifyAuthor = new Tagify(inputAuthor, {
+      whitelist: dataAuthor.map(author => ({ value: author.fullname, _id: author._id })),
+      maxTags: 10,
+      dropdown: {
+        maxItems: 20,
+        classname: "tags-look",
+        enabled: 0,
+        closeOnSelect: false
+      },
+    });
+
     if (treeCategory) {
       var cateIds = $('#category').val()
       if (cateIds) {
@@ -239,22 +256,16 @@ $(document).ready(function() {
         })
       }
 
-      var idAuthor = '';
-      var nameAuthor = '';
-      const inputNameAuthor = $('#inputNameAuthor');
-
-      if(inputNameAuthor.val() !== undefined){
-        idAuthor = '';
-        nameAuthor = inputNameAuthor.val();
-      }else{
-        idAuthor = $('select[id="authorId"] option:selected').val();
-        nameAuthor = $('select[id="authorId"] option:selected').text();
-      }
-
       formData.forEach(element => {
           if (element.name == 'hashtags') {
             if (tagify.value) {
               element.value = JSON.stringify(tagify.value.map(x=>x.code))
+            }
+          }
+
+          if (element.name == 'authors') {
+            if (tagifyAuthor.value) {
+              element.value = JSON.stringify(tagifyAuthor.value.map(x=>x._id))
             }
           }
 
@@ -316,7 +327,6 @@ $(document).ready(function() {
           })
         }
     }
-    
 });
 
 function onChangeLanguage(e) {

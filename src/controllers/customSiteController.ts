@@ -108,9 +108,9 @@ export default class CustomSiteController {
                     priceMin: req.query['priceMin'],
                     priceMax: req.query['priceMax'],
                     label : req.query['label']} as IProductQuery, app.platform == "ecommerce_plus");
-                  
                 }else{
                   data.dataProducts = await siteInstance.getProducts(site.pageData.pageId, site.pageData.isFullSizeProduct,site.pageData.limitSizeProduct, site.pageData.isFullFieldProduct);
+                  console.log(data.dataProducts);
                 }
               let numberProducts = await siteInstance.getProductCountByFilter(site.pageData.pageId);
               data.infoPaginateProduct = await this.setPagination(numberProducts, req.query['start'] , site.pageData.limitSizeProduct);
