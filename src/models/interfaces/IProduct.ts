@@ -63,6 +63,7 @@ export interface IProductImage {
   address : string
   source : string
   year: string
+  showTopImage : boolean
 }
 
 export interface IProductEcommerce {

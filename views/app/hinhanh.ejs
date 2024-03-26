@@ -31,10 +31,12 @@
                                 name = prod.name;
                                 let alt = '';
                                 let pathImage = '';
-                                let obImage = prod.images[0];
+                                let obImage = prod.images.find( item => item.showTopImage == true);
                                 if(obImage){
                                     pathImage = obImage.image;
                                     alt = obImage.alt;
+                                }else{
+                                    pathImage = prod.images[0].image
                                 }
                                 imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
                                 numberImage = prod.images.length

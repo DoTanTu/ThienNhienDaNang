@@ -50,12 +50,23 @@ if (document.getElementById("myDropzone") != null) {
         var author = file.upload.author == undefined ? "" :  file.upload.author;
         var time = file.upload.year == undefined ? "" :  file.upload.year;
         var address = file.upload.address == undefined ? "" :  file.upload.address;
+        var showTopImage = file.upload.showTopImage == undefined ? false :  file.upload.showTopImage;
+
+
+        var checkboxHtml =
+          "<input type='checkbox' id='showTop_" + file.upload.uuid + "' class='form-check-input d-block'";
+          if (showTopImage) {
+            checkboxHtml += " checked"; 
+          }
+          checkboxHtml += "></div>";
 
         file._descriptionLabel = Dropzone.createElement("<span></span>");
         file._descriptionBox = Dropzone.createElement("<input id='alt_"+file.upload.uuid+"' style='width: 120px;' class='form-control mt-2' type='text' placeholder='Alt' value='"+description+"'>");
         file._timeBox = Dropzone.createElement("<input id='time_"+file.upload.uuid+"' style='width: 120px;' class='form-control mt-2' type='text' placeholder='Thời gian' value='"+time+"'>");
         file._addressBox = Dropzone.createElement("<input id='address_"+file.upload.uuid+"' style='width: 120px;' class='form-control mt-2' type='text' placeholder='Địa điểm' value='"+address+"'>");
+        file._showTopImage = Dropzone.createElement("<div class='form-control form-check ps-2 d-flex justify-content-between align-items-center mt-4'><div>showTop</div>" + checkboxHtml);
 
+        file.previewElement.appendChild(file._showTopImage);
         file.previewElement.appendChild(file._descriptionLabel);
         file.previewElement.appendChild(file._descriptionBox);
         file.previewElement.appendChild(file._timeBox);

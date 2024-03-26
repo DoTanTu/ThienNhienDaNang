@@ -57,7 +57,7 @@
     </div>
     <div class="display_content " id="displayContent">
 
-        <div class="option_one <%if(typeofValue === null || typeofValue !== 'event'){%>d-block<%}else{%>d-none<%}%> ps-4 pb-3">
+        <div class="option_one <%if(typeofValue != null && typeofValue != 'event'){%>d-block<%}else{%>d-none<%}%> ps-4 pb-3">
             <div class=" row justify-content-around">
                 <div class="form-group mt-4">
                     <label for="" class="me-2">Tác giả:</label>
@@ -69,7 +69,7 @@
                     </div>
                 </div>
 
-                <div id="additionalDocument" class="<%if(typeofValue !== null || typeofValue !== 'image' || typeofValue !== 'event'){%>d-block<%}%>">
+                <div id="additionalDocument" class="<%if(typeofValue !== null && typeofValue !== 'image' && typeofValue !== 'event'){%>d-block<%}else{%>d-none<%}%>">
                     <div class="form-group mt-4 col-6">
                         <label class="d-block" for="">Tác quyền</label>
                         <input class="form-control w-100" name="copyright" type="text" value="<%= copyright%>">

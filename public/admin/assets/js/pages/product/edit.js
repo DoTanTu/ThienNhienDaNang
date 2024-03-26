@@ -92,6 +92,7 @@ $(document).ready(function() {
               author: image.author,
               year: image.year,
               address: image.address,
+              showTopImage : image.showTopImage
             },
             status: "success",
             previewElement: {},
@@ -200,6 +201,7 @@ $(document).ready(function() {
                 author : $('#author_'+x.upload.uuid).val(),
                 year : $('#time_'+x.upload.uuid).val(),
                 address : $('#address_'+x.upload.uuid).val(),
+                showTopImage: $('#showTop_' + x.upload.uuid).prop('checked')
               })
             });
           }

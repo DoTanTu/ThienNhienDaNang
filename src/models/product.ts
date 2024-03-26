@@ -37,6 +37,7 @@ const ProductSchema = new mongoose.Schema(
       copyright : String,
       source : String,
       year : String,
+      showTopImage : { type: Boolean, default: false}
     }],
     pdf : { type: String,  default: ''},
     slide : { type: String,  default: ''},
