@@ -19,7 +19,7 @@
           }
           imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
           %>
-          <img id="image_account" src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
+          <img id="image_account" src="<%= imageResize%>" onerror="javascript:this.src='<%= pathImage%>'" alt="<%= alt%>">
         <%}else{%>
           <img id="image_account" src="../public/app/images/person_default.png" alt="">
         <%}%>

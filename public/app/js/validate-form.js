@@ -37,9 +37,10 @@
         formGroupSelector: '.form-group',
         errorSelector: '.form-message',
         rules: [
-        Validator.isRequired('input[name="fullname"]', 'Vui lòng nhập tên!'),
-        Validator.isRequired('input[name="copyright"]', 'Vui lòng nhập tác quyền!'),
-        Validator.isRequired('input[name="phone"]', 'Vui lòng nhập số điện thoại!'),
+        Validator.isRequired('input[name="fullname"]', 'Trường này là bắt buộc.'),
+        Validator.isRequired('input[name="copyright"]', 'Trường này là bắt buộc.'),
+        Validator.isRequired('input[name="phone"]', 'Trường này là bắt buộc.'),
+        Validator.isCheck('input[name="checkbox"]', 'Trường này là bắt buộc.'),
         ],
         onSubmit: function(dataForm) {
             const customer = {

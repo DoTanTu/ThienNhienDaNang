@@ -116,7 +116,12 @@ Validator.isConfirmPassword = function(selector, getPassword, message){
     };
 }
 
-
-
-
-   
+Validator.isCheck = function(selector, message){
+    return {
+        selector: selector,
+        test: function(value){
+            var inputElement = document.querySelector(selector);
+            return inputElement.checked ? undefined : message || 'Vui lòng chọn trường này';
+        }
+    };
+}

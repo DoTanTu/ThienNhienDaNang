@@ -110,7 +110,8 @@ $(document).ready(function() {
                  var html = '<div class="dropdown">'
                  +'<button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>'
                  +'<div class="dropdown-menu">'
-                 + ' <a class="dropdown-item"  href="/admin.'+full['pageId']+'/edit-product?productId='+full['_id']+'"><i class="bx bx-edit-alt me-2"></i> Edit</a>'
+                 + ' <a class="dropdown-item"  href="/admin.' + full['pageId']+'/edit-product?productId='+full['_id']+'"><i class="bx bx-edit-alt me-2"></i> Edit</a>'
+                 + ' <a class="dropdown-item" href="/'+ full['name'].replace(/ /g , '-') + '-' + full['pageId'] + '.' +full['_id']+ '.html"><i class="bx bx-edit-alt me-2"></i> Xem demo</a>'
                  if (actions != null && actions.some(x=> x == "Delete")) {
                   html = html +' <a class="dropdown-item" id="'+full['_id']+'" onclick="confirmDelete(\''+full['_id']+'\')"><i class="bx bx-trash me-2"></i> Delete</a>'
                  }
