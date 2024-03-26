@@ -738,9 +738,9 @@ body .navbar.active {
 }
 
 .dropdown-item {
-    white-space: break-spaces;
+    /* white-space: break-spaces;
     display: flex;
-    align-items: center;
+    align-items: center; */
 }
 
 
