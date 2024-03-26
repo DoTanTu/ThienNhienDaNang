@@ -5,10 +5,11 @@ import Logger from './setup/logger';
 // const https = require("https");
 const fs = require("fs");
 const path = require('path');
+const passport = require('passport');
 
 async function startServer() {
   const app = express();
-
+  await require('../src/config/passport')(passport);
   await require('./setup/index').default({ expressApp: app });
 
   app.listen(config.port, () => {

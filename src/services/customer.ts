@@ -52,6 +52,14 @@ export default class CustomerService implements ICustomerService {
     } 
   }
 
+  public async findCustomerByEmail(email : string) : Promise<any>{
+    return await this.CustomerRepo.findCustomerByEmail(email);
+  }
+
+  public async addCustomerWithGoogle(email : string, fullname : string, avatar : string) : Promise<any>{
+    return await this.CustomerRepo.addCustomerWithGoogle(email, fullname, avatar);
+  }
+
   public async getActiveCustomersList() : Promise<any[]>{
     return await this.CustomerRepo.getActiveCustomersList()
   }

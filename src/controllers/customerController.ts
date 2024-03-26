@@ -63,8 +63,6 @@ export default class CustomerController {
     }
   }
 
-  public async Add(req, ress)
-
   public async Add(req, res) {
     const serviceInstance = Container.get(PageService);
     let pages = await serviceInstance.getPages();
@@ -79,7 +77,6 @@ export default class CustomerController {
 
   public async AddCustomer(req, res) {
     try {
-
       const serviceInstance = Container.get(CustomerService);
       var username = req.body.username;
       if(!username){
@@ -116,8 +113,6 @@ export default class CustomerController {
         res.status(200).json({ success: false, data: "" });
       }
     } catch (e) {
-      console.log(e);
-      
       res.status(200).json({ success: false, data: "" });
     }
   }
@@ -236,6 +231,8 @@ export default class CustomerController {
       res.status(200).json({ success: false, error: "Register Error" });
     }
   }
+
+  
 
   public async LogoutCustomer(req, res) {
     if (req.session) {

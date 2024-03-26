@@ -8,6 +8,7 @@ import isAuthCustomer from '../middlewares/isAuthCustomer';
 const fs = require('fs');
 const path = require('path');
 
+
 export class CustomerRouter {
   constructor(private app: express.Application) {
     this.setRoutes(new controllers());

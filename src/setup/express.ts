@@ -9,9 +9,9 @@ var MongoStore = require('connect-mongo')(session);
 var compression = require('compression')
 var minify = require('express-minify');
 var minifyHTML = require('express-minify-html');
+const passport = require('passport');
 
 export default ({ app , db }: { app: express.Application, db : any}) => {
-
   app.use(bodyParser.json({limit: "50mb"}));
   app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 
@@ -59,6 +59,9 @@ export default ({ app , db }: { app: express.Application, db : any}) => {
       mongooseConnection: db
     }),
   }));
+
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   app.use(i18nApp)
   // Load API routes

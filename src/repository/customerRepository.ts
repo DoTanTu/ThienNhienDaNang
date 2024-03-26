@@ -115,9 +115,7 @@ export default class CustomerRepository implements ICustomerRepository {
     }).count();
   }
 
-  public async addCustomer(
-    CustomerInputDTO: ICustomerInputDTO
-  ): Promise<ICustomer> {
+  public async addCustomer(CustomerInputDTO: ICustomerInputDTO): Promise<ICustomer> {
     try {
       const salt = randomBytes(32);
       this.logger.silly("Hashing password");
@@ -144,6 +142,15 @@ export default class CustomerRepository implements ICustomerRepository {
       this.logger.error(e);
       throw e;
     }
+  }
+
+  public async findCustomerByEmail(email : string): Promise<any> {
+    return await this.CustomerModel.findOne({'email' :email})
+  }
+
+  
+  public async addCustomerWithGoogle(email: string, fullname : string, avatar : string): Promise<any> {
+    return await this.CustomerModel.create({'email' :email, 'fullname' :fullname, 'avatar' : avatar , 'isActive' : true});
   }
 
   public async addCustomerDownload(CustomerId: string, productId: string): Promise<any> {

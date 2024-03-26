@@ -72,15 +72,18 @@ export class CustomSiteRouter {
       }
     );
 
-    this.app.get("/auth/google", passport.authenticate("google", {
-        scope: ["profile"]
-      }));
+    this.app.get(
+      "/auth/google",
+       passport.authenticate(
+        "google",
+         { scope: ["profile", 'email']}
+        )
+      );
 
     this.app.get(
       "/auth/google/callback",
       passport.authenticate("google", { failureRedirect: "/login" }),
       function(req, res) {
-        // Successful authentication, redirect home.
         res.redirect("/");
       }
     );

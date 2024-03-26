@@ -63,6 +63,9 @@ export default class CustomSiteController {
           if(req.session.customer){
             data.dataBasicInfo = await siteInstance.getDataBasicInfo(req.session.customer.customerId);
           }
+          if(req.session.passport){
+            data.dataBasicInfo = await siteInstance.getDataBasicInfo(req.session.passport.user.customerId);
+          }
 
           if (site.isSiteProductDetail) {
             let idProduct = Utils.getIdUrlSiteDetail(req.params.url)
@@ -110,7 +113,7 @@ export default class CustomSiteController {
                     label : req.query['label']} as IProductQuery, app.platform == "ecommerce_plus");
                 }else{
                   data.dataProducts = await siteInstance.getProducts(site.pageData.pageId, site.pageData.isFullSizeProduct,site.pageData.limitSizeProduct, site.pageData.isFullFieldProduct);
-                  console.log(data.dataProducts);
+          
                 }
               let numberProducts = await siteInstance.getProductCountByFilter(site.pageData.pageId);
               data.infoPaginateProduct = await this.setPagination(numberProducts, req.query['start'] , site.pageData.limitSizeProduct);
@@ -131,9 +134,13 @@ export default class CustomSiteController {
         }
 
         var sessionCustomer = null
-        if (req.session != undefined && req.session.customer != null) {
+        if (req.session != undefined && req.session.customer != null ) {
           sessionCustomer = req.session.customer
+        }else if(req.session != undefined && req.session.passport != undefined){
+          sessionCustomer = req.session.passport.user
         }
+        
+
         if (site && data.fileEjsName) {
           res.render('./app/' + data.fileEjsName, {
             urlCurrentName : req.params.url,

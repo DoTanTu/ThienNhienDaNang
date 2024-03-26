@@ -4,6 +4,9 @@ import config from '../config';
 export default async (req, res, next) => {
     var  decrypt;
         try {
+            if(req.session.passport != undefined){
+              return next()
+            }
             if (!req.session || !req.session.customer) {
               return res.status(200).json({ success: false});
             }
