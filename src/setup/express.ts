@@ -15,20 +15,20 @@ export default ({ app , db }: { app: express.Application, db : any}) => {
   app.use(bodyParser.json({limit: "50mb"}));
   app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 
-  // app.use(compression());
-  app.use(minify());
-  app.use(minifyHTML({
-    override:      true,
-    exception_url: false,
-    htmlMinifier: {
-        removeComments:            true,
-        collapseWhitespace:        true,
-        collapseBooleanAttributes: true,
-        removeAttributeQuotes:     true,
-        removeEmptyAttributes:     true,
-    }
-  })
-  );
+  // // app.use(compression());
+  // app.use(minify());
+  // app.use(minifyHTML({
+  //   override:      true,
+  //   exception_url: false,
+  //   htmlMinifier: {
+  //       removeComments:            true,
+  //       collapseWhitespace:        true,
+  //       collapseBooleanAttributes: true,
+  //       removeAttributeQuotes:     true,
+  //       removeEmptyAttributes:     true,
+  //   }
+  // })
+  // );
 
   //init js, css
   app.use('/public', express.static("public"));
