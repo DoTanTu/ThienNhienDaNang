@@ -7,7 +7,26 @@ $(document).ready(function () {
           data: $(this).serialize(),
           success: function(response) {
 			if(response.success === true) {
-				window.location.href = "./";
+				Swal.fire({
+					title: "Mật khẩu đã được gửi về email của bạn.",
+					showClass: {
+					  popup: `
+						animate__animated
+						animate__fadeInDown
+						animate__faster
+					  `
+					},
+					hideClass: {
+					  popup: `
+						animate__animated
+						animate__fadeOutUp
+						animate__faster
+					  `
+					},
+					willClose: () => {
+						window.location.href = './'
+					  }
+				  });
 			}else{
 				Toast.fire({
 					icon: 'error',
