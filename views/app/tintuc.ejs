@@ -23,17 +23,25 @@
                     if(dataProducts && dataProducts.length > 0){
                     dataProducts.forEach( item => {
                         if(item.categoryIds[0] === 'avVK0giPU'){
-                        name = item.name;
-                        pathImage = item.images[0]?.image || "";
-                        desShort = item.desShort;
-                        createdAt = item.createdAt;
-                        userPost = item.userPost;
+                            name = item.name;
+                            let alt = '';
+                            let pathImage = '';
+                            let obImage = prodRelated.images.find( item => item.showTopImage == true);
+                            if(obImage){
+                                pathImage = obImage.image;
+                                alt = obImage.alt;
+                            }else{
+                                pathImage = prodRelated.images[0].image
+                            }
+                            imageResize = pathImage.replace('images/', 'thumbnail/480/').replace(/\.(png|jpg|jpeg|JPG)$/i, '.webp');
+                            desShort = item.desShort;
+                            createdAt = item.createdAt;
+                            userPost = item.userPost;
                    %>
                     <div class="tintuc-box row-change mb-5">
                         <div class="cot-12 cot-4-md">
                             <div class="tintuc-box-img">
-                                <img src="../<%= pathImage%>"
-                                    alt="<%= name%>">
+                                <img src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
                             </div>
                         </div>
                         <div class="cot-12 cot-8-md tintuc-detail">

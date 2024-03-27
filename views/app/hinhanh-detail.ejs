@@ -137,15 +137,15 @@
                             dataProducts.forEach( prodRelated => {
                                 if(prodRelated._id !== dataProductDetail._id){
                                     let alt = '';
-                                let pathImage = '';
-                                let obImage = prodRelated.images.find( item => item.showTopImage == true);
-                                if(obImage){
-                                    pathImage = obImage.image;
-                                    alt = obImage.alt;
-                                }else{
-                                    pathImage = prodRelated.images[0].image
-                                }
-                                imageResize = pathImage.replace('images/', 'thumbnail/480/').replace(/\.(png|jpg|jpeg|JPG)$/i, '.webp');
+                                    let pathImage = '';
+                                    let obImage = prodRelated.images.find( item => item.showTopImage == true);
+                                    if(obImage){
+                                        pathImage = obImage.image;
+                                        alt = obImage.alt;
+                                    }else{
+                                        pathImage = prodRelated.images[0].image
+                                    }
+                                    imageResize = pathImage.replace('images/', 'thumbnail/480/').replace(/\.(png|jpg|jpeg|JPG)$/i, '.webp');
                                     %>
                                     <div class="item">
                                         <div class="img-box trans-3 mb-3">

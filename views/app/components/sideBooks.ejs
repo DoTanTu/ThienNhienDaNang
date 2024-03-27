@@ -26,7 +26,7 @@
                 }else{
                     pathImage = prod.images[0]?.image !== undefined ? prod.images[0]?.image : "";
                 }
-                imageResize = pathImage.replace('images/', 'thumbnail/480/').replace(/\.(png|jpg|jpeg|JPG)$/i, '.webp');
+                imageResize = pathImage.replace('images/', 'thumbnail/250/').replace(/\.(png|jpg|jpeg|JPG)$/i, '.webp');
                 const createdAt = new Date(prod.createdAt);
                 const formattedDate = createdAt.toLocaleString();
         %>

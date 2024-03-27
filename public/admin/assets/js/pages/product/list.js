@@ -57,7 +57,7 @@ $(document).ready(function() {
                  let htmlImage =  "<ul class=\"list-unstyled d-flex align-items-center avatar-group mb-0\">"
                  full['images'].forEach(element => {
                     htmlImage = htmlImage + "<li data-bs-toggle=\"tooltip\" data-popup=\"tooltip-custom\" data-bs-placement=\"top\" class=\"avatar avatar-sm pull-up\">"
-                    +"<img class=\"rounded-circle\" src=\"/"+element.image+"\" alt=\"Avatar\">"
+                    +"<img class=\"rounded-circle\" src=\"/"+element.image.replace('images/', 'thumbnail/250/').replace(/\.(png|jpg|jpeg|JPG)$/i, '.webp') +"\" alt=\"Avatar\">"
                     + "</li>"
                  });
                   htmlImage = htmlImage +"</ul>"
