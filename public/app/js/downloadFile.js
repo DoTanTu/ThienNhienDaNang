@@ -74,13 +74,11 @@
 
             const modal = $('#downloadModal');
             let pathFile = $(this).attr('href') || null;
-            // modal.find('a[name="downloadFile"]').attr('href', "../" + pathFile);
-            // modal.find('a[name="downloadFile"]').attr('download', imageName);
+            modal.find('a[name="downloadFile"]').attr('href', "../" + pathFile);
+            modal.find('a[name="downloadFile"]').attr('download', imageName);
             modal.find('a[name="downloadFile"]').on('click', function(){
-                saveAs(urlImage, 'just demo')
                 modal.modal('hide');
             });
-            const urlImage = $(this).attr('href');
             modal.modal('show');
         }else{
             modalLogin.modal('show');
