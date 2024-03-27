@@ -68,11 +68,10 @@
     };
 
     $(document).on('click', 'a[data-action="downloadImage"]', function (e) {
-
+        var imageName = $('#namePost').val();
         if(isUserLogin === 'true'){
             e.preventDefault();
             var imageUrlCurrent = $(this).attr('href');
-            var imageName = $('#namePost').val();
             var downloadLink = $('<a>', { href: imageUrlCurrent , download : imageName});
             $('body').append(downloadLink);
             downloadLink[0].click();
