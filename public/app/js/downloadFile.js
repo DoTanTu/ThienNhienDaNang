@@ -71,9 +71,9 @@
 
         if(isUserLogin === 'true'){
             e.preventDefault();
-            var imageUrl = $(this).attr('href');
+            var imageUrlCurrent = $(this).attr('href');
             var imageName = $('#namePost').val();
-            var downloadLink = $('<a>', { href: imageUrl , download : imageName});
+            var downloadLink = $('<a>', { href: imageUrlCurrent , download : imageName});
             $('body').append(downloadLink);
             downloadLink[0].click();
             downloadLink.remove();
