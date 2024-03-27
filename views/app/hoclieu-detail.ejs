@@ -173,6 +173,7 @@
                             </div>
                         <%}else if(prod.label === 'HÌNH ẢNH'){%>
                             <div>
+                                <h3 class="h3-title mb-5 underline" id="namePost"><%= prod.name%></h3>
                                 <div class="hinhanh-gallery-detail gallery-container d-flex align-items-center justify-content-center mb-5" id="gallery-container">
                                     <%if(prod.images.length > 0 ){
                                             prod.images.forEach((imageItem) => {

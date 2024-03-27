@@ -21,7 +21,7 @@
                     <% if(dataProductDetail){
                         prod = dataProductDetail;
                         authors = prod.authors %>
-                        <h3 class="h3-title mb-5 underline"><%= prod.name%></h3>
+                        <h3 class="h3-title mb-5 underline" id="namePost"><%= prod.name%></h3>
                         <div class="hinhanh-gallery-detail gallery-container d-flex align-items-center justify-content-center mb-5" id="gallery-container">
                             
                             <%if(prod.images.length > 0 ){
