@@ -71,11 +71,14 @@
         var imageName = $('#namePost').val();
         if(isUserLogin === 'true'){
             e.preventDefault();
-            var imageUrlCurrent = $(this).attr('href');
-            var downloadLink = $('<a>', { href: imageUrlCurrent , download : imageName});
-            $('body').append(downloadLink);
-            downloadLink[0].click();
-            downloadLink.remove();
+
+            const modal = $('#downloadModal');
+            let pathFile = $(this).attr('href') || null;
+            modal.find('a[name="downloadFile"]').attr('href', "../" + pathFile);
+            modal.find('a[name="downloadFile"]').on('click', function(){
+                modal.modal('hide');
+            });
+            modal.modal('show');
         }else{
             modalLogin.modal('show');
         }
