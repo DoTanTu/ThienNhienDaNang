@@ -68,14 +68,14 @@
     };
 
     $(document).on('click', 'a[data-action="downloadImage"]', function (e) {
-        var imageName = $('#namePost').val();
+        var imageName = $('#namePost').text();
         if(isUserLogin === 'true'){
             e.preventDefault();
 
             const modal = $('#downloadModal');
             let pathFile = $(this).attr('href') || null;
             modal.find('a[name="downloadFile"]').attr('href', "../" + pathFile);
-            modal.find('a[name="downloadFile"]').attr('download', 'Thu thủy abc');
+            modal.find('a[name="downloadFile"]').attr('download', imageName);
             modal.find('a[name="downloadFile"]').on('click', function(){
                 modal.modal('hide');
             });
