@@ -24,7 +24,7 @@
                     pathImage = obImage.image;
                     alt = obImage.alt;
                 }else{
-                    pathImage = prod.images[0].image
+                    pathImage = prod.images[0].image || null;
                 }
                 imageResize = pathImage.replace('images/', 'thumbnail/480/').replace(/\.(png|jpg|jpeg|JPG)$/i, '.webp');
                 const createdAt = new Date(prod.createdAt);
