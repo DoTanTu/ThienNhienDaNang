@@ -80,6 +80,7 @@ export default class PageController {
           isProductContact: req.body.isProductContact == 'on',
           isLockDelete : req.body.isLockDelete == 'on',
           isDescriptionPlus : req.body.isDescriptionPlus == 'on',
+          isViewDemo : req.body.isViewDemo == 'on',
           referencePageId : req.body.referencePageId
         },
         seoTitle: req.body.seoTitle,
@@ -136,6 +137,7 @@ export default class PageController {
           isProductContact: req.body.isProductContact == 'on',
           isLockDelete : req.body.isLockDelete == 'on',
           isDescriptionPlus : req.body.isDescriptionPlus == 'on',
+          isViewDemo : req.body.isViewDemo == 'on',
           referencePageId : req.body.referencePageId
         },
         seoTitle: req.body.seoTitle,

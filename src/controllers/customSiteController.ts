@@ -17,9 +17,6 @@ export default class CustomSiteController {
       if(languageCodeCurrent == undefined || languageCodeCurrent == null || languageCodeCurrent == ""){
         languageCodeCurrent = i18n.getLocale()
       }
-      console.log('--------owr trang chinh----------')
-      console.log(req.session)
-      console.log('---------------heets essson---------')
       if (sites) {
         let data = {
           fileEjsName: null,

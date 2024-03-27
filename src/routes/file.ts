@@ -77,7 +77,7 @@ export class FileRouter {
       },
       fileFilter: function(req, file, callback) {
         var ext = path.extname(file.originalname)
-        if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+        if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg' && ext !== 'JPG') {
             return callback( /*res.end('Only images are allowed')*/ null, false)
         }
 

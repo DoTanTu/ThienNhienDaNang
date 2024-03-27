@@ -9,6 +9,7 @@
   var isProductContact = false
   var isLockDelete = false
   var isDescriptionPlus = false
+  var isViewDemo = false
 
   if (dataSetting != undefined && dataSetting != null) {
     isCategory = dataSetting.isCategory 
@@ -21,6 +22,7 @@
     isProductContact = dataSetting.isProductContact
     isLockDelete = dataSetting.isLockDelete
     isDescriptionPlus = dataSetting.isDescriptionPlus
+    isViewDemo = dataSetting.isViewDemo
   } %>
 
 <div class="card accordion-item mb-4">
@@ -112,7 +114,16 @@
               <input class="form-check-input" type="checkbox" id="cbDescriptionPlus" <% if(isDescriptionPlus == true){%> checked <%}%> name="isDescriptionPlus" />
             </div>
         </div>
-    </div>
+      </div>
+
+      <div class="mb-3">
+        <div class="d-flex justify-content-between mb-2">
+            <label for="cbViewDemo" class="mb-0">Cho phép xem sản phẩm demo</label>
+            <div class="form-check form-switch mb-2">
+              <input class="form-check-input" type="checkbox" id="cbViewDemo" <% if(isViewDemo == true){%> checked <%}%> name="isViewDemo" />
+            </div>
+        </div>
+      </div>
 
       </div>
     </div>

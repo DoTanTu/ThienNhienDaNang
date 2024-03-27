@@ -17,13 +17,13 @@
                 success: function (response) {
 
                     Swal.fire({
-                    position: "center-center",
-                    icon: "success",
-                    title: "Đã gửi thông tin thành công!",
-                    showConfirmButton: false,
-                    timer: 2000
-                    });
-                    document.getElementById("form_contact").reset();
+                        position: "center-center",
+                        icon: "success",
+                        title: "Đã gửi thông tin thành công!",
+                        showConfirmButton: false,
+                        timer: 2000
+                        });
+                        document.getElementById("form_contact").reset();
                 },
                 error: function (xhr, status, error) {
                     // Xử lý lỗi

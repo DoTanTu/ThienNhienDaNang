@@ -21,6 +21,7 @@ const PageSchema = new mongoose.Schema({
     isProductContact: {type: Boolean, default: false},
     isLockDelete: {type: Boolean, default: false},
     isDescriptionPlus: {type: Boolean, default: false},
+    isViewDemo: {type: Boolean, default: false},
     referencePageId : { type: String , default: ""  },
   },
   seoTitle: { type: String,  default: "" } ,

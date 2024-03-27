@@ -57,8 +57,16 @@ export default class ProductController {
 
   public async GetProducts(req, res) {
     const serviceInstance = Container.get(ProductService);
+    const servicePageInstance = Container.get(PageService);
+    let pages = await servicePageInstance.getPages()
     let page = req.params.page
-    
+    let pageSetting = pages.find(x => {
+      return x._id == page;
+    });
+    let productPreview = false;
+    if(pageSetting.setting && pageSetting.setting.isViewDemo == true){
+      productPreview = true;
+    }
     var responses = await serviceInstance.getProducts({
       pageId : page,
       query: req.query.search.value,
@@ -69,7 +77,6 @@ export default class ProductController {
       language : "",
       cateId : req.query['cateId']
     } as IProductQuery);
-
     if (responses) {
       res.status(200).json({
         success: true,
@@ -77,6 +84,7 @@ export default class ProductController {
         recordsFiltered: responses.total,
         data: {
           data: responses.items,
+          isViewDemo : productPreview,
           role: req.session.user.role,
         },
       });

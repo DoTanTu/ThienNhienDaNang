@@ -26,6 +26,7 @@ export interface IPageSetting {
     isProductContact: boolean
     isLockDelete: boolean
     isDescriptionPlus : boolean
+    isViewDemo : boolean
     referencePageId : string
 }
 

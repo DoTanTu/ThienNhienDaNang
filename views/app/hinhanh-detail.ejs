@@ -20,100 +20,112 @@
                 <div class="cot-12 cot-9-lg hinhanh-detail">
                     <% if(dataProductDetail){
                         prod = dataProductDetail;
-                        authors = prod.authors
-                    %>
-                    <h3 class="h3-title mb-5 underline"><%= prod.name%></h3>
+                        authors = prod.authors %>
+                        <h3 class="h3-title mb-5 underline"><%= prod.name%></h3>
+                        <div class="hinhanh-gallery-detail gallery-container d-flex align-items-center justify-content-center mb-5" id="gallery-container">
+                            
+                            <%if(prod.images.length > 0 ){
+                                    prod.images.forEach((imageItem) => {
+                                        pathImage = imageItem.image %>
+                                            <a class="gallery-item"
+                                                data-src="../<%= pathImage%>"
+                                                data-sub-html="#<%= imageItem._id%>">
+                                                <img class="img-fluid"
+                                                    src="../<%= pathImage%>" />
+                                            </a>
+                                    <%})%>
+                            <%}%>
+                        </div>
 
-                    <div class="hinhanh-gallery-detail gallery-container d-flex align-items-center justify-content-center mb-5"
-                        id="gallery-container">
-                        
                         <%if(prod.images.length > 0 ){
-                            prod.images.forEach((imageItem) => {
-                                pathImage = imageItem.image
-                           %>
-                        <a class="gallery-item"
-                            data-src="../<%= pathImage%>"
-                            data-sub-html="#<%= imageItem._id%>">
-                            <img class="img-fluid"
-                                src="../<%= pathImage%>" />
-                        </a>
-                     <% })}%>
-                    </div>
+                            prod.images.forEach((imageItem, index) => {%>
 
+                                <div id="<%= imageItem._id%>" style="display:none">
+                                    <h4 class="br-line-1"><%= prod.name%></h4>
+                                    <%if(authors && authors.length > 0){%>
+                                        <span>Tác giả: 
+                                            <% authors.forEach( (item, index) => {%>
+                                                <strong><%if(index == 0 ){%><%}else{%>,<%}%><%= item.fullname%></strong>
+                                            <% })%>
+                                        </span>
+                                    <%}%>
 
-                    <%if(prod.images.length > 0 ){
-                        prod.images.forEach((imageItem, index) => {
-                       %>
-                    <div id="<%= imageItem._id%>" style="display:none">
-                        <h4 class="br-line-1"><%= prod.name%></h4>
-                        <%if(authors && authors.length > 0){%>
-                            <span>Tác giả: 
-                                <% authors.forEach( (item, index) => {%>
-                                    <strong><%if(index == 0 ){%><%}else{%>,<%}%><%= item.fullname%></strong>
-                                <% })%>
-                            </span>
-                        <%}%>
+                                    <%if(imageItem.year && imageItem.year !== ''){%>
+                                        <span>
+                                            Thời gian: <strong><%= imageItem.year%></strong>
+                                        </span>
+                                    <%}%>
 
-                        <%if(imageItem.year && imageItem.year !== ''){%>
-                            <span>
-                                Thời gian: <strong><%= imageItem.year%></strong>
-                            </span>
-                        <%}%>
-
-                        <%if(imageItem.address && imageItem.address !== ''){%>
-                            <span>
-                                Địa điểm: <strong><%= imageItem.address%></strong>
-                            </span>
-                        <%}%>
-                    </div>
-                    <% })
-                    }%>
-                  
-                    <div class="tailieu-detail-icon justify-content-center">
-                        <span>
-                            <i class="me-2 bi bi-suit-heart<%if(dataBasicInfo && prod.likes.includes(dataBasicInfo._id)){%>-fill<%}%>" data-action="like" data-post-id="<%= prod._id%>"></i>
-                            <span id="likeCustomer"><%= prod.likes.length%></span>
-                        </span>
-                        <span><i class="me-2 bi bi-download"></i><span id="number-download"><%= prod.downloads%></span></span>
-                        <span class="list_method_shared">
-                            <i class="me-2 bi bi-reply"></i>
-                            <span>0</span>
-                            <span class="share_method">
-                                <div class="parent">
-                                    <a href="" target="_blank" id="shareFacebook" class="item" title="chia sẽ với facebook">
-                                        <i class="bi bi-facebook"></i>
-                                    </a>
-                                    <a href="" id="copyLinkPost" class="item" title="copy đường dẫn">
-                                        <i class="bi bi-link-45deg"></i>
-                                    </a>
+                                    <%if(imageItem.address && imageItem.address !== ''){%>
+                                        <span>
+                                            Địa điểm: <strong><%= imageItem.address%></strong>
+                                        </span>
+                                    <%}%>
                                 </div>
+                            <%})%>
+                        <%}%>
+                    
+                        <div class="tailieu-detail-icon justify-content-center">
+                            <span>
+                                <i class="me-2 bi bi-suit-heart<%if(dataBasicInfo && prod.likes.includes(dataBasicInfo._id)){%>-fill<%}%>" data-action="like" data-post-id="<%= prod._id%>"></i>
+                                <span id="likeCustomer"><%= prod.likes.length%></span>
                             </span>
-                        </span>
-                        <span><i class="me-2 bi bi-eye"></i><%= prod.views%></span>
-                        <span><i class="me-2 bi bi-chat-left"></i><%= prod.comments.length%></span>
-                    </div>
+                            <span><i class="me-2 bi bi-download"></i><span id="number-download"><%= prod.downloads%></span></span>
+                            <span class="list_method_shared">
+                                <i class="me-2 bi bi-reply"></i>
+                                <span>0</span>
+                                <span class="share_method">
+                                    <div class="parent">
+                                        <a href="" target="_blank" id="shareFacebook" class="item" title="chia sẽ với facebook">
+                                            <i class="bi bi-facebook"></i>
+                                        </a>
+                                        <a href="" id="copyLinkPost" class="item" title="copy đường dẫn">
+                                            <i class="bi bi-link-45deg"></i>
+                                        </a>
+                                    </div>
+                                </span>
+                            </span>
+                            <span><i class="me-2 bi bi-eye"></i><%= prod.views%></span>
+                            <span><i class="me-2 bi bi-chat-left"></i><%= prod.comments.length%></span>
+                        </div>
 
-                    <div class="hinhanh-mieuta mb-3">
-                        <h3 class="h3-title underline position-relative mb-4">Miêu tả</h3>
-                        <%- prod.description%>
-                    </div>
-                    <div class="nav-tag mb-5">
-                    <ul>
-                        <span>Từ khoá:</span>
-                        <% 
-                        if(prod.hashtags && prod.hashtags.length > 0){
-                            const hashtagProducts = dataAttibutes.find(attribute => attribute.tag === 'Hashtag');
-                            prod.hashtags.forEach( item => {
-                                let mapping = hashtagProducts.values.find( hashtag_item => hashtag_item.code === item);
-                                if(mapping){
-                                    value_display = mapping.value;
-                                    %>
-                                    <li>
-                                        <a href="/hinh-anh?hashtag=<%= item%>"><%= value_display%></a>
-                                    </li>
-                       <%}})}%>
-                    </ul>
-                </div>
+                        <div class="hinhanh-mieuta mb-3">
+                            <h3 class="h3-title underline position-relative mb-4">Miêu tả</h3>
+                            <%- prod.description%>
+
+                            <%if(prod.additional){
+                                nameVn = prod.additional.nameVn;
+                                nameEn = prod.additional.nameEn;
+                                nameLa = prod.additional.nameLa;
+
+                                if(nameVn && nameVn !=  ''){%>
+                                    <p class="name_Vn">Tên tiếng Việt: <%= nameVn%></p>
+                                <%}%>
+                                <%if(nameEn && nameEn != ''){%>
+                                    <p class="name_En">Tên tiếng Anh: <%= nameEn%></p>
+                                <%}%>
+                                <%if(nameLa && nameLa != ''){%>
+                                    <p class="name_La fst-italic">Tên tiếng La-tinh: <%= nameLa%></p>
+                                <%}%>
+                            <%}%>
+                        </div>
+                        <div class="nav-tag mb-5">
+                            <ul>
+                                <span>Từ khoá:</span>
+                                <%if(prod.hashtags && prod.hashtags.length > 0){
+                                    const hashtagProducts = dataAttibutes.find(attribute => attribute.tag === 'Hashtag');
+                                    prod.hashtags.forEach( item => {
+                                        let mapping = hashtagProducts.values.find( hashtag_item => hashtag_item.code === item);
+                                        if(mapping){
+                                            value_display = mapping.value%>
+                                            <li>
+                                                <a href="/hinh-anh?hashtag=<%= item%>"><%= value_display%></a>
+                                            </li>
+                                        <%}%>
+                                    <%})%>
+                                <%}%>
+                            </ul>
+                        </div>
                     <%}%>
 
                     <%- include('./components/comment') -%>

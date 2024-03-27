@@ -37,7 +37,7 @@ export const LIMIT_NUM = 3;
 
 export class Utils {
   static covertToWebp(path, name){
-    let pathNew = path.replace('images/', 'thumbnail/'+ name + '/').replace('.png','.webp').replace('.jpg','.webp').replace('.jpeg','.webp');
+    let pathNew = path.replace('images/', 'thumbnail/'+ name + '/').replace('.png','.webp').replace('.jpg','.webp').replace('.jpeg','.webp').replace('.JPG','.webp');
   return pathNew;
   }
   static getId(alias) {
