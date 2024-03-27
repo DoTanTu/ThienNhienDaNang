@@ -8,14 +8,13 @@
                     url = prod.url;
                     let alt = '';
                     let pathImage = '';
-                    let obImage = prod.images.find( item => item.showTopImage == true);
+                    let imageResize = '';
+                    const obImage = prod.images[0];
                     if(obImage){
                         pathImage = obImage.image;
                         alt = obImage.alt;
-                    }else{
-                        pathImage = prod.images[0].image
                     }
-                    imageResize = pathImage.replace('images/', 'thumbnail/480/').replace(/\.(png|jpg|jpeg|JPG)$/i, '.webp');
+                    imageResize = pathImage.replace('images/', 'thumbnail/1920/').replace(/\.(png|jpg|jpeg|JPG)$/i, '.webp');
                 %>
                 <div class="item">
                     <div class="slider-cover-box">

@@ -1,3 +1,5 @@
+const e = require("express");
+
     $(document).ready(function() {
         let shareButton = $('#shareFacebook');
         let copyLinkButton = $('#copyLinkPost');
@@ -337,4 +339,6 @@
         });
     });
 
-    
+    $('#registerFromModal').on('click', function (e){
+        e.preventDefault();
+    })
