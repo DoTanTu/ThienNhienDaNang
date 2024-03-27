@@ -109,6 +109,7 @@
                                 <%}%>
                             <%}%>
                         </div>
+                        
                         <div class="nav-tag mb-5">
                             <ul>
                                 <span>Từ khoá:</span>
@@ -134,16 +135,17 @@
                         <div class="owl-quantam owl-carousel owl-theme mb-5">
                         <%if(dataProducts && dataProducts.length > 0){
                             dataProducts.forEach( prodRelated => {
-                                if(prodRelated._id !== prod._id){
+                                if(prodRelated._id !== dataProductDetail._id){
                                     let alt = '';
-                                    let pathImage = '';
-                                    let imageResize = '';
-                                    const obImage = prod.images[0];
-                                    if(obImage){
-                                        pathImage = obImage.image;
-                                        alt = obImage.alt;
-                                    }
-                                    imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');     
+                                let pathImage = '';
+                                let obImage = prodRelated.images.find( item => item.showTopImage == true);
+                                if(obImage){
+                                    pathImage = obImage.image;
+                                    alt = obImage.alt;
+                                }else{
+                                    pathImage = prodRelated.images[0].image
+                                }
+                                imageResize = pathImage.replace('images/', 'thumbnail/480/').replace(/\.(png|jpg|jpeg|JPG)$/i, '.webp');
                                     %>
                                     <div class="item">
                                         <div class="img-box trans-3 mb-3">

@@ -10,13 +10,14 @@
                         name = prod.name;
                         let alt = '';
                         let pathImage = '';
-                        let imageResize = '';
-                        const obImage = prod.images[0];
+                        let obImage = prod.images.find( item => item.showTopImage == true);
                         if(obImage){
                             pathImage = obImage.image;
                             alt = obImage.alt;
+                        }else{
+                            pathImage = prod.images[0].image
                         }
-                        imageResize = pathImage.replace('images/', 'thumbnail/720/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
+                        imageResize = pathImage.replace('images/', 'thumbnail/480/').replace(/\.(png|jpg|jpeg|JPG)$/i, '.webp');
                   %>
             <div class="item">
                 <div class="home-hinhanh-img">

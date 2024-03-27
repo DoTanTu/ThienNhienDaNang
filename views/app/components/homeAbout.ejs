@@ -19,13 +19,14 @@
                         description = prod.descriptionPlus[0].description
                         let alt = '';
                         let pathImage = '';
-                        let imageResize = '';
-                        const obImage = prod.images[0];
+                        let obImage = prod.images.find( item => item.showTopImage == true);
                         if(obImage){
                             pathImage = obImage.image;
                             alt = obImage.alt;
+                        }else{
+                            pathImage = prod.images[0].image
                         }
-                        imageResize = pathImage.replace('images/', 'thumbnail/480/').replace(/\.(png|jpg|jpeg)$/i, '.webp');
+                        imageResize = pathImage.replace('images/', 'thumbnail/480/').replace(/\.(png|jpg|jpeg|JPG)$/i, '.webp');
               %>
             <div class="cot-12 cot-4-md px-30 py-30 home-about-box">
                 <img class="mb-3" src="../<%= imageResize%>" onerror="javascript:this.src='../<%= pathImage%>'" alt="<%= alt%>">
