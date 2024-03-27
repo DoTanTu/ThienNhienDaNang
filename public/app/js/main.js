@@ -339,7 +339,7 @@ const e = require("express");
         });
     });
 
-    $('#registerFromModal').on('click', function (e){
+    function redirectToSignup() {
         console.log('----Đã vào đây-------')
         e.preventDefault();
         const urlCurrent = window.location.href;
@@ -350,4 +350,4 @@ const e = require("express");
         }
 
         window.location.href = '/dang-ky';
-    })
+    }
