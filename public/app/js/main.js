@@ -341,4 +341,12 @@ const e = require("express");
 
     $('#registerFromModal').on('click', function (e){
         e.preventDefault();
+        const urlCurrent = window.location.href;
+    
+        if (!getCookie("referer_url")) {
+            const base64Url = btoa(urlCurrent);
+            document.cookie = `referer_url=${encodeURIComponent(base64Url)}; path=/`;
+        }
+
+        window.location.href = '/dang-ky';
     })
