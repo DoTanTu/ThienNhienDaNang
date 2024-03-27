@@ -340,6 +340,7 @@ const e = require("express");
     });
 
     $('#registerFromModal').on('click', function (e){
+        console.log('----Đã vào đây-------')
         e.preventDefault();
         const urlCurrent = window.location.href;
     
